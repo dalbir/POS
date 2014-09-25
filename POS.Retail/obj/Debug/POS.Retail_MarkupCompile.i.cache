@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\POS Back\POS.Retail\obj\Debug\
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\
 POS.Retail
 none
 false
 DEBUG;TRACE
-C:\POS Back\POS.Retail\App.xaml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\App.xaml
 58591605399
 
 67-1604524860
-19-1024160656
+19-1231777526
 Views\CalenderForm.xaml;Views\CalenderTimeForm.xaml;Views\CategoryMaintenance.xaml;Views\CategorySelectForm.xaml;Views\CheckNumberForm.xaml;Views\CheckPriceForm.xaml;Views\CorporateSetupForm.xaml;Views\CreditCardTipsForm.xaml;Views\CreditCardTransFrm.xaml;Views\CustomerForm.xaml;Views\DataBaseSettingForm.xaml;Views\DaysOfWeekForm.xaml;Views\DepartmentMaintanceForm.xaml;Views\EmployeeForm.xaml;Views\EnterStartEndDate.xaml;Views\EnterVendorForm.xaml;Views\GlobalPriceChangeForm.xaml;Views\InforPromptForm.xaml;Views\InventoryForm.xaml;Views\JobCodeSetupForm.xaml;Views\Keyboard.xaml;Views\LateReturnDialogForm.xaml;Views\LoginForm.xaml;Views\LookUplayawayForm.xaml;Views\MainWindow.xaml;Views\ManagerForm.xaml;Views\MGQbChargeForm.xaml;Views\ModiferGroups2Form.xaml;Views\ModiferGroupsForm.xaml;Views\MsgForm.xaml;Views\MyDialog.xaml;Views\NumberKeypaid.xaml;Views\OnHoldForm.xaml;Views\OrderTypeForm.xaml;Views\PaymentHistoryForm.xaml;Views\PayTypeForm.xaml;Views\PropertyCategoryForm.xaml;Views\PurchaseOrderForm.xaml;Views\QuestionBoxEOC.xaml;Views\QuestionBoxGlobalChange.xaml;Views\QuestionBoxTipAmount.xaml;Views\QuestionFormDeactivateGftLoyalty.xaml;Views\RecallInvoiceForm.xaml;Views\ReceivingScreen.xaml;Views\RentalInfoCustomerForm.xaml;Views\RentalReturnsForm.xaml;Views\SearchInventoryForm.xaml;Views\SelectCustomerForm.xaml;Views\SelectDepartCoponForm.xaml;Views\SelectItemTypesForm.xaml;Views\SelectPriceTypeForm.xaml;Views\SelectRentalItemsForm.xaml;Views\SelectVendorForm.xaml;Views\StoreStationForm.xaml;Views\TaxSetupForm.xaml;Views\TimeForm.xaml;Views\TypeofRuleCoupon.xaml;Views\VendorMaintForm.xaml;
 
 False
