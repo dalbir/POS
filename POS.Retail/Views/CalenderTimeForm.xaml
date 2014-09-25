@@ -1,0 +1,93 @@
+﻿<Window x:Class="POS.Retail.CalenderTimeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        Title="Calender"  WindowStyle="ToolWindow" WindowStartupLocation="manual" ResizeMode="NoResize" Loaded="Window_Loaded" Height="793" Width="620">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.175*"/>
+            <RowDefinition Height="54"/>
+            <RowDefinition Height="416.74"/>
+            <RowDefinition Height="0.523*"/>
+            <RowDefinition Height="44.15"/>
+            <RowDefinition Height="232.189"/>
+            <RowDefinition Height="0.303*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0.426*"/>
+            <ColumnDefinition Width="528.11"/>
+            <ColumnDefinition Width="0.574*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Enter Completion date/time:" Margin="0,4,16.369,0" x:Name="lbl_heading" FontSize="24" FontWeight="Normal" Grid.Row="1" Grid.Column="4" />
+        <Viewbox Margin="9.328,-11,0,8" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" d:LayoutOverrides="GridBox">
+            <Calendar Height="166" Width="182" x:Name="clndr" PreviewMouseUp="clndr_PreviewMouseUp" SelectedDatesChanged="clndr_SelectedDatesChanged" />
+        </Viewbox>
+        <Grid Margin="-7.5,-5.852,14.5,9.065" x:Name="grid1" Width="Auto" Grid.ColumnSpan="6" Grid.Row="4" Grid.RowSpan="2" d:LayoutOverrides="Width, GridBox">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.174*"/>
+                <RowDefinition Height="0.826*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Cancel" Height="40" HorizontalAlignment="Left" Margin="25,181.169,0,0" x:Name="btn_cancel" VerticalAlignment="Top" Width="135" FontWeight="Bold" FontSize="16" Click="btn_cancel_Click" Grid.Row="1">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#A7FF0000" Offset="0.197" />
+                        <GradientStop Color="#74D14E4E" Offset="0.836" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Button" Height="40" HorizontalAlignment="Left" Margin="166,181.169,0,0" x:Name="btn_select_date" VerticalAlignment="Top" Width="405" FontSize="18" FontWeight="Bold" Click="btn_select_date_Click" Grid.Row="1">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#93000000" Offset="0" />
+                        <GradientStop Color="#813A4EBE" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBox Height="26" HorizontalAlignment="Left" Margin="322,149.169,0,0" x:Name="txt_date" VerticalAlignment="Top" Width="249" FontSize="18" FontWeight="Bold" TextAlignment="Center" KeyDown="txt_date_KeyDown" Grid.Row="1" />
+            <Label Content="Type Date/Time OR Select:" FontSize="20" FontWeight="Bold" Height="35" Margin="33,139.169,0,0" x:Name="label2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="283" Grid.Row="1" />
+            <Button Content="Last&#xa;Year" HorizontalAlignment="Left" Margin="33,7,0,3.831" x:Name="btn_last_year" Width="46" Background="#9B5CB94D" FontWeight="Bold" Click="btn_last_year_Click" />
+            <Button Background="#9B5CB94D" Content="Next&#xa;Year" HorizontalAlignment="Left" Margin="166,7,0,3.831" x:Name="btn_next_year" Width="46" FontWeight="Bold" Click="btn_next_year_Click" />
+            <Button Background="#9B5CB94D" Content=" Last&#xa;Month" HorizontalAlignment="Left" Margin="469,6,0,4.831" x:Name="btn_last_month" Width="46" FontWeight="Bold" Click="btn_last_month_Click" />
+            <Button Background="#9B5CB94D" Content=" Next&#xa;Month" HorizontalAlignment="Left" Margin="519,6,0,4.831" x:Name="btn_next_month" Width="46" FontWeight="Bold" Click="btn_next_month_Click" />
+            <Grid Height="138" HorizontalAlignment="Left" Margin="8,-0.831,0,0" x:Name="time_grid" VerticalAlignment="Top" Width="599" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.338*"/>
+                    <RowDefinition Height="0.288*"/>
+                    <RowDefinition Height="0.049*"/>
+                    <RowDefinition Height="0.273*"/>
+                    <RowDefinition Height="0.052*"/>
+                </Grid.RowDefinitions>
+                <!--<Label Content="Select Time" HorizontalAlignment="Left" Margin="10,10,0,8" x:Name="lbl_select_time" Width="74" d:LayoutOverrides="VerticalAlignment" />-->
+                <Button Background="SeaShell" Content="AM" FontWeight="Bold" HorizontalAlignment="Left" Margin="442,0,0,8" x:Name="btn_am" Width="46" Click="btn_am_Click" />
+                <Button Background="SeaShell" Content="PM" FontWeight="Bold" HorizontalAlignment="Left" Margin="494,0,0,8" x:Name="btn_pm" Width="46" Click="btn_am_Click" />
+                <Button Background="Lavender" Content="1" FontWeight="Bold" HorizontalAlignment="Left" Margin="54,-0.28,0,0" x:Name="btn_1" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="2" FontWeight="Bold" HorizontalAlignment="Left" Margin="99,-0.28,0,0" x:Name="btn_2" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="3" FontWeight="Bold" HorizontalAlignment="Left" Margin="144,-0.28,0,0" x:Name="btn_3" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="4" FontWeight="Bold" HorizontalAlignment="Left" Margin="190,-0.28,0,0" x:Name="btn_4" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="5" FontWeight="Bold" HorizontalAlignment="Left" Margin="235,-0.28,0,0" x:Name="btn_5" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="6" FontWeight="Bold" HorizontalAlignment="Left" Margin="280,-0.28,0,0" x:Name="btn_6" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="7" FontWeight="Bold" HorizontalAlignment="Left" Margin="325,-0.28,0,0" x:Name="btn_7" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="8" FontWeight="Bold" HorizontalAlignment="Left" Margin="371,-0.28,0,0" x:Name="btn_8" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="9" FontWeight="Bold" HorizontalAlignment="Left" Margin="418,-0.28,0,0" x:Name="btn_9" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,-0.28,0,0" x:Name="btn_0" Width="40" Grid.Row="1" Click="btn_0_Click" />
+                <Button Background="Lavender" Content="10" FontWeight="Bold" HorizontalAlignment="Left" Margin="464,-0.28,0,0" x:Name="btn_10" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="Lavender" Content="11" FontWeight="Bold" HorizontalAlignment="Left" Margin="510,-0.28,0,0" x:Name="btn_11" Width="40" Grid.Row="1" Click="btn_1_Click" />
+                <Button Background="#CD86860D" Content=":05" FontWeight="Bold" HorizontalAlignment="Left" Margin="54,-2.311,0,0" x:Name="btn_005" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":10" FontWeight="Bold" HorizontalAlignment="Left" Margin="99,-2.311,0,0" x:Name="btn_010" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":15" FontWeight="Bold" HorizontalAlignment="Left" Margin="144,-2.311,0,0" x:Name="btn_015" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":20" FontWeight="Bold" HorizontalAlignment="Left" Margin="190,-2.311,0,0" x:Name="btn_020" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":25" FontWeight="Bold" HorizontalAlignment="Left" Margin="235,-2.311,0,0" x:Name="btn_025" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":30" FontWeight="Bold" HorizontalAlignment="Left" Margin="280,-2.311,0,0" x:Name="btn_030" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":35" FontWeight="Bold" HorizontalAlignment="Left" Margin="325,-2.311,0,0" x:Name="btn_035" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":40" FontWeight="Bold" HorizontalAlignment="Left" Margin="371,-2.311,0,0" x:Name="btn_040" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":45" FontWeight="Bold" HorizontalAlignment="Left" Margin="418,-2.311,0,0" x:Name="btn_045" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":00" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,-2.311,0,0" x:Name="btn_000" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":50" FontWeight="Bold" HorizontalAlignment="Left" Margin="464,-2.311,0,0" x:Name="btn_050" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+                <Button Background="#CD86860D" Content=":55" FontWeight="Bold" HorizontalAlignment="Left" Margin="510,-2.311,0,0" x:Name="btn_055" Width="40" UseLayoutRounding="False" Grid.Row="3" Click="btn_000_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

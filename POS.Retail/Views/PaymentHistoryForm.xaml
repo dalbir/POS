@@ -1,0 +1,23 @@
+﻿<Window x:Class="POS.Retail.PaymentHistoryForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Layaway Payment History" Height="384" Width="585" Loaded="Window_Loaded">
+    <Grid Background="DarkGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36*" />
+            <RowDefinition Height="266*" />
+            <RowDefinition Height="43*" />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" AlternatingRowBackground="#FFC4B0B0" Grid.Row="1" Name="dg_payment_history" IsReadOnly="True" Margin="0,0,1,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Store ID" Width="90" Binding="{Binding Store_ID}"/>
+                <DataGridTextColumn Header="Transaction #" Width="100" Binding="{Binding TransactionNumber}"/>
+                <DataGridTextColumn Header="Date Time"  Width="150" Binding="{Binding DateTime}"/>
+                <DataGridTextColumn Header="Cashier ID" Width="100" Binding="{Binding Cashier_ID}"/>
+                <DataGridTextColumn Header="Amount" Width="120" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Name="label1" HorizontalContentAlignment="Center" Background="DarkCyan" Foreground="White" FontWeight="SemiBold" FontSize="16" />
+        <Button Content="Done" Background="LightGray" Name="btn_done" Grid.Row="2" FontSize="22" FontWeight="SemiBold" FontFamily="Verdana" Click="btn_done_Click" />
+    </Grid>
+</Window>

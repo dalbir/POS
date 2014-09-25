@@ -1,0 +1,833 @@
+﻿<Window x:Class="POS.Retail.ManagerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Title="Manager" Height="471" Width="842" KeyDown="Window_KeyDown" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Grid Background="DarkGray" Margin="1,-3,-2,0" Name="Grid_main_manager" Visibility="Visible">
+            <Button Click="btn_cashier_grid_Click" Content="Cashier" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="25,23,0,0" Name="btn_cashier_grid" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF47F247" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Click="btn_invoic_grid_Click" Focusable="False" FontSize="28" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="25,105,0,0" Name="btn_invoic_grid" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF47F247" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="58" Width="157">
+                    <TextBlock FontSize="20" Width="74">Invoice</TextBlock>
+                    <TextBlock FontSize="20" Width="101">Properties</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Click="btn_tools_grid_Click" Content="Tools" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="25,189,0,0" Name="btn_tools_grid" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF47F247" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Click="btn_setup_grid_Click" Content="Setup" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="25,273,0,0" Name="btn_setup_grid" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF47F247" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Click="btn_admin_gird_Click" Content="Administrator" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="25,360,0,0" Name="btn_admin_gird" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF47F247" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock Background="Chartreuse" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="14,13,0,0" Name="textBlock1" Panel.ZIndex="5" Text="1" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="Chartreuse" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="14,93,0,0" Name="textBlock2" Panel.ZIndex="5" Text="2" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="Chartreuse" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="14,175,0,0" Name="textBlock3" Panel.ZIndex="5" Text="3" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="Chartreuse" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="14,261,0,0" Name="textBlock4" Panel.ZIndex="5" Text="4" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="Chartreuse" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="14,343,0,0" Name="textBlock5" Panel.ZIndex="5" Text="5" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Click="btn_manger_gird_exit_Click" Content="E_xit" Focusable="False" FontSize="20" FontWeight="Bold" Margin="735,23,0,0" Name="btn_manger_gird_exit" HorizontalAlignment="Left" Width="72" Height="401" VerticalAlignment="Top">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#6CFF0000" Offset="0.423" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Grid Margin="200,15,92,1" Name="grid_admin" Visibility="Visible">
+                <Button Click="btn_inventory_mantence_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,8,0,0" Name="btn_inventory_mantence" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="98">Inventory</TextBlock>
+                        <TextBlock Width="127">Maintenance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Click="btn_dept_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="184,8,0,0" Name="btn_dept_maintance" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="58" Width="157">
+                        <TextBlock Width="123">Department</TextBlock>
+                        <TextBlock Width="125">Maintenance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Content="Cashier" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="360,8,0,0" Name="button63" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-7,-2,0,0" Name="textBlock6" Panel.ZIndex="5" Text="A" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,-2,0,0" Name="textBlock7" Panel.ZIndex="5" Text="B" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,-5,0,0" Name="textBlock8" Panel.ZIndex="5" Text="C" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,93,0,0" Name="btn_customer_maintenance" VerticalAlignment="Top" Width="161" Click="btn_customer_maintenance_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="98">Customer</TextBlock>
+                        <TextBlock Width="125">Maintenance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,80,0,0" Name="textBlock9" Panel.ZIndex="5" Text="D" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_emp_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,94,0,0" Name="btn_emp_maintance" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="98">Empolyee</TextBlock>
+                        <TextBlock Width="125">Maintenance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,81,0,0" Name="textBlock10" Panel.ZIndex="5" Text="E" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_vendor_maintence_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,93,0,0" Name="btn_vendor_maintence" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="73">Vendor</TextBlock>
+                        <TextBlock Width="125">Maintenance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,80,0,0" Name="textBlock11" Panel.ZIndex="5" Text="F" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="9,173,0,0" Name="btn_purchase_order" VerticalAlignment="Top" Width="161" Click="btn_purchase_order_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="98">Purchase</TextBlock>
+                        <TextBlock Width="63">Order</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-4,160,0,0" Name="textBlock21" Panel.ZIndex="5" Text="G" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="189,174,0,0" Name="btn_back_order" VerticalAlignment="Top" Width="161" Click="btn_back_order_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="98" TextAlignment="Center">Back</TextBlock>
+                        <TextBlock Width="63" TextAlignment="Center">Order</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="176,161,0,0" Name="textBlock22" Panel.ZIndex="5" Text="I" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,173,0,0" Name="button2" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="118">Time Clock</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Management</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,160,0,0" Name="textBlock23" Panel.ZIndex="5" Text="J" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="12,258,0,0" Name="btn_credit_card_settlement" VerticalAlignment="Top" Width="161" Click="btn_credit_card_settlement_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="118">Credit Card</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Settlement</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-1,246,0,0" Name="textBlock24" Panel.ZIndex="5" Text="K" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,258,0,0" Name="button4" VerticalAlignment="Top" Width="161" Content="Reports">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,246,0,0" Name="textBlock25" Panel.ZIndex="5" Text="L" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,258,0,0" Name="button5" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="118">Customer</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Item Prices</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,246,0,0" Name="textBlock26" Panel.ZIndex="5" Text="M" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="12,340,0,0" Name="button6" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="118">Global Price</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Changes</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-1,328,0,0" Name="textBlock27" Panel.ZIndex="5" Text="N" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,340,0,0" Name="button7" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="118">Mix n Match</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Pricing</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,328,0,0" Name="textBlock28" Panel.ZIndex="5" Text="O" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            </Grid>
+            <Rectangle Height="64" HorizontalAlignment="Left" Margin="185,360,0,0" Name="rec_admin" RadiusX="3" RadiusY="3" Stroke="#FF47F247" VerticalAlignment="Top" Width="8">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#4E478AF2" Offset="0.807" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Height="64" HorizontalAlignment="Left" Margin="185,273,0,0" Name="rec_setup" RadiusX="3" RadiusY="3" Stroke="#FF47F247" VerticalAlignment="Top" Visibility="Hidden" Width="8">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#4E478AF2" Offset="0.807" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Height="64" HorizontalAlignment="Left" Margin="185,189,0,0" Name="rec_tools" RadiusX="3" RadiusY="3" Stroke="#FF47F247" VerticalAlignment="Top" Visibility="Hidden" Width="8">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#4E478AF2" Offset="0.807" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Height="64" HorizontalAlignment="Left" Margin="185,105,0,0" Name="rec_invoice" RadiusX="3" RadiusY="3" Stroke="#FF47F247" VerticalAlignment="Top" Visibility="Hidden" Width="8">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#4E478AF2" Offset="0.807" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Height="64" HorizontalAlignment="Left" Margin="185,23,0,0" Name="rec_cashier" RadiusX="3" RadiusY="3" Stroke="#FF47F247" VerticalAlignment="Top" Visibility="Hidden" Width="8">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#4E478AF2" Offset="0.807" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Grid Margin="197,13,95,3" Name="grid_setup" Visibility="Hidden">
+                <Button Click="btn_inventory_mantence_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,8,0,0" Name="btn_costmarkup" VerticalAlignment="Top" Width="161" Content="Cost Markup">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Click="btn_dept_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="184,8,0,0" Name="btn_cust_loyalty" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="58" Width="157">
+                        <TextBlock Width="102">Costumer</TextBlock>
+                        <TextBlock Width="86">Loyalty</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Content="Price Level" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="360,8,0,0" Name="btn_price_level" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-7,-2,0,0" Name="textBlock12" Panel.ZIndex="5" Text="B" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,-2,0,0" Name="textBlock13" Panel.ZIndex="5" Text="C" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,-5,0,0" Name="textBlock14" Panel.ZIndex="5" Text="D" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_customer_maintenance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,93,0,0" Name="btn_display_setup" VerticalAlignment="Top" Width="161" Content="Display Setup">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,80,0,0" Name="textBlock15" Panel.ZIndex="5" Text="F" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_emp_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,94,0,0" Name="btn_gen_inv_notes" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="75">Genral</TextBlock>
+                        <TextBlock Width="135">Invoice Notes</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,81,0,0" Name="textBlock16" Panel.ZIndex="5" Text="G" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_vendor_maintence_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,93,0,0" Name="btn_scren_setup" VerticalAlignment="Top" Width="161" Content="Setup Screen">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,80,0,0" Name="textBlock17" Panel.ZIndex="5" Text="H" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="8,177,0,0" Name="btn_ecomrce_setup" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="135">E-commerece</TextBlock>
+                        <TextBlock Width="58">Setup</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-5,164,0,0" Name="textBlock18" Panel.ZIndex="5" Text="I" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="361,177,0,0" Name="btn_touch_scren_conf" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="129">Touch Screen</TextBlock>
+                        <TextBlock Width="135">Configuration</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="348,164,0,0" Name="textBlock19" Panel.ZIndex="5" Text="K" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Content="Tax Rates" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,177,0,0" Name="btn_tax_rates" VerticalAlignment="Top" Width="161" Click="btn_tax_rates_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,164,0,0" Name="textBlock20" Panel.ZIndex="5" Text="J" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,260,0,0" Name="button8" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock Width="135" TextAlignment="Center">Friendly</TextBlock>
+                        <TextBlock Width="145" TextAlignment="Center">Printer Setup</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,247,0,0" Name="textBlock29" Panel.ZIndex="5" Text="K" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="187,260,0,0" Name="button9" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="135">Barcode</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Express</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="174,247,0,0" Name="textBlock30" Panel.ZIndex="5" Text="L" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="364,260,0,0" Name="button10" VerticalAlignment="Top" Width="161" Content="Price Batches">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="351,247,0,0" Name="textBlock31" Panel.ZIndex="5" Text="M" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,347,0,0" Name="button11" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="135">Self Service</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Configuration</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-6,334,0,0" Name="textBlock32" Panel.ZIndex="5" Text="N" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,342,0,0" Name="button12" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="135">Virtual Pole</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="145">Configuration</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,328,0,0" Name="textBlock33" Panel.ZIndex="5" Text="O" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            </Grid>
+            <Grid Margin="192,16,100,1" Name="invoice_properties_screen" Visibility="Hidden">
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,8,0,0" Name="btn_invoice_discounts" VerticalAlignment="Top" Width="161" Click="btn_invoice_discounts_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="98">Invoice</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="127">Discounts</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Click="btn_dept_maintance_Click" Content="Notes" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="184,8,0,0" Name="button15" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Click="btn_recall_invoice_Click" Content="Tax Exempt" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="360,8,0,0" Name="button16" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-7,-2,0,0" Name="textBlock47" Panel.ZIndex="5" Text="A" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,-2,0,0" Name="textBlock48" Panel.ZIndex="5" Text="B" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,-5,0,0" Name="textBlock49" Panel.ZIndex="5" Text="C" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_recall_onhold_inv_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,93,0,0" Name="button18" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="123">Tax Exempt</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">Additional Item</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,80,0,0" Name="textBlock50" Panel.ZIndex="5" Text="D" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,94,0,0" Name="btn_desired_grant_total" VerticalAlignment="Top" Width="161" Click="btn_desired_grant_total_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="119">Desired</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="125">Grand Total</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,81,0,0" Name="textBlock51" Panel.ZIndex="5" Text="E" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,80,0,0" Name="textBlock52" Panel.ZIndex="5" Text="F" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_return_rentals_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="9,173,0,0" Name="button26" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="98">Check EBT</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="96">Balance</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-4,160,0,0" Name="textBlock53" Panel.ZIndex="5" Text="G" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="189,174,0,0" Name="btn_deactivate_cards" VerticalAlignment="Top" Width="161" Click="btn_deactivate_cards_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="152">Deactivate</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="157">GiftCard/Loyalty</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="176,161,0,0" Name="textBlock54" Panel.ZIndex="5" Text="I" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,160,0,0" Name="textBlock55" Panel.ZIndex="5" Text="J" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,94,0,0" Name="button20" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="159">Print Item Notes</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">for Last Invoice</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="357,174,0,0" Name="btn_cashout_gc" VerticalAlignment="Top" Width="161" Click="btn_cashout_gc_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="159">CashOut</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">GiftCard</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <Grid Margin="200,14,92,3" Name="tools_grid" Visibility="Hidden">
+                <Button Click="btn_invoice_discounts_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,8,0,0" Name="button1" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="98">ASCII</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="127">Transfer</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Click="btn_dept_maintance_Click" Content="Labor Scheduler" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="184,8,0,0" Name="button19" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Click="btn_recall_invoice_Click" Content="Wage Calculator" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="360,8,0,0" Name="button27" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-7,-2,0,0" Name="textBlock56" Panel.ZIndex="5" Text="A" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,-2,0,0" Name="textBlock57" Panel.ZIndex="5" Text="B" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,-5,0,0" Name="textBlock58" Panel.ZIndex="5" Text="C" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_recall_onhold_inv_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,93,0,0" Name="button28" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="123">Quickbooks</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">Sales Pass</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,80,0,0" Name="textBlock59" Panel.ZIndex="5" Text="D" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_desired_grant_total_Click" Content="Scheduler" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,94,0,0" Name="button29" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,81,0,0" Name="textBlock60" Panel.ZIndex="5" Text="E" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,80,0,0" Name="textBlock61" Panel.ZIndex="5" Text="F" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_return_rentals_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="9,173,0,0" Name="button30" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="98">Vendor</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="96">Payouts</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-4,160,0,0" Name="textBlock62" Panel.ZIndex="5" Text="G" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Click="btn_deactivate_cards_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="189,174,0,0" Name="button31" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="152">Serial Batch</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="157">Number Track</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="176,161,0,0" Name="textBlock63" Panel.ZIndex="5" Text="I" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,160,0,0" Name="textBlock64" Panel.ZIndex="5" Text="J" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" Content="Cash Pullout" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,94,0,0" Name="btn_cash_pullout" VerticalAlignment="Top" Width="161" Click="btn_cash_pullout_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Click="btn_cashout_gc_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="357,174,0,0" Name="button33" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="159">Send</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">Mass Email</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="0,246,0,0" Name="textBlock65" Panel.ZIndex="5" Text="K" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+                <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="8,260,0,0" Name="button34" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel Height="53" Width="156">
+                        <TextBlock TextAlignment="Center" Width="159">Inventory</TextBlock>
+                        <TextBlock TextAlignment="Center" Width="159">Track Express</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Content="End of Day" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="189,259,0,0" Name="button35" VerticalAlignment="Top" Width="161">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#2BD1D1F0" Offset="0" />
+                            <GradientStop Color="#FF478AF2" Offset="0.732" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="176,246,0,0" Name="textBlock66" Panel.ZIndex="5" Text="L" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            </Grid>
+        </Grid>
+        <Grid Margin="201,14,90,0" Name="cahsier_grid" Visibility="Hidden">
+            <Button Click="btn_inventory_mantence_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="7,8,0,0" Name="button13" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock Width="98" TextAlignment="Center">Open</TextBlock>
+                    <TextBlock Width="127" TextAlignment="Center">Drawer</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Click="btn_dept_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="184,8,0,0" Name="button14" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="58" Width="157">
+                    <TextBlock Width="123" TextAlignment="Center">Clock In /</TextBlock>
+                    <TextBlock Width="125" TextAlignment="Center">Clock Out</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Content="Recall Invoice" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="360,8,0,0" Name="btn_recall_invoice" VerticalAlignment="Top" Width="161" Click="btn_recall_invoice_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-7,-2,0,0" Name="textBlock34" Panel.ZIndex="5" Text="A" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,-2,0,0" Name="textBlock35" Panel.ZIndex="5" Text="B" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,-5,0,0" Name="textBlock36" Panel.ZIndex="5" Text="C" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="10,93,0,0" Name="btn_recall_onhold_inv" VerticalAlignment="Top" Width="161" Click="btn_recall_onhold_inv_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock Width="98" TextAlignment="Center">Recall On-</TextBlock>
+                    <TextBlock Width="133" TextAlignment="Center">Hold Invoices</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-3,80,0,0" Name="textBlock37" Panel.ZIndex="5" Text="D" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Click="btn_emp_maintance_Click" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,94,0,0" Name="button17" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock Width="119" TextAlignment="Center">Display On</TextBlock>
+                    <TextBlock Width="125" TextAlignment="Center">Hold ID's</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,81,0,0" Name="textBlock38" Panel.ZIndex="5" Text="E" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,93,0,0" Name="btn_price_check" VerticalAlignment="Top" Width="161" Content="Price Check" Click="btn_price_check_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,80,0,0" Name="textBlock39" Panel.ZIndex="5" Text="F" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button  Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="9,173,0,0" Name="btn_return_rentals" VerticalAlignment="Top" Width="161" Click="btn_return_rentals_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock Width="98" TextAlignment="Center">Return</TextBlock>
+                    <TextBlock Width="96" TextAlignment="Center">Rentals</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-4,160,0,0" Name="textBlock40" Panel.ZIndex="5" Text="G" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="189,174,0,0" Name="btn_check_gc_balance" VerticalAlignment="Top" Width="161" Click="btn_check_gc_balance_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock TextAlignment="Center" Width="114">Check Gift</TextBlock>
+                    <TextBlock TextAlignment="Center" Width="132">Card Balance</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="176,161,0,0" Name="textBlock41" Panel.ZIndex="5" Text="I" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,173,0,0" Name="button21" VerticalAlignment="Top" Width="161" Content="Hold and Print">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,160,0,0" Name="textBlock42" Panel.ZIndex="5" Text="J" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="12,258,0,0" Name="button22" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock TextAlignment="Center" Width="118">Print Last</TextBlock>
+                    <TextBlock TextAlignment="Center" Width="145">Reciept</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-1,246,0,0" Name="textBlock43" Panel.ZIndex="5" Text="K" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Content="Print Docket" Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="186,258,0,0" Name="button23" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="173,246,0,0" Name="textBlock44" Panel.ZIndex="5" Text="L" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="362,258,0,0" Name="button24" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock TextAlignment="Center" Width="153">Print Gift Rcpt</TextBlock>
+                    <TextBlock TextAlignment="Center" Width="145">for last Invoice</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="349,246,0,0" Name="textBlock45" Panel.ZIndex="5" Text="M" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+            <Button Focusable="False" FontSize="20" FontWeight="Bold" Height="64" HorizontalAlignment="Left" Margin="12,340,0,0" Name="button25" VerticalAlignment="Top" Width="161">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#2BD1D1F0" Offset="0" />
+                        <GradientStop Color="#FF478AF2" Offset="0.732" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Height="53" Width="156">
+                    <TextBlock TextAlignment="Center" Width="118">Pullback</TextBlock>
+                    <TextBlock TextAlignment="Center" Width="145">Invoice</TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock Background="DeepSkyBlue" FontSize="18" FontWeight="Bold" Height="29" HorizontalAlignment="Left" Margin="-1,328,0,0" Name="textBlock46" Panel.ZIndex="5" Text="N" TextAlignment="Center" VerticalAlignment="Top" Width="29" />
+        </Grid>
+    </Grid>
+</Window>

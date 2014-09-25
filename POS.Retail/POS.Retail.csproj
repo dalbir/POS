@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{152A19BF-B04A-43D7-B865-B6888E1DDD18}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>POS.Retail</RootNamespace>
+    <AssemblyName>POS.Retail</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Views\CalenderForm.xaml.cs">
+      <DependentUpon>CalenderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CalenderTimeForm.xaml.cs">
+      <DependentUpon>CalenderTimeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategorySelectForm.xaml.cs">
+      <DependentUpon>CategorySelectForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckNumberForm.xaml.cs">
+      <DependentUpon>CheckNumberForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckPriceForm.xaml.cs">
+      <DependentUpon>CheckPriceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CorporateSetupForm.xaml.cs">
+      <DependentUpon>CorporateSetupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditCardTipsForm.xaml.cs">
+      <DependentUpon>CreditCardTipsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditCardTransFrm.xaml.cs">
+      <DependentUpon>CreditCardTransFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataBaseSettingForm.xaml.cs">
+      <DependentUpon>DataBaseSettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DaysOfWeekForm.xaml.cs">
+      <DependentUpon>DaysOfWeekForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EnterStartEndDate.xaml.cs">
+      <DependentUpon>EnterStartEndDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GlobalPriceChangeForm.xaml.cs">
+      <DependentUpon>GlobalPriceChangeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InforPromptForm.xaml.cs">
+      <DependentUpon>InforPromptForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JobCodeSetupForm.xaml.cs">
+      <DependentUpon>JobCodeSetupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Keyboard.xaml.cs">
+      <DependentUpon>Keyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LateReturnDialogForm.xaml.cs">
+      <DependentUpon>LateReturnDialogForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginForm.xaml.cs">
+      <DependentUpon>LoginForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LookUplayawayForm.xaml.cs">
+      <DependentUpon>LookUplayawayForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MGQbChargeForm.xaml.cs">
+      <DependentUpon>MGQbChargeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModiferGroups2Form.xaml.cs">
+      <DependentUpon>ModiferGroups2Form.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModiferGroupsForm.xaml.cs">
+      <DependentUpon>ModiferGroupsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MsgForm.xaml.cs">
+      <DependentUpon>MsgForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyDialog.xaml.cs">
+      <DependentUpon>MyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NumberKeypaid.xaml.cs">
+      <DependentUpon>NumberKeypaid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OnHoldForm.xaml.cs">
+      <DependentUpon>OnHoldForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderTypeForm.xaml.cs">
+      <DependentUpon>OrderTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentHistoryForm.xaml.cs">
+      <DependentUpon>PaymentHistoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayTypeForm.xaml.cs">
+      <DependentUpon>PayTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyCategoryForm.xaml.cs">
+      <DependentUpon>PropertyCategoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PurchaseOrderForm.xaml.cs">
+      <DependentUpon>PurchaseOrderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionBoxEOC.xaml.cs">
+      <DependentUpon>QuestionBoxEOC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionBoxGlobalChange.xaml.cs">
+      <DependentUpon>QuestionBoxGlobalChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionBoxTipAmount.xaml.cs">
+      <DependentUpon>QuestionBoxTipAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionFormDeactivateGftLoyalty.xaml.cs">
+      <DependentUpon>QuestionFormDeactivateGftLoyalty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecallInvoiceForm.xaml.cs">
+      <DependentUpon>RecallInvoiceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceivingScreen.xaml.cs">
+      <DependentUpon>ReceivingScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RentalInfoCustomerForm.xaml.cs">
+      <DependentUpon>RentalInfoCustomerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RentalReturnsForm.xaml.cs">
+      <DependentUpon>RentalReturnsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchInventoryForm.xaml.cs">
+      <DependentUpon>SearchInventoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectCustomerForm.xaml.cs">
+      <DependentUpon>SelectCustomerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectDepartCoponForm.xaml.cs">
+      <DependentUpon>SelectDepartCoponForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectItemTypesForm.xaml.cs">
+      <DependentUpon>SelectItemTypesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectPriceTypeForm.xaml.cs">
+      <DependentUpon>SelectPriceTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectRentalItemsForm.xaml.cs">
+      <DependentUpon>SelectRentalItemsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectVendorForm.xaml.cs">
+      <DependentUpon>SelectVendorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StoreStationForm.xaml.cs">
+      <DependentUpon>StoreStationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaxSetupForm.xaml.cs">
+      <DependentUpon>TaxSetupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeForm.xaml.cs">
+      <DependentUpon>TimeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TypeofRuleCoupon.xaml.cs">
+      <DependentUpon>TypeofRuleCoupon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VendorMaintForm.xaml.cs">
+      <DependentUpon>VendorMaintForm.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\CalenderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CalenderTimeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoryMaintenance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategorySelectForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckNumberForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckPriceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CorporateSetupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreditCardTipsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreditCardTransFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataBaseSettingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DaysOfWeekForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DepartmentMaintanceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EnterStartEndDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EnterVendorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GlobalPriceChangeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InforPromptForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InventoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JobCodeSetupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Keyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LateReturnDialogForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LookUplayawayForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\CategoryMaintenance.xaml.cs">
+      <DependentUpon>CategoryMaintenance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\RegexClass.cs" />
+    <Compile Include="Views\CustomerForm.xaml.cs">
+      <DependentUpon>CustomerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartmentMaintanceForm.xaml.cs">
+      <DependentUpon>DepartmentMaintanceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeForm.xaml.cs">
+      <DependentUpon>EmployeeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EnterVendorForm.xaml.cs">
+      <DependentUpon>EnterVendorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventoryForm.xaml.cs">
+      <DependentUpon>InventoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ManagerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MGQbChargeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModiferGroups2Form.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModiferGroupsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MsgForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NumberKeypaid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OnHoldForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaymentHistoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyCategoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PurchaseOrderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestionBoxEOC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestionBoxGlobalChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestionBoxTipAmount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestionFormDeactivateGftLoyalty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecallInvoiceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReceivingScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentalInfoCustomerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentalReturnsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchInventoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectCustomerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectDepartCoponForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectItemTypesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectPriceTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectRentalItemsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectVendorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StoreStationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaxSetupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TypeofRuleCoupon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VendorMaintForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Views\ManagerForm.xaml.cs">
+      <DependentUpon>ManagerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bank.png" />
+    <Resource Include="Images\bank_check.png" />
+    <Resource Include="Images\barcode.png" />
+    <Resource Include="Images\bb.jpg" />
+    <Resource Include="Images\camera_test.png" />
+    <Resource Include="Images\camera_test1.png" />
+    <Resource Include="Images\cash.png" />
+    <Resource Include="Images\credit_card.png" />
+    <Resource Include="Images\delete.ico" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\deletered.png" />
+    <Resource Include="Images\edit_remove.png" />
+    <Resource Include="Images\find.png" />
+    <Resource Include="Images\images %281%29.jpg" />
+    <Resource Include="Images\images.jpg" />
+    <Resource Include="Images\keyboard.jpg" />
+    <Resource Include="Images\mouse.jpg" />
+    <Resource Include="Images\right.png" />
+    <Resource Include="Images\right1.png" />
+    <Resource Include="Images\search_user.png" />
+    <Resource Include="Images\subtract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POS.Domain.Base\POS.Domain.Base.csproj">
+      <Project>{8253a7fa-427b-4959-9b22-9a7137088c5b}</Project>
+      <Name>POS.Domain.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POS.Domain.Common\POS.Domain.Common.csproj">
+      <Project>{0b62bddc-5b40-4182-8f6a-14999fc696a8}</Project>
+      <Name>POS.Domain.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POS.Repository.SQLServer\POS.Repository.Common.csproj">
+      <Project>{3bf78e7b-44d8-482d-a0a9-1651ae79876d}</Project>
+      <Name>POS.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POS.Services.Common\POS.Services.Common.csproj">
+      <Project>{2b43b148-088e-40a8-b073-b54814c78ec9}</Project>
+      <Name>POS.Services.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

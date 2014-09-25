@@ -1,0 +1,47 @@
+﻿<Window x:Class="POS.Retail.StoreStationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Store/Station Setup" Height="487" Width="648" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Background="#748FBC8F">
+        <GroupBox Header="Select or Create a Station" Height="379" HorizontalAlignment="Left" Margin="50,24,0,0" Name="groupBox1" VerticalAlignment="Top" Width="523" FontWeight="Bold" BorderBrush="#6C5E87CB">
+            <Grid>
+                <ListBox Height="315" HorizontalAlignment="Left" Margin="29,21,0,0" Name="lstb_stores" VerticalAlignment="Top" Width="254" SelectionChanged="lstb_stores_SelectionChanged" />
+                <ListBox Height="114" HorizontalAlignment="Left" Margin="304,21,0,0" Name="lsb_stations" VerticalAlignment="Top" Width="162" SelectionChanged="lsb_stations_SelectionChanged" />
+                <ComboBox Background="#00F8F2FF" BorderBrush="#86242427" Height="26" HorizontalAlignment="Left" Margin="304,167,0,0" Name="cmb_select_dept" VerticalAlignment="Top" Width="162">
+                    <ComboBoxItem Content="Standard" />
+                    <ComboBoxItem Content="Drive Thru" />
+                    <ComboBoxItem Content="Mobile Device" />
+                </ComboBox>
+                <Label Content="Station Role" Height="28" HorizontalAlignment="Left" Margin="304,141,0,0" Name="label1" VerticalAlignment="Top" Width="104" />
+                <Button Content="Create New Station" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="304,210,0,0" Name="btn_add_station" VerticalAlignment="Top" Width="162" Click="btn_add_station_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#D5000000" Offset="0" />
+                            <GradientStop Color="#6F86F886" Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Content="Done" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="304,254,0,0" Name="btn_done" VerticalAlignment="Top" Width="162">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#D5000000" Offset="0" />
+                            <GradientStop Color="#6F86F886" Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Content="Cancel" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="304,298,0,0" Name="btn_store_cancel" VerticalAlignment="Top" Width="162" Click="btn_store_cancel_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#D5000000" Offset="0" />
+                            <GradientStop Color="#6F86F886" Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <Label Content="Selected Store ID:" Height="28" HorizontalAlignment="Left" Margin="50,412,0,0" Name="label2" VerticalAlignment="Top" Width="120" FontWeight="Bold" FontSize="13" />
+        <Label Content="Selected Station ID:" Height="28" HorizontalAlignment="Left" Margin="309,412,0,0" Name="label3" VerticalAlignment="Top" Width="137" FontWeight="Bold" FontSize="13" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="176,412,0,0" Name="lbl_store_id" VerticalAlignment="Top" Width="69" FontWeight="Bold" FontSize="13" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="453,408,0,0" Name="lbl_station_id" VerticalAlignment="Top" Width="69" FontWeight="Bold" FontSize="13" />
+    </Grid>
+</Window>

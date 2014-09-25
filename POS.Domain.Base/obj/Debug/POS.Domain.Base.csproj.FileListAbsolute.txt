@@ -1,0 +1,9 @@
+c:\Users\asad.falcon\documents\visual studio 2013\Projects\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.csprojResolveAssemblyReference.cache
+c:\Users\asad.falcon\documents\visual studio 2013\Projects\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.dll
+c:\Users\asad.falcon\documents\visual studio 2013\Projects\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
+c:\Users\asad.falcon\documents\visual studio 2013\Projects\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
+c:\Users\asad.falcon\documents\visual studio 2013\Projects\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb
+C:\POS Back\POS.Domain.Base\bin\Debug\POS.Domain.Base.dll
+C:\POS Back\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
+C:\POS Back\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
+C:\POS Back\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb

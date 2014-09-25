@@ -1,0 +1,1051 @@
+﻿<Window x:Class="POS.Retail.EmployeeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WinForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="Employee Maintenance" Height="697" Width="890" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Label FontSize="15" FontWeight="Normal" Height="40" Name="lbl_heading_emp" VerticalAlignment="Top">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#1C000000" Offset="0" />
+                    <GradientStop Color="#79FFFF00" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Grid Height="202" Margin="0,38,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
+            <Label Content="Department:" Height="28" HorizontalAlignment="Left" Margin="15,17,0,0" Name="label1" VerticalAlignment="Top" Width="110" FontSize="13" />
+            <Label Content="Employee ID:" Height="28" HorizontalAlignment="Left" Margin="15,51,0,0" Name="label2" VerticalAlignment="Top" Width="110" FontSize="13" />
+            <Label Content="Display Name:" Height="28" HorizontalAlignment="Left" Margin="15,119,0,0" Name="label3" VerticalAlignment="Top" Width="110" FontSize="13" />
+            <Label Content="Password:" Height="28" HorizontalAlignment="Left" Margin="15,85,0,0" Name="label4" VerticalAlignment="Top" Width="110" FontSize="13" />
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="131,19,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="155" Background="#12E2C8C8" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,54,0,0" Name="txt_emp_id" VerticalAlignment="Top" Width="155" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,122,0,0" Name="txt_emp_dispname" VerticalAlignment="Top" Width="155" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,88,0,0" Name="txt_emp_passd" VerticalAlignment="Top" Width="155" />
+            <Label Content="Card Swip ID:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,17,0,0" Name="label5" VerticalAlignment="Top" Width="98" />
+            <Label Content="Customer:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,54,0,0" Name="label6" VerticalAlignment="Top" Width="108" />
+            <Label Content="Hourly Wages:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,88,0,0" Name="label7" VerticalAlignment="Top" Width="98" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="465,20,0,0" Name="txt_cardswip" VerticalAlignment="Top" Width="155" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="465,91,0,0" Name="txt_houlywages" VerticalAlignment="Top" Width="155" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="465,55,0,0" Name="txt_customer" VerticalAlignment="Top" Width="155" />
+            <CheckBox Content="Disable this Employee" Height="16" HorizontalAlignment="Left" Margin="15,167,0,0" Name="checkBox2" VerticalAlignment="Top" Width="148" />
+            <CheckBox Content="Take CC Tips in Cash at End of Shift" Height="16" HorizontalAlignment="Left" Margin="169,167,0,0" Name="checkBox3" VerticalAlignment="Top" Width="215" />
+            <CheckBox Content="Required Clock-In Before Login" Height="16" HorizontalAlignment="Left" Margin="388,167,0,0" Name="checkBox4" VerticalAlignment="Top" Width="192" />
+            <CheckBox Content="Administrative Card Access" Height="16" HorizontalAlignment="Left" Margin="590,167,0,0" Name="checkBox5" VerticalAlignment="Top" Width="179" />
+        </Grid>
+        <TabControl Height="316" Margin="0,238,0,0" Name="tabControl1" VerticalAlignment="Top" FontWeight="Bold">
+            <TabItem Header="Permissions   " Name="tabItem1">
+                <Grid>
+                    <Button Content="Functionality" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,19,0,0" Name="btn_per_func" VerticalAlignment="Top" Width="115" Click="btn_per_func_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Customers" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,83,0,0" Name="btn_per_customer" VerticalAlignment="Top" Width="115" Click="btn_per_customer_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Inventory" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,51,0,0" Name="btn_per_inventory" VerticalAlignment="Top" Width="115" Click="btn_per_inventory_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Reports" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,115,0,0" Name="btn_per_report" VerticalAlignment="Top" Width="115" Click="btn_per_report_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Restaurant" Focusable="False" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,179,0,75" Name="btn_per_resturt" Width="115" Click="btn_per_resturt_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Setup" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,147,0,0" Name="btn_per_setup" VerticalAlignment="Top" Width="115" Click="btn_per_setup_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Handhold" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="10,211,0,0" Name="btn_per_handhold" VerticalAlignment="Top" Width="115" Click="btn_per_handhold_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <CheckBox Content="Log as Exception" Height="24" HorizontalAlignment="Left" Margin="10,248,0,0" Name="checkBox1" VerticalAlignment="Top" Width="115" />
+                    <Grid Height="268" HorizontalAlignment="Left" Margin="131,10,0,0" Name="gird_func" VerticalAlignment="Top" Width="721" Visibility="Hidden">
+                        <TabControl Height="255" HorizontalAlignment="Left" Margin="6,7,0,0" Name="tabControl2" VerticalAlignment="Top" Width="709" Visibility="Visible">
+                            <TabItem Header="Page 1    " Name="tabItem2">
+                                <Grid>
+                                    <ComboBox Background="#00000000" Height="23" HorizontalAlignment="Left" Margin="133,17,0,0" Name="invoice_discount_cmb" VerticalAlignment="Top" Width="78" FontWeight="Normal" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,17,0,0" Name="redeem_giftc_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,17,0,0" Name="end_transaction_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,50,0,0" Name="invoice_price_change_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,50,0,0" Name="sell_special_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,50,0,0" Name="hold_print_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,84,0,0" Name="delete_items_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,84,0,0" Name="vendor_payouts_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,84,0,0" Name="open_cash_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,117,0,0" Name="void_invoice_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,117,0,0" Name="buybacks_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,117,0,0" Name="sell_non_inv_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,150,0,0" Name="allow_exit_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,150,0,0" Name="force_credit_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,150,0,0" Name="tax_ex_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,184,0,0" Name="returns_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,184,0,0" Name="charge_floor_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,184,0,0" Name="sell_giftc_cmb" VerticalAlignment="Top" Width="78" SelectedIndex="2">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <Label Content="Invoice Discounts:" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label18" VerticalAlignment="Top" Width="113" FontWeight="Normal" />
+                                    <Label Content="Invoice Price Changes:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label19" VerticalAlignment="Top" Width="133" />
+                                    <Label Content="Delete Items:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label20" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Void Invoices:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label21" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Allow Exit:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label22" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Returns:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,182,0,0" Name="label23" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="End Transactions:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,15,0,0" Name="label24" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Hold and Print:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,48,0,0" Name="label25" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Opent Cash Drawer:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,82,0,0" Name="label26" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Sell Non-inventory:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,115,0,0" Name="label27" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Tax Exampt Invoice:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,148,0,0" Name="label28" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Sell Gift Cards:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,179,0,0" Name="label29" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Redeem Gift Cards:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,15,0,0" Name="label30" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Sell Special Items:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,48,0,0" Name="label31" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Vendor Payouts:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,82,0,0" Name="label32" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Buybacks:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,115,0,0" Name="label33" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Force Credit Cards:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,148,0,0" Name="label34" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Charge Below Floor:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,182,0,0" Name="label35" VerticalAlignment="Top" Width="113" />
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Page 2    ">
+                                <Grid>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,17,0,0" Name="cas_alert_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,17,0,0" Name="pullback_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,17,0,0" Name="drawer_transfer_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,50,0,0" Name="issue_credit_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,50,0,0" Name="tcm_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,50,0,0" Name="allow_large_purchase_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,84,0,0" Name="redeem_credit_slip" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,84,0,0" Name="edit_time_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,84,0,0" Name="approve_cash_count_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,117,0,0" Name="override_refund_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,117,0,0" Name="discount_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,117,0,0" Name="allow_old_return_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,150,0,0" Name="cash_pickups_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="615,150,0,0" Name="buyback_trade_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="376,150,0,0" Name="approve_emer_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <Label FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label36" VerticalAlignment="Top" Width="113" Content="Cash Alert Overide:" />
+                                    <Label Content="Issue Credit Silp:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label44" VerticalAlignment="Top" Width="133" />
+                                    <Label Content="Redeem Credit Slip:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label45" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Overrid Refund:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label46" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Cash Pickups:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label47" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Drawer Transfers:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,15,0,0" Name="label49" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Allow Large Purchase:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,48,0,0" Name="label50" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Approve Cash Count:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,82,0,0" Name="label51" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Allow Old Return:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,115,0,0" Name="label52" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Approve Emergency " FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,148,0,0" Name="label53" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Pull back Invoice:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,15,0,0" Name="label55" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Time Clock Mangement:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,48,0,0" Name="label56" VerticalAlignment="Top" Width="141" />
+                                    <Label Content="Edit Your Own Time:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,82,0,0" Name="label57" VerticalAlignment="Top" Width="141" />
+                                    <Label Content="Discounts Below X%:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,115,0,0" Name="label58" VerticalAlignment="Top" Width="141" />
+                                    <Label Content="Buyback/Trade" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,148,0,0" Name="label59" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Clockout:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,169,0,0" Name="label48" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="above default:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="468,167,0,0" Name="label75" VerticalAlignment="Top" Width="127" />
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Page 3   ">
+                                <Grid>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="174,17,0,0" Name="delete_sent_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="460,17,0,0" Name="manual_age_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="174,50,0,0" Name="end_cash_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="460,50,0,0" Name="override_emp_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="174,84,0,0" Name="end_account_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="460,84,0,0" Name="labor_schedule_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="174,117,0,0" Name="force_check_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="460,117,0,0" Name="negative_price_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="174,150,0,0" Name="override_id_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="460,150,0,0" Name="fuel_off_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Prompt" />
+                                        <ComboBoxItem Content="Override" />
+                                    </ComboBox>
+                                    <Label Content="Delete Sent Itmes:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label54" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="End Cash Transactions:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label60" VerticalAlignment="Top" Width="133" />
+                                    <Label Content="End Account Transactions:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label61" VerticalAlignment="Top" Width="164" />
+                                    <Label Content="Force Checks:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label62" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Override ID Scan:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label63" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Manual Age Entry:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="282,15,0,0" Name="label64" VerticalAlignment="Top" Width="113" />
+                                    <Label Content="Override Emp Schedule:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="282,48,0,0" Name="label65" VerticalAlignment="Top" Width="140" />
+                                    <Label Content="Labor Schedulaer:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="282,82,0,0" Name="label66" VerticalAlignment="Top" Width="127" />
+                                    <Label Content="Nagative Price Change:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="282,115,0,0" Name="label67" VerticalAlignment="Top" Width="140" />
+                                    <Label Content="Fuel Drive OFF/Came backe: " FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="282,148,0,0" Name="label68" VerticalAlignment="Top" Width="172" />
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                    <Grid Margin="134,17,6,30" Width="718" Name="Grid_per_inventory" Visibility="Hidden">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,17,0,0" Name="add_inventory_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,17,0,0" Name="modify_price_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,17,0,0" Name="create_po_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,50,0,0" Name="edit_inventory_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,50,0,0" Name="limited_edit_lockdown_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,50,0,0" Name="po_receive_item_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,84,0,0" Name="add_vendor_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,84,0,0" Name="delete_inventory_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,84,0,0" Name="instant_po_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,117,0,0" Name="update_vendor_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,117,0,0" Name="add_coupons_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,117,0,0" Name="view_inventory_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,150,0,0" Name="add_department_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,150,0,0" Name="global_pricing_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,150,0,0" Name="view_inventory_cost" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,184,0,0" Name="edit_department_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,184,0,0" Name="negative_instant_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="Add Inventory/Kits:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label69" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Edit Inventory/Kits:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label70" VerticalAlignment="Top" Width="133" />
+                        <Label Content="Add Vendor:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label71" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Update Vendor:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label72" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Add Department:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label73" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Edit Department:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,182,0,0" Name="label74" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Create POs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,15,0,0" Name="label76" VerticalAlignment="Top" Width="113" />
+                        <Label Content="PO Receive Items:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,48,0,0" Name="label77" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Instant POs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,82,0,0" Name="label78" VerticalAlignment="Top" Width="127" />
+                        <Label Content="View Inventory:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,115,0,0" Name="label79" VerticalAlignment="Top" Width="113" />
+                        <Label Content="View Inventory Costs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,148,0,0" Name="label80" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Negative Instant POs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,179,0,0" Name="label81" VerticalAlignment="Top" Width="140" />
+                        <Label Content="Modify Price Promos (Existing):" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,15,0,0" Name="label82" VerticalAlignment="Top" Width="176" />
+                        <Label Content="Limited Edit Lockdown:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,48,0,0" Name="label83" VerticalAlignment="Top" Width="141" />
+                        <Label Content="Delete Inventory /Kits:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,82,0,0" Name="label84" VerticalAlignment="Top" Width="141" />
+                        <Label Content="Add Coupons:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,115,0,0" Name="label85" VerticalAlignment="Top" Width="141" />
+                        <Label Content="Global Pricing:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,148,0,0" Name="label86" VerticalAlignment="Top" Width="141" />
+                    </Grid>
+                    <Grid Margin="134,22,6,25" Name="Grid_permis_customer" Width="718" Visibility="Hidden">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,17,0,0" Name="add_customer_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,50,0,0" Name="edit_customer_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,84,0,0" Name="display_balance_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,117,0,0" Name="charge_at_cost_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="Add Customers:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label87" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Edit Customers:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label88" VerticalAlignment="Top" Width="133" />
+                        <Label Content="Display Balance:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label89" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Edit Charge At Cost:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label90" VerticalAlignment="Top" Width="113" />
+                    </Grid>
+                    <Grid Margin="135,18,5,29" Name="Grid_permis_reports" Visibility="Hidden" Width="718">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="149,17,0,0" Name="display_reports_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="149,50,0,0" Name="print_reports_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="149,84,0,0" Name="ddr_print_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="149,117,0,0" Name="perform_endofday_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="Display Reports:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label91" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Print Reports:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label92" VerticalAlignment="Top" Width="133" />
+                        <Label Content="Print DDR:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label93" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Perform End of Day:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label94" VerticalAlignment="Top" Width="113" />
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="149,151,0,0" Name="view_historical_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="View Historical Reports:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,149,0,0" Name="label95" VerticalAlignment="Top" Width="140" />
+                    </Grid>
+                    <Grid Margin="131,19,9,28" Name="grid_permis_setup" Visibility="Hidden" Width="718">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,17,0,0" Name="companyinfo_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,17,0,0" Name="configure_receipt_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,17,0,0" Name="defaultprinter_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,50,0,0" Name="tax_rate_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,50,0,0" Name="add_employee_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,50,0,0" Name="accountinginterface_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,84,0,0" Name="bonus_plan_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,84,0,0" Name="modify_employee_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,84,0,0" Name="host_module_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,117,0,0" Name="accountinfo_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="633,117,0,0" Name="configure_virtual_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,117,0,0" Name="touchscreen_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,150,0,0" Name="pricelevel_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,150,0,0" Name="backup_database_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="133,184,0,0" Name="displaysetting_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="366,184,0,0" Name="settle_credit_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="Company Info:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label96" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Tax Rates:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label97" VerticalAlignment="Top" Width="133" />
+                        <Label Content="Bonus Plan:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label98" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Accounting Info:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label99" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Price Levels:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label100" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Display Setting:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,182,0,0" Name="label101" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Default Printer:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,15,0,0" Name="label102" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Accounting Interface:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,48,0,0" Name="label103" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Host Module Login:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,82,0,0" Name="label104" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Touchscreen Config:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,115,0,0" Name="label105" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Backup Database:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,148,0,0" Name="label106" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Settle Credit Cards:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="230,179,0,0" Name="label107" VerticalAlignment="Top" Width="140" />
+                        <Label Content="Configure Receipt Notes:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,15,0,0" Name="label108" VerticalAlignment="Top" Width="176" />
+                        <Label Content="Add Employees:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,48,0,0" Name="label109" VerticalAlignment="Top" Width="141" />
+                        <Label Content="Modify Employees:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,82,0,0" Name="label110" VerticalAlignment="Top" Width="141" />
+                        <Label Content="Configure Virtual Pole:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="454,115,0,0" Name="label111" VerticalAlignment="Top" Width="141" />
+                    </Grid>
+                    <Grid Margin="131,19,9,28" Name="grid_permis_Restaurant" Visibility="Visible" Width="718">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,17,0,0" Name="other_tables_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="431,17,0,0" Name="transfer_servers_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,50,0,0" Name="cc_tips_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="431,50,0,0" Name="open_tabs_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,84,0,0" Name="transfer_without_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="431,84,0,0" Name="take_out_orders_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,117,0,0" Name="transfer_tables_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="431,117,0,0" Name="delivery_orders_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,150,0,0" Name="split_checks_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="431,150,0,0" Name="reprint_kitchen_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,184,0,0" Name="apply_gratuity_cmb" SelectedIndex="2" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="Prompt" />
+                            <ComboBoxItem Content="Override" />
+                        </ComboBox>
+                        <Label Content="Access Other Tables:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label112" VerticalAlignment="Top" Width="121" />
+                        <Label Content="Add CC Tips:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label113" VerticalAlignment="Top" Width="121" />
+                        <Label Content="Transfer without Swipe:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label114" VerticalAlignment="Top" Width="144" />
+                        <Label Content="Transfer Tables:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label115" VerticalAlignment="Top" Width="113" />
+                        <Label Content="split Checks:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label116" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Apply Gratuity Edit:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,182,0,0" Name="label117" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Transfer Servers:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,15,0,0" Name="label118" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Open Tabs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,48,0,0" Name="label119" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Take Out Orders:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,82,0,0" Name="label120" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Delivery Orders:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,115,0,0" Name="label121" VerticalAlignment="Top" Width="127" />
+                        <Label Content="Reprint Kitchen Printout:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,148,0,0" Name="label122" VerticalAlignment="Top" Width="154" />
+                    </Grid>
+                    <Grid Margin="131,19,9,28" Name="grid_permis_handhold" Visibility="Hidden" Width="718">
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,17,0,0" Name="create_purchase_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <Label Content="Create Purchase Order:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,15,0,0" Name="label123" VerticalAlignment="Top" Width="121" />
+                        <Label Content="Create DSD:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label124" VerticalAlignment="Top" Width="121" />
+                        <Label Content="Create DSD Credit:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,82,0,0" Name="label125" VerticalAlignment="Top" Width="144" />
+                        <Label Content="Receive POs:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,115,0,0" Name="label126" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Inventory Edit:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,148,0,0" Name="label127" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Inventory Adjust:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="6,182,0,0" Name="label128" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Inventory Count:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,15,0,0" Name="label129" VerticalAlignment="Top" Width="113" />
+                        <Label Content="Setup:" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="271,48,0,0" Name="label130" VerticalAlignment="Top" Width="127" />
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,50,0,0" Name="DSD_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,84,0,0" Name="DSD_credit_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,117,0,0" Name="receive_PO_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,150,0,0" Name="Inventory_edit_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="153,183,0,0" Name="inventory_adjust_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="406,17,0,0" Name="inventory_count_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                        <ComboBox Background="#00000000" FontWeight="Normal" Height="23" HorizontalAlignment="Left" Margin="406,50,0,0" Name="setup_cmb" SelectedIndex="1" VerticalAlignment="Top" Width="78">
+                            <ComboBoxItem Content="Yes" />
+                            <ComboBoxItem Content="No" />
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Personal Infomation">
+                <Grid>
+                    <Label Content="First Name:" Height="28" HorizontalAlignment="Left" Margin="27,16,0,0" Name="label8" VerticalAlignment="Top" Width="102" FontWeight="Bold" />
+                    <Label Content="Phone:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="28,152,0,0" Name="label9" VerticalAlignment="Top" Width="111" />
+                    <Label Content="SSN/ID:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="30,118,0,0" Name="label10" VerticalAlignment="Top" Width="111" />
+                    <Label Content="Last Name:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="29,84,0,0" Name="label11" VerticalAlignment="Top" Width="111" />
+                    <Label Content="Middle Name:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="27,50,0,0" Name="label12" VerticalAlignment="Top" Width="111" />
+                    <Label Content="Birth Day:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="27,220,0,0" Name="label13" VerticalAlignment="Top" Width="111" />
+                    <Label Content="E-Mail:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="27,186,0,0" Name="label14" VerticalAlignment="Top" Width="111" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,18,0,0" Name="txt_first_name" VerticalAlignment="Top" Width="258" />
+                    <Label Content="City:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="463,84,0,0" Name="label15" VerticalAlignment="Top" Width="102" />
+                    <Label Content="State:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="463,118,0,0" Name="label16" VerticalAlignment="Top" Width="102" />
+                    <Label Content="Zip Code:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="463,152,0,0" Name="label17" VerticalAlignment="Top" Width="102" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="546,154,0,0" Name="txt_zipcode" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="546,120,0,0" Name="txt_state" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="546,86,0,0" Name="txt_city" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,222,0,0" Name="txt_birthday" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,188,0,0" Name="txt_email" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,154,0,0" Name="txt_phone" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,120,0,0" Name="txt_SSN" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,86,0,0" Name="txt_last_name" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,52,0,0" Name="txt_middle_name" VerticalAlignment="Top" Width="258" />
+                    <Label Content="Address 1:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="463,16,0,0" Name="label131" VerticalAlignment="Top" Width="102" />
+                    <Label Content="Address 2:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="463,50,0,0" Name="label132" VerticalAlignment="Top" Width="102" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="546,52,0,0" Name="address_2_txt" VerticalAlignment="Top" Width="258" />
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="546,18,0,0" Name="address_1_txt" VerticalAlignment="Top" Width="258" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Job Codes and Wages">
+                <Grid>
+                    <WindowsFormsHost Height="263" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="542" OpacityMask="#B3000000">
+                        <WinForm:DataGridView Name="DG_jobs" ReadOnly="True" AllowUserToDeleteRows="False" AutoGenerateColumns="False"  >
+                            <WinForm:DataGridView.Columns>
+                                <WinForm:DataGridViewTextBoxColumn HeaderText="Job Code" MinimumWidth="200"/>
+                                <WinForm:DataGridViewTextBoxColumn HeaderText="Hourly Wage" MinimumWidth="150"/>
+                                <WinForm:DataGridViewTextBoxColumn HeaderText="OverTime Wage" MinimumWidth="150"/>
+                            </WinForm:DataGridView.Columns>
+                        </WinForm:DataGridView>
+                    </WindowsFormsHost>
+                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="567,15,0,0" Name="btn_add_job" VerticalAlignment="Top" Width="88" Click="btn_add_job_Click">
+                        <StackPanel Height="50" Width="84">
+                            <Image Height="31" Source="/Images/camera_test1.png"></Image>
+                            <TextBlock Width="30" Height="17">Add</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="567,104,0,0" Name="btn_remove_job" VerticalAlignment="Top" Width="88">
+                        <StackPanel Height="53" Width="80">
+                            <Image Height="33" Source="/Images/delete.png"></Image>
+                            <TextBlock Width="51">Remove</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="687,15,0,0" Name="btn_chang_hr_wage" VerticalAlignment="Top" Width="88" OpacityMask="#FFC6DE44">
+                        <StackPanel Height="54" Width="83" OpacityMask="Black">
+                            <TextBlock Width="47">Change</TextBlock>
+                            <TextBlock Width="42">Hourly</TextBlock>
+                            <TextBlock Width="34">Wage</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="687,104,0,0" Name="btn_chang_ovrtm_wage" VerticalAlignment="Top" Width="88" >
+                        <StackPanel>
+                            <TextBlock Width="47">Change</TextBlock>
+                            <TextBlock Width="58">Overtime</TextBlock>
+                            <TextBlock Width="34">Wage</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Overtime Starts after this many Hours" Height="28" HorizontalAlignment="Left" Margin="574,212,0,0" Name="label37" VerticalAlignment="Top" Width="230" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="585,244,0,0" Name="txt_start_overtime" VerticalAlignment="Top" Width="211" Background="White" Text="0" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Store Association  ">
+                <Grid>
+                    <Label Content="Stores this Employee Can Work at" Height="28" HorizontalAlignment="Left" Margin="10,27,0,0" Name="label38" VerticalAlignment="Top" Width="271" />
+                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="306,78,0,0" Name="button1" VerticalAlignment="Top" Width="88">
+                        <StackPanel Height="50" Width="84">
+                            <Image Height="31" Source="/Images/camera_test1.png" />
+                            <TextBlock Height="17" Width="30">Add</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="306,167,0,0" Name="button2" VerticalAlignment="Top" Width="88">
+                        <StackPanel Height="53" Width="80">
+                            <Image Height="33" Source="/Images/delete.png" />
+                            <TextBlock Width="51">Remove</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <ListBox Height="213" HorizontalAlignment="Left" Margin="14,53,0,0" Name="listBox1" VerticalAlignment="Top" Width="252" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Payroll Info">
+                <Grid>
+                    <CheckBox Content="Exclude From Payroll" Height="21" HorizontalAlignment="Left" Margin="10,18,0,0" Name="exclude_chk" VerticalAlignment="Top" Width="154" FontWeight="Normal" FontSize="13" />
+                    <Label Content="Federal Allowances:" Height="28" HorizontalAlignment="Left" Margin="42,43,0,0" Name="label39" VerticalAlignment="Top" Width="248" FontWeight="Normal" FontSize="13" />
+                    <Label Content="Additional Federal Withholding Amount:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,79,0,0" Name="label40" VerticalAlignment="Top" Width="248" />
+                    <Label Content="State Allowances:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,112,0,0" Name="label41" VerticalAlignment="Top" Width="248" />
+                    <Label Content="Exempt from Taxes:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,216,0,0" Name="label42" VerticalAlignment="Top" Width="248" />
+                    <Label Content="Maritial Status:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,248,0,0" Name="label43" VerticalAlignment="Top" Width="248" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,45,0,0" Name="txt_fed_allwnce" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,113,0,0" Name="txt_state_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,79,0,0" Name="txt_additional_fed_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <ComboBox Height="27" HorizontalAlignment="Left" Margin="296,216,0,0" Name="cmb_exempt" VerticalAlignment="Top" Width="148" Background="#00000000" SelectedIndex="1" FontWeight="Normal">
+                        <ComboBoxItem Content="Yes" />
+                        <ComboBoxItem Content="No" />
+                    </ComboBox>
+                    <ComboBox Background="#00000000" Height="27" HorizontalAlignment="Left" Margin="296,249,0,0" Name="cmb_filing_status" VerticalAlignment="Top" Width="148" SelectedIndex="0" FontWeight="Normal">
+                        <ComboBoxItem Content="Married" />
+                        <ComboBoxItem Content="Single" />
+                    </ComboBox>
+                    <Label Content="State Additional withholding amount:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,148,0,0" Name="label133" VerticalAlignment="Top" Width="248" />
+                    <Label Content="Addictional Credits of State:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,181,0,0" Name="label134" VerticalAlignment="Top" Width="248" />
+                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" Margin="296,182,0,0" Name="state_additional_credits_txt" VerticalAlignment="Top" Width="148" />
+                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" Margin="296,148,0,0" Name="state_additional_with_amount_txt" VerticalAlignment="Top" Width="148" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Help" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="332,608,0,0" Name="button7" VerticalAlignment="Top" Width="117">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Add Employee" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="332,569,0,0" Name="btn_add_emp" VerticalAlignment="Top" Width="117" Click="btn_add_emp_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Duplicate" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,608,0,0" Name="btn_dup_emp" VerticalAlignment="Top" Width="117">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Delete" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="572,608,0,0" Name="btn_delete_emp" VerticalAlignment="Top" Width="117">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#AD000000" Offset="0" />
+                    <GradientStop Color="#39FFEC5F" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Save Changes" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,569,0,0" Name="btn_savechages_emp" VerticalAlignment="Top" Width="117" Click="btn_savechages_emp_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Exit" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Right" Margin="0,608,59,0" Name="btn_exit_emp" VerticalAlignment="Top" Width="117" Click="btn_exit_emp_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#AD000000" Offset="0" />
+                    <GradientStop Color="#39FFEC5F" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" FontWeight="Bold" Height="38" Margin="0,569,59,0" Name="btn_timeclock" VerticalAlignment="Top" HorizontalAlignment="Right" Width="117">
+            <StackPanel>
+                <TextBlock>Time Clock</TextBlock>
+                <TextBlock>Management</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="44" HorizontalAlignment="Left" Margin="232,603,0,0" Name="btn_emp_next" VerticalAlignment="Top" Width="94" Click="btn_emp_next_Click">
+            <StackPanel Height="43" Width="90">
+                <Image Height="22" Source="/Images/right.png" Width="75" />
+                <TextBlock FontSize="12" Width="41">Next</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C8000000" Offset="0" />
+                    <GradientStop Color="#6500CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="43" HorizontalAlignment="Left" Margin="33,603,0,0" Name="btn_emp_prev" VerticalAlignment="Top" Width="94" Click="btn_emp_prev_Click">
+            <StackPanel Height="45" Width="88">
+                <Image Height="24" Source="/Images/right1.png" Width="85" />
+                <TextBlock FontSize="12" Width="55">Previous</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C8000000" Offset="0" />
+                    <GradientStop Color="#6500CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="572,569,0,0" Name="btn_jobcode" VerticalAlignment="Top" Width="117" Click="btn_jobcode_Click">
+            <StackPanel Width="104">
+                <TextBlock Width="30" Text="Job"></TextBlock>
+                <TextBlock Width="75" Text="Code Setup"></TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <ComboBox Height="27" HorizontalAlignment="Left" Margin="33,573,0,0" Name="cmb_search_emp" VerticalAlignment="Top" Width="292" Background="#00000000" SelectionChanged="cmb_search_emp_SelectionChanged" />
+        <Label Content="Search Employee by ID" Height="28" HorizontalAlignment="Left" Margin="38,548,0,0" Name="lbl_serch_emp" VerticalAlignment="Top" />
+    </Grid>
+</Window>

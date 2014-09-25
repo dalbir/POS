@@ -1,0 +1,35 @@
+﻿<Window x:Class="POS.Retail.LoginForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Password " Height="352" Width="296" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Enter Password" Height="28" HorizontalAlignment="Left" Margin="26,10,0,0" Name="label1" VerticalAlignment="Top" Width="193" FontSize="15" FontWeight="Bold" />
+        <Label Content="Enter Cashier ID (If not Administrator)" Height="28" HorizontalAlignment="Left" Margin="26,120,0,0" Name="label2" VerticalAlignment="Top" Width="246" FontSize="13" FontWeight="Bold" />
+        <Button Content="Cancel" Height="35" HorizontalAlignment="Left" Margin="26,256,0,0" Name="btn_login_cancel" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="13" Focusable="False">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#9E000000" Offset="0" />
+                    <GradientStop Color="#71FFFFAD" Offset="0.797" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Keyboard" FontSize="13" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="139,256,0,0" Name="btn_keyboard" VerticalAlignment="Top" Width="107" Focusable="False">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#9E000000" Offset="0" />
+                    <GradientStop Color="#71FFFFAD" Offset="0.797" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="OK" FontSize="20" FontWeight="Bold" Height="49" HorizontalAlignment="Left" Margin="26,201,0,0" Name="btn_ok" VerticalAlignment="Top" Width="220" Focusable="False">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#9E000000" Offset="0" />
+                    <GradientStop Color="#71FFFFAD" Offset="0.797" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <PasswordBox Height="30" HorizontalAlignment="Left" Margin="26,44,0,0" Name="txt_password" VerticalAlignment="Top" Width="220" FontSize="14" PasswordChar="*" />
+        <PasswordBox Height="30" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="220" FontSize="14" PasswordChar="*" Name="txt_id" />
+    </Grid>
+</Window>

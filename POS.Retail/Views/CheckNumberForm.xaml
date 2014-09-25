@@ -1,0 +1,72 @@
+﻿<Window x:Class="POS.Retail.CheckNumberForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pay_Type_frm" Height="480" Width="582" Loaded="Window_Loaded">
+    <Grid Height="434">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="36*" />
+            <RowDefinition Height="13*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="13*" />
+            <RowDefinition Height="51*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="18*" />
+            <RowDefinition Height="56*" />
+            <RowDefinition Height="19*" />
+            <RowDefinition Height="57*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="56*" />
+            <RowDefinition Height="26*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="66*" />
+            <ColumnDefinition Width="26*" />
+            <ColumnDefinition Width="66*" />
+            <ColumnDefinition Width="26*" />
+            <ColumnDefinition Width="66*" />
+            <ColumnDefinition Width="57*" />
+            <ColumnDefinition Width="134*" />
+            <ColumnDefinition Width="59*" />
+        </Grid.ColumnDefinitions>
+        <Button Content="1" FontSize="28" FontWeight="Bold" Margin="2,1.5,1,-1.5" Name="btn_n1" Click="btn_n1_Click" Grid.Row="11" Grid.Column="1" Background="#858C9E"/>
+        <Button Content="2" FontSize="28" FontWeight="Bold" Margin="0,0,1,0" Name="btn_n2" Click="btn_n2_Click" Grid.Row="11" Grid.Column="3" Background="#FF858C9E"/>
+        <Button Content="3" FontSize="28" FontWeight="Bold" Margin="1,0,0,0" Name="btn_n3" Click="btn_n3_Click" Grid.Row="11" Grid.Column="5" Background="#FF858C9E"/>
+        <Button Content="4" FontSize="28" FontWeight="Bold" Margin="1,0,0,0" Name="btn_n4" Click="btn_n4_Click" Grid.Column="1" Grid.Row="7" Background="#FF858C9E"/>
+        <Button Content="5" FontSize="28" FontWeight="Bold" Margin="1,1,0,17" Name="btn_n5" Click="btn_n5_Click" Grid.Column="3" Grid.Row="7" Grid.RowSpan="4" Background="#FF858C9E"/>
+        <Button Content="6" FontSize="28" FontWeight="Bold" Margin="0,1,1,17" Name="btn_n6" Click="btn_n6_Click" Grid.Column="5" Grid.Row="7" Grid.RowSpan="4" Background="#FF858C9E"/>
+        <Button Content="7" FontSize="28" FontWeight="Bold" Margin="2,0,25,0" Name="btn_n7" Click="btn_n7_Click" Grid.Column="1" Grid.Row="3" Height="56" VerticalAlignment="Top" Grid.RowSpan="4" Grid.ColumnSpan="2" Background="#FF858C9E"/>
+        <Button Content="8" FontSize="28" FontWeight="Bold" Margin="1,0,0,6" Name="btn_n8" Click="btn_n8_Click" Grid.Column="3" Grid.Row="3" Grid.RowSpan="4" Background="#FF858C9E"/>
+        <Button Content="9" FontSize="28" FontWeight="Bold" Name="btn_n9" Click="btn_n9_Click" Grid.Column="5" Grid.Row="3" Margin="0,0,1,7" Grid.RowSpan="4" Background="#FF858C9E"/>
+        <Button Content="0" FontSize="28" FontWeight="Bold" Margin="1,0,0,0" Name="btn_n0" Click="btn_n0_Click" Grid.Column="3" Grid.Row="13" Grid.RowSpan="2" Background="#FF858C9E"/>
+        <TextBox TextAlignment="Right" AutoWordSelection="False" Background="Moccasin" FontSize="16" FontWeight="Bold" IsReadOnly="True" Margin="2,12,1,0" Name="txt_keyboard" OverridesDefaultStyle="False" Grid.Column="1" Grid.ColumnSpan="5" />
+        <Button Content="&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;   Delete" FontSize="9.333" FontWeight="Bold" Margin="0,0,1,0" Name="btn_dot" Click="btn_del_Click" Grid.Column="1" Grid.Row="13" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Button.Background>
+                <ImageBrush AlignmentY="Bottom" ImageSource="btnbs.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" FontSize="28" FontWeight="Bold" Margin="1,0,0,0" Name="btn_minus_plus" Click="btn_enter_Click" Grid.Column="5" Grid.Row="13" Grid.RowSpan="2">
+            <Button.Background >
+                <ImageBrush ImageSource="11949946051051036285key_enter.svg.med.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" FontSize="18" FontWeight="Bold" Margin="5,12,0,0" Name="btn_cash" Click="btn_bp_Click" Grid.Column="6">
+            <Button.Background>
+                <ImageBrush ImageSource="btnbs.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="Cancel" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="3" Margin="12,0,7,0" Name="btn_cancel" Grid.Row="16" Click="btn_cancel_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Azure" Offset="0" />
+                    <GradientStop Color="Red" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

@@ -1,0 +1,396 @@
+﻿<Window x:Class="POS.Retail.SelectCustomerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select_Customer_frm" Height="722" Width="1122" Loaded="Window_Loaded">
+    <Grid>
+        <Button Content="1" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="54,412,0,0" Name="btn_n1" VerticalAlignment="Top" Width="65" Click="btn_n1_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="2" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="126,412,0,0" Name="btn_n2" VerticalAlignment="Top" Width="65" Click="btn_n2_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="3" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="198,412,0,0" Name="btn_n3" VerticalAlignment="Top" Width="65" Click="btn_n3_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="4" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="272,412,0,0" Name="btn_n4" VerticalAlignment="Top" Width="65" Click="btn_n4_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="5" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="348,412,0,0" Name="btn_n5" VerticalAlignment="Top" Width="65" Click="btn_n5_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="6" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="424,412,0,0" Name="btn_n6" VerticalAlignment="Top" Width="65" Click="btn_n6_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="7" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="500,412,0,0" Name="btn_n7" VerticalAlignment="Top" Width="65" Click="btn_n7_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="8" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="576,412,0,0" Name="btn_n8" VerticalAlignment="Top" Width="65" Click="btn_n8_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="9" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="650,412,0,0" Name="btn_n9" VerticalAlignment="Top" Width="65" Click="btn_n9_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="0" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="726,412,0,0" Name="btn_n0" VerticalAlignment="Top" Width="65" Click="btn_n0_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="E" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="222,480,0,0" Name="btn_e" VerticalAlignment="Top" Width="65" Click="btn_e_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="I" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="598,480,0,0" Name="btn_i" VerticalAlignment="Top" Width="65" Click="btn_i_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="O" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="672,480,0,0" Name="btn_o" VerticalAlignment="Top" Width="65" Click="btn_o_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="P" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="746,480,0,0" Name="btn_p" VerticalAlignment="Top" Width="65" Click="btn_p_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Q" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="74,480,0,0" Name="btn_q" VerticalAlignment="Top" Width="65" Click="btn_q_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="R" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="296,480,0,0" Name="btn_r" VerticalAlignment="Top" Width="65" Click="btn_r_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="T" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="372,480,0,0" Name="btn_t" VerticalAlignment="Top" Width="65" Click="btn_t_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="U" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="522,480,0,0" Name="btn_u" VerticalAlignment="Top" Width="65" Click="btn_u_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="W" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="146,480,0,0" Name="btn_w" VerticalAlignment="Top" Width="65" Click="btn_w_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Y" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="448,480,0,0" Name="btn_y" VerticalAlignment="Top" Width="65" Click="btn_y_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="-" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="799,412,0,0" Name="btn_dash" VerticalAlignment="Top" Width="65" Click="btn_dash_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#8D1A4ED6" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="A" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="100,546,0,0" Name="btn_a" VerticalAlignment="Top" Width="65" Click="btn_a_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="D" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="248,546,0,0" Name="btn_d" VerticalAlignment="Top" Width="65" Click="btn_d_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="F" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="324,546,0,0" Name="btn_f" VerticalAlignment="Top" Width="65" Click="btn_f_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="G" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="398,546,0,0" Name="btn_g" VerticalAlignment="Top" Width="65" Click="btn_g_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="H" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="474,546,0,0" Name="btn_h" VerticalAlignment="Top" Width="65" Click="btn_h_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="J" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="550,546,0,0" Name="btn_j" VerticalAlignment="Top" Width="65" Click="btn_j_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="K" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="624,546,0,0" Name="btn_k" VerticalAlignment="Top" Width="65" Click="btn_k_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="L" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="698,546,0,0" Name="btn_l" VerticalAlignment="Top" Width="65" Click="btn_l_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="S" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="174,546,0,0" Name="btn_s" VerticalAlignment="Top" Width="65" Click="btn_s_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="B" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="434,612,0,0" Name="btn_b" VerticalAlignment="Top" Width="65" Click="btn_b_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="C" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="282,612,0,0" Name="btn_c" VerticalAlignment="Top" Width="65" Click="btn_c_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="M" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="586,612,0,0" Name="btn_m" VerticalAlignment="Top" Width="65" Click="btn_m_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="N" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="510,612,0,0" Name="btn_n" VerticalAlignment="Top" Width="65" Click="btn_n_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="V" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="358,612,0,0" Name="btn_v" VerticalAlignment="Top" Width="65" Click="btn_v_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="X" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="208,612,0,0" Name="btn_x" VerticalAlignment="Top" Width="65" Click="btn_x_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Z" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="132,612,0,0" Name="btn_z" VerticalAlignment="Top" Width="65" Click="btn_z_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="Moccasin" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Space" FontSize="22" FontWeight="Bold" Height="62" Margin="658,612,0,0" Name="btn_kb_space" VerticalAlignment="Top" Click="btn_kb_space_Click" HorizontalAlignment="Left" Width="154">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="SeaGreen" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Cancel" FontSize="18" FontWeight="Bold" Height="65" HorizontalAlignment="Left" Margin="818,612,0,0" Name="btn_kb_cancel" VerticalAlignment="Top" Width="130" Click="btn_kb_cancel_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#E6FF0000" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Back Space" FontSize="18" FontWeight="Bold" Height="60" HorizontalAlignment="Left" Margin="434,347,0,0" Name="btn_kb_backspace" VerticalAlignment="Top" Width="118" Click="btn_kb_backspace_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Khaki" Offset="0" />
+                    <GradientStop Color="Gainsboro" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBox Height="51" HorizontalAlignment="Left" Margin="179,347,0,0" Name="txt_keyboard" IsReadOnly="True" TextChanged="txt_keyboard_TextChanged" VerticalAlignment="Top" Width="230" Background="Moccasin" FontSize="16" FontWeight="Bold" AutoWordSelection="False" OverridesDefaultStyle="False" />
+        <DataGrid VerticalScrollBarVisibility="Auto" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" Height="288" HorizontalAlignment="Left" Margin="72,12,0,0" Name="dg_customers" ItemsSource="{Binding MyBinding}"  VerticalAlignment="Top" Width="Auto" SelectionMode="Single" MouseDoubleClick="dg_customers_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Customer#" Binding="{Binding CustNum}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="First Name" Binding="{Binding First_Name}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Last Name" Binding="{Binding Last_Name}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Address" Binding="{Binding Address_1}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Company" Binding="{Binding Company}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Phone#" Binding="{Binding Phone_1}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Zip Code" Binding="{Binding Zip_Code}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add Customer" FontSize="18" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="590,345,0,0" Name="btn_add_customer" VerticalAlignment="Top" Width="133">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Azure" Offset="0" />
+                    <GradientStop Color="LightSeaGreen" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Edit Customer" FontSize="18" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="731,345,0,0" Name="btn_edit_customer" VerticalAlignment="Top" Width="133">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Azure" Offset="0" />
+                    <GradientStop Color="LightSeaGreen" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Search" FontSize="18" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="818,480,0,0" Name="btn_search" VerticalAlignment="Top" Width="130">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Azure" Offset="0" />
+                    <GradientStop Color="LightSeaGreen" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Select" FontSize="18" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="818,546,0,0" Name="btn_select" VerticalAlignment="Top" Width="130">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#E6FF0000" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Change Sort&#xd;     Order" Click="btn_change_order_Click" FontSize="18" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="46,345,0,0" Name="btn_change_order" VerticalAlignment="Top" Width="119">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Khaki" Offset="0" />
+                    <GradientStop Color="Gainsboro" Offset="0.803" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="-" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="883,412,0,0" Name="btn_down" VerticalAlignment="Top" Width="65">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Yellow" Offset="0" />
+                    <GradientStop Color="YellowGreen" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="-" FontSize="28" FontWeight="Bold" Height="62" HorizontalAlignment="Left" Margin="883,345,0,0" Name="btn_up" VerticalAlignment="Top" Width="65">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Yellow" Offset="0" />
+                    <GradientStop Color="YellowGreen" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="Type Customer#,FirstName,LastName,Company,Phone#" Height="37" HorizontalAlignment="Left" Margin="45,306,0,0" Name="label1" VerticalAlignment="Top" Width="510" FontSize="16" />
+    </Grid>
+</Window>
