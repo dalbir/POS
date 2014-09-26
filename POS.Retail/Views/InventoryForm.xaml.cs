@@ -3603,75 +3603,75 @@ namespace POS.Retail
 
         private void btn_add_coupon_Click(object sender, RoutedEventArgs e)
         {
-            //int dup = 0;
-            //int flag = 0;
-            //int c = 1;
-            //string str = "Coupon";
-            //frmDaysOfWeek dday = new frmDaysOfWeek(str);
-            //dday.ShowDialog();
-            //if (tm.set_start_time != null && tm.set_end_time != null)
-            //{
-            //    for (int d = 0; d < day.set_days.Count; d++)
-            //    {
-            //        c = 1;
-            //        int day_id = Convert.ToInt32(day.set_days[d]);
-            //        int ccount = DG_coupon.ColumnCount;
-            //        for (c = 1; c < ccount; c++)
-            //        {
-            //            if (DG_coupon.Rows[day_id - 1].Cells[c].Value == null)
-            //            {
-            //                for (int x = 1; x < DG_coupon.ColumnCount; x++)
-            //                {
-            //                    try
-            //                    {
-            //                        if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(tm.set_start_time + " - " + tm.set_end_time))
-            //                        {
-            //                            dup = 1;
-            //                        }
-            //                    }
-            //                    catch (Exception)
-            //                    { }
-            //                }
-            //                if (dup != 1)
-            //                {
-            //                    DG_coupon.Rows[day_id - 1].Cells[c].Value = tm.set_start_time + " - " + tm.set_end_time;
-            //                    c = ccount;
-            //                    flag = 1;
-            //                    dup = 0;
-            //                }
-            //            }
-            //        }
-            //        if (flag == 0)
-            //        {
+            int dup = 0;
+            int flag = 0;
+            int c = 1;
+            string str = "Coupon";
+            DaysOfWeekForm day = new DaysOfWeekForm(str);
+            day.ShowDialog();
+            if (tm.set_start_time != null && tm.set_end_time != null)
+            {
+                for (int d = 0; d < day.set_days.Count; d++)
+                {
+                    c = 1;
+                    int day_id = Convert.ToInt32(day.set_days[d]);
+                    int ccount = DG_coupon.ColumnCount;
+                    for (c = 1; c < ccount; c++)
+                    {
+                        if (DG_coupon.Rows[day_id - 1].Cells[c].Value == null)
+                        {
+                            for (int x = 1; x < DG_coupon.ColumnCount; x++)
+                            {
+                                try
+                                {
+                                    if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(tm.set_start_time + " - " + tm.set_end_time))
+                                    {
+                                        dup = 1;
+                                    }
+                                }
+                                catch (Exception)
+                                { }
+                            }
+                            if (dup != 1)
+                            {
+                                DG_coupon.Rows[day_id - 1].Cells[c].Value = tm.set_start_time + " - " + tm.set_end_time;
+                                c = ccount;
+                                flag = 1;
+                                dup = 0;
+                            }
+                        }
+                    }
+                    if (flag == 0)
+                    {
 
-            //            for (int x = 1; x < DG_coupon.ColumnCount; x++)
-            //            {
-            //                try
-            //                {
-            //                    if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(tm.set_start_time + " - " + tm.set_end_time))
-            //                    {
-            //                        dup = 1;
-            //                    }
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                }
-            //            }
-            //            if (dup != 1)
-            //            {
-            //                DataGridViewColumn coll = new DataGridViewTextBoxColumn();
-            //                coll.Width = 140;
-            //                DG_coupon.Columns.Add(coll);
-            //                int ccc = coll.Index;
-            //                DG_coupon.Rows[day_id - 1].Cells[ccc].Value = tm.set_start_time + " - " + tm.set_end_time;
-            //                c = ccount;
-            //                dup = 0;
-            //            }
-            //        }
-            //        dup = 0;
-            //    }
-            //    day.set_days.Clear();
-            //}
+                        for (int x = 1; x < DG_coupon.ColumnCount; x++)
+                        {
+                            try
+                            {
+                                if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(tm.set_start_time + " - " + tm.set_end_time))
+                                {
+                                    dup = 1;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
+                        if (dup != 1)
+                        {
+                            DataGridViewColumn coll = new DataGridViewTextBoxColumn();
+                            coll.Width = 140;
+                            DG_coupon.Columns.Add(coll);
+                            int ccc = coll.Index;
+                            DG_coupon.Rows[day_id - 1].Cells[ccc].Value = tm.set_start_time + " - " + tm.set_end_time;
+                            c = ccount;
+                            dup = 0;
+                        }
+                    }
+                    dup = 0;
+                }
+                day.set_days.Clear();
+            }
         }
 
         private void btn_remove_coupon_Click(object sender, RoutedEventArgs e)
@@ -3784,17 +3784,17 @@ namespace POS.Retail
             }
             if (tabcon_inventory.Visibility == Visibility.Visible)
             {
-                //Keyboard kbb = new Keyboard(txt_avg_cost.Text, "Enter Description For This Adjustment");
-                //kbb.ShowDialog();
-                //po_description = kb.set_decrep;
-                //double old_qty = Convert.ToDouble(txt_instock.Text);
-                //double old_cost = Convert.ToDouble(txt_avg_cost.Text);
-                //double new_qty = Convert.ToDouble(nkb.set_quantity);
-                //double new_cost = Convert.ToDouble(nkb.set_percentage);
-                //double new_ave1 = (old_qty * old_cost) + (new_qty * new_cost);
-                //double new_ave = new_ave1 / (old_qty + new_qty);
-                //txt_avg_cost.Text = Math.Round(new_ave, 4).ToString();
-                //txt_instock.Text = (old_qty + new_qty).ToString();
+                Keyboard kbb = new Keyboard(txt_avg_cost.Text, "Enter Description For This Adjustment");
+                kbb.ShowDialog();
+                po_description = kb.set_decrep;
+                double old_qty = Convert.ToDouble(txt_instock.Text);
+                double old_cost = Convert.ToDouble(txt_avg_cost.Text);
+                double new_qty = Convert.ToDouble(nkb.set_quantity);
+                double new_cost = Convert.ToDouble(nkb.set_percentage);
+                double new_ave1 = (old_qty * old_cost) + (new_qty * new_cost);
+                double new_ave = new_ave1 / (old_qty + new_qty);
+                txt_avg_cost.Text = Math.Round(new_ave, 4).ToString();
+                txt_instock.Text = (old_qty + new_qty).ToString();
 
             }
         }
@@ -3807,48 +3807,50 @@ namespace POS.Retail
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            //if (e.Key == Key.Right)
-            //{
-            //    if (i == 0)
-            //    {
-            //        string quray = "select * from Inventory where IsDeleted = 0";
-            //        DataTable dt = glo.getdata(quray);
-            //        id = new List<string>();
-            //        foreach (DataRow row in dt.Rows)
-            //        {
-            //            id.Add(row["ItemNum"].ToString());
-            //        }
+            if (e.Key == Key.Right)
+            {
+                if (i == 0)
+                {
+                    InventoryClass objInventoryClass = new InventoryClass();
+                    //string quray = "select * from Inventory where IsDeleted = 0";
+                    //DataTable dt = glo.getdata(quray);
+                    DataTable dt = objPOSManagementService.GetInventoryFullInfo();
+                    id = new List<string>();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        id.Add(row["ItemNum"].ToString());
+                    }
 
-            //        i = 1;
-            //        index = id.IndexOf(txt_item_number.Text);
-            //    }
+                    i = 1;
+                    index = id.IndexOf(txt_item_number.Text);
+                }
 
-            //    if (index < id.Count - 1)
-            //    {
-            //        index = index + 1;
-            //        fun_retrive_inventory(index);
-            //    }
-            //}
-            //if (e.Key == Key.Left)
-            //{
-            //    if (j == 0)
-            //    {
-            //        string quray = "select * from Inventory where IsDeleted = 0";
-            //        DataTable dt = glo.getdata(quray);
-            //        id = new List<string>();
-            //        foreach (DataRow row in dt.Rows)
-            //        {
-            //            id.Add(row["ItemNum"].ToString());
-            //        }
-            //        j = 1;
-            //        index = id.IndexOf(txt_item_number.Text);
-            //    }
-            //    if (index > 0)
-            //    {
-            //        index = index - 1;
-            //        fun_retrive_inventory(index);
-            //    }
-            //}
+                if (index < id.Count - 1)
+                {
+                    index = index + 1;
+                    fun_retrive_inventory(index);
+                }
+            }
+            if (e.Key == Key.Left)
+            {
+                if (j == 0)
+                {
+                    //string quray = "select * from Inventory where IsDeleted = 0";
+                    //DataTable dt = glo.getdata(quray);
+                    //id = new List<string>();
+                    //foreach (DataRow row in dt.Rows)
+                    //{
+                    //    id.Add(row["ItemNum"].ToString());
+                    //}
+                    //j = 1;
+                    //index = id.IndexOf(txt_item_number.Text);
+                }
+                if (index > 0)
+                {
+                    index = index - 1;
+                    fun_retrive_inventory(index);
+                }
+            }
 
         }
 
