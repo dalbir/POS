@@ -220,6 +220,11 @@ namespace POS.Services.Common
             DepartmentRepository objdptRep = new DepartmentRepository();
             return objdptclass = objdptRep.insertDepartementinfo(objdptclass);
         }
+        public string loadReadedData(DepartmentClass objDptclass)
+        {
+            DepartmentRepository objDptRep = new DepartmentRepository();
+            return objDptRep.ReadDeptID(objDptclass);
+        }
 
         #endregion
 

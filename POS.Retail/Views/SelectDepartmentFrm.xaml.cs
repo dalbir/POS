@@ -53,7 +53,11 @@ namespace POS.Retail.Views
         }
         private void btnSelectDpt_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DgDepartments.SelectedValue == null)
+            {
+                MessageBox.Show("Please select Department", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             DataGridRow rowss = (DataGridRow)DgDepartments.ItemContainerGenerator.ContainerFromIndex(DgDepartments.SelectedIndex);
             string a = (DgDepartments.Columns[0].GetCellContent(rowss) as TextBlock).Text;
             DataGridRow rowss2 = (DataGridRow)DgDepartments.ItemContainerGenerator.ContainerFromIndex(DgDepartments.SelectedIndex);
@@ -64,6 +68,16 @@ namespace POS.Retail.Views
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DgDepartments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            btnSelectDpt_Click(sender, e);
+        }
+
+        private void btnCancel_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -32,12 +32,27 @@ namespace POS.Repository.SQLServer
                 {
                     objDeptClass.LoadDept = sqlServerRepository.GetDataTable("select Cat_ID,Cat_ID+'-'+Description as CatName from Categories where Cat_ID ='" + objDeptClass.SubType + "' ");
                 }
+                else if (objDeptClass.flage == "fillList")
+                {
+                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("SELECT Dept_ID FROM Departments ");
+                }
+               
             }
             catch (Exception)
             {
 
             }
             return objDeptClass;
+        }
+        string DptIDs;
+        public string ReadDeptID(DepartmentClass objDptClass)
+        {
+            if (objDptClass.flage == "ReadDept")
+            {
+                 DptIDs = sqlServerRepository.ExecuteScalar("SELECT Dept_ID FROM Departments where Dept_ID='" + objDptClass.Dept_ID + "' ");
+                
+            }
+            return DptIDs;
         }
         int result;
         public DepartmentClass insertDepartementinfo(DepartmentClass objdeptClass)
@@ -64,10 +79,11 @@ namespace POS.Repository.SQLServer
                     "Cost_Calculation_Percentage = '" + objdeptClass.Cost_Calculation_Percentage + "', Square_Footage = '" + objdeptClass.Square_Footage + "'," +
                     "AvailableOnline = '" + objdeptClass.AvailableOnline + "', IncludeInScaleExport = '" + objdeptClass.IncludeInScaleExport + "' WHERE Dept_ID ='" + objdeptClass.Dept_ID + "'");
                 }
-                //else if (objdeptClass.flage == "delete")
-                //{
-                //    result = sqlServerRepository.ExecuteNonQuery("DELETE FROM Categories WHERE Cat_ID ='" + objinsertCategory.Cat_ID + "'");
-                //}
+
+                else if (objdeptClass.flage == "delete")
+                {
+                    result = sqlServerRepository.ExecuteNonQuery("DELETE FROM Departments WHERE Dept_ID ='" + objdeptClass.Dept_ID + "'");
+                }
                 if (result > 0)
                 {
                     objdeptClass.IsSuccessfull = true;

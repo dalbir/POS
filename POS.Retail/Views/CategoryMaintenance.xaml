@@ -43,13 +43,13 @@
         </Button>
         <Button Height="47" HorizontalAlignment="Left" Margin="12,150,0,0" Name="btn_cate_prev" VerticalAlignment="Top" Width="67" Background="#00000000" Focusable="False" Click="btn_cate_prev_Click">
             <StackPanel Height="41" Width="61">
-                <Image Source="Images/right1.png" Height="25" Width="55" />
+                <Image Source="/Images/right1.png" Height="25" Width="55" />
                 <TextBlock Width="52" FontWeight="Bold">Previous</TextBlock>
             </StackPanel>
         </Button>
         <Button Background="#00000000" Focusable="False" Height="47" HorizontalAlignment="Left" Margin="254,150,0,0" Name="btn_cate_next" VerticalAlignment="Top" Width="67" Click="btn_cate_next_Click">
             <StackPanel>
-                <Image Source="Images/right.png" Height="25" Width="55" />
+                <Image Source="/Images/right.png" Height="25" Width="55" />
                 <TextBlock Width="32" FontWeight="Bold">Next</TextBlock>
             </StackPanel>
         </Button>

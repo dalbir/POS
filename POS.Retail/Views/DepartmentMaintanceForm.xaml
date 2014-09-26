@@ -72,7 +72,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Duplicate" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,521,0,0" Name="btn_deuplicate" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+        <Button Content="Duplicate" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,521,0,0" Name="btn_deuplicate" Click="btn_deuplicate_Click" VerticalAlignment="Top" Width="117" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
@@ -80,7 +80,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Delete" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,521,0,0" Name="btn_delete" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+        <Button Content="Delete" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,521,0,0" Name="btn_delete" VerticalAlignment="Top" Width="117" Click="btn_delete_Click" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
