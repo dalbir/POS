@@ -961,6 +961,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
+                //iff
                 if (qryType == "inventoryImage")
                 {
                     dtable = sqlServerRepost.GetDataTable("select * from Inventory_Image where ItemNum = '" + itemNum + "'");
