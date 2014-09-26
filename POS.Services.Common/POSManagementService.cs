@@ -134,6 +134,11 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.insertInventoryRep(objInventoryClass);
         }
+        public DataTable GetInventoryFullInfo()
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.GetInventoryFullInfoRep();
+        }
         #endregion
 
         #region Vendor Service
@@ -217,6 +222,8 @@ namespace POS.Services.Common
         }
 
         #endregion
+
+
 
 
 

@@ -44,6 +44,18 @@ namespace POS.Repository.SQLServer
             }
             return objGetinventoryImgaeInfo;
         }
+        DataTable dtInv;
+        public DataTable GetInventoryFullInfoRep()
+        {
+            try
+            {
+                dtInv = sqlServerRepost.GetDataTable("");
+            }
+            catch(Exception ex)
+            { 
+            }
+            return dtInv;
+        }
         #region insertion into tables
         // insertion sku in Inventory_SKUS
         int result;
@@ -721,7 +733,9 @@ namespace POS.Repository.SQLServer
 
 
 
- 
+
+
+
     }
 }
 
