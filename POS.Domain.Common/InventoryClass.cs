@@ -102,6 +102,9 @@ namespace POS.Domain.Common
         public int NeverPrintInKitchen { get; set; }
         public string dptFlage { get; set; }
         public DataTable dtDeptCmb { get; set; }
+
+       //
+        public string qryType { get; set; }
        
     }
 }

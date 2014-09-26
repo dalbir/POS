@@ -10,3 +10,13 @@ C:\POS Back\POS.Services.Common\bin\Debug\POS.Repository.SQLServer.pdb
 C:\POS Back\POS.Services.Common\obj\Debug\POS.Services.Common.dll
 C:\POS Back\POS.Services.Common\obj\Debug\POS.Services.Common.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\obj\Debug\POS.Services.Common.csprojResolveAssemblyReference.cache
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Services.Common.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Services.Common.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Domain.Base.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Domain.Common.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Repository.SQLServer.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Domain.Base.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Domain.Common.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\bin\Debug\POS.Repository.SQLServer.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\obj\Debug\POS.Services.Common.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Services.Common\obj\Debug\POS.Services.Common.pdb
