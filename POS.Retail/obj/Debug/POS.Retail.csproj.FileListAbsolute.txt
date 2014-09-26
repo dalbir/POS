@@ -221,19 +221,6 @@ C:\POS Back\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
 C:\POS Back\POS.Retail\bin\Debug\POS.Services.Common.pdb
 C:\POS Back\POS.Retail\obj\Debug\POS.Retail.exe
 C:\POS Back\POS.Retail\obj\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.csprojResolveAssemblyReference.cache
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\CalenderForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\CalenderTimeForm.baml

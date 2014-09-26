@@ -49,13 +49,14 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtInv = sqlServerRepost.GetDataTable("");
+                dtInv = sqlServerRepost.GetDataTable("select * from Inventory where IsDeleted = 0");
             }
             catch(Exception ex)
             { 
             }
             return dtInv;
         }
+      
         #region insertion into tables
         // insertion sku in Inventory_SKUS
         int result;
@@ -491,6 +492,29 @@ namespace POS.Repository.SQLServer
             }
             return objInventoryCoupnRules;
         }
+        public Inventory_PendingOrdersClass updatePendingOrdersRep(Inventory_PendingOrdersClass objInvPendingOrders)
+        {
+            try
+            {
+                result = sqlServerRepost.ExecuteNonQuery("update Inventory_PendingOrders set Status = '"+ objInvPendingOrders.Status +"' where ItemNum = '" + objInvPendingOrders.ItemNum + "' and Invoice_Number = '" + objInvPendingOrders.Invoice_Number + "'");
+                if (result == 1)
+                {
+                    objInvPendingOrders.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInvPendingOrders.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Sql server Repository: Error:]", ex.Message);
+            }
+            return objInvPendingOrders;
+        }
         public Inventory_Rental_InfoClasss executeRentalInfoRep(Inventory_Rental_InfoClasss objRentalInfo)
         {
             try
@@ -726,16 +750,45 @@ namespace POS.Repository.SQLServer
             }
             return objInventoryClass;
         }
+        public InventoryClass updateInventoryRep(InventoryClass objInventory)
+        {
+            try
+            {
+                result = sqlServerRepost.ExecuteNonQuery("");
+                if (result == 1)
+                {
+                    objInventory.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInventory.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Sql server Repository]", ex.Message);
+            }
+            return objInventory;
+        }
+        string id;
+        public string getItemId(string p)
+        {
+           try
+           {
+               sqlServerRepost.ExecuteScalar("select ItemNum, ItemType from Inventory where ItemType = '"+ p +"'");
+           }
+            catch(Exception ex)
+           {
+
+           }
+           return id;
+        }
         #endregion
 
-
-
-
-
-
-
-
-
+ 
     }
 }
 

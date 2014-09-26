@@ -139,6 +139,21 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.GetInventoryFullInfoRep();
         }
+        public Inventory_PendingOrdersClass updatePendingOreders(Inventory_PendingOrdersClass objInvPendingOrders)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.updatePendingOrdersRep(objInvPendingOrders);
+        }
+        public InventoryClass updateImnventory(InventoryClass objInventory)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.updateInventoryRep(objInventory);
+        }
+        public string getInventoryId(string p)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getItemId(p);
+        }
         #endregion
 
         #region Vendor Service
@@ -216,5 +231,11 @@ namespace POS.Services.Common
 
 
 
+
+
+
+
+
+ 
     }
 }

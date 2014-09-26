@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using POS.Domain.Common;
 
 using POS.Services.Common;
+using System.Globalization;
 
 namespace POS.Retail
 {
@@ -3502,39 +3503,40 @@ namespace POS.Retail
 
         private void btn_add_kit_Click(object sender, RoutedEventArgs e)
         {
-            //int kflg = 0;
-            //SearchInventory kit_item = new SearchInventory();
-            //kit_item.ShowDialog();
-            //if (ob.set_item_id != null)
-            //{
-            //    string chek = "select ItemNum, ItemType from Inventory where ItemType = 2";
-            //    glo.fun_search(chek);
-            //    while (glo.dr.Read())
-            //    {
-            //        if (glo.dr.GetString(0) == ob.set_item_id)
-            //        {
-            //            kflg = 1;
-            //        }
-            //    }
-            //    glo.dr.Close();
-            //    if (kflg != 1)
-            //    {
-            //        string str_kit = "select ItemNum, ItemName, Price from Inventory where ItemNum = '" + ob.set_item_id + "'";
-            //        DataTable dt_kitt = glo.getdata(str_kit);
-            //        DG_kits.Rows.Add();
-            //        DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[0].Value = dt_kitt.Rows[0]["ItemNum"].ToString();
-            //        DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[1].Value = dt_kitt.Rows[0]["ItemName"].ToString();
-            //        DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[2].Value = "1";
-            //        DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[3].Value = dt_kitt.Rows[0]["Price"].ToString();
-            //        double pric = Convert.ToDouble(dt_kitt.Rows[0]["Price"]);
-            //        double totl = Convert.ToDouble(txt_kit_calcu_price.Text) + pric;
-            //        txt_kit_calcu_price.Text = totl.ToString();
-            //    }
-            //    else
-            //    {
-            //        System.Windows.Forms.MessageBox.Show("Cann't Add a Kit to a Kit", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-            //    }
-            //}
+            int kflg = 0;
+            SearchInventoryForm kit_item = new SearchInventoryForm();
+            kit_item.ShowDialog();
+            if (ob.set_item_id != null)
+            {
+               // string chek = "select ItemNum, ItemType from Inventory where ItemType = 2";
+                string chek = objPOSManagementService.getInventoryId("2");
+                glo.fun_search(chek);
+                while (glo.dr.Read())
+                {
+                    if (glo.dr.GetString(0) == ob.set_item_id)
+                    {
+                        kflg = 1;
+                    }
+                }
+                glo.dr.Close();
+                if (kflg != 1)
+                {
+                    string str_kit = "select ItemNum, ItemName, Price from Inventory where ItemNum = '" + ob.set_item_id + "'";
+                    DataTable dt_kitt = glo.getdata(str_kit);
+                    DG_kits.Rows.Add();
+                    DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[0].Value = dt_kitt.Rows[0]["ItemNum"].ToString();
+                    DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[1].Value = dt_kitt.Rows[0]["ItemName"].ToString();
+                    DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[2].Value = "1";
+                    DG_kits.Rows[DG_kits.Rows.Count - 1].Cells[3].Value = dt_kitt.Rows[0]["Price"].ToString();
+                    double pric = Convert.ToDouble(dt_kitt.Rows[0]["Price"]);
+                    double totl = Convert.ToDouble(txt_kit_calcu_price.Text) + pric;
+                    txt_kit_calcu_price.Text = totl.ToString();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Cann't Add a Kit to a Kit", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void btn_remove_kit_Click(object sender, RoutedEventArgs e)
@@ -3572,33 +3574,37 @@ namespace POS.Retail
 
         private void btn_delete_item_Click(object sender, RoutedEventArgs e)
         {
-            //var result = System.Windows.Forms.MessageBox.Show("Are You Sure You Want to Permenant Delete the Item No: " + txt_item_number.Text + "", "Run Time Support", System.Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //if (result == System.Windows.Forms.DialogResult.Yes)
-            //{
-            //    string delete_item = "update Inventory set IsDeleted = 1 where ItemNum = '" + txt_item_number.Text + "'";
-            //    glo.fun_insert(delete_item);
+            var result = System.Windows.Forms.MessageBox.Show("Are You Sure You Want to Permenant Delete the Item No: " + txt_item_number.Text + "", "Run Time Support", System.Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                InventoryClass objInventory = new InventoryClass();
+                objInventory.IsDeleted = 1;
+                objInventory.ItemNum = txt_item_number.Text;
+                objPOSManagementService.updateImnventory(objInventory);
+                //string delete_item = "update Inventory set IsDeleted = 1 where ItemNum = '" + txt_item_number.Text + "'";
+                //glo.fun_insert(delete_item);
 
-            //    string quray = "select * from Inventory where IsDeleted = 0";
-            //    DataTable dt = glo.getdata(quray);
-            //    id = new List<string>();
-            //    foreach (DataRow row in dt.Rows)
-            //    {
-            //        id.Add(row["ItemNum"].ToString());
-            //    }
+                //string quray = "select * from Inventory where IsDeleted = 0";
+                DataTable dt = objPOSManagementService.GetInventoryFullInfo();
+                id = new List<string>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    id.Add(row["ItemNum"].ToString());
+                }
 
-            //    i = 1;
-            //    index = id.IndexOf(txt_item_number.Text);
+                i = 1;
+                index = id.IndexOf(txt_item_number.Text);
 
 
-            //    if (index < id.Count - 1)
-            //    {
-            //        index = index + 1;
-            //        fun_retrive_inventory(index);
-            //    }
-            //}
-            //else
-            //{
-            //}
+                if (index < id.Count - 1)
+                {
+                    index = index + 1;
+                    fun_retrive_inventory(index);
+                }
+            }
+            else
+            {
+            }
         }
 
         private void btn_add_coupon_Click(object sender, RoutedEventArgs e)
@@ -3836,14 +3842,14 @@ namespace POS.Retail
                 if (j == 0)
                 {
                     //string quray = "select * from Inventory where IsDeleted = 0";
-                    //DataTable dt = glo.getdata(quray);
-                    //id = new List<string>();
-                    //foreach (DataRow row in dt.Rows)
-                    //{
-                    //    id.Add(row["ItemNum"].ToString());
-                    //}
-                    //j = 1;
-                    //index = id.IndexOf(txt_item_number.Text);
+                    DataTable dt = objPOSManagementService.GetInventoryFullInfo();
+                    id = new List<string>();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        id.Add(row["ItemNum"].ToString());
+                    }
+                    j = 1;
+                    index = id.IndexOf(txt_item_number.Text);
                 }
                 if (index > 0)
                 {
@@ -3856,32 +3862,32 @@ namespace POS.Retail
 
         private void txt_copon_expir_date_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-        //    frmCalender calnder = new frmCalender("Select Expiration Date");
-        //    calnder.ShowDialog();
-        //    txt_copon_expir_date.Text = caln.set_the_date.ToString("MM/dd/yyyy");
+            CalenderForm calnder = new CalenderForm("Select Expiration Date");
+            calnder.ShowDialog();
+            txt_copon_expir_date.Text = caln.set_the_date.ToString("MM/dd/yyyy");
         }
 
         private void btn_add_rental_price_Click(object sender, RoutedEventArgs e)
         {
-            //NumberKeypaid objj = new NumberKeypaid(12);
-            //objj.ShowDialog();
-            //NumberKeypaid ojj = new NumberKeypaid(13);
-            //ojj.ShowDialog();
-            //if (nkb.set_quantity != null && nkb.set_percentage != null)
-            //{
-            //    for (int dup = 0; dup < dg_rent.Rows.Count; dup++)
-            //    {
-            //        if (dg_rent.Rows[dup].Cells[0].Value.ToString().Equals(nkb.set_quantity))
-            //        {
-            //            return;
-            //        }
-            //    }
-            //    dg_rent.Rows.Add();
-            //    dg_rent.Rows[dg_rent.Rows.Count - 1].Cells[0].Value = nkb.set_quantity.ToString();
-            //    dg_rent.Rows[dg_rent.Rows.Count - 1].Cells[1].Value = "$" + nkb.set_percentage.ToString();
-            //}
-            //nkb.set_quantity = null;
-            //nkb.set_percentage = null;
+            NumberKeypaid objj = new NumberKeypaid(12);
+            objj.ShowDialog();
+            NumberKeypaid ojj = new NumberKeypaid(13);
+            ojj.ShowDialog();
+            if (nkb.set_quantity != null && nkb.set_percentage != null)
+            {
+                for (int dup = 0; dup < dg_rent.Rows.Count; dup++)
+                {
+                    if (dg_rent.Rows[dup].Cells[0].Value.ToString().Equals(nkb.set_quantity))
+                    {
+                        return;
+                    }
+                }
+                dg_rent.Rows.Add();
+                dg_rent.Rows[dg_rent.Rows.Count - 1].Cells[0].Value = nkb.set_quantity.ToString();
+                dg_rent.Rows[dg_rent.Rows.Count - 1].Cells[1].Value = "$" + nkb.set_percentage.ToString();
+            }
+            nkb.set_quantity = null;
+            nkb.set_percentage = null;
         }
 
         private void btn_remove_rental_price_Click(object sender, RoutedEventArgs e)
@@ -3901,53 +3907,67 @@ namespace POS.Retail
 
         private void btn_set_description_Click(object sender, RoutedEventArgs e)
         {
-            //string txt_value = "";
-            //if (lsb_bulk_pricing.SelectedItems.Count == 0)
-            //{
-            //    System.Windows.Forms.MessageBox.Show("You Must Select a Bulk Price To Set a Description", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-            //}
-            //else
-            //{
-            //    if (lsb_bulk_pricing.SelectedItem.ToString().Contains('-'))
-            //    {
-            //        string[] split_str = lsb_bulk_pricing.SelectedItem.ToString().Split('-');
-            //        string str = split_str[1];
-            //        txt_value = str;
-            //    }
-            //    else
-            //    {
-            //        txt_value = "";
-            //    }
-            //    Keyboard kkb = new Keyboard("Enter Description", txt_value);
-            //    kkb.ShowDialog();
-            //    if (kkb.set_decrep != null)
-            //    {
-            //        if (lsb_bulk_pricing.SelectedItem.ToString().Contains('-'))
-            //        {
-            //            string[] value = lsb_bulk_pricing.SelectedItem.ToString().Split('-');
-            //            string str2 = value[0];
-            //            lsb_bulk_pricing.Items.RemoveAt(lsb_bulk_pricing.SelectedIndex);
-            //            lsb_bulk_pricing.Items.Add(str2 + " -" + kkb.set_decrep.ToString());
-            //        }
-            //        else
-            //        {
-            //            string str1 = lsb_bulk_pricing.SelectedItem.ToString();
-            //            lsb_bulk_pricing.Items.RemoveAt(lsb_bulk_pricing.SelectedIndex);
-            //            lsb_bulk_pricing.Items.Add(str1 + " -" + kkb.set_decrep.ToString());
-            //        }
-            //    }
-            //}
-            //kb.set_decrep = null;
+            string txt_value = "";
+            if (lsb_bulk_pricing.SelectedItems.Count == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("You Must Select a Bulk Price To Set a Description", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (lsb_bulk_pricing.SelectedItem.ToString().Contains('-'))
+                {
+                    string[] split_str = lsb_bulk_pricing.SelectedItem.ToString().Split('-');
+                    string str = split_str[1];
+                    txt_value = str;
+                }
+                else
+                {
+                    txt_value = "";
+                }
+                Keyboard kkb = new Keyboard("Enter Description", txt_value);
+                kkb.ShowDialog();
+                if (kkb.set_decrep != null)
+                {
+                    if (lsb_bulk_pricing.SelectedItem.ToString().Contains('-'))
+                    {
+                        string[] value = lsb_bulk_pricing.SelectedItem.ToString().Split('-');
+                        string str2 = value[0];
+                        lsb_bulk_pricing.Items.RemoveAt(lsb_bulk_pricing.SelectedIndex);
+                        lsb_bulk_pricing.Items.Add(str2 + " -" + kkb.set_decrep.ToString());
+                    }
+                    else
+                    {
+                        string str1 = lsb_bulk_pricing.SelectedItem.ToString();
+                        lsb_bulk_pricing.Items.RemoveAt(lsb_bulk_pricing.SelectedIndex);
+                        lsb_bulk_pricing.Items.Add(str1 + " -" + kkb.set_decrep.ToString());
+                    }
+                }
+            }
+            kb.set_decrep = null;
         }
 
         private void txt_copon_expir_date_LostFocus(object sender, RoutedEventArgs e)
         {
-            //if (glo.check_date(txt_copon_expir_date).Equals(false))
-            //{
-            //    System.Windows.Forms.MessageBox.Show("You have Entered an Invalid Expiration Date, Try again ", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-            //    txt_copon_expir_date.Clear();
-            //    txt_copon_expir_date.Focus();
-            //}
+            if (check_date(txt_copon_expir_date).Equals(false))
+            {
+                System.Windows.Forms.MessageBox.Show("You have Entered an Invalid Expiration Date, Try again ", "Warning", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                txt_copon_expir_date.Clear();
+                txt_copon_expir_date.Focus();
+            }
+        }
+        public bool check_date(System.Windows.Controls.TextBox ctrl)
+        {
+            if (!string.IsNullOrEmpty(ctrl.Text))
+            {
+                string[] formats = { "M/d/yyyy", "M/d/yy" };
+                DateTime value;
+
+                if (!DateTime.TryParseExact(ctrl.Text, formats, new CultureInfo("en-US"), DateTimeStyles.None, out value))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void txt_item_number_GotFocus(object sender, RoutedEventArgs e)
@@ -3982,13 +4002,16 @@ namespace POS.Retail
         {
             try
             {
-                //if (rb_pend_open.IsChecked == true)
-                //{
-                //    string complete_order = "update Inventory_PendingOrders set Status = 1 where ItemNum = '" + txt_item_number.Text + "' and Invoice_Number = '" + Convert.ToInt32(DG_pending_orders.CurrentRow.Cells[0].Value) + "'";
-                //    glo.fun_insert(complete_order);
-                //    DG_pending_orders.Rows.Clear();
-                //    fun_pending_order(0);
-                //}
+                if (rb_pend_open.IsChecked == true)
+                {
+                    Inventory_PendingOrdersClass objInvPendingOrders = new Inventory_PendingOrdersClass();
+                    objInvPendingOrders.Status = 1;
+                    objInvPendingOrders.ItemNum = txt_item_number.Text;
+                    objInvPendingOrders.Invoice_Number = Convert.ToInt32(DG_pending_orders.CurrentRow.Cells[0].Value);
+                    objPOSManagementService.updatePendingOreders(objInvPendingOrders);
+                    DG_pending_orders.Rows.Clear();
+                    fun_pending_order(0);
+                }
             }
             catch (Exception)
             { }
@@ -3998,13 +4021,16 @@ namespace POS.Retail
         {
             try
             {
-                //if (rb_pend_open.IsChecked == true)
-                //{
-                //    string complete_order = "update Inventory_PendingOrders set Status = 2 where ItemNum = '" + txt_item_number.Text + "' and Invoice_Number = '" + Convert.ToInt32(DG_pending_orders.CurrentRow.Cells[0].Value) + "'";
-                //    glo.fun_insert(complete_order);
-                //    DG_pending_orders.Rows.Clear();
-                //    fun_pending_order(0);
-                //}
+                if (rb_pend_open.IsChecked == true)
+                {
+                    Inventory_PendingOrdersClass objInvPendingOrders = new Inventory_PendingOrdersClass();
+                    objInvPendingOrders.Status = 2;
+                    objInvPendingOrders.ItemNum = txt_item_number.Text;
+                    objInvPendingOrders.Invoice_Number = Convert.ToInt32(DG_pending_orders.CurrentRow.Cells[0].Value);
+                    objPOSManagementService.updatePendingOreders(objInvPendingOrders);
+                    DG_pending_orders.Rows.Clear();
+                    fun_pending_order(0);
+                }
             }
             catch (Exception)
             {
