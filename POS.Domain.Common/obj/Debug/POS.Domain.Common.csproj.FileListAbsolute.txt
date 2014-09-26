@@ -1,7 +1,0 @@
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\bin\Debug\POS.Domain.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\bin\Debug\POS.Domain.Common.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\bin\Debug\POS.Domain.Base.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\bin\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\obj\Debug\POS.Domain.Common.csprojResolveAssemblyReference.cache
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\obj\Debug\POS.Domain.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Common\obj\Debug\POS.Domain.Common.pdb
