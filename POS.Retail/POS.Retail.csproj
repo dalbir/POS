@@ -179,6 +179,7 @@
     <Compile Include="Views\SelectDepartCoponForm.xaml.cs">
       <DependentUpon>SelectDepartCoponForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectDepartmentFrm.xaml.cs" />
     <Compile Include="Views\SelectItemTypesForm.xaml.cs">
       <DependentUpon>SelectItemTypesForm.xaml</DependentUpon>
     </Compile>
@@ -428,6 +429,10 @@
     <Page Include="Views\SelectDepartCoponForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectDepartmentFrm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SelectItemTypesForm.xaml">
       <SubType>Designer</SubType>

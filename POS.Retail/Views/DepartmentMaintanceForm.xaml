@@ -18,7 +18,7 @@
                     <TextBlock Height="22" Width="107">Department:</TextBlock>
                 </StackPanel>
             </Label>
-            <ComboBox Height="27" HorizontalAlignment="Left" Margin="137,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" />
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="137,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened" />
             <Label Content="Department ID:" Height="28" HorizontalAlignment="Left" Margin="8,58,0,0" Name="label2" VerticalAlignment="Top" Width="107" />
             <Label Height="42" HorizontalAlignment="Left" Margin="8,92,0,0" Name="label3" VerticalAlignment="Top" Width="115">
                 <StackPanel>
@@ -72,7 +72,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Duplicate" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,521,0,0" Name="btn_deuplicate" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+        <Button Content="Duplicate" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,521,0,0" Name="btn_deuplicate" Click="btn_deuplicate_Click" VerticalAlignment="Top" Width="117" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
@@ -80,7 +80,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Delete" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,521,0,0" Name="btn_delete" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+        <Button Content="Delete" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,521,0,0" Name="btn_delete" VerticalAlignment="Top" Width="117" Click="btn_delete_Click" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
@@ -124,7 +124,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Lookup" Focusable="False" Height="66" HorizontalAlignment="Left" Margin="113,490,0,0" Name="button10" VerticalAlignment="Top" Width="94" FontSize="18" FontWeight="Bold">
+        <Button Content="Lookup" Focusable="False" Height="66" HorizontalAlignment="Left" Margin="113,490,0,0" Name="btnLookup" VerticalAlignment="Top" Width="94" FontSize="18" FontWeight="Bold" Click="btnLookup_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#BF000000" Offset="0" />
