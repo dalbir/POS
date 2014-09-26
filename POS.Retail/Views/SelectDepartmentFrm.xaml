@@ -1,0 +1,29 @@
+﻿<Window x:Class="POS.Retail.Views.SelectDepartmentFrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SelectDepartmentFrm" Height="622" Width="846" WindowStyle="ToolWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,4">
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" Name="DgDepartments" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="470" Width="816" HorizontalGridLinesBrush="#FFDEAAAA" VerticalGridLinesBrush="#FFD39090" AlternatingRowBackground="#FFBFDEF7">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Dept ID" Width="100" Binding="{Binding Path=Dept_ID}" />
+                <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Path=Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Select" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="15,540,0,0" Name="btnSelectDpt" VerticalAlignment="Top" Width="105" FontWeight="Bold" Click="btnSelectDpt_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Cancel" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="125,540,0,0" Name="btnCancel" VerticalAlignment="Top" Width="108" FontWeight="Bold" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

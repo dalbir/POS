@@ -12,6 +12,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Domain;
+using POS.Services.Common;
+using POS.Repository.SQLServer;
+using POS.Domain.Common;
+using POS.Retail.Views;
 
 namespace POS.Retail
 {
@@ -20,6 +25,7 @@ namespace POS.Retail
     /// </summary>
     public partial class DepartmentMaintanceForm : Window
     {
+        DepartmentClass objdptclass = new DepartmentClass();
         //DataBaseManagement db = new DataBaseManagement();
         int index = 0;
         DataTable dt = new DataTable();
@@ -35,6 +41,21 @@ namespace POS.Retail
 
         public void FillCombo()
         {
+            try
+            {
+                objdptclass.flage = "comboFill";
+                POSManagementService objMgtServices = new POSManagementService();
+                objdptclass = objMgtServices.LoadCatIdToDpt(objdptclass);
+                cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
+                cmb_cetegory.DisplayMemberPath = "CatName";
+                cmb_cetegory.SelectedValuePath = "Cat_ID";
+                
+               
+            }
+            catch (Exception ex)
+            {
+ 
+            }
             //glo.con.Open();
 
             //SqlCommand Query = new SqlCommand("Select Dept_ID FROM Departments", glo.con);
@@ -212,6 +233,31 @@ namespace POS.Retail
                         MessageBox.Show("You must enter Important fields of Department");
                     else
                     {
+                        objdptclass.flage = "insert";
+                        objdptclass.Dept_ID = txt_dept_id.Text.Trim();
+                        objdptclass.Store_ID = "1001";
+                        objdptclass.Description = txt_dept_descrption.Text.Trim();
+                        objdptclass.Type = Type;
+                        objdptclass.TSDisplay = Convert.ToInt32("0");
+                        objdptclass.Cost_MarkUp="0";
+                        objdptclass.Dirty = Convert.ToInt32("0");
+                        objdptclass.SubType = cmb_cetegory.SelectedValue.ToString();
+                        objdptclass.Print_Dept_Notes = print;
+                        objdptclass.Dept_Notes = txt_dept_notes.Text.Trim();
+                        objdptclass.Require_Permission = permision;
+                        objdptclass.Require_Serials = Serial;
+                        objdptclass.BarTaxInclusive = tax;
+                        objdptclass.Cost_Calculation_Percentage = txt_costper.Text.Trim();
+                        objdptclass.Square_Footage =Convert.ToInt32( txt_sqfootage.Text.Trim());
+                        objdptclass.AvailableOnline =Convert.ToInt32( "0");
+                        objdptclass.IncludeInScaleExport = Scale;
+
+                        POSManagementService objMgtService = new POSManagementService();
+                        objMgtService.InsertDeptInfo(objdptclass);
+                        if(objdptclass.IsSuccessfull==true)
+                        {
+                            MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                         //glo.con.Open();
                         //SqlCommand Query = new SqlCommand("INSERT INTO Departments (Dept_ID, Store_ID, Description, Type, TSDisplay, Cost_MarkUp, Dirty, SubType, Print_Dept_Notes, Dept_Notes, Require_Permission, Require_Serials, " +
                         //                    "BarTaxInclusive, Cost_Calculation_Percentage, Square_Footage, AvailableOnline, IncludeInScaleExport)" +
@@ -222,7 +268,7 @@ namespace POS.Retail
                         //SqlCommand refs = new SqlCommand("INSERT INTO ", glo.con);
 
                         //glo.con.Close();
-                        MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                        
                     }
                 }
                 catch (Exception ex)
@@ -247,10 +293,10 @@ namespace POS.Retail
 
         private void cmb_cetegory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmb_cetegory.SelectedIndex != -1)
-            {
+            //if (cmb_cetegory.SelectedIndex != -1)
+            //{
 
-            }
+            //}
         }
 
         private void btn_savechages_Click(object sender, RoutedEventArgs e)
@@ -308,6 +354,32 @@ namespace POS.Retail
             {
                 Scale = 1;
             }
+            
+            
+            objdptclass.Dept_ID = txt_dept_id.Text.Trim();
+            objdptclass.Store_ID = "1001";
+            objdptclass.Description = txt_dept_descrption.Text.Trim();
+            objdptclass.Type = Type;
+            objdptclass.TSDisplay = Convert.ToInt32("0");
+            objdptclass.Cost_MarkUp = "0";
+            objdptclass.Dirty = Convert.ToInt32("0");
+            objdptclass.SubType = cmb_cetegory.SelectedValue.ToString();
+            objdptclass.Print_Dept_Notes = print;
+            objdptclass.Dept_Notes = txt_dept_notes.Text.Trim();
+            objdptclass.Require_Permission = permision;
+            objdptclass.Require_Serials = Serial;
+            objdptclass.BarTaxInclusive = tax;
+            objdptclass.Cost_Calculation_Percentage = txt_costper.Text.Trim();
+            objdptclass.Square_Footage = Convert.ToInt32(txt_sqfootage.Text.Trim());
+            objdptclass.AvailableOnline = Convert.ToInt32("0");
+            objdptclass.IncludeInScaleExport = Scale;
+            objdptclass.flage = "update";
+            POSManagementService objMgtServce = new POSManagementService();
+            objMgtServce.InsertDeptInfo(objdptclass);
+            if (objdptclass.IsSuccessfull == true)
+            {
+                MessageBox.Show("Record was updated Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
             //glo.con.Open();
             //SqlCommand Query = new SqlCommand("UPDATE Departments SET Dept_ID ='" + txt_dept_id.Text.Trim() + "', Store_ID = '1001', Description = '" + txt_dept_descrption.Text.Trim() + "', Type = '" + Type + "'," +
@@ -322,6 +394,93 @@ namespace POS.Retail
         private void txt_dept_id_TextChanged(object sender, TextChangedEventArgs e)
         {
             fun_clear_allfields();
+            objdptclass.Dept_ID = txt_dept_id.Text.Trim();
+            objdptclass.flage = "SelectDept";
+            POSManagementService objmbtSer = new POSManagementService();
+            objmbtSer.LoadCatIdToDpt(objdptclass);
+            if (objdptclass.LoadDept.Rows.Count > 0)
+            {
+                for (int i = 0; i < objdptclass.LoadDept.Rows.Count; i++)
+                { 
+                    if (objdptclass.LoadDept.Rows[i]["Type"].ToString() == "0")
+                    {
+                        rb_regular.IsChecked = true;
+                        rb_emp.IsChecked = false;
+                        rb_rental.IsChecked = false;
+                    }
+                    else if (objdptclass.LoadDept.Rows[i]["Type"].ToString() == "1")
+                    {
+                        rb_regular.IsChecked = false;
+                        rb_emp.IsChecked = true;
+                        rb_rental.IsChecked = false;
+                    }
+                    else if (objdptclass.LoadDept.Rows[i]["Type"].ToString() == "2")
+                    {
+                        rb_regular.IsChecked = false;
+                        rb_emp.IsChecked = false;
+                        rb_rental.IsChecked = true;
+                    }
+                    if (objdptclass.LoadDept.Rows[i]["TSDisplay"].ToString() == "True")
+                    {
+
+                    }
+                    else
+                    {
+ 
+                    }
+                    if (objdptclass.LoadDept.Rows[i]["Print_Dept_Notes"].ToString() == "True")
+                    {
+                        chk_print_dept.IsChecked = true;
+                    }
+                    else
+                    {
+                        chk_print_dept.IsChecked = false;
+                    }
+                    txt_dept_notes.Text = objdptclass.LoadDept.Rows[i]["Dept_Notes"].ToString();
+
+                    if (objdptclass.LoadDept.Rows[i]["Require_Permission"].ToString() == "True")
+                    {
+                        chk_req_permission.IsChecked = true;
+                    }
+                    else
+                    {
+                        chk_req_permission.IsChecked = false;
+                    }
+                    if (objdptclass.LoadDept.Rows[i]["Require_Serials"].ToString() == "True")
+                    {
+                        chk_req_serial.IsChecked = true;
+                    }
+                    else
+                    {
+                        chk_req_serial.IsChecked = false;
+                    }
+                    if (objdptclass.LoadDept.Rows[i]["BarTaxInclusive"].ToString() == "True")
+                    {
+                        chk_bartax.IsChecked = true;
+                    }
+                    else
+                    {
+                        chk_bartax.IsChecked = false;
+                    }
+                    txt_costper.Text = objdptclass.LoadDept.Rows[i]["Cost_Calculation_Percentage"].ToString();
+                    txt_sqfootage.Text = objdptclass.LoadDept.Rows[i]["Square_Footage"].ToString();
+                    if (objdptclass.LoadDept.Rows[i]["IncludeInScaleExport"].ToString() == "True")
+                    {
+                        chk_sale_export.IsChecked = true;
+                    }
+                    else
+                    {
+                        chk_sale_export.IsChecked = false;
+                    }
+                    objdptclass.SubType = objdptclass.LoadDept.Rows[i]["SubType"].ToString();
+                    objdptclass.flage = "selectCateg";
+                    objmbtSer.LoadCatIdToDpt(objdptclass);
+                    cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
+                    cmb_cetegory.DisplayMemberPath = "CatName";
+                    cmb_cetegory.SelectedValuePath = "Cat_ID";
+
+                }
+            }
 
     //        glo.con.Open();
 
@@ -427,5 +586,25 @@ namespace POS.Retail
 
     //        glo.con.Close();
         }
+
+        private void btnLookup_Click(object sender, RoutedEventArgs e)
+        {
+            SelectDepartmentFrm objSlctDpt = new SelectDepartmentFrm();
+            objSlctDpt.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            objSlctDpt.ShowDialog();
+            if (objSlctDpt.SetDptId != null ||objSlctDpt.SetDptDescription!=null)
+            {
+                txt_dept_id.Text = objSlctDpt.SetDptId;
+                txt_dept_descrption.Text = objSlctDpt.SetDptDescription;
+            }
+        }
+
+        private void cmb_cetegory_DropDownOpened(object sender, EventArgs e)
+        {
+            FillCombo();
+        }
+
+       
+        
     }
 }

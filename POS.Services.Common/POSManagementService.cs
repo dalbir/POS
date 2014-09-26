@@ -201,7 +201,22 @@ namespace POS.Services.Common
             return objTaxRepository.RetriveTaxRates(objTaxRate);
         }
         #endregion
+        #region Department Maintenance
 
+        //load dept ids
+        public DepartmentClass LoadCatIdToDpt(DepartmentClass objDptClass)
+        {
+            DepartmentRepository objDptRep = new DepartmentRepository();
+            return objDptClass = objDptRep.LoadCategoryToDpt(objDptClass);
+        }
+        //insert Dept info
+        public DepartmentClass InsertDeptInfo(DepartmentClass objdptclass)
+        {
+            DepartmentRepository objdptRep = new DepartmentRepository();
+            return objdptclass = objdptRep.insertDepartementinfo(objdptclass);
+        }
+
+        #endregion
 
 
 
