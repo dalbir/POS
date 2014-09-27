@@ -482,3 +482,14 @@ C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.g.resources
 C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.Properties.Resources.resources
 C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.csproj.GenerateResource.Cache
 C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.dll
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.dll
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.dll
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.dll
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.pdb
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.pdb
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
+C:\Users\irshad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.pdb

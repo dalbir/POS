@@ -281,7 +281,7 @@ namespace POS.Retail
                     else
                     {
 
-                        objdptclass.flage = "ReadDept";
+                       
                         objdptclass.Dept_ID = txt_dept_id.Text.Trim();
                         objdptclass.Store_ID = "1001";
                         objdptclass.Description = txt_dept_descrption.Text.Trim();
@@ -301,13 +301,28 @@ namespace POS.Retail
                         objdptclass.IncludeInScaleExport = Scale;
 
                         POSManagementService objMgtService = new POSManagementService();
-                        string ids =Convert.ToString( objMgtService.loadReadedData(objdptclass).ToString());
-                        if (ids == txt_dept_id.Text)
+                        if (objdptclass.flage == "0")
                         {
-                            MessageBox.Show("Department ID is already exist", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
+                            objdptclass.flage = "ReadDept";
+                            string ids = Convert.ToString(objMgtService.loadReadedData(objdptclass).ToString());
+                            if (ids == txt_dept_id.Text)
+                            {
+                                MessageBox.Show("Department ID is already exist", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Error);
+                                objdptclass.flage = "0";
+                                return;
+                            }
                         }
                         else
+                        {
+                            objdptclass.flage = "ReadDept";
+                            string ids = Convert.ToString(objMgtService.loadReadedData(objdptclass).ToString());
+                            if (ids == txt_dept_id.Text)
+                            {
+                                MessageBox.Show("Department ID is already exist", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Error);
+                                
+                                return;
+                            }
+                        }
                         {
                             objdptclass.flage = "insert";
                             objMgtService.InsertDeptInfo(objdptclass);
