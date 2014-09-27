@@ -139,6 +139,51 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.GetInventoryFullInfoRep();
         }
+        public Inventory_PendingOrdersClass updatePendingOreders(Inventory_PendingOrdersClass objInvPendingOrders)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.updatePendingOrdersRep(objInvPendingOrders);
+        }
+        public InventoryClass updateImnventory(InventoryClass objInventory)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.updateInventoryRep(objInventory);
+        }
+        public string getInventoryId(string p)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getItemId(p);
+        }
+        public DataTable getKit(string p)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getdtkitIdRep(p);
+        }
+        public DataTable getProperty(string p)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getgetPropertyRep(p);
+        }
+        public DataTable GetInventoryPendingOrders(Inventory_PendingOrdersClass objInventoryPendingOrder)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.GetInventoryPendingOrders(objInventoryPendingOrder);
+        }
+        public InventoryClass SaveChangesInventory(InventoryClass objInventoryClass)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.SaveChangesInventoryRep(objInventoryClass);
+        }
+        public DataTable RetrivingInformation(InventoryClass objRetrivingInformation)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.RetrivingInformationRep(objRetrivingInformation);
+        }
+        public DataTable GetData(string qryType, string itemNum)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.GetDataRep(qryType, itemNum);
+        }
         #endregion
 
         #region Vendor Service
@@ -227,8 +272,6 @@ namespace POS.Services.Common
         }
 
         #endregion
-
-
 
 
 

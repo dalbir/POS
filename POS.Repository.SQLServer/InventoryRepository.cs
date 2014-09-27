@@ -49,13 +49,14 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtInv = sqlServerRepost.GetDataTable("");
+                dtInv = sqlServerRepost.GetDataTable("select * from Inventory where IsDeleted = 0");
             }
             catch(Exception ex)
             { 
             }
             return dtInv;
         }
+      
         #region insertion into tables
         // insertion sku in Inventory_SKUS
         int result;
@@ -491,6 +492,29 @@ namespace POS.Repository.SQLServer
             }
             return objInventoryCoupnRules;
         }
+        public Inventory_PendingOrdersClass updatePendingOrdersRep(Inventory_PendingOrdersClass objInvPendingOrders)
+        {
+            try
+            {
+                result = sqlServerRepost.ExecuteNonQuery("update Inventory_PendingOrders set Status = '"+ objInvPendingOrders.Status +"' where ItemNum = '" + objInvPendingOrders.ItemNum + "' and Invoice_Number = '" + objInvPendingOrders.Invoice_Number + "'");
+                if (result == 1)
+                {
+                    objInvPendingOrders.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInvPendingOrders.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Sql server Repository: Error:]", ex.Message);
+            }
+            return objInvPendingOrders;
+        }
         public Inventory_Rental_InfoClasss executeRentalInfoRep(Inventory_Rental_InfoClasss objRentalInfo)
         {
             try
@@ -726,16 +750,258 @@ namespace POS.Repository.SQLServer
             }
             return objInventoryClass;
         }
+        public InventoryClass updateInventoryRep(InventoryClass objInventory)
+        {
+            try
+            {
+                result = sqlServerRepost.ExecuteNonQuery("");
+                if (result == 1)
+                {
+                    objInventory.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInventory.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Sql server Repository]", ex.Message);
+            }
+            return objInventory;
+        }
+        string id;
+        public string getItemId(string p)
+        {
+           try
+           {
+               sqlServerRepost.ExecuteScalar("select ItemNum, ItemType from Inventory where ItemType = '"+ p +"'");
+           }
+            catch(Exception ex)
+           {
+
+           }
+           return id;
+        }
+        DataTable dtkit;
+        public DataTable getdtkitIdRep(string p)
+        {
+            try
+            {
+                dtkit = sqlServerRepost.GetDataTable("select ItemNum, ItemName, Price from Inventory where ItemNum = '" + p + "'");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtkit;
+        }
+        public DataTable getgetPropertyRep(string p)
+        {
+            try
+            {
+                dtkit = sqlServerRepost.GetDataTable("select Property_ID, Description +' : ' + Value_Description as Desrpt from VIEW_INVENTORY_PROPERTY where Value_ID = '" + p + "'");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtkit;
+        }
+        DataTable dtable;
+        public DataTable GetInventoryPendingOrders(Inventory_PendingOrdersClass objInventoryPendingOrder)
+        {
+
+            try
+            {
+                dtable = sqlServerRepost.GetDataTable("Select * from Inventory_PendingOrders where status = '" + objInventoryPendingOrder.Status + "' and ItemNum = '" + objInventoryPendingOrder.ItemNum + "'");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtable;
+        }
+        public InventoryClass SaveChangesInventoryRep(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                int result = sqlServerRepost.ExecuteNonQuery("UPDATE Inventory SET " +
+                                        "itemNum ='" + objInventoryClass.ItemNum + "', " +
+                                        "ItemName ='" + objInventoryClass.ItemName + "', " +
+                                        "Store_ID ='" + objInventoryClass.Store_ID + "', " +
+                                        "Cost ='" + objInventoryClass.Cost + "', " +
+                                        "Price ='" + objInventoryClass.Price + "', " +
+                                        "Retail_Price ='" + objInventoryClass.Retail_Price + "', " +
+                                        "In_Stock ='" + objInventoryClass.In_Stock + "', " +
+                                        "Reorder_Level ='" + objInventoryClass.Reorder_Level + "', " +
+                                        "Reorder_Quantity ='" + objInventoryClass.Reorder_Quantity + "', " +
+                                        "Tax_1 ='" + objInventoryClass.Tax_1 + "', " +
+                                        "Tax_2='" + objInventoryClass.Tax_2 + "', " +
+                                        "Tax_3='" + objInventoryClass.Tax_3 + "', " +
+                                        "Vendor_Number='" + objInventoryClass.Vendor_Number + "', " +
+                                        "Dept_ID='" + objInventoryClass.Dept_ID + "', " +
+                                        "IsKit='" + objInventoryClass.IsKit + "', " +
+                                        "IsModifier='" + objInventoryClass.IsModifier + "', " +
+                                        "Kit_Override='" + objInventoryClass.Kit_Override + "', " +
+                                        "Inv_Num_Barcode_Labels='" + objInventoryClass.Inv_Num_Barcode_Labels + "', " +
+                                        "Use_Serial_Numbers='" + objInventoryClass.Use_Serial_Numbers + "', " +
+                                        "Num_Bonus_Points='" + objInventoryClass.Num_Bonus_Points + "', " +
+                                        "IsRental='" + objInventoryClass.IsRental + "', " +
+                                        "Use_Bulk_Pricing='" + objInventoryClass.Use_Bulk_Pricing + "', " +
+                                        "Print_Ticket='" + objInventoryClass.Print_Ticket + "', " +
+                                        "Print_Voucher='" + objInventoryClass.Print_Voucher + "', " +
+                                        "Num_Days_Valid='" + objInventoryClass.Num_Days_Valid + "', " +
+                                        "IsMatrixItem='" + objInventoryClass.IsMatrixItem + "', " +
+                                        "Vendor_Part_Num='" + objInventoryClass.Vendor_Part_Num + "', " +
+                                        "Location='" + objInventoryClass.Location + "', " +
+                                        "AutoWeigh='" + objInventoryClass.AutoWeigh + "', " +
+                                        "numBoxes='" + objInventoryClass.numBoxes + "', " +
+                                        "Dirty='" + objInventoryClass.Dirty + "', " +
+                                        "Tear='" + objInventoryClass.Tear + "', " +
+                                        "NumPerCase='" + objInventoryClass.NumPerCase + "', " +
+                                        "FoodStampable='" + objInventoryClass.FoodStampable + "', " +
+                                        "ReOrder_Cost='" + objInventoryClass.ReOrder_Cost + "', " +
+                                        "Helper_ItemNum='" + objInventoryClass.Helper_ItemNum + "', " +
+                                        "ItemName_Extra='" + objInventoryClass.ItemName_Extra + "', " +
+                                        "Exclude_Acct_Limit='" + objInventoryClass.Exclude_Acct_Limit + "', " +
+                                        "Check_ID='" + objInventoryClass.Check_ID + "', " +
+                                        "Old_InStock='" + objInventoryClass.Old_InStock + "', " +
+                                        "Date_Created='" + objInventoryClass.Date_Created + "', " +
+                                        "ItemType='" + objInventoryClass.ItemType + "', " +
+                                        "Prompt_Price='" + objInventoryClass.Prompt_Price + "', " +
+                                        "Prompt_Quantity='" + objInventoryClass.Prompt_Quantity + "', " +
+                                        "Inactive='" + objInventoryClass.Inactive + "', " +
+                                        "Allow_BuyBack='" + objInventoryClass.Allow_BuyBack + "', " +
+                                        "Last_Sold='" + objInventoryClass.Last_Sold + "', " +
+                                        "Unit_Type='" + objInventoryClass.Unit_Type + "', " +
+                                        "Unit_Size='" + objInventoryClass.Unit_Size + "', " +
+                                        "Fixed_Tax='" + objInventoryClass.Fixed_Tax + "', " +
+                                        "DOB='" + objInventoryClass.DOB + "', " +
+                                        "Special_Permission='" + objInventoryClass.Special_Permission + "', " +
+                                        "Prompt_Description='" + objInventoryClass.Prompt_Description + "', " +
+                                        "Check_ID2='" + objInventoryClass.Check_ID2 + "', " +
+                                        "Count_This_Item='" + objInventoryClass.Count_This_Item + "', " +
+                                        "Transfer_Cost_Markup='" + objInventoryClass.Transfer_Cost_Markup + "', " +
+                                        "Print_On_Receipt='" + objInventoryClass.Print_On_Receipt + "', " +
+                                        "Transfer_Markup_Enabled='" + objInventoryClass.Transfer_Markup_Enabled + "', " +
+                                        "As_Is='" + objInventoryClass.As_Is + "', " +
+                                        "InStock_Committed='" + objInventoryClass.InStock_Committed + "', " +
+                                        "RequireCustomer='" + objInventoryClass.RequireCustomer + "', " +
+                                        "PromptCompletionDate='" + objInventoryClass.PromptCompletionDate + "', " +
+                                        "PromptInvoiceNotes='" + objInventoryClass.PromptInvoiceNotes + "', " +
+                                        "Prompt_DescriptionOverDollarAmt='" + objInventoryClass.Prompt_DescriptionOverDollarAmt + "', " +
+                                        "Exclude_From_Loyalty='" + objInventoryClass.Exclude_From_Loyalty + "', " +
+                                        "BarTaxInclusive='" + objInventoryClass.BarTaxInclusive + "', " +
+                                        "ScaleSingleDeduct='" + objInventoryClass.ScaleSingleDeduct + "', " +
+                                        "GLNumber='" + objInventoryClass.GLNumber + "', " +
+                                        "ModifierType='" + objInventoryClass.ModifierType + "', " +
+                                        "Position='" + objInventoryClass.Position + "', " +
+                                        "numberOfFreeToppings='" + objInventoryClass.numberOfFreeToppings + "', " +
+                                        "ScaleItemType='" + objInventoryClass.ScaleItemType + "', " +
+                                        "DiscountType='" + objInventoryClass.DiscountType + "', " +
+                                        "AllowReturns='" + objInventoryClass.AllowReturns + "', " +
+                                        "SuggestedDeposit='" + objInventoryClass.SuggestedDeposit + "', " +
+                                        "Liability='" + objInventoryClass.Liability + "', " +
+                                        "IsDeleted='" + objInventoryClass.IsDeleted + "', " +
+                                        "ItemLocale='" + objInventoryClass.ItemLocale + "', " +
+                                        "QuantityRequired='" + objInventoryClass.QuantityRequired + "', " +
+                                        "AllowOnDepositInvoices='" + objInventoryClass.AllowOnDepositInvoices + "', " +
+                                        "Import_Markup='" + objInventoryClass.Import_Markup + "', " +
+                                        "PricePerMeasure='" + objInventoryClass.PricePerMeasure + "', " +
+                                        "UnitMeasure='" + objInventoryClass.UnitMeasure + "', " +
+                                        "ShipCompliantProductType='" + objInventoryClass.ShipCompliantProductType + "', " +
+                                        "AlcoholContent='" + objInventoryClass.AlcoholContent + "', " +
+                                        "AvailableOnline='" + objInventoryClass.AvailableOnline + "', " +
+                                        "AllowOnFleetCard='" + objInventoryClass.AllowOnFleetCard + "', " +
+                                        "DoughnutTax='" + objInventoryClass.DoughnutTax + "', " +
+                                        "DisplayTaxInPrice='" + objInventoryClass.DisplayTaxInPrice + "', " +
+                                        "NeverPrintInKitchen='" + objInventoryClass.NeverPrintInKitchen + "')");
+                if (result == 1)
+                {
+                    objInventoryClass.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInventoryClass.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Sql server Repository: Error:]", ex.Message);
+            }
+            return objInventoryClass;
+        }
+        public DataTable RetrivingInformationRep(InventoryClass objRetrivingInformationRep)
+        {
+            try
+            {
+                if (objRetrivingInformationRep.qryType == "inventory")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory where ItemNum = '" + objRetrivingInformationRep.ItemNum + "' and IsDeleted = '" + objRetrivingInformationRep.IsDeleted + "'");
+                }
+                if(objRetrivingInformationRep.qryType == "inventory1")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory whre IsDeleted = '" + objRetrivingInformationRep.IsDeleted + "'");
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return dtable;
+        }
+        public DataTable GetDataRep(string qryType, string itemNum)
+        {
+            try
+            {
+                //iff
+                if (qryType == "inventoryImage")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Image where ItemNum = '" + itemNum + "'");
+                }
+                else if (qryType == "skus")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_SKUS where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "notes")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Notes where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "tagAlongs")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_TagAlongs where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "descountLevel")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_DiscLevels where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "vendor")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from VIEW_INVENTORY_VENDOR where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "onsaleInfo")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_OnSale_Info where ItemNum ='" + itemNum + "'");
+                }
+                else if (qryType == "bulk")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Bulk_Info where ItemNum ='" + itemNum + "'");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtable;
+        }
         #endregion
-
-
-
-
-
-
-
-
-
     }
 }
 
