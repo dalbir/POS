@@ -948,7 +948,7 @@ namespace POS.Repository.SQLServer
                 }
                 if(objRetrivingInformationRep.qryType == "inventory1")
                 {
-                    dtable = sqlServerRepost.GetDataTable("select * from Inventory whre IsDeleted = '" + objRetrivingInformationRep.IsDeleted + "'");
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory where IsDeleted = '" + objRetrivingInformationRep.IsDeleted + "'");
                 }
             }
             catch(Exception ex)
@@ -994,6 +994,59 @@ namespace POS.Repository.SQLServer
                 {
                     dtable = sqlServerRepost.GetDataTable("select * from Inventory_Bulk_Info where ItemNum ='" + itemNum + "'");
                 }
+                else if(qryType == "invPrices")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Prices where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "choicItem")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select ItemNum, [Description], Quantity, Price from Kit_Index where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "choiceProperty")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select Value_ID, Description + ':' + Expr1 as descrip from VIEW_CHOICE_PROPERTY where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "couponPrice")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Prices where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "coupon")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory_Coupon where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "couponRule")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from VIEW_COPON_RULE where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "")
+                {
+                    dtable = sqlServerRepost.GetDataTable("SELECT * from VIEW_ITEM_SLAE_HISTORY where ItemNum ='" + itemNum + "'");
+                }
+                else if(qryType == "vendorPart")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select Vendor_Part_Num from Inventory where ItemNum ='" + itemNum + "'");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtable;
+        }
+        public DataTable getModifers(ModifiersClass objModifiesClass)
+        {
+            try
+            {
+                //iff
+                if (objModifiesClass.quryFlage == "a")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Modifiers where ItemNum ='" + objModifiesClass.ItemNum + "' and Group_Or_Individual = '"+ objModifiesClass.Group_Or_Individual +"'");
+                }
+                else if (objModifiesClass.quryFlage == "b")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select ItemNum, ModName as ItemName from Modifiers where ItemNum ='" + objModifiesClass.ItemNum + "' and Group_Or_Individual = '"+ objModifiesClass.Group_Or_Individual +"'");
+                }
+               
             }
             catch (Exception ex)
             {
@@ -1002,6 +1055,8 @@ namespace POS.Repository.SQLServer
             return dtable;
         }
         #endregion
+
+
     }
 }
 

@@ -184,6 +184,11 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.GetDataRep(qryType, itemNum);
         }
+        public DataTable RetiveModifeirs(ModifiersClass objModifiesClass)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getModifers(objModifiesClass);
+        }
         #endregion
 
         #region Vendor Service
@@ -279,5 +284,7 @@ namespace POS.Services.Common
 
 
 
+
+ 
     }
 }
