@@ -100,6 +100,18 @@ namespace POS.Repository.SQLServer
             return objdeptClass;
         }
 
-
+        DataTable dtGetRecords;
+        // getting department records for search inventory 
+        public DataTable getDeptRep()
+        {
+            try
+            {
+                dtGetRecords = sqlServerRepository.GetDataTable("select 'ALL RECORDS' as dept_desc, 'No Depatrment' as id_detp union all select Description as dept_desc, [Dept_ID] as id_detp from Departments");
+            }
+            catch(Exception)
+            {
+            }
+            return dtGetRecords;
+        }
     }
 }

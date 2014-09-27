@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using POS.Repository.SQLServer;
 using POS.Domain.Common;
+using System.Data;
 
 namespace POS.Repository.SQLServer
 {
@@ -142,7 +143,19 @@ namespace POS.Repository.SQLServer
            }
            return VendorRep;
        }
+       DataTable dtGetRocords;
+       // get vendors recoreds for search inventory form
+       public System.Data.DataTable getVendorRep()
+       {
+           try
+           {
+               dtGetRocords = sqlRepository.GetDataTable("select 'ALL RECORDS' as records_comp, 'No vendor' as id_compny union all select Company as records_comp, Vendor_Number as id_compny from Vendors");
+           }
+           catch(Exception ex)
+           {
 
- 
+           }
+           return dtGetRocords;
+       }
     }
 }

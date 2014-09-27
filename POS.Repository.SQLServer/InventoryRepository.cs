@@ -961,7 +961,6 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                //iff
                 if (qryType == "inventoryImage")
                 {
                     dtable = sqlServerRepost.GetDataTable("select * from Inventory_Image where ItemNum = '" + itemNum + "'");
@@ -985,6 +984,10 @@ namespace POS.Repository.SQLServer
                 else if (qryType == "vendor")
                 {
                     dtable = sqlServerRepost.GetDataTable("select * from VIEW_INVENTORY_VENDOR where ItemNum ='" + itemNum + "'");
+                }
+                    else if(qryType == "kitIndex")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select Kit_ID as ItemNum, Quantity as In_Stock, Price, [Description] as ItemName from Kit_Index where Kit_ID ='" + itemNum + "'");
                 }
                 else if (qryType == "onsaleInfo")
                 {
@@ -1018,7 +1021,7 @@ namespace POS.Repository.SQLServer
                 {
                     dtable = sqlServerRepost.GetDataTable("select * from VIEW_COPON_RULE where ItemNum ='" + itemNum + "'");
                 }
-                else if(qryType == "")
+                else if (qryType == "saleHistory")
                 {
                     dtable = sqlServerRepost.GetDataTable("SELECT * from VIEW_ITEM_SLAE_HISTORY where ItemNum ='" + itemNum + "'");
                 }
@@ -1054,9 +1057,31 @@ namespace POS.Repository.SQLServer
             }
             return dtable;
         }
+        public DataTable searhItem(string flag, string p)
+        {
+            string prec = "%";
+            try
+            {
+                if (flag == "sbItemNum")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory where ItemNum like '" + p + prec + "' order by ItemNum DESC");
+                }
+                else if (flag == "sbItemName")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory where ItemName like '" + p + prec + "' order by ItemNum DESC");
+                }
+                else if (flag == "sbVendorPartNo")
+                {
+                    dtable = sqlServerRepost.GetDataTable("select * from Inventory where Vendor_Part_Num like '" + p + prec + "' order by Vendor_Part_Num DESC");
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return dtable;
+        }
         #endregion
-
-
     }
 }
 

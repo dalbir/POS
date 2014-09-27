@@ -25,6 +25,11 @@ namespace POS.Services.Common
             CategoryRepository categoryRepositry = new CategoryRepository();
             return categoryRepositry.insertCategory(objInsertCategoryInfo);
         }
+        public DataTable GetCategory()
+        {
+            CategoryRepository categoryRepositry = new CategoryRepository();
+            return categoryRepositry.getCategorys();
+        }
         #endregion
 
         #region inventory module
@@ -189,6 +194,11 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.getModifers(objModifiesClass);
         }
+        public DataTable searchItem(string flag,  string p)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.searhItem(flag, p);
+        }
         #endregion
 
         #region Vendor Service
@@ -207,6 +217,11 @@ namespace POS.Services.Common
         {
             VendorRepository VendorRep = new VendorRepository();
             return VendorRep.RetriveAllVendor(objVendor);
+        }
+        public DataTable getVendors()
+        {
+            VendorRepository VendorRep = new VendorRepository();
+            return VendorRep.getVendorRep();
         }
         #endregion
 
@@ -275,6 +290,12 @@ namespace POS.Services.Common
             DepartmentRepository objDptRep = new DepartmentRepository();
             return objDptRep.ReadDeptID(objDptclass);
         }
+        // get departments for combobox on search inventory screen
+        public DataTable getDepartments()
+        {
+            DepartmentRepository objDptRep = new DepartmentRepository();
+            return objDptRep.getDeptRep();
+        }
 
         #endregion
 
@@ -285,6 +306,14 @@ namespace POS.Services.Common
 
 
 
- 
+
+
+
+
+
+
+
+
+
     }
 }

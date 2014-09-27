@@ -68,5 +68,20 @@ namespace POS.Repository.SQLServer
             }
             return objinsertCategory;
         }
+        DataTable dtRecods;
+        // getting catetory records for combobox for search inventory form
+        public DataTable getCategorys()
+        {
+            try
+            {
+                dtRecods = sqlServerRepository.GetDataTable("select 'ALL RECORDS' as records, 'No Category' as id union all select  Description as records, [Cat_ID] as id from Categories");
+            }
+            catch(Exception)
+            {
+
+            }
+            return dtRecods;
+
+        }
     }
 }

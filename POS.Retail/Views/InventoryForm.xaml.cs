@@ -1292,8 +1292,8 @@ namespace POS.Retail
                 DataTable dt_copon_prices = objPOSManagementService.GetData("couponPrice", objInventoryClass.ItemNum);
                 DataTable dt_copon = objPOSManagementService.GetData("coupon", objInventoryClass.ItemNum);
                 DataTable dt_crule = objPOSManagementService.GetData("couponRule", objInventoryClass.ItemNum);
-                DataTable dt_sale_history = objPOSManagementService.GetData("couponRule", objInventoryClass.ItemNum);
-               // string qury = "select * from Inventory_Image where ItemNum = '" + dt.Rows[index]["ItemNum"] + "'";
+                DataTable dt_sale_history = objPOSManagementService.GetData("saleHistory", objInventoryClass.ItemNum);
+                // string qury = "select * from Inventory_Image where ItemNum = '" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable dti = glo.getdata(qury);
                 //string squry = "select * from Inventory_SKUS where ItemNum ='" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable dts = glo.getdata(squry);
