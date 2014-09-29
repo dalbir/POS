@@ -251,6 +251,7 @@ namespace POS.Services.Common
             return objTaxRepository.RetriveTaxRates(objTaxRate);
         }
         #endregion
+
         #region Department Maintenance
 
         //load dept ids
@@ -271,6 +272,75 @@ namespace POS.Services.Common
             return objDptRep.ReadDeptID(objDptclass);
         }
 
+        #endregion
+
+        #region Customer
+
+        public CustomerClass InsertCustomerInfo(CustomerClass objCustomerInfo)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerInfo(objCustomerInfo);
+        }
+        public CustomerAccountingTransactionClass insertCusAccTrans(CustomerAccountingTransactionClass objCusAccTrns)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerAccTrnsInfo(objCusAccTrns);
+        }
+        public CustomerAuthorizedClass insertCusAutho(CustomerAuthorizedClass objCusAuth)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerAuthorInfo(objCusAuth);
+        }
+        public CustomerAutoClass insertCusauto(CustomerAutoClass objCusAuto)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustAutoInfo(objCusAuto);
+        }
+        public CustomerEventsClass insertCusEvents(CustomerEventsClass objCusevnt)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.custEventsIngo(objCusevnt);
+        }
+        public CustomerGiftRegistryClass insertCusGftReg(CustomerGiftRegistryClass objCusGftReg)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerGiftRegInfo(objCusGftReg);
+        }
+        public CustomerGiftRegistryItemsClass insertcusGfRegItems(CustomerGiftRegistryItemsClass objCusGftRegItm)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustGftRegItemInfo(objCusGftRegItm);
+        }
+        public CustomerNotesClass insertCusNotes(CustomerNotesClass objCusNotes)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerNotesInfo(objCusNotes);
+        }
+        public CustomerPropertiesClass insertCusProperties(CustomerPropertiesClass objCusProperties)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerProprtiesInfo(objCusProperties);
+        }
+        public CustomerReferenceClass insertCusRefrnce(CustomerReferenceClass objCusProperties)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.custRefrenceInfo(objCusProperties);
+        }
+        public CustomerShipTosClass insertCusShipTos(CustomerShipTosClass objCusshptos)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustShipTosInfo(objCusshptos);
+        }
+        public CustomerStoresClass insertCusStores(CustomerStoresClass objCusStores)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.customerStoresInfo(objCusStores);
+        }
+        public CustomerSwipesClass insertCusSwipes(CustomerSwipesClass objCusSwip)
+        {
+            CustomerRepository objCusRep = new CustomerRepository();
+            return objCusRep.CustomerSwipInfo(objCusSwip);
+        }
         #endregion
 
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-   public class CustomerShipTosClass
+   public class CustomerShipTosClass:BaseDomain
     {
         public string CustNum { get; set; }
         public string First_Name { get; set; }
@@ -20,6 +21,7 @@ namespace POS.Domain.Common
         public string Phone { get; set; }
         public int Dirty { get; set; }
         public string County { get; set; }
+        public string flage { get; set; }
         public string DeliveryAddressSpecialInstructions { get; set; }
     }
 }

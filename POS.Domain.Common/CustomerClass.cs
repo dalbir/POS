@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-   public class CustomerClass
+   public class CustomerClass:BaseDomain
     {
         public string CustNum  {get; set; }
         public string First_Name  {get; set; }
@@ -48,6 +50,7 @@ namespace POS.Domain.Common
         public decimal Max_Charge_Amount  {get; set; } 
         public string License_Num  {get; set; }
         public DateTime ID_Last_Checked  {get; set; }
+        public DateTime Next_Start_Date { get; set; }
         public DateTime Checking_AcctNum  {get; set; }
         public int PrintNotes  {get; set; }
         public int Loyalty_Plan_ID  {get; set; }
@@ -67,5 +70,7 @@ namespace POS.Domain.Common
         public string SecretCode  {get; set; }
         public string OnlineUserName  {get; set; }
         public string OnlinePassword  {get; set; }
+        public string flage { get; set; }
+        public DataTable loadCustDat { get; set; }
     }
 }
