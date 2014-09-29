@@ -123,9 +123,11 @@ namespace POS.Retail
                     objInventoryClass.IsKit = Convert.ToInt32(kits);
                     objInventoryClass.Vendor_Number = vendor;
                     objInventoryClass.IsDeleted = 0;
+                    objInventoryClass.Cat_id = category;
+                    DataTable dt = objPOSManagementService.filterInventory(objInventoryClass);
                     //string quary = "select * from VIEW_ITEMS where c_id like '" + category + "' and d_id like '" + dept + "' and IsModifier like '" + modifier + "' and IsKit like '" + kits + "' and Vendor_Number like " + vendor + " and delte = 0";
                    // DataTable dt = 
-                    //DG_items.ItemsSource = dt.DefaultView;
+                    DG_items.ItemsSource = dt.DefaultView;
                 }
             }
             catch (Exception)
@@ -257,6 +259,7 @@ namespace POS.Retail
         private void btn_new_item_Click(object sender, RoutedEventArgs e)
         {
             InventoryForm obj = new InventoryForm();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             obj.ShowDialog();
         }
     }

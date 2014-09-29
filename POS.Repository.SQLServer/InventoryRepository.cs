@@ -56,6 +56,17 @@ namespace POS.Repository.SQLServer
             }
             return dtInv;
         }
+        public DataTable filterInventoryRep(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                dtInv = sqlServerRepost.GetDataTable("select * from VIEW_ITEMS where Cat_ID like '" + objInventoryClass.Cat_id + "' and Dept_ID like '" + objInventoryClass.Dept_ID + "' and IsModifier like '" + objInventoryClass.IsModifier + "' and IsKit like '" + objInventoryClass.IsKit + "' and Vendor_Number like " + objInventoryClass.Vendor_Number + " and IsDeleted = '" + objInventoryClass.IsDeleted + "'");
+            }
+            catch (Exception ex)
+            {
+            }
+            return dtInv;
+        }
       
         #region insertion into tables
         // insertion sku in Inventory_SKUS
@@ -1082,6 +1093,21 @@ namespace POS.Repository.SQLServer
             return dtable;
         }
         #endregion
+
+
+        DataTable dtStandard;
+        public DataTable checkStandardItem(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                dtStandard = sqlServerRepost.GetDataTable("select * from Inventory where ItemNum = '" + objInventoryClass.ItemNum + "' and ItemType = '"+ objInventoryClass.ItemType +"'");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtStandard;
+        }
     }
 }
 

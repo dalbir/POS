@@ -194,10 +194,15 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.getModifers(objModifiesClass);
         }
-        public DataTable searchItem(string flag,  string p)
+        public DataTable searchItem(string flag, string p)
         {
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.searhItem(flag, p);
+        }
+        public DataTable filterInventory(InventoryClass objInventoryClass)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.filterInventoryRep(objInventoryClass);
         }
         #endregion
 
@@ -223,6 +228,11 @@ namespace POS.Services.Common
             VendorRepository VendorRep = new VendorRepository();
             return VendorRep.getVendorRep();
         }
+        public DataTable getVendorRecords()
+        {
+            VendorRepository VendorRep = new VendorRepository();
+            return VendorRep.getVendorRecords();
+        }
         #endregion
 
         #region Tax related Repositories
@@ -236,7 +246,7 @@ namespace POS.Services.Common
         public DataTable GetTaxRateAreas(Tax_Rate_AreasClass objTaxRateAreas)
         {
             TaxRepository objTaxRepository = new TaxRepository();
-            return objTaxRepository.GetTaxRateAreas(objTaxRateAreas); 
+            return objTaxRepository.GetTaxRateAreas(objTaxRateAreas);
         }
         public Tax_RateClass updateTaxRates(Tax_RateClass objTaxRates)
         {
@@ -271,6 +281,7 @@ namespace POS.Services.Common
             return objTaxRepository.RetriveTaxRates(objTaxRate);
         }
         #endregion
+
         #region Department Maintenance
 
         //load dept ids
@@ -299,21 +310,101 @@ namespace POS.Services.Common
 
         #endregion
 
+        #region Purchase Oreder Repository
+        public PO_SummaryClass insertPOSummary(PO_SummaryClass objPOSummary)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.insertPosummaryRep(objPOSummary);
+        }
+        public PO_DetailsClass insertPoDetail(PO_DetailsClass objPODetailClass)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.insertPoDetail(objPODetailClass);
+        }
+        // geting stores ids
+        public DataTable GetStores()
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.GetStoresRep();
+        }
+        public DataTable getPoDetail(int po_id)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.getPoDeatil(po_id);
+        }
+        public DataTable getPoSummary(int po_id)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.getPoSummary(po_id);
+        }
+        public DataTable getPoSummaryByType(PO_SummaryClass objPoSummaryClass)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.getPoSummayByType(objPoSummaryClass);
+        
+        }
+        public DataTable CheckStandardItem(InventoryClass objInventoryClass)
+        {
+            InventoryRepository objPurchaseOrderRepository = new InventoryRepository();
+            return objPurchaseOrderRepository.checkStandardItem(objInventoryClass);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public PO_SummaryClass updatePoSummary(PO_SummaryClass objPoSummaryClass)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.updatePoSummaryRep(objPoSummaryClass);
+        }
+        public PO_DetailsClass deletePoDetails(PO_DetailsClass objPoDetail)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.DeletePoDetails(objPoDetail);
+        }
+        public DataTable getVendors(VendorsClass objVendorClass)
+        {
+            VendorRepository objPurchaseOrderRepository = new VendorRepository();
+            return objPurchaseOrderRepository.getVendorsRep(objVendorClass);
+        }
+        public DataTable FilterData(string flage, string str)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.FilterDataRep(flage, str);
+        }
+        #endregion
 
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

@@ -157,5 +157,32 @@ namespace POS.Repository.SQLServer
            }
            return dtGetRocords;
        }
+
+       DataTable dtVendorRecords;
+       public DataTable getVendorRecords()
+       {
+           try
+           {
+               dtVendorRecords = sqlRepository.GetDataTable("select * from Vendors");
+           }
+           catch (Exception ex)
+           {
+
+           }
+           return dtVendorRecords;
+       }
+       DataTable dtVendors;
+       public DataTable getVendorsRep(VendorsClass objVendorClass)
+       {
+           try
+           {
+               dtVendors = sqlRepository.GetDataTable("select * from Vendors where Vendor_Number = '"+ objVendorClass.Vendor_Number +"'");
+           }
+           catch (Exception ex)
+           {
+
+           }
+           return dtVendors;
+       }
     }
 }
