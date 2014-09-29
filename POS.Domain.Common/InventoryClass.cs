@@ -105,6 +105,7 @@ namespace POS.Domain.Common
 
        //
         public string qryType { get; set; }
+        public string Cat_id { get; set; }
        
     }
 }
