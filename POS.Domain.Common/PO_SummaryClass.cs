@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-   public class PO_SummaryClass
+   public class PO_SummaryClass: BaseDomain
     {
         public int PO_Number { get; set; }
         public string Store_ID { get; set; }
         public DateTime DateTime { get; set; }
         public string Reference { get; set; }
         public string Vendor_Number { get; set; }
-        public decimal Total_Cost { get; set; }
+        public double Total_Cost { get; set; }
         public decimal Total_Cost_Received { get; set; }
         public string Terms { get; set; }
-        public string Due_Date { get; set; }
+        public DateTime Due_Date { get; set; }
         public string Ship_Via { get; set; }
         public string ShipTo_1 { get; set; }
         public string ShipTo_2 { get; set; }
@@ -40,5 +41,7 @@ namespace POS.Domain.Common
         public int ExpectedAmountToReceive { get; set; }
         public string Order_Reason { get; set; }
         public string Distributor { get; set; }
+       //
+        public int qryFlage { get; set; }
     }
 }
