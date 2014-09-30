@@ -1,0 +1,40 @@
+﻿<Window x:Class="POS.Retail.JobCodeSetupForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Setup Job Codes" Height="530" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,45,0,0" Name="txt_jobcode" VerticalAlignment="Top" Width="192" />
+        <TextBox Height="23" Margin="244,45,42,0" Name="txt_wage_normal" VerticalAlignment="Top" />
+        <TextBox Height="23" Margin="244,119,42,0" Name="txt_wage_overtime" VerticalAlignment="Top" />
+        <CheckBox Content="POS Access" Height="16" HorizontalAlignment="Left" Margin="12,155,0,0" Name="box_POS" VerticalAlignment="Top" />
+        <Label Content="Name of Job Code" Height="28" HorizontalAlignment="Left" Margin="12,20,0,0" Name="label1" VerticalAlignment="Top" Width="126" />
+        <Label Content="Wage by Default" Height="28" Margin="244,20,108,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Wage after Overtime" Height="28" Margin="244,95,108,0" Name="label3" VerticalAlignment="Top" />
+        <CheckBox Content="Record Cash Tips" Height="16" HorizontalAlignment="Left" Margin="12,241,0,0" Name="check_cash_tips" VerticalAlignment="Top" />
+        <CheckBox Content="Cash Bank" Height="16" HorizontalAlignment="Left" Margin="12,263,0,0" Name="check_cash_bank" VerticalAlignment="Top" />
+        <CheckBox Content="Require Cash Drawer Selection" Height="16" HorizontalAlignment="Left" Margin="12,285,0,0" Name="check_require_cash_drawer" VerticalAlignment="Top" />
+        <CheckBox Content="Requier Cash Count Screen on Clockout" Height="16" HorizontalAlignment="Left" Margin="12,307,0,0" Name="check_require_cash_count_screen" VerticalAlignment="Top" />
+        <CheckBox Content="Enable with delivery Tracking" Height="16" HorizontalAlignment="Left" Margin="12,329,0,0" Name="check_delivery_tracking" VerticalAlignment="Top" />
+        <CheckBox Content="Include Department Totals" Height="16" HorizontalAlignment="Left" Margin="244,241,0,0" Name="check_department_totals" VerticalAlignment="Top" />
+        <CheckBox Content="Itemize CC Transactions" Height="16" HorizontalAlignment="Left" Margin="244,263,0,0" Name="check_CC_transactions" VerticalAlignment="Top" />
+        <CheckBox Content="Assignable by Admin only" Height="16" HorizontalAlignment="Left" Margin="244,285,0,0" Name="check_assignable_admin_only" VerticalAlignment="Top" />
+        <Label Content="Shift Reports" FontSize="16" FontWeight="Bold"  Height="33" HorizontalAlignment="Left" Margin="244,146,0,0" Name="label4" VerticalAlignment="Top" Width="192" />
+        <Border BorderBrush="Silver" BorderThickness="2" Height="5" Margin="2,375,2,0" Name="border1" VerticalAlignment="Top" />
+        <Button Content="Permissions" Height="34" Margin="360,323,21,0" Name="btn_permissions" VerticalAlignment="Top" IsCancel="False" />
+        <Label Content="No. of Copies" Height="28" HorizontalAlignment="Left" Margin="244,165,0,0" Name="label5" VerticalAlignment="Top" Width="126" />
+        <ComboBox Height="23" Margin="244,187,42,0" Name="cmb_rpt_number" VerticalAlignment="Top">
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="5" />
+        </ComboBox>
+        <ComboBox Height="34" HorizontalAlignment="Left" Margin="127,394,0,0" Name="cmb_jobcodes_all" VerticalAlignment="Top" Width="226" FontSize="22" FontWeight="Bold" SelectionChanged="cmb_jobcodes_all_SelectionChanged" />
+        <Button Content="Next" Height="34" Margin="364,394,17,0" Name="btn_next" VerticalAlignment="Top" Click="btn_next_Click" />
+        <Button Content="Previous" Height="34" HorizontalAlignment="Left" Margin="19,394,0,0" Name="btn_previous" VerticalAlignment="Top" Width="97" Click="btn_previous_Click" />
+        <Button Content="Add" Height="34" HorizontalAlignment="Left" Margin="19,445,0,0" Name="btn_add" VerticalAlignment="Top" Width="97" Click="btn_add_Click" />
+        <Button Content="Update" Height="34" HorizontalAlignment="Left" Margin="127,445,0,0" Name="btn_update" VerticalAlignment="Top" Width="111" Click="btn_update_Click" />
+        <Button Content="Delete" Height="34" HorizontalAlignment="Left" Margin="252,445,0,0" Name="btn_delete" VerticalAlignment="Top" Width="101" Click="btn_delete_Click" />
+        <Button Content="Exit" Height="34" Margin="364,445,17,0" Name="btn_exit" VerticalAlignment="Top" Click="btn_exit_Click" />
+    </Grid>
+</Window>

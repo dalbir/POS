@@ -1,0 +1,31 @@
+﻿<Window x:Class="POS.Retail.ModiferGroups2Form"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="frm_modifer_groups" Height="637" Width="756" WindowStyle="ToolWindow" ResizeMode="NoResize" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ScrollViewer Height="458" HorizontalAlignment="Left" Margin="0,63,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="734">
+            <WrapPanel Height="Auto" Name="wp_modifier_btn" Width="708" >
+                <WrapPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="5,0" />
+                        <Setter Property="Padding" Value="5,5" />
+                        <Setter Property="Background" Value="DeepSkyBlue"/>
+                        <Setter Property="BorderBrush" Value="Green"/>
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+
+                </WrapPanel.Resources>
+            </WrapPanel>
+        </ScrollViewer>
+        <Label Height="45" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="677" FontWeight="Bold" FontSize="24" Content="Which Modifier Group Would You Like to Add to This Item" />
+        <Button Content="Cancel" Focusable="False" FontSize="15" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="563,544,0,0" Name="btn_cancel_modifier" VerticalAlignment="Top" Width="115" Click="btn_cancel_modifier_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#47F21616" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Separator Background="#71622424" Height="7" HorizontalAlignment="Left" Margin="14,528,0,0" Name="separator1" VerticalAlignment="Top" Width="710" />
+    </Grid>
+</Window>

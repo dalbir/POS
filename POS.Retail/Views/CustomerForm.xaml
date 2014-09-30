@@ -1,0 +1,367 @@
+﻿<Window x:Class="POS.Retail.CustomerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Customer Maintenance" Height="685" Width="880" WindowStyle="ToolWindow" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="btn_lookup" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="image">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1.066"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="image">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1.08"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="image">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="2.65"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="image">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.893"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/find.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="DarkSeaGreen">
+        <Label FontSize="15" FontWeight="Normal" Height="40" Name="lbl_heading_emp" VerticalAlignment="Top">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#53000000" Offset="0" />
+                    <GradientStop Color="#81B0E0E6" Offset="0.486" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Grid Height="119" Margin="0,38,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
+            <Label Content="Customer ID:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label2" VerticalAlignment="Top" Width="110" />
+            <Label Content="Last Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,78,0,0" Name="label3" VerticalAlignment="Top" Width="110" />
+            <Label Content="First Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label4" VerticalAlignment="Top" Width="110" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="126,10,0,0" Name="txt_custmer_id" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="126,81,0,0" Name="txt_custmer_lname" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+            <Label Content="E-Mail:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="376,39,0,0" Name="label5" VerticalAlignment="Top" Width="61" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="443,42,0,0" Name="txt_custmer_email" VerticalAlignment="Top" Width="316" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="126,45,0,0" Name="txt_custmer_fname" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+        </Grid>
+        <TabControl Height="382" Margin="0,154,0,0" Name="tabControl1" VerticalAlignment="Top" FontWeight="Bold">
+            <TabItem Header="    General Info  " Name="tabItem1">
+                <Grid>
+                    <Label Content="Company Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,21,0,0" Name="label1" VerticalAlignment="Top" Width="110" FontWeight="Normal" />
+                    <Label Content="Street Address 2:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,89,0,0" Name="label6" VerticalAlignment="Top" Width="110" FontWeight="Normal" />
+                    <Label Content="Street Address:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,55,0,0" Name="label7" VerticalAlignment="Top" Width="110" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,21,0,0" Name="txt_cus_compname" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,92,0,0" Name="txt_cus_addres2" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,56,0,0" Name="txt_cus_addres" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <Label Content="Primery Phone:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,127,0,0" Name="label8" VerticalAlignment="Top" Width="110" />
+                    <Label Content="Alternate Phone:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,161,0,0" Name="label10" VerticalAlignment="Top" Width="110" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,127,0,0" Name="txt_cus_phone" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,162,0,0" Name="txt_cus_alphone" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <Label Content="City:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,231,0,0" Name="label11" VerticalAlignment="Top" Width="110" />
+                    <Label Content="Country:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,265,0,0" Name="label13" VerticalAlignment="Top" Width="110" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,231,0,0" Name="txt_cus_city" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,266,0,0" Name="txt_cus_country" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <Label Content="State:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="381,21,0,0" Name="label14" VerticalAlignment="Top" Width="57" />
+                    <Label Content="Discount Percentage:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="381,56,0,0" Name="label15" VerticalAlignment="Top" Width="143" />
+                    <Label Content="Zip Code:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="624,18,0,0" Name="label16" VerticalAlignment="Top" Width="74" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="523,21,0,0" Name="txt_cus_state" VerticalAlignment="Top" Width="99" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="523,59,0,0" Name="txt_cus_discont" VerticalAlignment="Top" Width="99" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="697,18,0,0" Name="txt_cus_zipcode" VerticalAlignment="Top" Width="114" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <Label Content="Price Level:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="624,58,0,0" Name="label17" VerticalAlignment="Top" Width="74" />
+                    <ComboBox Height="25" HorizontalAlignment="Left" Margin="697,59,0,0" Name="cmb_cust_pricelevel" VerticalAlignment="Top" Width="114" Background="#00000000" />
+                    <Label Content="Bonus Point Achieved:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="381,92,0,0" Name="label18" VerticalAlignment="Top" Width="143" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="523,95,0,0" Name="txt_cus_bonaspoint" VerticalAlignment="Top" Width="288" MouseDoubleClick="txt_cus_bonaspoint_MouseDoubleClick" />
+                    <Label Content="Birth day:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,196,0,0" Name="label19" VerticalAlignment="Top" Width="84" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="126,197,0,0" Name="txt_cust_birthday" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                    <Label Content="Application Date:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="381,130,0,0" Name="label20" VerticalAlignment="Top" Width="143" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="523,133,0,0" Name="txt_cus_app_date" VerticalAlignment="Top" Width="288" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                    <Label Content="Card Swip IDs" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="523,164,0,0" Name="label21" VerticalAlignment="Top" Width="96" />
+                    <Button Content="Add" Focusable="False" FontSize="14" FontWeight="Normal" Height="32" HorizontalAlignment="Left" Margin="676,194,0,0" Name="btn_sc_add" VerticalAlignment="Top" Width="70" Click="btn_sc_add_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Del" Focusable="False" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="676,235,0,0" Name="btn_sc_del" VerticalAlignment="Top" Width="70" Click="btn_sc_del_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#B7000000" Offset="0" />
+                                <GradientStop Color="#5F9DB4FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <ListBox Height="71" HorizontalAlignment="Left" Margin="523,194,0,0" Name="lstbx_card_swip_ids" VerticalAlignment="Top" Width="147" />
+                    <CheckBox Content="Charge At Cost" Height="18" HorizontalAlignment="Left" Margin="126,306,0,0" Name="chk_charge_at_cast" VerticalAlignment="Top" Width="127" />
+                    <CheckBox Content="Tax Exempt" Height="18" HorizontalAlignment="Left" Margin="284,306,0,0" Name="chk_tax_exempt" VerticalAlignment="Top" Width="127" />
+                    <CheckBox Content="Print Notes On Receipt" Height="18" HorizontalAlignment="Left" Margin="425,306,0,0" Name="chk_print_notes_receipt" VerticalAlignment="Top" Width="160" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="   Extended Info   ">
+                <Grid Width="833">
+                    <GroupBox Header="Credit Card Info" Height="169" HorizontalAlignment="Left" Margin="4,7,0,0" Name="groupBox1" VerticalAlignment="Top" Width="393" BorderBrush="#76691919">
+                        <Grid>
+                            <Label Content="Credit Card Type:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,8,0,0" Name="label9" VerticalAlignment="Top" Width="116" FontWeight="Normal" />
+                            <ListBox Height="100" HorizontalAlignment="Left" Margin="10,33,0,0" Name="lstbx_credt_card_type" VerticalAlignment="Top" Width="116" />
+                            <Label Content="Credit Card Number" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="158,10,0,0" Name="label12" VerticalAlignment="Top" Width="146" />
+                            <Label Content="Expiration" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="158,63,0,0" Name="label22" VerticalAlignment="Top" Width="116" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="162,33,0,0" Name="txt_crdt_nmber" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_cus_bonaspoint_MouseDoubleClick" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="162,88,0,0" Name="txt_expiration" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_expiration_MouseDoubleClick" PreviewLostKeyboardFocus="txt_expiration_PreviewLostKeyboardFocus" PreviewTextInput="txt_expiration_PreviewTextInput"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox BorderBrush="#76691919" Header="Events" Height="169" HorizontalAlignment="Left" Margin="3,176,0,0" Name="groupBox2" VerticalAlignment="Top" Width="394">
+                        <Grid>
+                            <Label Content="Event Date" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="37,16,0,0" Name="label23" VerticalAlignment="Top" Width="146" />
+                            <Label Content="Event Description" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="37,71,0,0" Name="label24" VerticalAlignment="Top" Width="116" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="41,41,0,0" Name="txt_event_date" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="41,96,0,0" Name="txt_event_desctiption" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox BorderBrush="#76691919" Header="Personal Info" Height="169" HorizontalAlignment="Left" Margin="436,8,0,0" Name="groupBox3" VerticalAlignment="Top" Width="366">
+                        <Grid>
+                            <Label Content="Driver License ID" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,1,0,0" Name="label25" VerticalAlignment="Top" Width="146" />
+                            <Label Content="Mobile Phone:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label26" VerticalAlignment="Top" Width="116" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="14,24,0,0" Name="txt_driver_licns_id" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="14,71,0,0" Name="txt_mob_phone" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <Label Content="Expiration Date" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="202,-1,0,0" Name="label27" VerticalAlignment="Top" Width="146" />
+                            <Label Content="Fax" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="14,93,0,0" Name="label28" Width="116" Height="28" VerticalAlignment="Top" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="206,25,0,0" Name="txt_license_exp_date" VerticalAlignment="Top" Width="134" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="14,117,0,0" Name="txt_fax" VerticalAlignment="Top" Width="174" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                        </Grid>
+                    </GroupBox>
+                    <Label Content="Referral Source" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="442,193,0,0" Name="label29" VerticalAlignment="Top" Width="112" />
+                    <Label Content="Tax ID" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="442,241,0,0" Name="label30" VerticalAlignment="Top" Width="70" />
+                    <Label Content="Tax Rate" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="442,289,0,0" Name="label31" VerticalAlignment="Top" Width="116" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="442,216,0,0" Name="cmb_referal_source" VerticalAlignment="Top" Width="222" BorderBrush="#FF364E55" Background="#00000000" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="442,267,0,0" Name="txt_tax_id" VerticalAlignment="Top" Width="222" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="442,316,0,0" Name="cmb_tax_rate" VerticalAlignment="Top" Width="222" BorderBrush="#FF364E55" Background="#00000000" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="   Account Info   ">
+                <Grid Width="833">
+
+                    <GroupBox Height="172" HorizontalAlignment="Left" Margin="8,6,0,0" Name="groupBox4" VerticalAlignment="Top" Width="605" BorderBrush="#6A000000">
+                        <Grid>
+                            <Label Content="Account Type" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="24,10,0,0" Name="lbl_act_type" VerticalAlignment="Top" Width="102" />
+                            <RadioButton Content="Standard" Height="21" HorizontalAlignment="Left" Margin="58,44,0,0" Name="rb_standard" VerticalAlignment="Top" FontWeight="Normal" Width="84" />
+                            <RadioButton Content="Layaway" FontWeight="Normal" Height="21" HorizontalAlignment="Left" Margin="58,71,0,0" Name="rb_layaway" VerticalAlignment="Top" Width="84" />
+                            <Label Content="Open Account Date" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="148,12,0,0" Name="lbl_open_act_date" VerticalAlignment="Top" Width="155" FontWeight="Normal" />
+                            <Label Content="Close Aaccount Date" FontSize="13" Height="29" HorizontalAlignment="Left" Margin="148,74,0,0" Name="label34" VerticalAlignment="Top" Width="155" FontWeight="Normal" />
+                            <Button Content="O" Height="23" HorizontalAlignment="Left" Margin="321,42,0,0" Name="button1" VerticalAlignment="Top" Width="28" Click="button1_Click" />
+                            <Button Content="C" Height="23" HorizontalAlignment="Left" Margin="321,103,0,0" Name="button2" VerticalAlignment="Top" Width="28" Click="button2_Click" />
+                            <Label Content="Balance Due" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="408,24,0,0" Name="lbl_bal_due" VerticalAlignment="Top" Width="102" FontWeight="Normal" />
+                            <Label Content="$ 0.00" Height="28" HorizontalAlignment="Left" Margin="440,49,0,0" Name="lbl_bal_due_figures" VerticalAlignment="Top" Width="73" />
+                            <Button Focusable="False" FontWeight="Bold" Height="50" HorizontalAlignment="Left" Margin="408,80,0,0" Name="btn_timeclock" VerticalAlignment="Top" Width="102">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#AA000000" Offset="0" />
+                                        <GradientStop Color="#6F86F886" Offset="0.757" />
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                                <StackPanel>
+                                    <TextBlock Width="52" Text="Detailed"></TextBlock>
+                                    <TextBlock>Account Info</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <TextBox Height="24" HorizontalAlignment="Left" Margin="141,104,0,0" Name="txt_acc_close_date" VerticalAlignment="Top" Width="169" MouseDoubleClick="txt_acc_close_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_close_date_PreviewLostKeyboardFocus" />
+                            <TextBox Height="24" HorizontalAlignment="Left" Margin="141,43,0,0" Name="txt_acc_open_date" VerticalAlignment="Top" Width="169" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox BorderBrush="#6A000000" Height="172" HorizontalAlignment="Left" Margin="10,176,0,0" Name="gb_credit_limit" VerticalAlignment="Top" Width="471" Header="Credit Limit">
+                        <Grid>
+                            <Label Content="Max Balance:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,10,0,0" Name="lbl_max_bal" VerticalAlignment="Top" Width="101" />
+                            <Label Content="Restrict Sepending To:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,60,0,0" Name="label38" VerticalAlignment="Top" Width="155" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="161,13,0,0" Name="txt_max_bal" VerticalAlignment="Top" Width="262" Text="0.00" MouseDoubleClick="txt_cus_bonaspoint_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="161,60,0,0" Name="txt_restrict_spnd_to" VerticalAlignment="Top" Width="262" Text="0.00" MouseDoubleClick="txt_cus_bonaspoint_MouseDoubleClick" />
+                            <Label Content="Over:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="15,107,0,0" Name="label39" VerticalAlignment="Top" Width="88" />
+                            <Label Content="Days Started:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="196,107,0,0" Name="label40" VerticalAlignment="Top" Width="88" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="65,110,0,0" Name="txt_over" Text="0" VerticalAlignment="Top" Width="125" MouseDoubleClick="txt_cus_bonaspoint_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="291,110,0,0" Name="txt_days_started" Text="" VerticalAlignment="Top" Width="132" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                        </Grid>
+                    </GroupBox>
+                    <Label Content="Default Sale Person:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="629,17,0,0" Name="label41" VerticalAlignment="Top" Width="155" />
+                    <Label Content="Membership Expiration:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="629,78,0,0" Name="label42" VerticalAlignment="Top" Width="155" />
+                    <ComboBox Height="24" HorizontalAlignment="Left" Margin="629,40,0,0" Name="cmb_default_sale_person" VerticalAlignment="Top" Width="155" Background="#00000000" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="629,103,0,0" Name="txt_membershp_exp" VerticalAlignment="Top" Width="155" MouseDoubleClick="txt_acc_open_date_MouseDoubleClick" PreviewLostKeyboardFocus="txt_acc_open_date_PreviewLostKeyboardFocus" />
+                    <CheckBox Content="Require PO # Entry" Height="21" HorizontalAlignment="Left" Margin="497,193,0,0" Name="chk_require_po_no" VerticalAlignment="Top" Width="133" />
+                    <Button Content="+" Height="43" HorizontalAlignment="Left" Margin="629,220,0,0" Name="btn_plus_autorized_members" Click="btn_plus_autorized_members_Click" VerticalAlignment="Top" Width="48" FontSize="18" FontStyle="Normal" />
+                    <Button Content="-" Height="43" HorizontalAlignment="Left" Margin="629,265,0,0" Name="btn_minus_autorized_members" VerticalAlignment="Top" Width="48" FontSize="18" Click="btn_minus_autorized_members_Click" />
+                    <Label Content="Authorized Members" Height="26" HorizontalAlignment="Left" Margin="629,193,0,0" Name="lbl_authorized_members" VerticalAlignment="Top" Width="142" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="14" />
+                    <ListBox Height="89" HorizontalAlignment="Left" Margin="679,219,0,0" Name="listBox_authorized" VerticalAlignment="Top" Width="95" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="    Shiping/Billing    ">
+                <Grid Width="833">
+                    <GroupBox Header="Shipping To" Height="316" HorizontalAlignment="Left" Margin="8,14,0,0" Name="groupBox6" VerticalAlignment="Top" Width="438" BorderBrush="#743459AA">
+                        <Grid>
+                            <Label Content="First Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,7,0,0" Name="label43" VerticalAlignment="Top" Width="110" FontWeight="Normal" />
+                            <Label Content="Last Name:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="232,8,0,0" Name="label44" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Company Name:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,59,0,0" Name="label45" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Phone Number:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="232,59,0,0" Name="label46" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Street Address:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,116,0,0" Name="label47" VerticalAlignment="Top" Width="110" />
+                            <Label Content="City:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="232,116,0,0" Name="label48" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Extended Address:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,169,0,0" Name="label49" VerticalAlignment="Top" Width="123" />
+                            <Label Content="State:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="232,169,0,0" Name="label50" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Zip Code:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,224,0,0" Name="label51" VerticalAlignment="Top" Width="110" />
+                            <Label Content="Country:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="232,225,0,0" Name="label52" VerticalAlignment="Top" Width="110" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,32,0,0" Name="txt_shipping_first_name" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="232,32,0,0" Name="txt_shipping_last_name" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,88,0,0" Name="txt_shiping_company_name" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="232,88,0,0" Name="txt_shipng_phone_number" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,141,0,0" Name="txt_shiping_st_address" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="232,141,0,0" Name="txt_shiping_city" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,195,0,0" Name="txt_shiping_extnd_adres" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="232,195,0,0" Name="txt_shiping_state" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,252,0,0" Name="txt_shiping_zip" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="232,252,0,0" Name="txt_shiping_country" VerticalAlignment="Top" Width="182" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Billing" Height="316" HorizontalAlignment="Left" Margin="470,14,0,0" Name="groupBox7" VerticalAlignment="Top" Width="345" BorderBrush="#743459AA">
+                        <Grid>
+                            <Label Content="Bill To:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,2,0,0" Name="label53" VerticalAlignment="Top" Width="110" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,30,0,0" Name="txt_bill_to" VerticalAlignment="Top" Width="303" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <Label Content="Primary Contact:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,57,0,0" Name="label54" VerticalAlignment="Top" Width="110" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,85,0,0" Name="txt_bill_primery_contact" VerticalAlignment="Top" Width="303" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <Label Content="Secondary Contact:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,115,0,0" Name="label55" VerticalAlignment="Top" Width="127" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,143,0,0" Name="txt_bill_scndry_contact" VerticalAlignment="Top" Width="303" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <Label Content="Terms:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,172,0,0" Name="label56" VerticalAlignment="Top" Width="110" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,200,0,0" Name="txt_bill_terms" VerticalAlignment="Top" Width="303" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                            <Label Content="Resale Number:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="10,228,0,0" Name="label57" VerticalAlignment="Top" Width="110" />
+                            <TextBox Height="25" HorizontalAlignment="Left" Margin="10,256,0,0" Name="txt_bill_resale_number" VerticalAlignment="Top" Width="303" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="    History   ">
+                <Grid Width="833">
+                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="8,6,0,0" Name="dg_cust_hsitory" ItemsSource="{Binding MyBinding}" VerticalAlignment="Top" Width="820">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date and Time" Binding="{Binding Path=DateTime}" Width="140"/>
+                            <DataGridTextColumn Header="Invoice #" Binding="{Binding Path=Invoice_Number}" Width="90"/>
+                            <DataGridTextColumn Header="Item #" Binding="{Binding Path=ItemNum}" Width="90"/>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Path=DiffItemName}" Width="140"/>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}" Width="90"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Path=PricePer}" Width="90"/>
+                            <DataGridTextColumn Header="Store ID" Binding="{Binding Path=Store_ID}" Width="90"/>
+                            <DataGridTextColumn Header="Serial #" Binding="{Binding Path=Serial_Num}" Width="90"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="     Notes   " MouseDoubleClick="txt_cus_compname_MouseDoubleClick">
+                <Grid Width="833" >
+                    <TextBox Margin="2,0,0,0" Name="txt_notes" AcceptsTab="True" AcceptsReturn="True" TextWrapping="Wrap" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="    Properties   ">
+                <Grid Width="833" />
+            </TabItem>
+            <TabItem Header="    Stores   ">
+                <Grid Width="833">
+                    <ListBox Height="338" HorizontalAlignment="Left" Margin="6,6,0,0" Name="lstbx_stores" VerticalAlignment="Top" Width="621" />
+                    <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="643,10,0,0" Name="btn_add_job" VerticalAlignment="Top" Width="88">
+                        <StackPanel Height="50" Width="84">
+                            <Image Height="31" Source="/Images/camera_test1.png" />
+                            <TextBlock Height="17" Width="30">Add</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="643,99,0,0" Name="btn_remove_job" VerticalAlignment="Top" Width="88">
+                        <StackPanel Height="53" Width="80">
+                            <Image Height="33" Source="/Images/delete.png" />
+                            <TextBlock Width="51">Remove</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Update" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="376,594,0,0" Name="btn_update_custmer" VerticalAlignment="Top" Width="117" Click="btn_update_custmer_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Add" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="376,551,0,0" Name="btn_add_customer" VerticalAlignment="Top" Width="117" Click="btn_add_customer_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#D5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Delete" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="499,551,0,0" Name="btn_delete_customer" VerticalAlignment="Top" Width="117" Click="btn_delete_customer_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#AD000000" Offset="0" />
+                    <GradientStop Color="#39FFEC5F" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Exit" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="499,594,0,0" Name="btn_exit_custmer" VerticalAlignment="Top" Width="117" Click="btn_exit_custmer_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#AD000000" Offset="0" />
+                    <GradientStop Color="#39FFEC5F" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="44" HorizontalAlignment="Left" Margin="214,592,0,0" Name="btn_customer_next" VerticalAlignment="Top" Width="94" Click="btn_customer_next_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C8000000" Offset="0" />
+                    <GradientStop Color="#6500CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="43" Width="90">
+                <Image Height="22" Source="/Images/right.png" Width="75" />
+                <TextBlock FontSize="12" Width="41">Next</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="43" HorizontalAlignment="Left" Margin="15,592,0,0" Name="btn_custmer_prev" VerticalAlignment="Top" Width="94" Click="btn_custmer_prev_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C8000000" Offset="0" />
+                    <GradientStop Color="#6500CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="45" Width="88">
+                <Image Height="24" Source="/Images/right1.png" Width="85" />
+                <TextBlock FontSize="12" Width="55">Previous</TextBlock>
+            </StackPanel>
+        </Button>
+        <TextBox Height="27" HorizontalAlignment="Left" Margin="15,562,0,0" Name="txt_search_custmer" VerticalAlignment="Top" Width="292" KeyDown="txt_search_custmer_KeyDown" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+        <Label Content="Search By Customer #" Height="28" HorizontalAlignment="Left" Margin="20,541,0,0" Name="lbl_serch_emp" VerticalAlignment="Top" />
+        <Button x:Name="btn_lookup" Content="Button" HorizontalAlignment="Left" Height="47" Margin="127,0,0,4" Style="{DynamicResource btn_lookup}" VerticalAlignment="Bottom" Width="63.5" Click="btn_lookup_Click" />
+    </Grid>
+</Window>

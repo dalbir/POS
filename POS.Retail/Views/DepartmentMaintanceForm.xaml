@@ -1,0 +1,162 @@
+﻿<Window x:Class="POS.Retail.DepartmentMaintanceForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Department Maintenance" Height="622" Width="846" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Background="Gainsboro">
+        <Label Height="40" Name="lbl_heading_dept" VerticalAlignment="Top" FontSize="15" FontWeight="Normal">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#1C000000" Offset="0" />
+                    <GradientStop Color="#79FFFF00" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Grid Height="160" Margin="0,41,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
+            <Label Height="46" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" Width="125" FontStretch="Normal">
+                <StackPanel Height="39" Width="112">
+                    <TextBlock Height="18" Width="107">Category for this</TextBlock>
+                    <TextBlock Height="22" Width="107">Department:</TextBlock>
+                </StackPanel>
+            </Label>
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="137,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened" />
+            <Label Content="Department ID:" Height="28" HorizontalAlignment="Left" Margin="8,58,0,0" Name="label2" VerticalAlignment="Top" Width="107" />
+            <Label Height="42" HorizontalAlignment="Left" Margin="8,92,0,0" Name="label3" VerticalAlignment="Top" Width="115">
+                <StackPanel>
+                    <TextBlock Width="73">Department</TextBlock>
+                    <TextBlock>Description:</TextBlock>
+                </StackPanel>
+            </Label>
+            <TextBox Height="28" HorizontalAlignment="Left" Margin="137,58,0,0" Name="txt_dept_id" VerticalAlignment="Top" Width="194" FontSize="13" TextChanged="txt_dept_id_TextChanged" IsEnabled="False" />
+            <TextBox Height="28" HorizontalAlignment="Left" Margin="137,106,0,0" Name="txt_dept_descrption" VerticalAlignment="Top" Width="194" FontSize="13" />
+            <RadioButton Content="Regular" Height="16" HorizontalAlignment="Left" Margin="468,22,0,0" Name="rb_regular" VerticalAlignment="Top" Width="124" FontSize="13" />
+            <RadioButton Content="Employee" FontSize="13" Height="16" HorizontalAlignment="Left" Margin="468,92,0,0" Name="rb_emp" VerticalAlignment="Top" Width="124" />
+            <RadioButton Content="Rental" FontSize="13" Height="16" HorizontalAlignment="Left" Margin="468,58,0,0" Name="rb_rental" VerticalAlignment="Top" Width="124" />
+        </Grid>
+        <TabControl Height="262" HorizontalAlignment="Left" Margin="8,207,0,0" Name="tabControl1" VerticalAlignment="Top" Width="804" Background="Gainsboro">
+            <TabItem Header="Options        " Name="tabItem1">
+                <Grid>
+                    <CheckBox Content="Print department Notes on Receipt" Height="24" HorizontalAlignment="Left" Margin="19,23,0,0" Name="chk_print_dept" VerticalAlignment="Top" Width="253" FontSize="14" FontWeight="Bold" Checked="chk_print_dept_Checked" />
+                    <CheckBox Content="Require Permission for Sale" FontSize="14" FontWeight="Bold" Height="24" HorizontalAlignment="Left" Margin="19,59,0,0" Name="chk_req_permission" VerticalAlignment="Top" Width="253" />
+                    <CheckBox Content="Require Serial # Reference Entry" FontSize="14" FontWeight="Bold" Height="24" HorizontalAlignment="Left" Margin="19,97,0,0" Name="chk_req_serial" VerticalAlignment="Top" Width="253" />
+                    <CheckBox Content="Bar Tax Inclusive" FontSize="14" FontWeight="Bold" Height="24" HorizontalAlignment="Left" Margin="19,134,0,0" Name="chk_bartax" VerticalAlignment="Top" Width="253" />
+                    <CheckBox Content="Include in Scale Export" FontSize="14" FontWeight="Bold" Height="24" HorizontalAlignment="Left" Margin="19,170,0,0" Name="chk_sale_export" VerticalAlignment="Top" Width="253" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="491,24,0,0" Name="txt_sqfootage" VerticalAlignment="Top" Width="145" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="491,81,0,0" Name="txt_costper" VerticalAlignment="Top" Width="145" />
+                    <Label Content="Square Footage:" Height="28" HorizontalAlignment="Left" Margin="359,24,0,0" Name="label4" VerticalAlignment="Top" Width="134" FontWeight="Bold" />
+                    <Label Content="Item Cost Percentage:" Height="28" HorizontalAlignment="Left" Margin="359,81,0,0" Name="label5" VerticalAlignment="Top" Width="134" FontWeight="Bold" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Reciept Notes     ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="49*" />
+                        <ColumnDefinition Width="745*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Height="213" HorizontalAlignment="Left" Margin="6,6,0,0" Name="txt_dept_notes" VerticalAlignment="Top" Width="768" TextWrapping="Wrap" Grid.ColumnSpan="2" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Help" Height="38" HorizontalAlignment="Left" Margin="313,521,0,0" Name="button1" VerticalAlignment="Top" Width="117" Focusable="False" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Add Department" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="313,482,0,0" Name="btn_add_dept" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_add_dept_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Duplicate" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,521,0,0" Name="btn_deuplicate" Click="btn_deuplicate_Click" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Delete" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,521,0,0" Name="btn_delete" VerticalAlignment="Top" Width="117" Click="btn_delete_Click" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Save Changes" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="433,482,0,0" Name="btn_savechages" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_savechages_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Exit" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="673,521,0,0" Name="btn_exit" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_exit_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Button" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="673,482,0,0" Name="button8" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" Height="66" HorizontalAlignment="Left" Margin="213,490,0,0" Name="btn_next" VerticalAlignment="Top" Width="94" FontSize="18" FontWeight="Bold" Click="btn_next_Click">
+            <StackPanel Height="59" Width="90">
+                <Image Source="/Images/right.png" Height="38" Width="75" />
+                <TextBlock FontSize="13" Width="41">Next</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#BF000000" Offset="0" />
+                    <GradientStop Color="#6800CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Lookup" Focusable="False" Height="66" HorizontalAlignment="Left" Margin="113,490,0,0" Name="btnLookup" VerticalAlignment="Top" Width="94" FontSize="18" FontWeight="Bold" Click="btnLookup_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#BF000000" Offset="0" />
+                    <GradientStop Color="#6800CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" Height="66" HorizontalAlignment="Left" Margin="14,490,0,0" Name="btn_previous" VerticalAlignment="Top" Width="94" FontSize="18" FontWeight="Bold" Click="btn_previous_Click">
+            <StackPanel Height="60" Width="88">
+                <Image Source="/Images/right1.png" Height="40" Width="85" />
+                <TextBlock FontSize="14" Width="68">Previous</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#BF000000" Offset="0" />
+                    <GradientStop Color="#6800CED1" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,482,0,0" Name="btn_category_mantance" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_category_mantance_Click">
+            <StackPanel Width="104">
+                <TextBlock Width="67">
+                    Category
+                </TextBlock>
+                <TextBlock Width="75">Maintenance</TextBlock>
+            </StackPanel>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#C5000000" Offset="0" />
+                    <GradientStop Color="#6F86F886" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

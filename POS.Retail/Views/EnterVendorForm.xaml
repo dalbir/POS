@@ -1,0 +1,32 @@
+﻿<Window x:Class="POS.Retail.EnterVendorForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Title="EnterVendorForm" Height="348" Width="411" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Vendor Part Number:" Height="28" HorizontalAlignment="Left" Margin="21,36,0,0" Name="label1" VerticalAlignment="Top" Width="136" FontWeight="Bold" />
+        <Label Content="Cost Per:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="21,79,0,0" Name="label2" VerticalAlignment="Top" Width="75" />
+        <Label Content="Number Per Case:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="21,123,0,0" Name="label3" VerticalAlignment="Top" Width="118" />
+        <Label Content="Case Cost:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="21,169,0,0" Name="label4" VerticalAlignment="Top" Width="118" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="160,38,0,0" Name="txt_vend_parno" VerticalAlignment="Top" Width="197" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="160,81,0,0" Name="txt_case_per" VerticalAlignment="Top" Width="197" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="160,128,0,0" Name="txt_no_percase" VerticalAlignment="Top" Width="197" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="160,174,0,0" Name="txt_case_cost" VerticalAlignment="Top" Width="197" />
+        <Separator Height="10" HorizontalAlignment="Left" Margin="0,231,0,0" Name="separator1" VerticalAlignment="Top" Width="389" />
+        <Button Content="OK" Height="42" HorizontalAlignment="Left" Margin="122,247,0,0" Name="btn_ok" VerticalAlignment="Top" Width="102" FontSize="15" FontWeight="Bold" Click="btn_ok_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#76000000" Offset="0" />
+                    <GradientStop Color="#377FFF00" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Cancel" Height="42" HorizontalAlignment="Left" Margin="230,247,0,0" Name="btn_cancel" VerticalAlignment="Top" Width="102" FontSize="15" FontWeight="Bold" Click="btn_cancel_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#76000000" Offset="0" />
+                    <GradientStop Color="#377FFF00" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

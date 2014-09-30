@@ -1,0 +1,13 @@
+﻿<Window x:Class="POS.Retail.SelectItemTypesForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Question Box" Height="310" Width="482" Background="#FFEFEFD0" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="What Type of Item Would You Like to Add" Height="46" HorizontalAlignment="Left" Margin="4,12,0,0" Name="label1" VerticalAlignment="Top" Width="450" FontSize="22" FontWeight="Bold" />
+        <Button Content="Standard Item" Height="85" HorizontalAlignment="Left" Margin="42,64,0,0" Name="btn_standard_item" VerticalAlignment="Top" Width="118" Background="#FF99E868" Focusable="False" FontWeight="Bold" FontSize="13" Click="btn_standard_item_Click" />
+        <Button Background="#FF99E868" Content="Kit" Focusable="False" Height="85" HorizontalAlignment="Left" Margin="166,64,0,0" Name="btn_kit" VerticalAlignment="Top" Width="118" FontWeight="Bold" FontSize="13" Click="btn_kit_Click" />
+        <Button Background="#FF99E868" Content="Choice Item" Focusable="False" Height="85" HorizontalAlignment="Left" Margin="290,64,0,0" Name="btn_choice_item" VerticalAlignment="Top" Width="118" FontWeight="Bold" FontSize="13" Click="btn_choice_item_Click" />
+        <Button Background="#FF99E868" Content="Modifier Group" Focusable="False" Height="85" HorizontalAlignment="Left" Margin="111,155,0,0" Name="btn_modifier" VerticalAlignment="Top" Width="118" FontWeight="Bold" FontSize="13" Click="btn_modifier_Click" />
+        <Button Background="#FF99E868" Content="Coupon"  Focusable="False" Height="85" HorizontalAlignment="Left" Margin="235,155,0,0" Name="btn_coupon" VerticalAlignment="Top" Width="118" FontWeight="Bold" FontSize="13" Click="btn_coupon_Click" />
+    </Grid>
+</Window>

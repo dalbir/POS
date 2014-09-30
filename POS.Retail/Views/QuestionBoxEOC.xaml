@@ -1,0 +1,10 @@
+﻿<Window x:Class="POS.Retail.QuestionBoxEOC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       Title="Question Box" Height="244" Width="394" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="EACHES OR CASES?" Height="48" HorizontalAlignment="Left" Margin="66,12,0,0" Name="label1" VerticalAlignment="Top" Width="223" FontSize="22" FontWeight="Bold" />
+        <Button Content="EACHES" Height="59" HorizontalAlignment="Left" Margin="40,92,0,0" Name="btn_eaches" VerticalAlignment="Top" Width="131" FontWeight="Bold" FontSize="16" Click="btn_eaches_Click" />
+        <Button Content="CASES" Height="59" HorizontalAlignment="Left" Margin="195,92,0,0" Name="btn_cases" VerticalAlignment="Top" Width="131" FontWeight="Bold" FontSize="16" Click="btn_cases_Click" />
+    </Grid>
+</Window>

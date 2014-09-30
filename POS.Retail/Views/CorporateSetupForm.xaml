@@ -1,0 +1,15 @@
+﻿<Window x:Class="POS.Retail.CorporateSetupForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Corporate Setup" Height="441" Width="409" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <ListBox Height="265" HorizontalAlignment="Left" Margin="12,52,0,0" Name="lsb_storeids" VerticalAlignment="Top" Width="221" />
+        <Label Content="List of Store ID's" Height="28" HorizontalAlignment="Left" Margin="12,23,0,0" Name="label1" VerticalAlignment="Top" Width="137" FontWeight="Bold" FontSize="13" />
+        <Button Content="Duplicate Inventory" Height="28" HorizontalAlignment="Left" Margin="12,323,0,0" Name="btn_dup_inventory" VerticalAlignment="Top" Width="221" FontWeight="Bold" Click="btn_dup_inventory_Click" />
+        <Button Content="Add" Height="29" HorizontalAlignment="Left" Margin="239,52,0,0" Name="btn_add" VerticalAlignment="Top" Width="141" FontWeight="Bold" Click="btn_add_Click" />
+        <Button Content="Change Email" Height="29" HorizontalAlignment="Left" Margin="239,87,0,0" Name="btn_change_email" VerticalAlignment="Top" Width="141" FontWeight="Bold" Click="btn_change_email_Click" />
+        <Button Content="Delete" Height="29" HorizontalAlignment="Left" Margin="239,122,0,0" Name="btn_delete" VerticalAlignment="Top" Width="141" FontWeight="Bold" Click="btn_delete_Click" />
+        <Button Content="Zero Inventory" Height="29" HorizontalAlignment="Left" Margin="239,157,0,0" Name="btn_zero_inventory" VerticalAlignment="Top" Width="141" FontWeight="Bold" Click="btn_zero_inventory_Click" />
+        <Button Content="Exit" Height="29" HorizontalAlignment="Left" Margin="239,192,0,0" Name="btn_exit" VerticalAlignment="Top" Width="141" FontWeight="Bold" Click="btn_exit_Click" />
+    </Grid>
+</Window>
