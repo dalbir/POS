@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Services.Common;
+using POS.Domain.Common;
 
 namespace POS.Retail
 {
@@ -21,8 +23,9 @@ namespace POS.Retail
     /// </summary>
     public partial class PurchaseOrderForm : Window
     {
-        //GlobalClass glo = new GlobalClass();
+     
         OrderTypeForm typ = new OrderTypeForm();
+        POSManagementService objPOSManagementService = new POSManagementService();
         string otype;
         private static string vendor_name = null;
         private static string vendor_no = null;
@@ -40,6 +43,7 @@ namespace POS.Retail
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
+           
             string ven_num = lstb_ven_list.SelectedItem.ToString();
             string[] split = ven_num.Split(' ');
             string vendor_id = split[0];
@@ -47,24 +51,60 @@ namespace POS.Retail
             string[] lbl1 = lbl.Split(' ');
             double total_cst = Convert.ToDouble(lbl1[4]);
             string stats = "O";
-
-            //int maxid = glo.maxm_id("select isnull(max(PO_Number), 0) + 1 as po_no from PO_Summary");
+            PO_SummaryClass objPO_SummaryClass = new PO_SummaryClass();
+            // getting max po number
+           // int maxid = glo.maxm_id("select isnull(max(PO_Number), 0) + 1 as po_no from PO_Summary");
+            objPO_SummaryClass.Store_ID = "1001";
+            objPO_SummaryClass.DateTime = DateTime.Today;
+            objPO_SummaryClass.Reference = txt_reference.Text;
+            objPO_SummaryClass.Vendor_Number = vendor_id;
+            objPO_SummaryClass.Total_Cost = total_cst;
+            objPO_SummaryClass.Terms = txt_terms.Text;
+            objPO_SummaryClass.Due_Date = Convert.ToDateTime(dp_po_due_date.SelectedDate);
+            objPO_SummaryClass.Ship_Via = txt_ship_via.Text;
+            objPO_SummaryClass.ShipTo_1 = txt_ship_to1.Text;
+            objPO_SummaryClass.ShipTo_2 = txt_ship_to2.Text;
+            objPO_SummaryClass.ShipTo_3 = txt_ship_to3.Text;
+            objPO_SummaryClass.ShipTo_4 = txt_ship_to4.Text;
+            objPO_SummaryClass.ShipTo_5 = txt_ship_to5.Text;
+            objPO_SummaryClass.Instructions = txt_instructions.Text;
+            objPO_SummaryClass.Status = stats;
+            objPO_SummaryClass.Last_Modified = DateTime.Today;
+            objPO_SummaryClass.ExpectedAmountToReceive = Convert.ToInt32(txt_expet_amont.Text);
+            objPO_SummaryClass.POType = typ.set_order_type;
+            objPOSManagementService.insertPOSummary(objPO_SummaryClass);
+           
             //string str_qury = "insert into PO_Summary(PO_Number,Store_ID,DateTime,Reference,Vendor_Number,Total_Cost,Terms,Due_Date,Ship_Via,ShipTo_1,ShipTo_2,ShipTo_3,ShipTo_4,ShipTo_5,Instructions,Status,Last_Modified,ExpectedAmountToReceive,POType) values('" + maxid + "', '1001', '" + DateTime.Today + "','" + txt_reference.Text + "','" + vendor_id + "','" + total_cst + "','" + txt_terms.Text + "','" + dp_po_due_date.SelectedDate + "','" + txt_ship_via.Text + "','" + txt_ship_to1.Text + "','" + txt_ship_to2.Text + "','" + txt_ship_to3.Text + "','" + txt_ship_to4.Text + "','" + txt_ship_to5.Text + "','" + txt_instructions.Text + "','" + stats + "','" + DateTime.Today + "','" + Convert.ToInt32(txt_expet_amont.Text) + "','" + typ.set_order_type + "')";
             //glo.fun_insert(str_qury);
-
-            //for (int i = 0; i < Dg_po_items.Rows.Count; i++)
-            //{
-            //    string item_no = Dg_po_items.Rows[i].Cells[1].Value.ToString();
-            //    int line_no = Convert.ToInt32(Dg_po_items.Rows[i].Cells[0].Value);
-            //    decimal qty_ordered = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[4].Value);
-            //    double cost = Convert.ToDouble(Dg_po_items.Rows[i].Cells[7].Value);
-            //    decimal qty_received = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[9].Value);
-            //    int per_case = Convert.ToInt32(Dg_po_items.Rows[i].Cells[5].Value);
-            //    decimal no_per_case = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[6].Value);
-            //    decimal qty_demage = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[10].Value);
-            //    string qury_detail = "insert into PO_Details(PO_Number,ItemNum,LineNum,Quan_Ordered,CostPer,Quan_Received,CasePack,Store_ID,NumberPerCase,Quan_Damaged,destStore_ID) values('" + maxid + "', '" + item_no + "','" + line_no + "','" + qty_ordered + "','" + cost + "','" + qty_received + "','" + per_case + "','1001','" + no_per_case + "','" + qty_demage + "','" + cmb_dest_storeid.SelectedValue + "')";
-            //    glo.fun_insert(qury_detail);
-            //}
+            if (objPO_SummaryClass.IsSuccessfull == true)
+            {
+                PO_DetailsClass objPODetailClass = new PO_DetailsClass();
+                for (int i = 0; i < Dg_po_items.Rows.Count; i++)
+                {
+                    string item_no = Dg_po_items.Rows[i].Cells[1].Value.ToString();
+                    int line_no = Convert.ToInt32(Dg_po_items.Rows[i].Cells[0].Value);
+                    decimal qty_ordered = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[4].Value);
+                    double cost = Convert.ToDouble(Dg_po_items.Rows[i].Cells[7].Value);
+                    decimal qty_received = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[9].Value);
+                    int per_case = Convert.ToInt32(Dg_po_items.Rows[i].Cells[5].Value);
+                    decimal no_per_case = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[6].Value);
+                    decimal qty_demage = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[10].Value);
+                    objPODetailClass.PO_Number = objPO_SummaryClass.PO_Number;
+                    objPODetailClass.ItemNum = item_no;
+                    objPODetailClass.LineNum = line_no;
+                    objPODetailClass.Quan_Ordered = qty_ordered;
+                    objPODetailClass.CostPer = cost;
+                    objPODetailClass.Quan_Received = qty_received;
+                    objPODetailClass.CasePack = per_case;
+                    objPODetailClass.Store_ID = "1001";
+                    objPODetailClass.NumberPerCase = no_per_case;
+                    objPODetailClass.Quan_Damaged = qty_demage;
+                    objPODetailClass.destStore_ID = Convert.ToString(cmb_dest_storeid.SelectedValue);
+                    objPOSManagementService.insertPoDetail(objPODetailClass);
+                    //string qury_detail = "insert into PO_Details(PO_Number,ItemNum,LineNum,Quan_Ordered,CostPer,Quan_Received,CasePack,Store_ID,NumberPerCase,Quan_Damaged,destStore_ID) values('" + maxid + "', '" + item_no + "','" + line_no + "','" + qty_ordered + "','" + cost + "','" + qty_received + "','" + per_case + "','1001','" + no_per_case + "','" + qty_demage + "','" + cmb_dest_storeid.SelectedValue + "')";
+                    //glo.fun_insert(qury_detail);
+                }
+            }
             Dg_po_items.Rows.Clear();
             Grid_po1.Visibility = Visibility.Visible;
             Grid_po2.Visibility = Visibility.Hidden;
@@ -74,36 +114,39 @@ namespace POS.Retail
         //function to fill the destination store id combo box
         private void fun_store_ids()
         {
-            string store = "select Store_ID, Company_Info_1, Company_Info_2,Company_Info_3 from Setup";
-            //DataTable dt_s = glo.getdata(store);
-            //for (int i = 0; i < dt_s.Rows.Count; i++)
-            //{
-            //    cmb_dest_storeid.Items.Add(dt_s.Rows[i]["Store_ID"].ToString());
-            //}
+            //string store = "select Store_ID, Company_Info_1, Company_Info_2,Company_Info_3 from Setup";
+            DataTable dt_s = objPOSManagementService.GetStores();
+            if (dt_s.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt_s.Rows.Count; i++)
+                {
+                    cmb_dest_storeid.Items.Add(dt_s.Rows[i]["Store_ID"].ToString());
+                }
+            }
         }
 
         //function to retrive data from po_detail
         private void fun_retrive_po_detail(int po_id)
         {
             lbl_po_no.Content = "PO# " + po_id.ToString();
-            string qrry = "select * from PO_Details where PO_Number = '" + po_id + "' order by LineNum";
-            //DataTable dt_po_detail = glo.getdata(qrry);
-            //cmb_dest_storeid.SelectedItem = dt_po_detail.Rows[0]["destStore_ID"].ToString();
-            //for (int j = 0; j < dt_po_detail.Rows.Count; j++)
-            //{
-            //    Dg_po_items.Rows.Add();
-            //    Dg_po_items.Rows[j].Cells[0].Value = dt_po_detail.Rows[j]["LineNum"].ToString();
-            //    Dg_po_items.Rows[j].Cells[1].Value = dt_po_detail.Rows[j]["ItemNum"].ToString();
+           // string qrry = "select * from PO_Details where PO_Number = '" + po_id + "' order by LineNum";
+            DataTable dt_po_detail = objPOSManagementService.getPoDetail(po_id);
+            cmb_dest_storeid.SelectedItem = dt_po_detail.Rows[0]["destStore_ID"].ToString();
+            for (int j = 0; j < dt_po_detail.Rows.Count; j++)
+            {
+                Dg_po_items.Rows.Add();
+                Dg_po_items.Rows[j].Cells[0].Value = dt_po_detail.Rows[j]["LineNum"].ToString();
+                Dg_po_items.Rows[j].Cells[1].Value = dt_po_detail.Rows[j]["ItemNum"].ToString();
 
-            //    Dg_po_items.Rows[j].Cells[3].Value = dt_po_detail.Rows[j]["Store_ID"].ToString();
-            //    Dg_po_items.Rows[j].Cells[4].Value = dt_po_detail.Rows[j]["Quan_Ordered"].ToString();
-            //    Dg_po_items.Rows[j].Cells[5].Value = dt_po_detail.Rows[j]["CasePack"].ToString();
-            //    Dg_po_items.Rows[j].Cells[6].Value = dt_po_detail.Rows[j]["NumberPerCase"].ToString();
-            //    Dg_po_items.Rows[j].Cells[7].Value = dt_po_detail.Rows[j]["CostPer"].ToString();
+                Dg_po_items.Rows[j].Cells[3].Value = dt_po_detail.Rows[j]["Store_ID"].ToString();
+                Dg_po_items.Rows[j].Cells[4].Value = dt_po_detail.Rows[j]["Quan_Ordered"].ToString();
+                Dg_po_items.Rows[j].Cells[5].Value = dt_po_detail.Rows[j]["CasePack"].ToString();
+                Dg_po_items.Rows[j].Cells[6].Value = dt_po_detail.Rows[j]["NumberPerCase"].ToString();
+                Dg_po_items.Rows[j].Cells[7].Value = dt_po_detail.Rows[j]["CostPer"].ToString();
 
-            //    Dg_po_items.Rows[j].Cells[9].Value = dt_po_detail.Rows[j]["Quan_Received"].ToString();
-            //    Dg_po_items.Rows[j].Cells[10].Value = dt_po_detail.Rows[j]["Quan_Damaged"].ToString();
-            //}
+                Dg_po_items.Rows[j].Cells[9].Value = dt_po_detail.Rows[j]["Quan_Received"].ToString();
+                Dg_po_items.Rows[j].Cells[10].Value = dt_po_detail.Rows[j]["Quan_Damaged"].ToString();
+            }
             Grid_po1.Visibility = Visibility.Hidden;
             Grid_po2.Visibility = Visibility.Visible;
             btn_print.Visibility = Visibility.Visible;
@@ -116,36 +159,36 @@ namespace POS.Retail
             btn_update.IsEnabled = true;
 
             //string qury = "select * from PO_Summary where PO_Number = '" + po_id + "'";
-            //DataTable dtt = glo.getdata(qury);
+            DataTable dtt = objPOSManagementService.getPoSummary(po_id);
 
-            //if (Convert.ToInt32(dtt.Rows[0]["POType"]).Equals(0))
-            //{
-            //    otype = "Standard";
-            //}
-            //else if (Convert.ToInt32(dtt.Rows[0]["POType"]).Equals(1))
-            //{
-            //    otype = "ReturnToVendor";
-            //}
-            //txt_order_type.Text = otype;
-            //txt_ship_via.Text = dtt.Rows[0]["Ship_Via"].ToString();
-            //txt_reference.Text = dtt.Rows[0]["Reference"].ToString();
-            //txt_terms.Text = dtt.Rows[0]["Terms"].ToString();
-            //dp_po_due_date.SelectedDate = Convert.ToDateTime(dtt.Rows[0]["Due_Date"]);
-            //txt_ship_to1.Text = dtt.Rows[0]["ShipTo_1"].ToString();
-            //txt_ship_to2.Text = dtt.Rows[0]["ShipTo_2"].ToString();
-            //txt_ship_to3.Text = dtt.Rows[0]["ShipTo_3"].ToString();
-            //txt_ship_to4.Text = dtt.Rows[0]["ShipTo_4"].ToString();
-            //txt_ship_to5.Text = dtt.Rows[0]["ShipTo_5"].ToString();
-            //txt_instructions.Text = dtt.Rows[0]["Instructions"].ToString();
+            if (Convert.ToInt32(dtt.Rows[0]["POType"]).Equals(0))
+            {
+                otype = "Standard";
+            }
+            else if (Convert.ToInt32(dtt.Rows[0]["POType"]).Equals(1))
+            {
+                otype = "ReturnToVendor";
+            }
+            txt_order_type.Text = otype;
+            txt_ship_via.Text = dtt.Rows[0]["Ship_Via"].ToString();
+            txt_reference.Text = dtt.Rows[0]["Reference"].ToString();
+            txt_terms.Text = dtt.Rows[0]["Terms"].ToString();
+            dp_po_due_date.SelectedDate = Convert.ToDateTime(dtt.Rows[0]["Due_Date"]);
+            txt_ship_to1.Text = dtt.Rows[0]["ShipTo_1"].ToString();
+            txt_ship_to2.Text = dtt.Rows[0]["ShipTo_2"].ToString();
+            txt_ship_to3.Text = dtt.Rows[0]["ShipTo_3"].ToString();
+            txt_ship_to4.Text = dtt.Rows[0]["ShipTo_4"].ToString();
+            txt_ship_to5.Text = dtt.Rows[0]["ShipTo_5"].ToString();
+            txt_instructions.Text = dtt.Rows[0]["Instructions"].ToString();
 
-            //for (int t = 0; t < lstb_ven_list.Items.Count; t++)
-            //{
-            //    string[] st_split = lstb_ven_list.Items[t].ToString().Split(' ');
-            //    if (st_split[0].ToString() == dtt.Rows[0]["Vendor_Number"].ToString())
-            //    {
-            //        lstb_ven_list.SelectedIndex = t;
-            //    }
-            //}
+            for (int t = 0; t < lstb_ven_list.Items.Count; t++)
+            {
+                string[] st_split = lstb_ven_list.Items[t].ToString().Split(' ');
+                if (st_split[0].ToString() == dtt.Rows[0]["Vendor_Number"].ToString())
+                {
+                    lstb_ven_list.SelectedIndex = t;
+                }
+            }
             if (rb_close.IsChecked == true)
             {
                 btn_save.IsEnabled = false;
@@ -219,12 +262,13 @@ namespace POS.Retail
 
         private void fun_fill_vendor_list()
         {
-            string ven_qury = "select Vendor_Number +' - '+ Company as vendor from Vendors";
+            //string ven_qury = "select Vendor_Number +' - '+ Company as vendor from Vendors";
+            DataTable dt = objPOSManagementService.getVendorRecords();
             //DataTable dt = glo.getdata(ven_qury);
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    lstb_ven_list.Items.Add(dt.Rows[i]["vendor"].ToString());
-            //}
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                lstb_ven_list.Items.Add(dt.Rows[i]["Vendor_Number"].ToString() + " - " + dt.Rows[i]["Company"].ToString());
+            }
         }
 
         private void fun_dg_purch_order()
@@ -251,54 +295,59 @@ namespace POS.Retail
             {
                 type = 2;
             }
-            string order = "select PO_Number, [DateTime], Reference, Vendor_Number, Due_Date, Total_Cost, Status, POType, Store_ID from PO_Summary where Status = '" + status + "' and POType = '" + type + "'";
-            //DataTable dt_order = glo.getdata(order);
-            //for (int x = 0; x < dt_order.Rows.Count; x++)
-            //{
-            //    DG_purchase_order.Rows.Add();
-            //    DG_purchase_order.Rows[x].Cells[0].Value = dt_order.Rows[x]["PO_Number"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[1].Value = dt_order.Rows[x]["DateTime"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[2].Value = dt_order.Rows[x]["Reference"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[3].Value = dt_order.Rows[x]["Vendor_Number"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[4].Value = dt_order.Rows[x]["Due_Date"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[5].Value = dt_order.Rows[x]["Total_Cost"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[6].Value = dt_order.Rows[x]["Status"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[7].Value = dt_order.Rows[x]["POType"].ToString();
-            //    DG_purchase_order.Rows[x].Cells[8].Value = dt_order.Rows[x]["Store_ID"].ToString();
-            //}
+           // string order = "select PO_Number, [DateTime], Reference, Vendor_Number, Due_Date, Total_Cost, Status, POType, Store_ID from PO_Summary where Status = '" + status + "' and POType = '" + type + "'";
+            PO_SummaryClass objPoSummaryClass = new PO_SummaryClass();
+            objPoSummaryClass.POType = type;
+            objPoSummaryClass.Status = status;
+            DataTable dt_order = objPOSManagementService.getPoSummaryByType(objPoSummaryClass);
+            for (int x = 0; x < dt_order.Rows.Count; x++)
+            {
+                DG_purchase_order.Rows.Add();
+                DG_purchase_order.Rows[x].Cells[0].Value = dt_order.Rows[x]["PO_Number"].ToString();
+                DG_purchase_order.Rows[x].Cells[1].Value = dt_order.Rows[x]["DateTime"].ToString();
+                DG_purchase_order.Rows[x].Cells[2].Value = dt_order.Rows[x]["Reference"].ToString();
+                DG_purchase_order.Rows[x].Cells[3].Value = dt_order.Rows[x]["Vendor_Number"].ToString();
+                DG_purchase_order.Rows[x].Cells[4].Value = dt_order.Rows[x]["Due_Date"].ToString();
+                DG_purchase_order.Rows[x].Cells[5].Value = dt_order.Rows[x]["Total_Cost"].ToString();
+                DG_purchase_order.Rows[x].Cells[6].Value = dt_order.Rows[x]["Status"].ToString();
+                DG_purchase_order.Rows[x].Cells[7].Value = dt_order.Rows[x]["POType"].ToString();
+                DG_purchase_order.Rows[x].Cells[8].Value = dt_order.Rows[x]["Store_ID"].ToString();
+            }
 
         }
 
-        private void fun_fill_inventory_dg(string str)
+        private void fun_fill_inventory_dg(string flage, string str)
         {
 
             //DataTable dtt = glo.getdata(str);
-            //for (int c = 0; c < dtt.Rows.Count; c++)
-            //{
-            //    DG_itemlist.Rows.Add();
-            //    DG_itemlist.Rows[c].Cells[0].Value = dtt.Rows[c]["ItemNum"].ToString();
-            //    DG_itemlist.Rows[c].Cells[1].Value = dtt.Rows[c]["ItemName"].ToString();
-            //    DG_itemlist.Rows[c].Cells[2].Value = dtt.Rows[c]["Vendor_Part_Num"].ToString();
-            //    DG_itemlist.Rows[c].Cells[3].Value = dtt.Rows[c]["In_Stock"].ToString();
-            //    DG_itemlist.Rows[c].Cells[4].Value = dtt.Rows[c]["Reorder_Level"].ToString();
-            //    DG_itemlist.Rows[c].Cells[5].Value = dtt.Rows[c]["Reorder_Quantity"].ToString();
-            //    DG_itemlist.Rows[c].Cells[6].Value = dtt.Rows[c]["Cost"].ToString();
-            //    DG_itemlist.Rows[c].Cells[7].Value = dtt.Rows[c]["CostPer"].ToString();
-            //    DG_itemlist.Rows[c].Cells[8].Value = dtt.Rows[c]["Case_Cost"].ToString();
-            //    DG_itemlist.Rows[c].Cells[9].Value = dtt.Rows[c]["NumPerVenCase"].ToString();
-            //    DG_itemlist.Rows[c].Cells[10].Value = dtt.Rows[c]["Vendor_Number"].ToString();
+            DataTable dtt = objPOSManagementService.FilterData("", str);
+            for (int c = 0; c < dtt.Rows.Count; c++)
+            {
+                DG_itemlist.Rows.Add();
+                DG_itemlist.Rows[c].Cells[0].Value = dtt.Rows[c]["ItemNum"].ToString();
+                DG_itemlist.Rows[c].Cells[1].Value = dtt.Rows[c]["ItemName"].ToString();
+                DG_itemlist.Rows[c].Cells[2].Value = dtt.Rows[c]["Vendor_Part_Num"].ToString();
+                DG_itemlist.Rows[c].Cells[3].Value = dtt.Rows[c]["In_Stock"].ToString();
+                DG_itemlist.Rows[c].Cells[4].Value = dtt.Rows[c]["Reorder_Level"].ToString();
+                DG_itemlist.Rows[c].Cells[5].Value = dtt.Rows[c]["Reorder_Quantity"].ToString();
+                DG_itemlist.Rows[c].Cells[6].Value = dtt.Rows[c]["Cost"].ToString();
+                DG_itemlist.Rows[c].Cells[7].Value = dtt.Rows[c]["CostPer"].ToString();
+                DG_itemlist.Rows[c].Cells[8].Value = dtt.Rows[c]["Case_Cost"].ToString();
+                DG_itemlist.Rows[c].Cells[9].Value = dtt.Rows[c]["NumPerVenCase"].ToString();
+                DG_itemlist.Rows[c].Cells[10].Value = dtt.Rows[c]["Vendor_Number"].ToString();
 
-            //}
+            }
         }
 
         private void fun_fill_vender_combo()
         {
-            string str_ven = "select Vendor_Number+'-'+Company as vendorr from Vendors";
-            //DataTable ven_dt = glo.getdata(str_ven);
-            //for (int v = 0; v < ven_dt.Rows.Count; v++)
-            //{
-            //    cmb_select_vendor.Items.Add(ven_dt.Rows[v]["vendorr"].ToString());
-            //}
+            //string str_ven = "select Vendor_Number+'-'+Company as vendorr from Vendors";
+            DataTable ven_dt = objPOSManagementService.getVendorRecords();
+            for (int v = 0; v < ven_dt.Rows.Count; v++)
+            {
+                //cmb_select_vendor.Items.Add(ven_dt.Rows[v]["vendorr"].ToString());
+                cmb_select_vendor.Items.Add(ven_dt.Rows[v]["Vendor_Number"].ToString() + "-" + ven_dt.Rows[v]["Company"]);
+            }
         }
 
         private void fun_cal_row_total()
@@ -362,7 +411,8 @@ namespace POS.Retail
             fun_fill_vendor_list();
             fun_dg_purch_order();
             fun_store_ids();
-            fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+           // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+            fun_fill_inventory_dg("", "");
             fun_fill_vender_combo();
             Grid_po1.Visibility = Visibility.Visible;
             Grid_po2.Visibility = Visibility.Hidden;
@@ -411,17 +461,20 @@ namespace POS.Retail
 
         private void fun_selct_item_po(string id)
         {
-            //string stadard = "select * from Inventory where ItemNum = '" + id + "' and ItemType = 0";
-            //DataTable dt_chek = glo.getdata(stadard);
-            //if (dt_chek.Rows.Count == 0)
-            //{
-            //    System.Windows.MessageBox.Show("You Can Add only Standard Items For Purchase Order", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
-            //    return;
-            //}
+           // string stadard = "select * from Inventory where ItemNum = '" + id + "' and ItemType = 0";
+            InventoryClass objInventoryClass = new InventoryClass();
+            objInventoryClass.ItemNum = id;
+            objInventoryClass.ItemType = 0;
+            DataTable dt_chek = objPOSManagementService.CheckStandardItem(objInventoryClass);
+            if (dt_chek.Rows.Count == 0)
+            {
+                System.Windows.MessageBox.Show("You Can Add only Standard Items For Purchase Order", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                return;
+            }
             string[] spl_str = lstb_ven_list.SelectedItem.ToString().Split(' ');
             string ven_id = spl_str[0];
         end: { }
-            string qruy = "SELECT * FROM VIEW_DETAIL_PO WHERE ItemNum = '" + id + "' and Vendor_Number = '" + ven_id + "'";
+           // string qruy = "SELECT * FROM VIEW_DETAIL_PO WHERE ItemNum = '" + id + "' and Vendor_Number = '" + ven_id + "'";
             //DataTable dt_po = glo.getdata(qruy);
             //if (dt_po.Rows.Count > 0)
             //{
@@ -504,7 +557,8 @@ namespace POS.Retail
             string[] str = cmb_select_vendor.Text.Split('-');
             string str1 = str[0];
             DG_itemlist.Rows.Clear();
-            fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where Vendor_Number = '" + str1 + "'");
+            //fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where Vendor_Number = '" + str1 + "'");
+            fun_fill_inventory_dg("Vendor_Number", str1);
         }
 
         private void btn_search_item_Click(object sender, RoutedEventArgs e)
@@ -533,7 +587,8 @@ namespace POS.Retail
             kb.ShowDialog();
             if (kb.set_decrep != null)
             {
-                fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where ItemNum = '" + kb.set_decrep + "'");
+                //fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where ItemNum = '" + kb.set_decrep + "'");
+                fun_fill_inventory_dg("ItemNum", kb.set_decrep);
             }
             kb.set_decrep = null;
         }
@@ -545,7 +600,8 @@ namespace POS.Retail
             kb.ShowDialog();
             if (kb.set_decrep != null)
             {
-                fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where Vendor_Part_Num = '" + kb.set_decrep + "'");
+               // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where Vendor_Part_Num = '" + kb.set_decrep + "'");
+                fun_fill_inventory_dg("Vendor_Part_Num", kb.set_decrep);
             }
             kb.set_decrep = null;
 
@@ -554,7 +610,8 @@ namespace POS.Retail
         private void btn_show_all_Click(object sender, RoutedEventArgs e)
         {
             DG_itemlist.Rows.Clear();
-            fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+           // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+            fun_fill_inventory_dg("", "");
         }
 
         private void Dg_po_items_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
@@ -683,15 +740,15 @@ namespace POS.Retail
                     return;
                 }
                 string item_id = txt_enter_item.Text;
-                string str = "select * from Inventory where ItemNum ='" + item_id + "'";
-                //DataTable dtt = glo.getdata(str);
-                //if (dtt.Rows.Count == 0)
-                //{
-                //    System.Windows.MessageBox.Show("This Item Not Found Please Try Again", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
-                //    txt_enter_item.Clear();
-                //    txt_enter_item.Focus();
-                //    return;
-                //}
+              //  string str = "select * from Inventory where ItemNum ='" + item_id + "'";
+                DataTable dtt = objPOSManagementService.getIventory(item_id);
+                if (dtt.Rows.Count == 0)
+                {
+                    System.Windows.MessageBox.Show("This Item Not Found Please Try Again", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                    txt_enter_item.Clear();
+                    txt_enter_item.Focus();
+                    return;
+                }
                 fun_selct_item_po(item_id);
             }
         }
@@ -704,9 +761,11 @@ namespace POS.Retail
                 return;
             }
 
-
-            string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
-            fun_selct_item_po(id);
+            if (DG_itemlist.SelectedRows.Count > 0)
+            {
+                string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
+                fun_selct_item_po(id);
+            }
         }
 
         private void btn_receive_item_Click(object sender, RoutedEventArgs e)
@@ -862,25 +921,65 @@ namespace POS.Retail
             string[] lbl1 = lbl.Split(' ');
             double total_cst = Convert.ToDouble(lbl1[4]);
             string stats = "O";
+
             //string update_summary = "update PO_Summary set Reference = '" + txt_reference.Text + "' ,Vendor_Number = '" + vendor_id + "',Total_Cost = '" + total_cst + "',Terms = '" + txt_terms.Text + "',Due_Date = '" + dp_po_due_date.SelectedDate + "',Ship_Via = '" + txt_ship_via.Text + "',ShipTo_1 = '" + txt_ship_to1.Text + "',ShipTo_2 = '" + txt_ship_to2.Text + "',ShipTo_3 = '" + txt_ship_to3.Text + "',ShipTo_4 = '" + txt_ship_to4.Text + "',ShipTo_5 = '" + txt_ship_to5.Text + "',Instructions = '" + txt_instructions.Text + "',Status = '" + stats + "',Last_Modified = '" + DateTime.Today + "' where PO_Number = '" + id + "'";
             //glo.fun_insert(update_summary);
+            PO_SummaryClass objPoSummaryClass = new PO_SummaryClass();
+            objPoSummaryClass.PO_Number = id;
+            objPoSummaryClass.Vendor_Number = vendor_id;
+            objPoSummaryClass.Store_ID = "1001";
+            objPoSummaryClass.DateTime = DateTime.Today;
+            objPoSummaryClass.Reference = txt_reference.Text;
+            objPoSummaryClass.Vendor_Number = vendor_id;
+            objPoSummaryClass.Total_Cost = total_cst;
+            objPoSummaryClass.Terms = txt_terms.Text;
+            objPoSummaryClass.Due_Date = Convert.ToDateTime(dp_po_due_date.SelectedDate);
+            objPoSummaryClass.Ship_Via = txt_ship_via.Text;
+            objPoSummaryClass.ShipTo_1 = txt_ship_to1.Text;
+            objPoSummaryClass.ShipTo_2 = txt_ship_to2.Text;
+            objPoSummaryClass.ShipTo_3 = txt_ship_to3.Text;
+            objPoSummaryClass.ShipTo_4 = txt_ship_to4.Text;
+            objPoSummaryClass.ShipTo_5 = txt_ship_to5.Text;
+            objPoSummaryClass.Instructions = txt_instructions.Text;
+            objPoSummaryClass.Status = stats;
+            objPoSummaryClass.Last_Modified = DateTime.Today;
+            objPoSummaryClass.ExpectedAmountToReceive = Convert.ToInt32(txt_expet_amont.Text);
+            objPoSummaryClass.POType = typ.set_order_type;
+            objPoSummaryClass.qryFlage = 1;
+            objPOSManagementService.updatePoSummary(objPoSummaryClass);
+
 
             //string delete_detail = "delete from PO_Details where PO_Number = '" + id + "'";
             //glo.fun_insert(delete_detail);
-
-            //for (int i = 0; i < Dg_po_items.Rows.Count; i++)
-            //{
-            //    string item_no = Dg_po_items.Rows[i].Cells[1].Value.ToString();
-            //    int line_no = Convert.ToInt32(Dg_po_items.Rows[i].Cells[0].Value);
-            //    decimal qty_ordered = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[4].Value);
-            //    double cost = Convert.ToDouble(Dg_po_items.Rows[i].Cells[7].Value);
-            //    decimal qty_received = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[9].Value);
-            //    int per_case = Convert.ToInt32(Dg_po_items.Rows[i].Cells[5].Value);
-            //    decimal no_per_case = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[6].Value);
-            //    decimal qty_demage = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[10].Value);
+            PO_DetailsClass objPoDetail = new PO_DetailsClass();
+            objPoDetail.PO_Number = id;
+            objPOSManagementService.deletePoDetails(objPoDetail);
+            PO_DetailsClass objPODetailClass = new PO_DetailsClass();
+            for (int i = 0; i < Dg_po_items.Rows.Count; i++)
+            {
+                string item_no = Dg_po_items.Rows[i].Cells[1].Value.ToString();
+                int line_no = Convert.ToInt32(Dg_po_items.Rows[i].Cells[0].Value);
+                decimal qty_ordered = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[4].Value);
+                double cost = Convert.ToDouble(Dg_po_items.Rows[i].Cells[7].Value);
+                decimal qty_received = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[9].Value);
+                int per_case = Convert.ToInt32(Dg_po_items.Rows[i].Cells[5].Value);
+                decimal no_per_case = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[6].Value);
+                decimal qty_demage = Convert.ToDecimal(Dg_po_items.Rows[i].Cells[10].Value);
+                objPODetailClass.PO_Number = objPoSummaryClass.PO_Number;
+                objPODetailClass.ItemNum = item_no;
+                objPODetailClass.LineNum = line_no;
+                objPODetailClass.Quan_Ordered = qty_ordered;
+                objPODetailClass.CostPer = cost;
+                objPODetailClass.Quan_Received = qty_received;
+                objPODetailClass.CasePack = per_case;
+                objPODetailClass.Store_ID = "1001";
+                objPODetailClass.NumberPerCase = no_per_case;
+                objPODetailClass.Quan_Damaged = qty_demage;
+                objPODetailClass.destStore_ID = Convert.ToString(cmb_dest_storeid.SelectedValue);
+                objPOSManagementService.insertPoDetail(objPODetailClass);
             //    string qury_detail = "insert into PO_Details(PO_Number,ItemNum,LineNum,Quan_Ordered,CostPer,Quan_Received,CasePack,Store_ID,NumberPerCase,Quan_Damaged,destStore_ID) values('" + id + "', '" + item_no + "','" + line_no + "','" + qty_ordered + "','" + cost + "','" + qty_received + "','" + per_case + "','1001','" + no_per_case + "','" + qty_demage + "','" + cmb_dest_storeid.SelectedValue + "')";
             //    glo.fun_insert(qury_detail);
-            //}
+            }
             Grid_po1.Visibility = Visibility.Visible;
             Grid_po2.Visibility = Visibility.Hidden;
             Dg_po_items.Rows.Clear();
@@ -900,8 +999,14 @@ namespace POS.Retail
         {
             try
             {
+                PO_SummaryClass objPoSummaryClass = new PO_SummaryClass();
                 string[] split_pono = lbl_po_no.Content.ToString().Split(' ');
                 string po_id = split_pono[1];
+                objPoSummaryClass.qryFlage = 2;
+                objPoSummaryClass.Status = "C";
+                objPoSummaryClass.PO_Number = Convert.ToInt32(po_id);
+                objPoSummaryClass.Last_Modified = DateTime.Today;
+                objPOSManagementService.updatePoSummary(objPoSummaryClass);
                 //string qury_close = "update PO_Summary set Status = 'C', Last_Modified = '" + DateTime.Today + "' where PO_Number = '" + po_id + "'";
                 //glo.fun_insert(qury_close);
                 Grid_po1.Visibility = Visibility.Visible;
@@ -923,7 +1028,14 @@ namespace POS.Retail
             try
             {
                 string[] st_split = lstb_ven_list.SelectedItem.ToString().Split(' ');
-                string str = "select Vendor_Number, Vendor_Terms from Vendors where Vendor_Number = '" + st_split[0] + "'";
+               // string str = "select Vendor_Number, Vendor_Terms from Vendors where Vendor_Number = '" + st_split[0] + "'";
+                VendorsClass objVendorClass = new VendorsClass();
+                objVendorClass.Vendor_Number = st_split[0];
+                DataTable dt = objPOSManagementService.getVendors(objVendorClass);
+                for(int i= 0; i< dt.Rows.Count; i++)
+                {
+                    txt_terms.Text = dt.Rows[i]["Vendor_Terms"].ToString();
+                }
                 //glo.fun_search(str);
                 //glo.dr.Read();
                 //txt_terms.Text = glo.dr["Vendor_Terms"].ToString();
@@ -938,7 +1050,8 @@ namespace POS.Retail
             InventoryForm ifrm = new InventoryForm("PO");
             ifrm.ShowDialog();
             DG_itemlist.Rows.Clear();
-            fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+           // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
+            fun_fill_inventory_dg("", "");
             if (lstb_ven_list.SelectedItems.Count == 0)
             {
                 System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -956,35 +1069,35 @@ namespace POS.Retail
             string pon = ponsplit[1];
 
             //string qry = "select ItemNum,Quan_Ordered from PO_Details where PO_Number = '" + Convert.ToInt32(pon) + "'";
-            //DataTable dt = glo.getdata(qry);
+            DataTable dt = objPOSManagementService.getPoDetail(Convert.ToInt32(pon));
             itemNo.Clear();
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    itemNo.Add(dt.Rows[i]["ItemNum"].ToString());
-            //    ls_item_qty.Add(Convert.ToDouble(dt.Rows[i]["Quan_Ordered"]));
-            //}
-            //ReceivingScreen rs = new ReceivingScreen();
-            //rs.ShowDialog();
-            // lbl_po_no.Content = "PO# " + pon.ToString();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                itemNo.Add(dt.Rows[i]["ItemNum"].ToString());
+                ls_item_qty.Add(Convert.ToDouble(dt.Rows[i]["Quan_Ordered"]));
+            }
+            ReceivingScreen rs = new ReceivingScreen();
+            rs.ShowDialog();
+            lbl_po_no.Content = "PO# " + pon.ToString();
             Dg_po_items.Rows.Clear();
-            string qrry = "select * from PO_Details where PO_Number = '" + pon + "' order by LineNum";
-            //DataTable dt_po_detail = glo.getdata(qrry);
-            //cmb_dest_storeid.SelectedItem = dt_po_detail.Rows[0]["destStore_ID"].ToString();
-            //for (int j = 0; j < dt_po_detail.Rows.Count; j++)
-            //{
-            //    Dg_po_items.Rows.Add();
-            //    Dg_po_items.Rows[j].Cells[0].Value = dt_po_detail.Rows[j]["LineNum"].ToString();
-            //    Dg_po_items.Rows[j].Cells[1].Value = dt_po_detail.Rows[j]["ItemNum"].ToString();
+           // string qrry = "select * from PO_Details where PO_Number = '" + pon + "' order by LineNum";
+            DataTable dt_po_detail = objPOSManagementService.getPoDetail(Convert.ToInt32(pon));
+            cmb_dest_storeid.SelectedItem = dt_po_detail.Rows[0]["destStore_ID"].ToString();
+            for (int j = 0; j < dt_po_detail.Rows.Count; j++)
+            {
+                Dg_po_items.Rows.Add();
+                Dg_po_items.Rows[j].Cells[0].Value = dt_po_detail.Rows[j]["LineNum"].ToString();
+                Dg_po_items.Rows[j].Cells[1].Value = dt_po_detail.Rows[j]["ItemNum"].ToString();
 
-            //    Dg_po_items.Rows[j].Cells[3].Value = dt_po_detail.Rows[j]["Store_ID"].ToString();
-            //    Dg_po_items.Rows[j].Cells[4].Value = dt_po_detail.Rows[j]["Quan_Ordered"].ToString();
-            //    Dg_po_items.Rows[j].Cells[5].Value = dt_po_detail.Rows[j]["CasePack"].ToString();
-            //    Dg_po_items.Rows[j].Cells[6].Value = dt_po_detail.Rows[j]["NumberPerCase"].ToString();
-            //    Dg_po_items.Rows[j].Cells[7].Value = dt_po_detail.Rows[j]["CostPer"].ToString();
+                Dg_po_items.Rows[j].Cells[3].Value = dt_po_detail.Rows[j]["Store_ID"].ToString();
+                Dg_po_items.Rows[j].Cells[4].Value = dt_po_detail.Rows[j]["Quan_Ordered"].ToString();
+                Dg_po_items.Rows[j].Cells[5].Value = dt_po_detail.Rows[j]["CasePack"].ToString();
+                Dg_po_items.Rows[j].Cells[6].Value = dt_po_detail.Rows[j]["NumberPerCase"].ToString();
+                Dg_po_items.Rows[j].Cells[7].Value = dt_po_detail.Rows[j]["CostPer"].ToString();
 
-            //    Dg_po_items.Rows[j].Cells[9].Value = dt_po_detail.Rows[j]["Quan_Received"].ToString();
-            //    Dg_po_items.Rows[j].Cells[10].Value = dt_po_detail.Rows[j]["Quan_Damaged"].ToString();
-            //}
+                Dg_po_items.Rows[j].Cells[9].Value = dt_po_detail.Rows[j]["Quan_Received"].ToString();
+                Dg_po_items.Rows[j].Cells[10].Value = dt_po_detail.Rows[j]["Quan_Damaged"].ToString();
+            }
             fun_cal_row_total();
         }
 

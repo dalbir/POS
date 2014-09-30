@@ -36,7 +36,7 @@ namespace POS.Retail
         CalenderForm caln = new CalenderForm();
         TimeForm tm = new TimeForm();
         //frmDaysOfWeek frm_day = new frmDaysOfWeek();
-        //frmDaysOfWeek day = new frmDaysOfWeek();
+        DaysOfWeekForm day = new DaysOfWeekForm();
         //frmPropertycategory propty = new frmPropertycategory();
         TypeofRuleCoupon dept_rule = new TypeofRuleCoupon();
         SelectDepartCoponForm selct_dep = new SelectDepartCoponForm();
@@ -1286,7 +1286,14 @@ namespace POS.Retail
                 DataTable mgdt = objPOSManagementService.GetData("kitIndex", objInventoryClass.ItemNum);
                 DataTable prdt = objPOSManagementService.GetData("onsaleInfo", objInventoryClass.ItemNum);
                 DataTable dtbulk = objPOSManagementService.GetData("bulk", objInventoryClass.ItemNum);
-               // string qury = "select * from Inventory_Image where ItemNum = '" + dt.Rows[index]["ItemNum"] + "'";
+                DataTable dttbae = objPOSManagementService.GetData("invPrices", objInventoryClass.ItemNum);
+                DataTable choice_dt = objPOSManagementService.GetData("choicItem", objInventoryClass.ItemNum);
+                DataTable dt_chice_prop = objPOSManagementService.GetData("choiceProperty", objInventoryClass.ItemNum);
+                DataTable dt_copon_prices = objPOSManagementService.GetData("couponPrice", objInventoryClass.ItemNum);
+                DataTable dt_copon = objPOSManagementService.GetData("coupon", objInventoryClass.ItemNum);
+                DataTable dt_crule = objPOSManagementService.GetData("couponRule", objInventoryClass.ItemNum);
+                DataTable dt_sale_history = objPOSManagementService.GetData("saleHistory", objInventoryClass.ItemNum);
+                // string qury = "select * from Inventory_Image where ItemNum = '" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable dti = glo.getdata(qury);
                 //string squry = "select * from Inventory_SKUS where ItemNum ='" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable dts = glo.getdata(squry);
@@ -1300,9 +1307,18 @@ namespace POS.Retail
                 //DataTable dtv = glo.getdata(vqury);
                 //string mg_qury = "select Kit_ID as ItemNum, Quantity as In_Stock, Price, [Description] as ItemName from Kit_Index where Kit_ID ='" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable mgdt = glo.getdata(mg_qury);
-
+                ModifiersClass objModifiesClass = new ModifiersClass();
+                objModifiesClass.quryFlage = "a";
+                objModifiesClass.ItemNum = objInventoryClass.ItemNum;
+                objModifiesClass.Group_Or_Individual = 1;
+                DataTable dt_gi = objPOSManagementService.RetiveModifeirs(objModifiesClass);
+               
                 //string grpsitem_qury = "select * from Modifiers where ItemNum ='" + dt.Rows[index]["ItemNum"] + "' and Group_Or_Individual = 1";
                 //DataTable dt_gi = glo.getdata(grpsitem_qury);
+                objModifiesClass.quryFlage = "b";
+                objModifiesClass.ItemNum = objInventoryClass.ItemNum;
+                objModifiesClass.Group_Or_Individual = 0;
+                DataTable dtinitem = objPOSManagementService.RetiveModifeirs(objModifiesClass);
                 //string inv_item = "select ItemNum, ModName as ItemName from Modifiers where ItemNum ='" + dt.Rows[index]["ItemNum"] + "' and Group_Or_Individual = 0";
                 //DataTable dtinitem = glo.getdata(inv_item);
 
@@ -1324,476 +1340,476 @@ namespace POS.Retail
                 //DataTable dt_crule = glo.getdata(copon_rule);
                 //string sale_history = "SELECT * from VIEW_ITEM_SLAE_HISTORY where ItemNum ='" + dt.Rows[index]["ItemNum"] + "'";
                 //DataTable dt_sale_history = glo.getdata(sale_history);
-                //int flage = dtInventory.Rows.Count;
-                //clear_fields();
-                //item_image.Source = null;
-                //lstbx_skus.Items.Clear();
-                //lstbox_tag.Items.Clear();
-                //txt_inventory_notes.Clear();
-                //DG_ordering_info.Rows.Clear();
-                //DG_mgroups.Rows.Clear();
-                //DG_modifier_groups.ItemsSource = null;
-                //DG_modifier_groups.Items.Clear();
-                //DG_indv_items.ItemsSource = null;
-                //DG_indv_items.Items.Clear();
-                //DG_choice_items.Rows.Clear();
-                //DG_sale_history.Rows.Clear();
-                //DG_kits.Rows.Clear();
-                //if (index >= 0)
-                //{
-                //    sitemype = Convert.ToInt32(dtInventory.Rows[index]["ScaleItemType"]);
-                //    if (sitemype == 1)
-                //    {
-                //        rb_sold_by_price.IsChecked = true;
-                //    }
-                //    else if (sitemype == 2)
-                //    {
-                //        rb_weighed_onsclae.IsChecked = true;
-                //    }
-                //    else if (sitemype == 3)
-                //    {
-                //        rb_weighed_with.IsChecked = true;
-                //    }
-                //    else if (sitemype == 4)
-                //    {
-                //        rb_barcoded.IsChecked = true;
-                //    }
-                //    else if (sitemype == 0)
-                //    {
-                //        rb_barcoded.IsChecked = false;
-                //        rb_sold_by_price.IsChecked = false;
-                //        rb_weighed_onsclae.IsChecked = false;
-                //        rb_weighed_with.IsChecked = false;
-                //    }
+                int flage = dtInventory.Rows.Count;
+                clear_fields();
+                item_image.Source = null;
+                lstbx_skus.Items.Clear();
+                lstbox_tag.Items.Clear();
+                txt_inventory_notes.Clear();
+                DG_ordering_info.Rows.Clear();
+                DG_mgroups.Rows.Clear();
+                DG_modifier_groups.ItemsSource = null;
+                DG_modifier_groups.Items.Clear();
+                DG_indv_items.ItemsSource = null;
+                DG_indv_items.Items.Clear();
+                DG_choice_items.Rows.Clear();
+                DG_sale_history.Rows.Clear();
+                DG_kits.Rows.Clear();
+                if (index >= 0)
+                {
+                    sitemype = Convert.ToInt32(dtInventory.Rows[index]["ScaleItemType"]);
+                    if (sitemype == 1)
+                    {
+                        rb_sold_by_price.IsChecked = true;
+                    }
+                    else if (sitemype == 2)
+                    {
+                        rb_weighed_onsclae.IsChecked = true;
+                    }
+                    else if (sitemype == 3)
+                    {
+                        rb_weighed_with.IsChecked = true;
+                    }
+                    else if (sitemype == 4)
+                    {
+                        rb_barcoded.IsChecked = true;
+                    }
+                    else if (sitemype == 0)
+                    {
+                        rb_barcoded.IsChecked = false;
+                        rb_sold_by_price.IsChecked = false;
+                        rb_weighed_onsclae.IsChecked = false;
+                        rb_weighed_with.IsChecked = false;
+                    }
 
-                //    txt_item_number.Text = dtInventory.Rows[index]["ItemNum"].ToString();
-                //    txt_item_descripton.Text = dtInventory.Rows[index]["ItemName"].ToString();
-                //    fun_items_grid();
-                //    txt_avg_cost.Text = Math.Round(Convert.ToDouble(dtInventory.Rows[index]["Cost"]), 3).ToString();
-                //    if (itmflage == 7)
-                //    {
-                //        txt_coupon_discounted_price.Text = Convert.ToDouble(dtInventory.Rows[index]["Price"]).ToString();
-                //    }
-                //    else
-                //    {
-                //        txt_price_ucharge.Text = Convert.ToDouble(dtInventory.Rows[index]["Price"]).ToString();
-                //    }
-                //    txt_retail_price.Text = Convert.ToDouble(dtInventory.Rows[index]["Retail_Price"]).ToString();
-                //    txt_instock.Text = Convert.ToDouble(dtInventory.Rows[index]["In_Stock"]).ToString();
-                //    txt_reorder_level.Text = dtInventory.Rows[index]["Reorder_Level"].ToString();
-                //    txt_reorder_qty.Text = dtInventory.Rows[index]["Reorder_Quantity"].ToString();
-                //    chk_tax1.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_1"]);
-                //    chk_tax2.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_2"]);
-                //    chk_tax3.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_3"]);
-                //    cmb_select_dept.SelectedValue = dtInventory.Rows[index]["Dept_ID"].ToString();
-                //    chk_modfier_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["IsModifier"]);
-                //    txt_barcodes.Text = dtInventory.Rows[index]["Inv_Num_Barcode_Labels"].ToString();
-                //    chk_use_serial.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Use_Serial_Numbers"]);
-                //    txt_bonus.Text = dtInventory.Rows[index]["Num_Bonus_Points"].ToString();
-                //    chk_print_ticket.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Print_Ticket"]);
-                //    txt_days_valid.Text = dtInventory.Rows[index]["Num_Days_Valid"].ToString();
-                //    vendor_part_txt.Text = dtInventory.Rows[index]["Vendor_Part_Num"].ToString();
-                //    txt_location.Text = dtInventory.Rows[index]["Location"].ToString();
-                //    chk_auto_wiegh.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AutoWeigh"]);
-                //    number_incase_txt.Text = dtInventory.Rows[index]["NumPerCase"].ToString();
-                //    chk_food_stamp.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["FoodStampable"]);
-                //    txt_reorder_cost.Text = dtInventory.Rows[index]["ReOrder_Cost"].ToString();
-                //    txt_item_description2.Text = dtInventory.Rows[index]["ItemName_Extra"].ToString();
-                //    chk_chek_id.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Check_ID"]);
-                //    chk_prmpt_price.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Price"]);
-                //    chk_prmt_qty.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Quantity"]);
-                //    chk_disable_itm.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Inactive"]);
-                //    chk_allow_buyback.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Allow_BuyBack"]);
-                //    txt_unit_type.Text = dtInventory.Rows[index]["Unit_Type"].ToString();
-                //    txt_unit_size.Text = dtInventory.Rows[index]["Unit_Size"].ToString();
-                //    chk_special_permission.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Special_Permission"]);
-                //    chk_prompt_descrip.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Description"]);
-                //    chk_check2.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Check_ID2"]);
-                //    chk_count_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Count_This_Item"]);
-                //    txt_cost_marku.Text = dtInventory.Rows[index]["Transfer_Cost_Markup"].ToString();
-                //    chk_print_reciept.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Print_On_Receipt"]);
-                //    chk_enable_markup.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Transfer_Markup_Enabled"]);
-                //    chk_sell_asls.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["As_Is"]);
-                //    chk_require_customer.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["RequireCustomer"]);
-                //    chk_prompt_comp_date.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["PromptCompletionDate"]);
-                //    chk_prompt_invoice.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["PromptInvoiceNotes"]);
-                //    txt_prmp_todescrp.Text = dtInventory.Rows[index]["Prompt_DescriptionOverDollarAmt"].ToString();
-                //    chk_exclude_loyalty.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Exclude_From_Loyalty"]);
-                //    chk_bar_tax.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["BarTaxInclusive"]);
-                //    chk_scale_deduct.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["ScaleSingleDeduct"]);
-                //    txt_glnumber.Text = dtInventory.Rows[index]["GLNumber"].ToString();
-                //    //cmb_discountype.SelectedIndex
-                //    chk_allow_return.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowReturns"]);
-                //    txt_sugested_deposit.Text = dtInventory.Rows[index]["SuggestedDeposit"].ToString();
-                //    chk_liablity_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Liability"]);
-                //    chk_allow_depsit_invo.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowOnDepositInvoices"]);
-                //    chk_allow_fleet.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowOnFleetCard"]);
-                //    chk_display_tax.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["DisplayTaxInPrice"]);
-                //    chk_kichen.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["NeverPrintInKitchen"]);
-                //    fun_fill_price_level();
-                //    fun_rental_index();
-                //    fun_form_heading();
-                //    //fun_items_grid();
-                //    ImageSourceConverter isc = new ImageSourceConverter();
-                //    if (dti.Rows.Count > 0)
-                //    {
-                //        item_image.SetValue(Image.SourceProperty, isc.ConvertFromString(dti.Rows[0]["ImageLocation"].ToString()));
-                //    }
-                //    if (dts.Rows.Count > 0)
-                //    {
-                //        for (int i = 0; i <= dts.Rows.Count - 1; i++)
-                //        {
-                //            lstbx_skus.Items.Add(dts.Rows[i]["AltSKU"].ToString());
-                //        }
-                //    }
-                //    if (dtt.Rows.Count > 0)
-                //    {
-                //        for (int y = 0; y <= dtt.Rows.Count - 1; y++)
-                //        {
-                //            lstbox_tag.Items.Add(dtt.Rows[y]["TagAlong_ItemNum"].ToString());
-                //        }
-                //    }
-                //    if (dtp.Rows.Count > 0)
-                //    {
-                //        for (int p = 0; p < dtp.Rows.Count; p++)
-                //        {
-                //            DG_price_level.Rows[p].Cells[2].Value = Math.Round(Convert.ToDecimal(dtp.Rows[p]["Perc"]), 2).ToString() + "%";
-                //        }
-                //    }
-                //    if (dtn.Rows.Count > 0)
-                //    {
-                //        txt_inventory_notes.Text = dtn.Rows[0]["Notes"].ToString();
-                //    }
-                //    if (dtv.Rows.Count > 0)
-                //    {
-                //        cost_per_txt.IsEnabled = true;
-                //        case_cost_txt.IsEnabled = true;
-                //        number_incase_txt.IsEnabled = true;
-                //        txt_cost_marku.IsEnabled = true;
-                //        chk_enable_markup.IsEnabled = true;
-                //        vendor_part_txt.IsEnabled = true;
-                //        for (int v = 0; v < dtv.Rows.Count; v++)
-                //        {
-                //            DG_ordering_info.Rows.Add();
-                //            DG_ordering_info.Rows[v].Cells[0].Value = dtv.Rows[v]["vendor_name"].ToString();
-                //            DG_ordering_info.Rows[v].Cells[1].Value = dtv.Rows[v]["CostPer"].ToString();
-                //            DG_ordering_info.Rows[v].Cells[2].Value = "False";
-                //            DG_ordering_info.Rows[v].Cells[3].Value = dtv.Rows[v]["Vendor_Part_Num"].ToString();
-                //            DG_ordering_info.Rows[v].Cells[4].Value = dtv.Rows[v]["Case_Cost"].ToString();
-                //            DG_ordering_info.Rows[v].Cells[5].Value = dtv.Rows[v]["NumPerVenCase"].ToString();
-                //            DG_ordering_info.Rows[v].Cells[6].Value = dtv.Rows[v]["Vendor_Number"].ToString();
-                //        }
-                //        string st = "select Vendor_Part_Num from Inventory where ItemNum ='" + dt.Rows[index]["ItemNum"] + "'";
-                //        DataTable vdtv = glo.getdata(st);
-                //        foreach (DataGridViewRow row in DG_ordering_info.Rows)
-                //        {
-                //            if (row.Cells[3].Value.Equals(vdtv.Rows[0]["Vendor_Part_Num"].ToString()))
-                //            {
-                //                row.Cells[2].Value = "True";
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        cost_per_txt.IsEnabled = false;
-                //        case_cost_txt.IsEnabled = false;
-                //        number_incase_txt.IsEnabled = false;
-                //        txt_cost_marku.IsEnabled = false;
-                //        //chk_enable_markup.IsEnabled = false;
-                //        //vendor_part_txt.IsEnabled = false;
-                //    }
-                //    if (mgdt.Rows.Count > 0)
-                //    {
-                //        DG_modifier_groups.Items.Add(mgdt.DefaultView);
-                //    }
-                //    if (dt_gi.Rows.Count > 0)
-                //    {
-                //        for (int gi = 0; gi < dt_gi.Rows.Count; gi++)
-                //        {
-                //            DG_mgroups.Rows.Add();
-                //            DG_mgroups.Rows[gi].Cells[0].Value = dt_gi.Rows[gi]["ModName"].ToString();
-                //            DG_mgroups.Rows[gi].Cells[1].Value = dt_gi.Rows[gi]["Prompt"].ToString();
-                //            if (Convert.ToByte(dt_gi.Rows[gi]["ChargePrice"]).Equals(1))
-                //            {
-                //                DG_mgroups.Rows[gi].Cells[2].Value = "Yes";
-                //            }
-                //            else
-                //            {
-                //                DG_mgroups.Rows[gi].Cells[2].Value = "No";
-                //            }
-                //            DG_mgroups.Rows[gi].Cells[3].Value = dt_gi.Rows[gi]["NumToSelect"].ToString();
-                //            if (Convert.ToByte(dt_gi.Rows[gi]["Forced"]).Equals(1))
-                //            {
-                //                DG_mgroups.Rows[gi].Cells[4].Value = "Yes";
-                //            }
-                //            else
-                //            {
-                //                DG_mgroups.Rows[gi].Cells[4].Value = "No";
-                //            }
-                //        }
-                //    }
-                //    if (dtinitem.Rows.Count > 0)
-                //    {
-                //        for (int it = 0; it < dtinitem.Rows.Count; it++)
-                //        {
-                //            DG_indv_items.Items.Add(dtinitem.DefaultView);
-                //        }
-                //    }
-                //    if (prdt.Rows.Count > 0)
-                //    {
-                //        for (int pr = 0; pr < prdt.Rows.Count; pr++)
-                //        {
-                //            if (prdt.Rows[pr]["SalePriceType"].ToString().Equals("1"))
-                //            {
-                //                lsb_sale_pricing.Items.Add("$" + Math.Round(Convert.ToDecimal(prdt.Rows[pr]["Price"]), 2).ToString() + " b/w  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_Start"]).ToString("MM/dd/yyyy") + "  -  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_End"]).ToString("MM/dd/yyyy"));
-                //                per.Add(prdt.Rows[pr]["Price"].ToString());
-                //            }
-                //            if (prdt.Rows[pr]["SalePriceType"].ToString().Equals("0"))
-                //            {
-                //                lsb_sale_pricing.Items.Add(Math.Round(Convert.ToDecimal(prdt.Rows[pr]["Percent"]), 2).ToString() + "%" + " b/w  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_Start"]).ToString("MM/dd/yyyy") + "  -  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_End"]).ToString("MM/dd/yyyy"));
-                //                per.Add(prdt.Rows[pr]["SalePriceType"].ToString());
-                //            }
-                //        }
-                //    }
-                //    if (dtbulk.Rows.Count > 0)
-                //    {
-                //        for (int bul = 0; bul < dtbulk.Rows.Count; bul++)
-                //        {
-                //            if (Convert.ToInt32(dtbulk.Rows[bul]["Price_Type"]).Equals(0))
-                //            {
-                //                if (dtbulk.Rows[bul]["Description"].ToString() != "")
-                //                {
-                //                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + "  For " + "$" + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " -" + dtbulk.Rows[bul]["Description"].ToString());
-                //                }
-                //                else
-                //                {
-                //                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + "  For " + "$" + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2));
-                //                }
+                    txt_item_number.Text = dtInventory.Rows[index]["ItemNum"].ToString();
+                    txt_item_descripton.Text = dtInventory.Rows[index]["ItemName"].ToString();
+                    fun_items_grid();
+                    txt_avg_cost.Text = Math.Round(Convert.ToDouble(dtInventory.Rows[index]["Cost"]), 3).ToString();
+                    if (itmflage == 7)
+                    {
+                        txt_coupon_discounted_price.Text = Convert.ToDouble(dtInventory.Rows[index]["Price"]).ToString();
+                    }
+                    else
+                    {
+                        txt_price_ucharge.Text = Convert.ToDouble(dtInventory.Rows[index]["Price"]).ToString();
+                    }
+                    txt_retail_price.Text = Convert.ToDouble(dtInventory.Rows[index]["Retail_Price"]).ToString();
+                    txt_instock.Text = Convert.ToDouble(dtInventory.Rows[index]["In_Stock"]).ToString();
+                    txt_reorder_level.Text = dtInventory.Rows[index]["Reorder_Level"].ToString();
+                    txt_reorder_qty.Text = dtInventory.Rows[index]["Reorder_Quantity"].ToString();
+                    chk_tax1.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_1"]);
+                    chk_tax2.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_2"]);
+                    chk_tax3.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Tax_3"]);
+                    cmb_select_dept.SelectedValue = dtInventory.Rows[index]["Dept_ID"].ToString();
+                    chk_modfier_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["IsModifier"]);
+                    txt_barcodes.Text = dtInventory.Rows[index]["Inv_Num_Barcode_Labels"].ToString();
+                    chk_use_serial.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Use_Serial_Numbers"]);
+                    txt_bonus.Text = dtInventory.Rows[index]["Num_Bonus_Points"].ToString();
+                    chk_print_ticket.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Print_Ticket"]);
+                    txt_days_valid.Text = dtInventory.Rows[index]["Num_Days_Valid"].ToString();
+                    vendor_part_txt.Text = dtInventory.Rows[index]["Vendor_Part_Num"].ToString();
+                    txt_location.Text = dtInventory.Rows[index]["Location"].ToString();
+                    chk_auto_wiegh.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AutoWeigh"]);
+                    number_incase_txt.Text = dtInventory.Rows[index]["NumPerCase"].ToString();
+                    chk_food_stamp.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["FoodStampable"]);
+                    txt_reorder_cost.Text = dtInventory.Rows[index]["ReOrder_Cost"].ToString();
+                    txt_item_description2.Text = dtInventory.Rows[index]["ItemName_Extra"].ToString();
+                    chk_chek_id.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Check_ID"]);
+                    chk_prmpt_price.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Price"]);
+                    chk_prmt_qty.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Quantity"]);
+                    chk_disable_itm.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Inactive"]);
+                    chk_allow_buyback.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Allow_BuyBack"]);
+                    txt_unit_type.Text = dtInventory.Rows[index]["Unit_Type"].ToString();
+                    txt_unit_size.Text = dtInventory.Rows[index]["Unit_Size"].ToString();
+                    chk_special_permission.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Special_Permission"]);
+                    chk_prompt_descrip.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Prompt_Description"]);
+                    chk_check2.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Check_ID2"]);
+                    chk_count_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Count_This_Item"]);
+                    txt_cost_marku.Text = dtInventory.Rows[index]["Transfer_Cost_Markup"].ToString();
+                    chk_print_reciept.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Print_On_Receipt"]);
+                    chk_enable_markup.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Transfer_Markup_Enabled"]);
+                    chk_sell_asls.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["As_Is"]);
+                    chk_require_customer.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["RequireCustomer"]);
+                    chk_prompt_comp_date.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["PromptCompletionDate"]);
+                    chk_prompt_invoice.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["PromptInvoiceNotes"]);
+                    txt_prmp_todescrp.Text = dtInventory.Rows[index]["Prompt_DescriptionOverDollarAmt"].ToString();
+                    chk_exclude_loyalty.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Exclude_From_Loyalty"]);
+                    chk_bar_tax.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["BarTaxInclusive"]);
+                    chk_scale_deduct.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["ScaleSingleDeduct"]);
+                    txt_glnumber.Text = dtInventory.Rows[index]["GLNumber"].ToString();
+                    //cmb_discountype.SelectedIndex
+                    chk_allow_return.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowReturns"]);
+                    txt_sugested_deposit.Text = dtInventory.Rows[index]["SuggestedDeposit"].ToString();
+                    chk_liablity_item.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["Liability"]);
+                    chk_allow_depsit_invo.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowOnDepositInvoices"]);
+                    chk_allow_fleet.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["AllowOnFleetCard"]);
+                    chk_display_tax.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["DisplayTaxInPrice"]);
+                    chk_kichen.IsChecked = Convert.ToBoolean(dtInventory.Rows[index]["NeverPrintInKitchen"]);
+                    fun_fill_price_level();
+                    fun_rental_index();
+                    fun_form_heading();
+                    //fun_items_grid();
+                    ImageSourceConverter isc = new ImageSourceConverter();
+                    if (dti.Rows.Count > 0)
+                    {
+                        item_image.SetValue(Image.SourceProperty, isc.ConvertFromString(dti.Rows[0]["ImageLocation"].ToString()));
+                    }
+                    if (dts.Rows.Count > 0)
+                    {
+                        for (int i = 0; i <= dts.Rows.Count - 1; i++)
+                        {
+                            lstbx_skus.Items.Add(dts.Rows[i]["AltSKU"].ToString());
+                        }
+                    }
+                    if (dtt.Rows.Count > 0)
+                    {
+                        for (int y = 0; y <= dtt.Rows.Count - 1; y++)
+                        {
+                            lstbox_tag.Items.Add(dtt.Rows[y]["TagAlong_ItemNum"].ToString());
+                        }
+                    }
+                    if (dtp.Rows.Count > 0)
+                    {
+                        for (int p = 0; p < dtp.Rows.Count; p++)
+                        {
+                            DG_price_level.Rows[p].Cells[2].Value = Math.Round(Convert.ToDecimal(dtp.Rows[p]["Perc"]), 2).ToString() + "%";
+                        }
+                    }
+                    if (dtn.Rows.Count > 0)
+                    {
+                        txt_inventory_notes.Text = dtn.Rows[0]["Notes"].ToString();
+                    }
+                    if (dtv.Rows.Count > 0)
+                    {
+                        cost_per_txt.IsEnabled = true;
+                        case_cost_txt.IsEnabled = true;
+                        number_incase_txt.IsEnabled = true;
+                        txt_cost_marku.IsEnabled = true;
+                        chk_enable_markup.IsEnabled = true;
+                        vendor_part_txt.IsEnabled = true;
+                        for (int v = 0; v < dtv.Rows.Count; v++)
+                        {
+                            DG_ordering_info.Rows.Add();
+                            DG_ordering_info.Rows[v].Cells[0].Value = dtv.Rows[v]["vendor_name"].ToString();
+                            DG_ordering_info.Rows[v].Cells[1].Value = dtv.Rows[v]["CostPer"].ToString();
+                            DG_ordering_info.Rows[v].Cells[2].Value = "False";
+                            DG_ordering_info.Rows[v].Cells[3].Value = dtv.Rows[v]["Vendor_Part_Num"].ToString();
+                            DG_ordering_info.Rows[v].Cells[4].Value = dtv.Rows[v]["Case_Cost"].ToString();
+                            DG_ordering_info.Rows[v].Cells[5].Value = dtv.Rows[v]["NumPerVenCase"].ToString();
+                            DG_ordering_info.Rows[v].Cells[6].Value = dtv.Rows[v]["Vendor_Number"].ToString();
+                        }
+                        //string st = "select Vendor_Part_Num from Inventory where ItemNum ='" + dt.Rows[index]["ItemNum"] + "'";
+                        DataTable vdtv = objPOSManagementService.GetData("vendorPart", objInventoryClass.ItemNum);
+                        foreach (DataGridViewRow row in DG_ordering_info.Rows)
+                        {
+                            if (row.Cells[3].Value.Equals(vdtv.Rows[0]["Vendor_Part_Num"].ToString()))
+                            {
+                                row.Cells[2].Value = "True";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cost_per_txt.IsEnabled = false;
+                        case_cost_txt.IsEnabled = false;
+                        number_incase_txt.IsEnabled = false;
+                        txt_cost_marku.IsEnabled = false;
+                        //chk_enable_markup.IsEnabled = false;
+                        //vendor_part_txt.IsEnabled = false;
+                    }
+                    if (mgdt.Rows.Count > 0)
+                    {
+                        DG_modifier_groups.Items.Add(mgdt.DefaultView);
+                    }
+                    if (dt_gi.Rows.Count > 0)
+                    {
+                        for (int gi = 0; gi < dt_gi.Rows.Count; gi++)
+                        {
+                            DG_mgroups.Rows.Add();
+                            DG_mgroups.Rows[gi].Cells[0].Value = dt_gi.Rows[gi]["ModName"].ToString();
+                            DG_mgroups.Rows[gi].Cells[1].Value = dt_gi.Rows[gi]["Prompt"].ToString();
+                            if (Convert.ToByte(dt_gi.Rows[gi]["ChargePrice"]).Equals(1))
+                            {
+                                DG_mgroups.Rows[gi].Cells[2].Value = "Yes";
+                            }
+                            else
+                            {
+                                DG_mgroups.Rows[gi].Cells[2].Value = "No";
+                            }
+                            DG_mgroups.Rows[gi].Cells[3].Value = dt_gi.Rows[gi]["NumToSelect"].ToString();
+                            if (Convert.ToByte(dt_gi.Rows[gi]["Forced"]).Equals(1))
+                            {
+                                DG_mgroups.Rows[gi].Cells[4].Value = "Yes";
+                            }
+                            else
+                            {
+                                DG_mgroups.Rows[gi].Cells[4].Value = "No";
+                            }
+                        }
+                    }
+                    if (dtinitem.Rows.Count > 0)
+                    {
+                        for (int it = 0; it < dtinitem.Rows.Count; it++)
+                        {
+                            DG_indv_items.Items.Add(dtinitem.DefaultView);
+                        }
+                    }
+                    if (prdt.Rows.Count > 0)
+                    {
+                        for (int pr = 0; pr < prdt.Rows.Count; pr++)
+                        {
+                            if (prdt.Rows[pr]["SalePriceType"].ToString().Equals("1"))
+                            {
+                                lsb_sale_pricing.Items.Add("$" + Math.Round(Convert.ToDecimal(prdt.Rows[pr]["Price"]), 2).ToString() + " b/w  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_Start"]).ToString("MM/dd/yyyy") + "  -  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_End"]).ToString("MM/dd/yyyy"));
+                                per.Add(prdt.Rows[pr]["Price"].ToString());
+                            }
+                            if (prdt.Rows[pr]["SalePriceType"].ToString().Equals("0"))
+                            {
+                                lsb_sale_pricing.Items.Add(Math.Round(Convert.ToDecimal(prdt.Rows[pr]["Percent"]), 2).ToString() + "%" + " b/w  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_Start"]).ToString("MM/dd/yyyy") + "  -  " + Convert.ToDateTime(prdt.Rows[pr]["Sale_End"]).ToString("MM/dd/yyyy"));
+                                per.Add(prdt.Rows[pr]["SalePriceType"].ToString());
+                            }
+                        }
+                    }
+                    if (dtbulk.Rows.Count > 0)
+                    {
+                        for (int bul = 0; bul < dtbulk.Rows.Count; bul++)
+                        {
+                            if (Convert.ToInt32(dtbulk.Rows[bul]["Price_Type"]).Equals(0))
+                            {
+                                if (dtbulk.Rows[bul]["Description"].ToString() != "")
+                                {
+                                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + "  For " + "$" + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " -" + dtbulk.Rows[bul]["Description"].ToString());
+                                }
+                                else
+                                {
+                                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + "  For " + "$" + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2));
+                                }
 
-                //            }
-                //            if (Convert.ToInt32(dtbulk.Rows[bul]["Price_Type"]).Equals(1))
-                //            {
-                //                if (dtbulk.Rows[bul]["Description"].ToString() != "")
-                //                {
-                //                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + " For " + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " % " + " -" + dtbulk.Rows[bul]["Description"].ToString());
-                //                }
-                //                else
-                //                {
-                //                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + " For " + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " % ");
-                //                }
-                //            }
-                //        }
-                //    }
-                //    if (dttbae.Rows.Count > 0)
-                //    {
-                //        for (int tb = 0; tb < dttbae.Rows.Count; tb++)
-                //        {
-                //            if (Convert.ToInt32(dttbae.Rows[tb]["PriceType"]) != 2)
-                //            {
-                //                day.set_days.Add(Convert.ToInt32(dttbae.Rows[tb]["Criteria3"]));
+                            }
+                            if (Convert.ToInt32(dtbulk.Rows[bul]["Price_Type"]).Equals(1))
+                            {
+                                if (dtbulk.Rows[bul]["Description"].ToString() != "")
+                                {
+                                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + " For " + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " % " + " -" + dtbulk.Rows[bul]["Description"].ToString());
+                                }
+                                else
+                                {
+                                    lsb_bulk_pricing.Items.Add(Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Quan"]), 2).ToString() + " For " + Math.Round(Convert.ToDecimal(dtbulk.Rows[bul]["Bulk_Price"]), 2) + " % ");
+                                }
+                            }
+                        }
+                    }
+                    if (dttbae.Rows.Count > 0)
+                    {
+                        for (int tb = 0; tb < dttbae.Rows.Count; tb++)
+                        {
+                            if (Convert.ToInt32(dttbae.Rows[tb]["PriceType"]) != 2)
+                            {
+                                day.set_days.Add(Convert.ToInt32(dttbae.Rows[tb]["Criteria3"]));
 
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("1"))
-                //                {
-                //                    dayofweek = "Sun";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("2"))
-                //                {
-                //                    dayofweek = "Mon";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("3"))
-                //                {
-                //                    dayofweek = "Tue";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("4"))
-                //                {
-                //                    dayofweek = "Wed";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("5"))
-                //                {
-                //                    dayofweek = "Thu";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("6"))
-                //                {
-                //                    dayofweek = "Fri";
-                //                }
-                //                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("7"))
-                //                {
-                //                    dayofweek = "Sat";
-                //                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("1"))
+                                {
+                                    dayofweek = "Sun";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("2"))
+                                {
+                                    dayofweek = "Mon";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("3"))
+                                {
+                                    dayofweek = "Tue";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("4"))
+                                {
+                                    dayofweek = "Wed";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("5"))
+                                {
+                                    dayofweek = "Thu";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("6"))
+                                {
+                                    dayofweek = "Fri";
+                                }
+                                if (dttbae.Rows[tb]["Criteria3"].ToString().Equals("7"))
+                                {
+                                    dayofweek = "Sat";
+                                }
 
-                //                lsb_time_base.Items.Add("$" + Math.Round(Convert.ToDecimal(dttbae.Rows[tb]["Price"]), 2).ToString() + ", " + dayofweek + " " + dttbae.Rows[tb]["Criteria1"].ToString() + " - " + dttbae.Rows[tb]["Criteria1"].ToString());
-                //            }
-                //        }
-                //    }
-                //    if (choice_dt.Rows.Count > 0)
-                //    {
-                //        for (int ch = 0; ch < choice_dt.Rows.Count; ch++)
-                //        {
-                //            DG_choice_items.Rows.Add();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[0].Value = choice_dt.Rows[ch]["ItemNum"].ToString();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[1].Value = choice_dt.Rows[ch]["Description"].ToString();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[2].Value = choice_dt.Rows[ch]["Quantity"].ToString();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[3].Value = 0;
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[4].Value = choice_dt.Rows[ch]["Price"].ToString();
-                //        }
-                //    }
-                //    if (dt_chice_prop.Rows.Count > 0)
-                //    {
-                //        for (int ch = 0; ch < dt_chice_prop.Rows.Count; ch++)
-                //        {
-                //            DG_choice_items.Rows.Add();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[0].Value = dt_chice_prop.Rows[ch]["Value_ID"].ToString();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[1].Value = dt_chice_prop.Rows[ch]["descrip"].ToString();
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[2].Value = "1";
-                //            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[3].Value = 1;
-                //            //DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[4].Value = choice_dt.Rows[ch]["Price"].ToString();
-                //        }
-                //    }
-                //    if (dt_copon_prices.Rows.Count > 0)
-                //    {
-                //        for (int cop = 0; cop < dt_copon_prices.Rows.Count; cop++)
-                //        {
-                //            if (Convert.ToInt32(dt_copon_prices.Rows[cop]["PriceType"]) != 2)
-                //            {
-                //                int dup = 0;
-                //                int flag = 0;
-                //                int c = 1;
-                //                {
-                //                    c = 1;
-                //                    int day_id = Convert.ToInt32(dt_copon_prices.Rows[cop]["Criteria3"]);
-                //                    int ccount = DG_coupon.ColumnCount;
-                //                    for (c = 1; c < ccount; c++)
-                //                    {
-                //                        if (DG_coupon.Rows[day_id - 1].Cells[c].Value == null)
-                //                        {
-                //                            for (int x = 1; x < DG_coupon.ColumnCount; x++)
-                //                            {
-                //                                try
-                //                                {
-                //                                    if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria2"].ToString()))
-                //                                    {
-                //                                        dup = 1;
-                //                                    }
-                //                                }
-                //                                catch (Exception)
-                //                                { }
-                //                            }
-                //                            if (dup != 1)
-                //                            {
-                //                                DG_coupon.Rows[day_id - 1].Cells[c].Value = dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria2"].ToString();
-                //                                c = ccount;
-                //                                flag = 1;
-                //                                dup = 0;
-                //                            }
-                //                        }
-                //                    }
-                //                    if (flag == 0)
-                //                    {
-                //                        for (int x = 1; x < DG_coupon.ColumnCount; x++)
-                //                        {
-                //                            try
-                //                            {
-                //                                if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria1"].ToString()))
-                //                                {
-                //                                    dup = 1;
-                //                                }
-                //                            }
-                //                            catch (Exception ex)
-                //                            {
-                //                            }
-                //                        }
-                //                        if (dup != 1)
-                //                        {
-                //                            DataGridViewColumn coll = new DataGridViewTextBoxColumn();
-                //                            coll.Width = 140;
-                //                            DG_coupon.Columns.Add(coll);
-                //                            int ccc = coll.Index;
-                //                            DG_coupon.Rows[day_id - 1].Cells[ccc].Value = dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria1"].ToString();
-                //                            c = ccount;
-                //                            dup = 0;
-                //                        }
-                //                    }
-                //                    dup = 0;
-                //                }
-                //            }
-                //        }
-                //    }
-                //    if (dt_copon.Rows.Count > 0)
-                //    {
-                //        txt_copon_expir_date.Text = Convert.ToDateTime(dt_copon.Rows[0]["Exp_Date"]).ToString("MM/dd/yyyy");
-                //        txt_max_amount.Text = dt_copon.Rows[0]["Minimum_Amount_Restriction"].ToString();
-                //        txt_days_bet.Text = dt_copon.Rows[0]["NumDays_Restriction"].ToString();
-                //        chk_coupon_expire.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Enforce_Exp"]);
-                //        chk_exeption.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Include_All_Except"]);
-                //        chk_special_pricing.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["ApplyOnSpecialPricing"]);
-                //        chk_parent_items.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Apply_To_Parent"]);
-                //        chk_allow_through_bonus.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Coupon_Bonus_Only"]);
-                //        chk_supress_bonus.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Suppress_Bonus"]);
-                //        chk_discounted_items.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["ApplyOnDiscountedItems"]);
-                //        if (Convert.ToInt32(dt_copon.Rows[0]["Coupon_Flat_Percent"]) == 0)
-                //        {
-                //            rdb_flat_amount.IsChecked = true;
-                //        }
-                //        else if (Convert.ToInt32(dt_copon.Rows[0]["Coupon_Flat_Percent"]) == 1)
-                //        {
-                //            rdb_discount_amt.IsChecked = true;
-                //        }
-                //    }
-                //    if (dt_crule.Rows.Count > 0)
-                //    {
-                //        for (int cr = 0; cr < dt_crule.Rows.Count; cr++)
-                //        {
-                //            DG_restriction.Rows.Add();
-                //            if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(0))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[1].Value = "Item";
-                //            }
-                //            else if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(1))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[1].Value = "Department";
-                //            }
-                //            else if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(2))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[1].Value = "Category";
-                //            }
-                //            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(0))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[0].Value = "Include";
-                //            }
-                //            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(1))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[0].Value = "Exclude";
-                //            }
-                //            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(2))
-                //            {
-                //                DG_restriction.Rows[cr].Cells[0].Value = "Exclusive";
-                //            }
-                //            DG_restriction.Rows[cr].Cells[3].Value = dt_crule.Rows[cr]["ID"].ToString();
-                //            DG_restriction.Rows[cr].Cells[2].Value = dt_crule.Rows[cr]["Descrip"].ToString();
-                //        }
-                //    }
-                //    if (dt_sale_history.Rows.Count > 0)
-                //    {
-                //        for (int sale = 0; sale < dt_sale_history.Rows.Count; sale++)
-                //        {
-                //            DG_sale_history.Rows.Add();
-                //            DG_sale_history.Rows[sale].Cells[0].Value = Convert.ToDateTime(dt_sale_history.Rows[sale]["DateTime"]);
-                //            DG_sale_history.Rows[sale].Cells[1].Value = dt_sale_history.Rows[sale]["Store_ID"].ToString();
-                //            DG_sale_history.Rows[sale].Cells[2].Value = dt_sale_history.Rows[sale]["Invoice_Number"].ToString();
-                //            DG_sale_history.Rows[sale].Cells[3].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["Quantity"]), 2).ToString();
-                //            DG_sale_history.Rows[sale].Cells[4].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["PricePer"]), 2).ToString();
-                //            DG_sale_history.Rows[sale].Cells[5].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["CostPer"]), 2).ToString();
-                //            DG_sale_history.Rows[sale].Cells[6].Value = dt_sale_history.Rows[sale]["CustNum"].ToString();
-                            //  DG_sale_history.Rows[sale].Cells[7].Value = dt_sale_history.Rows[sale]["ItemNum"].ToString();
-                        //}
-                    //}
+                                lsb_time_base.Items.Add("$" + Math.Round(Convert.ToDecimal(dttbae.Rows[tb]["Price"]), 2).ToString() + ", " + dayofweek + " " + dttbae.Rows[tb]["Criteria1"].ToString() + " - " + dttbae.Rows[tb]["Criteria1"].ToString());
+                            }
+                        }
+                    }
+                    if (choice_dt.Rows.Count > 0)
+                    {
+                        for (int ch = 0; ch < choice_dt.Rows.Count; ch++)
+                        {
+                            DG_choice_items.Rows.Add();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[0].Value = choice_dt.Rows[ch]["ItemNum"].ToString();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[1].Value = choice_dt.Rows[ch]["Description"].ToString();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[2].Value = choice_dt.Rows[ch]["Quantity"].ToString();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[3].Value = 0;
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[4].Value = choice_dt.Rows[ch]["Price"].ToString();
+                        }
+                    }
+                    if (dt_chice_prop.Rows.Count > 0)
+                    {
+                        for (int ch = 0; ch < dt_chice_prop.Rows.Count; ch++)
+                        {
+                            DG_choice_items.Rows.Add();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[0].Value = dt_chice_prop.Rows[ch]["Value_ID"].ToString();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[1].Value = dt_chice_prop.Rows[ch]["descrip"].ToString();
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[2].Value = "1";
+                            DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[3].Value = 1;
+                            //DG_choice_items.Rows[DG_choice_items.Rows.Count - 1].Cells[4].Value = choice_dt.Rows[ch]["Price"].ToString();
+                        }
+                    }
+                    if (dt_copon_prices.Rows.Count > 0)
+                    {
+                        for (int cop = 0; cop < dt_copon_prices.Rows.Count; cop++)
+                        {
+                            if (Convert.ToInt32(dt_copon_prices.Rows[cop]["PriceType"]) != 2)
+                            {
+                                int dup = 0;
+                                int flag = 0;
+                                int c = 1;
+                                {
+                                    c = 1;
+                                    int day_id = Convert.ToInt32(dt_copon_prices.Rows[cop]["Criteria3"]);
+                                    int ccount = DG_coupon.ColumnCount;
+                                    for (c = 1; c < ccount; c++)
+                                    {
+                                        if (DG_coupon.Rows[day_id - 1].Cells[c].Value == null)
+                                        {
+                                            for (int x = 1; x < DG_coupon.ColumnCount; x++)
+                                            {
+                                                try
+                                                {
+                                                    if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria2"].ToString()))
+                                                    {
+                                                        dup = 1;
+                                                    }
+                                                }
+                                                catch (Exception)
+                                                { }
+                                            }
+                                            if (dup != 1)
+                                            {
+                                                DG_coupon.Rows[day_id - 1].Cells[c].Value = dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria2"].ToString();
+                                                c = ccount;
+                                                flag = 1;
+                                                dup = 0;
+                                            }
+                                        }
+                                    }
+                                    if (flag == 0)
+                                    {
+                                        for (int x = 1; x < DG_coupon.ColumnCount; x++)
+                                        {
+                                            try
+                                            {
+                                                if (DG_coupon.Rows[day_id - 1].Cells[x].Value.Equals(dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria1"].ToString()))
+                                                {
+                                                    dup = 1;
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                            }
+                                        }
+                                        if (dup != 1)
+                                        {
+                                            DataGridViewColumn coll = new DataGridViewTextBoxColumn();
+                                            coll.Width = 140;
+                                            DG_coupon.Columns.Add(coll);
+                                            int ccc = coll.Index;
+                                            DG_coupon.Rows[day_id - 1].Cells[ccc].Value = dt_copon_prices.Rows[cop]["Criteria1"].ToString() + "-" + dt_copon_prices.Rows[cop]["Criteria1"].ToString();
+                                            c = ccount;
+                                            dup = 0;
+                                        }
+                                    }
+                                    dup = 0;
+                                }
+                            }
+                        }
+                    }
+                    if (dt_copon.Rows.Count > 0)
+                    {
+                        txt_copon_expir_date.Text = Convert.ToDateTime(dt_copon.Rows[0]["Exp_Date"]).ToString("MM/dd/yyyy");
+                        txt_max_amount.Text = dt_copon.Rows[0]["Minimum_Amount_Restriction"].ToString();
+                        txt_days_bet.Text = dt_copon.Rows[0]["NumDays_Restriction"].ToString();
+                        chk_coupon_expire.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Enforce_Exp"]);
+                        chk_exeption.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Include_All_Except"]);
+                        chk_special_pricing.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["ApplyOnSpecialPricing"]);
+                        chk_parent_items.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Apply_To_Parent"]);
+                        chk_allow_through_bonus.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Coupon_Bonus_Only"]);
+                        chk_supress_bonus.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["Suppress_Bonus"]);
+                        chk_discounted_items.IsChecked = Convert.ToBoolean(dt_copon.Rows[0]["ApplyOnDiscountedItems"]);
+                        if (Convert.ToInt32(dt_copon.Rows[0]["Coupon_Flat_Percent"]) == 0)
+                        {
+                            rdb_flat_amount.IsChecked = true;
+                        }
+                        else if (Convert.ToInt32(dt_copon.Rows[0]["Coupon_Flat_Percent"]) == 1)
+                        {
+                            rdb_discount_amt.IsChecked = true;
+                        }
+                    }
+                    if (dt_crule.Rows.Count > 0)
+                    {
+                        for (int cr = 0; cr < dt_crule.Rows.Count; cr++)
+                        {
+                            DG_restriction.Rows.Add();
+                            if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(0))
+                            {
+                                DG_restriction.Rows[cr].Cells[1].Value = "Item";
+                            }
+                            else if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(1))
+                            {
+                                DG_restriction.Rows[cr].Cells[1].Value = "Department";
+                            }
+                            else if (Convert.ToInt32(dt_crule.Rows[cr]["Type"]).Equals(2))
+                            {
+                                DG_restriction.Rows[cr].Cells[1].Value = "Category";
+                            }
+                            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(0))
+                            {
+                                DG_restriction.Rows[cr].Cells[0].Value = "Include";
+                            }
+                            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(1))
+                            {
+                                DG_restriction.Rows[cr].Cells[0].Value = "Exclude";
+                            }
+                            if (Convert.ToInt32(dt_crule.Rows[cr]["Allow_Or_Disallow"]).Equals(2))
+                            {
+                                DG_restriction.Rows[cr].Cells[0].Value = "Exclusive";
+                            }
+                            DG_restriction.Rows[cr].Cells[3].Value = dt_crule.Rows[cr]["ID"].ToString();
+                            DG_restriction.Rows[cr].Cells[2].Value = dt_crule.Rows[cr]["Descrip"].ToString();
+                        }
+                    }
+                    if (dt_sale_history.Rows.Count > 0)
+                    {
+                        for (int sale = 0; sale < dt_sale_history.Rows.Count; sale++)
+                        {
+                            DG_sale_history.Rows.Add();
+                            DG_sale_history.Rows[sale].Cells[0].Value = Convert.ToDateTime(dt_sale_history.Rows[sale]["DateTime"]);
+                            DG_sale_history.Rows[sale].Cells[1].Value = dt_sale_history.Rows[sale]["Store_ID"].ToString();
+                            DG_sale_history.Rows[sale].Cells[2].Value = dt_sale_history.Rows[sale]["Invoice_Number"].ToString();
+                            DG_sale_history.Rows[sale].Cells[3].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["Quantity"]), 2).ToString();
+                            DG_sale_history.Rows[sale].Cells[4].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["PricePer"]), 2).ToString();
+                            DG_sale_history.Rows[sale].Cells[5].Value = Math.Round(Convert.ToDecimal(dt_sale_history.Rows[sale]["CostPer"]), 2).ToString();
+                            DG_sale_history.Rows[sale].Cells[6].Value = dt_sale_history.Rows[sale]["CustNum"].ToString();
+                              DG_sale_history.Rows[sale].Cells[7].Value = dt_sale_history.Rows[sale]["ItemNum"].ToString();
+                        }
+                    }
                     fun_rental_index();
                     fun_pending_order(0);
-                //}
+                }
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
         private void clear_fields()

@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Domain.Base;
+using POS.Services.Common;
+using POS.Domain.Common;
 
 namespace POS.Retail
 {
@@ -20,9 +23,9 @@ namespace POS.Retail
     /// </summary>
     public partial class SearchInventoryForm : Window
     {
-        //GlobalClass glo = new GlobalClass();
-       
+
         private static string item_id = null;
+        POSManagementService objPOSManagementService = new POSManagementService();
         public SearchInventoryForm() //SearchInventory()
         {
             InitializeComponent();
@@ -33,35 +36,36 @@ namespace POS.Retail
             try
             {
                 //string query = "select 'ALL RECORDS' as records, 'No Category' as id union all select  Description as records, [Cat_ID] as id from Categories ";
-                //DataTable dtc = glo.getdata(query);
-                //cmb_category.ItemsSource = dtc.DefaultView;
+                DataTable dtc = objPOSManagementService.GetCategory();
+                cmb_category.ItemsSource = dtc.DefaultView;
 
-                //cmb_category.DisplayMemberPath = "records";
-                //cmb_category.SelectedValuePath = "id";
+                cmb_category.DisplayMemberPath = "records";
+                cmb_category.SelectedValuePath = "id";
 
 
                 //string querry = "select 'ALL RECORDS' as dept_desc, 'No Depatrment' as id_detp union all select Description as dept_desc, [Dept_ID] as id_detp from Departments";
-                //DataTable dtd = glo.getdata(querry);
-                //cmb_dept.ItemsSource = dtd.DefaultView;
-                //cmb_dept.DisplayMemberPath = "dept_desc";
-                //cmb_dept.SelectedValuePath = "id_detp";
+                DataTable dtd = objPOSManagementService.getDepartments();
+                cmb_dept.ItemsSource = dtd.DefaultView;
+                cmb_dept.DisplayMemberPath = "dept_desc";
+                cmb_dept.SelectedValuePath = "id_detp";
 
                 //string qury = "select 'ALL RECORDS' as records_comp, 'No vendor' as id_compny union all select Company as records_comp, Vendor_Number as id_compny from Vendors";
-                //DataTable dtv = glo.getdata(qury);
-                //cmb_vendor.ItemsSource = dtv.DefaultView;
-                //cmb_vendor.DisplayMemberPath = "records_comp";
-                //cmb_vendor.SelectedValuePath = "id_compny";
+                DataTable dtv = objPOSManagementService.getVendors();
+                cmb_vendor.ItemsSource = dtv.DefaultView;
+                cmb_vendor.DisplayMemberPath = "records_comp";
+                cmb_vendor.SelectedValuePath = "id_compny";
             }
             catch (Exception)
             { }
         }
         private void fun_select_items()
         {
+            
             try
             {
                 if (cmb_category.SelectedIndex > -1 && cmb_dept.SelectedIndex > -1)
                 {
-
+                    InventoryClass objInventoryClass = new InventoryClass();
                     string category = null;
                     string dept = null;
                     string modifier = null;
@@ -114,10 +118,16 @@ namespace POS.Retail
                     {
                         kits = "%";
                     }
-
+                    objInventoryClass.Dept_ID = dept;
+                    objInventoryClass.IsModifier = Convert.ToInt32(modifier);
+                    objInventoryClass.IsKit = Convert.ToInt32(kits);
+                    objInventoryClass.Vendor_Number = vendor;
+                    objInventoryClass.IsDeleted = 0;
+                    objInventoryClass.Cat_id = category;
+                    DataTable dt = objPOSManagementService.filterInventory(objInventoryClass);
                     //string quary = "select * from VIEW_ITEMS where c_id like '" + category + "' and d_id like '" + dept + "' and IsModifier like '" + modifier + "' and IsKit like '" + kits + "' and Vendor_Number like " + vendor + " and delte = 0";
-                    //DataTable dt = glo.getdata(quary);
-                    //DG_items.ItemsSource = dt.DefaultView;
+                   // DataTable dt = 
+                    DG_items.ItemsSource = dt.DefaultView;
                 }
             }
             catch (Exception)
@@ -170,24 +180,24 @@ namespace POS.Retail
         private void btn_search_items_Click(object sender, RoutedEventArgs e)
         {
             //string prec = "%";
-            //if (rb_item_num.IsChecked == true)
-            //{
-            //    string quary = "select * from Inventory where ItemNum like '"+ txt_search_text.Text + prec +"' order by ItemNum DESC";
-            //    DataTable dt = glo.getdata(quary);
-            //    DG_items.ItemsSource = dt.DefaultView;
-            //}
-            //else if (rb_description.IsChecked == true)
-            //{
-            //    string quary = "select * from Inventory where ItemName like '" + txt_search_text.Text + prec + "' order by ItemName DESC";
-            //    DataTable dt = glo.getdata(quary);
-            //    DG_items.ItemsSource = dt.DefaultView;
-            //}
-            //else if (rb_vendor.IsChecked == true)
-            //{
-            //    string quary = "select * from Inventory where Vendor_Part_Num like '" + txt_search_text.Text + prec + "' order by Vendor_Part_Num DESC";
-            //    DataTable dt = glo.getdata(quary);
-            //    DG_items.ItemsSource = dt.DefaultView;
-            //}
+            if (rb_item_num.IsChecked == true)
+            {
+                //string quary = "select * from Inventory where ItemNum like '" + txt_search_text.Text + prec + "' order by ItemNum DESC";
+                DataTable dt = objPOSManagementService.searchItem("sbItemNum", txt_search_text.Text);
+                DG_items.ItemsSource = dt.DefaultView;
+            }
+            else if (rb_description.IsChecked == true)
+            {
+               // string quary = "select * from Inventory where ItemName like '" + txt_search_text.Text + prec + "' order by ItemName DESC";
+                DataTable dt = objPOSManagementService.searchItem("sbItemName", txt_search_text.Text);
+                DG_items.ItemsSource = dt.DefaultView;
+            }
+            else if (rb_vendor.IsChecked == true)
+            {
+               // string quary = "select * from Inventory where Vendor_Part_Num like '" + txt_search_text.Text + prec + "' order by Vendor_Part_Num DESC";
+                DataTable dt = objPOSManagementService.searchItem("sbVendorPartNo", txt_search_text.Text);
+                DG_items.ItemsSource = dt.DefaultView;
+            }
         }
 
         private void chk_modifier_Checked(object sender, RoutedEventArgs e)
@@ -249,6 +259,7 @@ namespace POS.Retail
         private void btn_new_item_Click(object sender, RoutedEventArgs e)
         {
             InventoryForm obj = new InventoryForm();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             obj.ShowDialog();
         }
     }
