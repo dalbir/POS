@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using POS.Repository.SQLServer;
 using POS.Domain.Common;
 using System.Data;
+using System.Data.SqlClient;
 
 
 namespace POS.Repository.SQLServer
@@ -21,29 +22,58 @@ namespace POS.Repository.SQLServer
            {
                if (objCusClass.flage == "insert")
                {
+                   
+                  // result = sqlServerRepost.ExecuteNonQuery("insert into CustomerInsertion(@CustNum ,@First_Name ,@Last_Name ,@Company  , " +
+                  // "@Address_1 ,@Address_2 ,@City, @State ,@Zip_Code ,@Phone_1 ,@Phone_2 ,@CC_Type ,@CC_Num ,@CC_Exp ,@Discount_Level , "+
+                  // "@Discount_Percent  ,@Acct_Open_Date  ,@Acct_Close_Date  ,@Acct_Balance  , "+
+                  // "@Acct_Max_Balance  ,@Bonus_Plan_Member  ,@Bonus_Points ,@Tax_Exempt  ,@Member_Exp ,"+
+                  // "@Dirty  ,@Phone_3 ,@Phone_4 ,@EMail ,@County ,@Def_SP ,@CreateDate  ,@Referral , "+
+                  // "@Birthday  ,@Last_Birthday_Bonus  ,@Last_Visit  ,@Require_PONum  ,@Max_Charge_NumDays, "+
+                  // "@Max_Charge_Amount  ,@License_Num ,@ID_Last_Checked  ,@Next_Start_Date, "+
+                  // "@Checking_AcctNum ,@PrintNotes  ,@Loyalty_Plan_ID ,@Tax_Rate_ID  ,@Bill_To_Name , "+
+                  // "@Contact_1 ,@Contact_2 ,@Terms ,@Resale_Num ,@Last_Coupon,@Account_Type, "+
+                  // "@ChargeAtCost  ,@Disabled  ,@ImagePath ,@License_ExpDate  ,@TaxID , "+
+                  // "@SecretCode ,@OnlineUserName ,@OnlinePassword) values  "+
+                  //"('" + objCusClass.CustNum + "','" + objCusClass.First_Name + "','" + objCusClass.Last_Name + "','" + objCusClass.Company + "', " +
+                  //"'" + objCusClass.Address_1 + "','" + objCusClass.Address_2 + "','" + objCusClass.City + "','" + objCusClass.State + "', " +
+                  //"'" + objCusClass.Zip_Code + "','" + objCusClass.Phone_1 + "','" + objCusClass.Phone_2 + "','" + objCusClass.CC_Type + "', " +
+                  //"'" + objCusClass.CC_Num + "','" + objCusClass.CC_Exp + "','" + objCusClass.Discount_Level + "','" + objCusClass.Discount_Percent + "', " +
+                  //"'" + objCusClass.Acct_Open_Date + "','" + objCusClass.Acct_Close_Date + "','" + objCusClass.Acct_Balance + "','" + objCusClass.Acct_Max_Balance + "', " +
+                  //"'" + objCusClass.Bonus_Plan_Member + "','" + objCusClass.Bonus_Points + "','" + objCusClass.Tax_Exempt + "','" + objCusClass.Member_Exp + "', " +
+                  //"'" + objCusClass.Dirty + "','" + objCusClass.Phone_3 + "','" + objCusClass.Phone_4 + "','" + objCusClass.EMail + "', " +
+                  //"'" + objCusClass.County + "','" + objCusClass.Def_SP + "','" + objCusClass.CreateDate + "','" + objCusClass.Referral + "', " +
+                  //"'" + objCusClass.Birthday + "','" + objCusClass.Last_Birthday_Bonus + "','" + objCusClass.Last_Visit + "','" + objCusClass.Require_PONum + "', " +
+                  //"'" + objCusClass.Max_Charge_NumDays + "','" + objCusClass.Max_Charge_Amount + "','" + objCusClass.License_Num + "', " +
+                  //"'" + objCusClass.ID_Last_Checked + "','" + objCusClass.Next_Start_Date + "','" + objCusClass.Checking_AcctNum + "', " +
+                  //"'" + objCusClass.PrintNotes + "','" + objCusClass.Loyalty_Plan_ID + "','" + objCusClass.Tax_Rate_ID + "','" + objCusClass.Bill_To_Name + "', " +
+                  //"'" + objCusClass.Contact_1 + "','" + objCusClass.Contact_2 + "','" + objCusClass.Terms + "','" + objCusClass.Resale_Num + "', " +
+                  //"'" + objCusClass.Last_Coupon + "','" + objCusClass.Account_Type + "','" + objCusClass.ChargeAtCost + "','" + objCusClass.Disabled + "', " +
+                  //"'" + objCusClass.ImagePath + "','" + objCusClass.License_ExpDate + "','" + objCusClass.TaxID + "','" + objCusClass.SecretCode + "', " +
+                  //"'" + objCusClass.OnlineUserName + "','" + objCusClass.OnlinePassword + "')");
+
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer(CustNum,First_Name,Last_Name,Company, " +
-                   "Address_1,Address_2,City,State,Zip_Code,Phone_1,Phone_2,CC_Type,CC_Num,CC_Exp,Discount_Level,Discount_Percent, "+
-                   "Acct_Open_Date,Acct_Close_Date,Acct_Balance,Acct_Max_Balance,Bonus_Plan_Member,Bonus_Points,Tax_Exempt, "+
-                   "Member_Exp,Dirty,Phone_3,Phone_4,EMail,County,Def_SP,CreateDate,Referral,Birthday,Last_Birthday_Bonus,Last_Visit, "+
-                   "Require_PONum,Max_Charge_NumDays,Max_Charge_Amount,License_Num,ID_Last_Checked,Next_Start_Date,Checking_AcctNum, "+
-                   "PrintNotes,Loyalty_Plan_ID,Tax_Rate_ID,Bill_To_Name,Contact_1,Contact_2,Terms,Resale_Num,Last_Coupon,Account_Type, "+
-                   "ChargeAtCost,Disabled,ImagePath,License_ExpDate,TaxID,SecretCode,OnlineUserName,OnlinePassword) values "+
-                   "('" + objCusClass.CustNum + "','" + objCusClass.First_Name + "','" + objCusClass.Last_Name + "','" + objCusClass.Company+ "', "+
-                   "'" + objCusClass.Address_1 + "','" + objCusClass.Address_2 + "','"+ objCusClass.City +"','"+ objCusClass.State +"' "+
-                   "'"+ objCusClass.Zip_Code +"','"+ objCusClass.Phone_1 +"','"+ objCusClass.Phone_2 +"','"+ objCusClass.CC_Type +"' "+
-                   "'"+ objCusClass.CC_Num +"','"+ objCusClass.CC_Exp +"','"+ objCusClass.Discount_Level +"','"+ objCusClass.Discount_Percent +"' "+
-                   "'"+ objCusClass.Acct_Open_Date +"','"+ objCusClass.Acct_Close_Date +"','"+ objCusClass.Acct_Balance +"','"+ objCusClass.Acct_Max_Balance +"' "+
-                   "'"+ objCusClass.Bonus_Plan_Member +"','"+ objCusClass.Bonus_Points +"','"+ objCusClass.Tax_Exempt +"','"+ objCusClass.Member_Exp +"' "+
-                   "'"+ objCusClass.Dirty +"','"+ objCusClass.Phone_3 +"','"+ objCusClass.Phone_4 +"','"+ objCusClass.EMail +"' "+
-                   "'"+ objCusClass.County +"','"+ objCusClass.Def_SP +"','"+ objCusClass.CreateDate +"','"+ objCusClass.Referral +"' "+
-                   "'"+ objCusClass.Birthday +"','"+ objCusClass.Last_Birthday_Bonus +"','"+ objCusClass.Last_Visit +"','"+ objCusClass.Require_PONum +"' "+
-                   "'"+ objCusClass.Max_Charge_NumDays +"','"+ objCusClass.Max_Charge_Amount +"','"+ objCusClass.License_Num +"' "+
-                   "'"+ objCusClass.ID_Last_Checked +"','"+ objCusClass.Next_Start_Date +"','"+ objCusClass.Checking_AcctNum +"' "+
-                   "'"+ objCusClass.PrintNotes +"','"+ objCusClass.Loyalty_Plan_ID +"','"+ objCusClass.Tax_Rate_ID +"','"+ objCusClass.Bill_To_Name +"' "+
-                   "'"+ objCusClass.Contact_1 +"','"+ objCusClass.Contact_2 +"','"+ objCusClass.Terms +"','"+ objCusClass.Resale_Num +"' "+
-                   "'"+ objCusClass.Last_Coupon +"','"+ objCusClass.Account_Type +"','"+ objCusClass.ChargeAtCost +"','"+ objCusClass.Disabled +"' "+
-                   "'"+ objCusClass.ImagePath +"','"+ objCusClass.License_ExpDate +"','"+ objCusClass.TaxID +"','"+ objCusClass.SecretCode +"' "+
-                   "'"+ objCusClass.OnlineUserName +"','"+ objCusClass.OnlinePassword +"')");
+                   "Address_1,Address_2,City,State,Zip_Code,Phone_1,Phone_2,CC_Type,CC_Num,CC_Exp,Discount_Level,Discount_Percent, " +
+                   "Acct_Open_Date,Acct_Close_Date,Acct_Balance,Acct_Max_Balance,Bonus_Plan_Member,Bonus_Points,Tax_Exempt, " +
+                   "Member_Exp,Dirty,Phone_3,Phone_4,EMail,County,Def_SP,CreateDate,Referral,Birthday,Last_Birthday_Bonus,Last_Visit, " +
+                   "Require_PONum,Max_Charge_NumDays,Max_Charge_Amount,License_Num,ID_Last_Checked,Next_Start_Date,Checking_AcctNum, " +
+                   "PrintNotes,Loyalty_Plan_ID,Tax_Rate_ID,Bill_To_Name,Contact_1,Contact_2,Terms,Resale_Num,Last_Coupon,Account_Type, " +
+                   "ChargeAtCost,Disabled,ImagePath,License_ExpDate,TaxID,SecretCode,OnlineUserName,OnlinePassword) values " +
+                   "('" + objCusClass.CustNum + "','" + objCusClass.First_Name + "','" + objCusClass.Last_Name + "','" + objCusClass.Company + "', " +
+                   "'" + objCusClass.Address_1 + "','" + objCusClass.Address_2 + "','" + objCusClass.City + "','" + objCusClass.State + "', " +
+                   "'" + objCusClass.Zip_Code + "','" + objCusClass.Phone_1 + "','" + objCusClass.Phone_2 + "','" + objCusClass.CC_Type + "', " +
+                   "'" + objCusClass.CC_Num + "','" + objCusClass.CC_Exp + "','" + objCusClass.Discount_Level + "','" + objCusClass.Discount_Percent + "', " +
+                   "'" + objCusClass.Acct_Open_Date + "','" + objCusClass.Acct_Close_Date + "','" + objCusClass.Acct_Balance + "','" + objCusClass.Acct_Max_Balance + "', " +
+                   "'" + objCusClass.Bonus_Plan_Member + "','" + objCusClass.Bonus_Points + "','" + objCusClass.Tax_Exempt + "','" + objCusClass.Member_Exp + "', " +
+                   "'" + objCusClass.Dirty + "','" + objCusClass.Phone_3 + "','" + objCusClass.Phone_4 + "','" + objCusClass.EMail + "', " +
+                   "'" + objCusClass.County + "','" + objCusClass.Def_SP + "','" + objCusClass.CreateDate + "','" + objCusClass.Referral + "', " +
+                   "'" + objCusClass.Birthday + "','" + objCusClass.Last_Birthday_Bonus + "','" + objCusClass.Last_Visit + "','" + objCusClass.Require_PONum + "', " +
+                   "'" + objCusClass.Max_Charge_NumDays + "','" + objCusClass.Max_Charge_Amount + "','" + objCusClass.License_Num + "', " +
+                   "'" + objCusClass.ID_Last_Checked + "','" + objCusClass.Next_Start_Date + "','" + objCusClass.Checking_AcctNum + "', " +
+                   "'" + objCusClass.PrintNotes + "','" + objCusClass.Loyalty_Plan_ID + "','" + objCusClass.Tax_Rate_ID + "','" + objCusClass.Bill_To_Name + "', " +
+                   "'" + objCusClass.Contact_1 + "','" + objCusClass.Contact_2 + "','" + objCusClass.Terms + "','" + objCusClass.Resale_Num + "', " +
+                   "'" + objCusClass.Last_Coupon + "','" + objCusClass.Account_Type + "','" + objCusClass.ChargeAtCost + "','" + objCusClass.Disabled + "', " +
+                   "'" + objCusClass.ImagePath + "','" + objCusClass.License_ExpDate + "','" + objCusClass.TaxID + "','" + objCusClass.SecretCode + "', " +
+                   "'" + objCusClass.OnlineUserName + "','" + objCusClass.OnlinePassword + "')");
                }
                if (result > 0)
                {
@@ -327,6 +357,20 @@ namespace POS.Repository.SQLServer
            }
            return objCustRefrnce;
        }
+       string maxID;
+       public string GetMaxRefrenceID(CustomerReferenceClass objCustomerReferenceClass)
+       {
+           try
+           {
+               maxID = sqlServerRepost.ExecuteScalar("select isnull(max(ID),0)+1 from Customer_Reference");
+           }
+           catch (Exception)
+           {
+
+           }
+           return maxID;
+       }
+      
        #endregion
 
        #region CustomerShip
