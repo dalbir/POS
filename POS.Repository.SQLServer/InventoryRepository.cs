@@ -802,7 +802,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtkit = sqlServerRepost.GetDataTable("select ItemNum, ItemName, Price from Inventory where ItemNum = '" + p + "'");
+                dtkit = sqlServerRepost.GetDataTable("select ItemNum, ItemName, Price, Store_ID, Cost from Inventory where ItemNum = '" + p + "'");
             }
             catch (Exception ex)
             {
@@ -930,7 +930,8 @@ namespace POS.Repository.SQLServer
                                         "AllowOnFleetCard='" + objInventoryClass.AllowOnFleetCard + "', " +
                                         "DoughnutTax='" + objInventoryClass.DoughnutTax + "', " +
                                         "DisplayTaxInPrice='" + objInventoryClass.DisplayTaxInPrice + "', " +
-                                        "NeverPrintInKitchen='" + objInventoryClass.NeverPrintInKitchen + "')");
+                                        "NeverPrintInKitchen='" + objInventoryClass.NeverPrintInKitchen +
+                                       "where ItemNum ='" + objInventoryClass.ItemNum + "')");
                 if (result == 1)
                 {
                     objInventoryClass.IsSuccessfull = true;
@@ -1107,6 +1108,29 @@ namespace POS.Repository.SQLServer
 
             }
             return dtStandard;
+        }
+
+        public InventoryClass updateInventory(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                int result = sqlServerRepost.ExecuteNonQuery("update Inventory set Vendor_Number = '" + objInventoryClass.Vendor_Number + "', Vendor_Part_Num = '" + objInventoryClass.Vendor_Part_Num + "' where ItemNum = '" + objInventoryClass.ItemNum + "'");
+                if (result == 1)
+                {
+                    objInventoryClass.IsSuccessfull = true;
+                    //ObjUpdateDrverNaFlageInB.Message = "Process executed successfully.";
+                }
+                else
+                {
+                    objInventoryClass.IsSuccessfull = false;
+                    // ObjUpdateDrverNaFlageInB.Message = "Process failed.";
+                }
+                
+            }
+            catch (Exception)
+            {
+            }
+            return objInventoryClass;
         }
     }
 }

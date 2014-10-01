@@ -12,7 +12,7 @@
         <Menu Height="28" Name="menu1" VerticalAlignment="Top" FontWeight="Bold" FontSize="13">
             <MenuItem Header="Options" />
         </Menu>
-        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Visible" Grid.RowSpan="2">
+        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Hidden" Grid.RowSpan="2">
             <GroupBox Header="View Open or Close PO's" Height="78" HorizontalAlignment="Left" Margin="21,20,0,0" Name="groupBox1" VerticalAlignment="Top" Width="201" BorderBrush="#49FF7F50" FontWeight="Bold">
                 <Grid>
                     <RadioButton Content="Open" Height="16" HorizontalAlignment="Left" Margin="6,17,0,0" Name="rb_open" VerticalAlignment="Top" Width="73" Checked="rb_open_Checked" />
@@ -59,7 +59,7 @@
                 </my:DataGridView>
             </WindowsFormsHost>
         </Grid>
-        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Hidden" Width="987" Grid.RowSpan="2">
+        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Visible" Width="987" Grid.RowSpan="2">
             <TabControl Height="307" HorizontalAlignment="Left" Margin="13,9,0,0" Name="tabControl1" VerticalAlignment="Top" Width="820" FontWeight="Normal">
                 <TabItem Header="Genral Information" Name="tabItem1" FontWeight="Normal">
                     <Grid>

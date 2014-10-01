@@ -213,5 +213,18 @@ namespace POS.Repository.SQLServer
            }
            return dtFileter;
        }
+       DataTable dtVewDetailPo;
+       public DataTable viewDetailPo(string id, string ven_id)
+       {
+           try
+           {
+               dtVewDetailPo = objSQLServerRepository.GetDataTable("SELECT * FROM VIEW_DETAIL_PO WHERE ItemNum = '" + id + "' and Vendor_Number = '" + ven_id + "'");
+           }
+           catch(Exception ex)
+           {
+
+           }
+           return dtVewDetailPo;
+       }
     }
 }

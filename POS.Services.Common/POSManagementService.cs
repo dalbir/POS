@@ -369,7 +369,19 @@ namespace POS.Services.Common
             PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
             return objPurchaseOrderRepository.FilterDataRep(flage, str);
         }
+        public DataTable veiwDetailPo(string id, string ven_id)
+        {
+            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
+            return objPurchaseOrderRepository.viewDetailPo(id, ven_id);
+        }
+        public InventoryClass updateInventory(InventoryClass objInventoryClass)
+        {
+            InventoryRepository objPurchaseOrderRepository = new InventoryRepository();
+            return objPurchaseOrderRepository.updateInventory(objInventoryClass);
+        }
         #endregion
+
+
 
 
     }
