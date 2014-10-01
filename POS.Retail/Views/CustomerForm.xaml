@@ -31,7 +31,7 @@
                                     <VisualState x:Name="Disabled"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="Images/find.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
+                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/find.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -291,13 +291,13 @@
                     <ListBox Height="338" HorizontalAlignment="Left" Margin="6,6,0,0" Name="lstbx_stores" VerticalAlignment="Top" Width="621" />
                     <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="643,10,0,0" Name="btn_add_job" VerticalAlignment="Top" Width="88">
                         <StackPanel Height="50" Width="84">
-                            <Image Height="31" Source="Images/camera_test1.png" />
+                            <Image Height="31" Source="/Images/camera_test1.png" />
                             <TextBlock Height="17" Width="30">Add</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="643,99,0,0" Name="btn_remove_job" VerticalAlignment="Top" Width="88">
                         <StackPanel Height="53" Width="80">
-                            <Image Height="33" Source="Images/delete.png" />
+                            <Image Height="33" Source="/Images/delete.png" />
                             <TextBlock Width="51">Remove</TextBlock>
                         </StackPanel>
                     </Button>
@@ -344,7 +344,7 @@
                 </LinearGradientBrush>
             </Button.Background>
             <StackPanel Height="43" Width="90">
-                <Image Height="22" Source="Images/right.png" Width="75" />
+                <Image Height="22" Source="/Images/right.png" Width="75" />
                 <TextBlock FontSize="12" Width="41">Next</TextBlock>
             </StackPanel>
         </Button>
@@ -356,7 +356,7 @@
                 </LinearGradientBrush>
             </Button.Background>
             <StackPanel Height="45" Width="88">
-                <Image Height="24" Source="Images/right1.png" Width="85" />
+                <Image Height="24" Source="/Images/right1.png" Width="85" />
                 <TextBlock FontSize="12" Width="55">Previous</TextBlock>
             </StackPanel>
         </Button>
