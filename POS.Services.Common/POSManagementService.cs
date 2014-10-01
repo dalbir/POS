@@ -369,20 +369,69 @@ namespace POS.Services.Common
             PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
             return objPurchaseOrderRepository.FilterDataRep(flage, str);
         }
-        public DataTable veiwDetailPo(string id, string ven_id)
-        {
-            PurchaseOrderRepository objPurchaseOrderRepository = new PurchaseOrderRepository();
-            return objPurchaseOrderRepository.viewDetailPo(id, ven_id);
-        }
-        public InventoryClass updateInventory(InventoryClass objInventoryClass)
-        {
-            InventoryRepository objPurchaseOrderRepository = new InventoryRepository();
-            return objPurchaseOrderRepository.updateInventory(objInventoryClass);
-        }
         #endregion
 
 
+        #region [CUSTOMER SERVICES]
+        //     insertCusNotes
 
+        public CustomerClass InsertCustomerInfo(CustomerClass objCustomerClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustomerInfo(objCustomerClass);
+        }
+        public CustomerAccountingTransactionClass insertCusAccTrans(CustomerAccountingTransactionClass objCustomerAccountingTransactionClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustomerAccTrnsInfo(objCustomerAccountingTransactionClass);
+        }
+        public CustomerAuthorizedClass insertCusAutho(CustomerAuthorizedClass objCustomerAuthorizedClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustomerAuthorInfo(objCustomerAuthorizedClass);
+        }
+        public CustomerAutoClass insertCusauto(CustomerAutoClass objCustomerAutoClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustAutoInfo(objCustomerAutoClass);
+        }
+        public CustomerNotesClass insertCusNotes(CustomerNotesClass objCustomerNotesClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustomerNotesInfo(objCustomerNotesClass);
+        }
+        public CustomerEventsClass insertCusEvents(CustomerEventsClass objCustomerEventsClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.custEventsIngo(objCustomerEventsClass);
+        }
+        public string loadMaxID(CustomerReferenceClass objCustomerReferenceClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.GetMaxRefrenceID(objCustomerReferenceClass);
+        }
+        public CustomerReferenceClass insertCustomerRefrenceInfor(CustomerReferenceClass objCustomerReferenceClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.custRefrenceInfo(objCustomerReferenceClass);
+        }
+        public CustomerShipTosClass InsertCustomerShipTos(CustomerShipTosClass objCustomerShipTosClass)
+        {
+           CustomerRepository objCustomerRepository = new CustomerRepository();
+           return objCustomerRepository.CustShipTosInfo(objCustomerShipTosClass);
+        }
+        public CustomerStoresClass insertStoreInfo(CustomerStoresClass objCustomerStoresClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.customerStoresInfo(objCustomerStoresClass);
+        }
+        public CustomerSwipesClass insertCustomerSwips(CustomerSwipesClass objCustomerSwipesClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerRepository.CustomerSwipInfo(objCustomerSwipesClass);
+        }
+
+        #endregion
 
     }
 }

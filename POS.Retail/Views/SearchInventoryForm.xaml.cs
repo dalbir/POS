@@ -119,9 +119,7 @@ namespace POS.Retail
                         kits = "%";
                     }
                     objInventoryClass.Dept_ID = dept;
-                    if(modifier != "%")
                     objInventoryClass.IsModifier = Convert.ToInt32(modifier);
-                    if(kits != "%")
                     objInventoryClass.IsKit = Convert.ToInt32(kits);
                     objInventoryClass.Vendor_Number = vendor;
                     objInventoryClass.IsDeleted = 0;
@@ -132,10 +130,8 @@ namespace POS.Retail
                     DG_items.ItemsSource = dt.DefaultView;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception)
+            { }
         }
        
 

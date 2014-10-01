@@ -24,7 +24,7 @@ namespace POS.Retail
         private const int Style = -16;
         private const int MaximizeIcon = 0x10000;
         private const int MinimizeIcon = 0x20000;
-        PurchaseOrderForm p = new PurchaseOrderForm();
+       // PurchaseOrderForm p = new PurchaseOrderForm();
         private static int cancl = 0;
         public MsgForm()
         {
@@ -33,20 +33,20 @@ namespace POS.Retail
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl.Content = new TextBlock() { Text = "The Vendor '" + p.set_vendor_name + "' is Not associated with this Item. Would You Like To Create Info For '" + p.set_vendor_name + "'", TextWrapping = TextWrapping.Wrap };
-            var window = this;
-            if (window != null)
-            {
-                var hWnd = new WindowInteropHelper(window).Handle;
-                if (hWnd == IntPtr.Zero)
-                {
-                    window.SourceInitialized += OnSourceInitialized;
-                }
-                else
-                {
-                    UpdateWindowStyle(window, hWnd);
-                }
-            }
+            //lbl.Content = new TextBlock() { Text = "The Vendor '" + p.set_vendor_name + "' is Not associated with this Item. Would You Like To Create Info For '" + p.set_vendor_name + "'", TextWrapping = TextWrapping.Wrap };
+            //var window = this;
+            //if (window != null)
+            //{
+            //    var hWnd = new WindowInteropHelper(window).Handle;
+            //    if (hWnd == IntPtr.Zero)
+            //    {
+            //        window.SourceInitialized += OnSourceInitialized;
+            //    }
+            //    else
+            //    {
+            //        UpdateWindowStyle(window, hWnd);
+            //    }
+            //}
         }
 
         public static class NativeMethods

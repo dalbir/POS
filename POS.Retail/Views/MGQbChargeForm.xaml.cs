@@ -29,7 +29,6 @@ namespace POS.Retail
         {
             charge = "Yes";
             this.Close();
-            // test vv
         }
         public string set_charge
         {

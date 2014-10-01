@@ -22,7 +22,8 @@ namespace POS.Retail
     /// Interaction logic for PurchaseOrderForm.xaml
     /// </summary>
     public partial class PurchaseOrderForm : Window
-    {    
+    {
+     
         OrderTypeForm typ = new OrderTypeForm();
         POSManagementService objPOSManagementService = new POSManagementService();
         string otype;
@@ -39,17 +40,14 @@ namespace POS.Retail
         {
             InitializeComponent();
         }
-        string lbl;
+
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            
+           
             string ven_num = lstb_ven_list.SelectedItem.ToString();
             string[] split = ven_num.Split(' ');
             string vendor_id = split[0];
-            if (lbl_total_cost_order.Content != "")
-            {
-                lbl = lbl_total_cost_order.Content.ToString();
-            }
+            string lbl = lbl_total_cost_order.Content.ToString();
             string[] lbl1 = lbl.Split(' ');
             double total_cst = Convert.ToDouble(lbl1[4]);
             string stats = "O";
@@ -477,51 +475,50 @@ namespace POS.Retail
             string ven_id = spl_str[0];
         end: { }
            // string qruy = "SELECT * FROM VIEW_DETAIL_PO WHERE ItemNum = '" + id + "' and Vendor_Number = '" + ven_id + "'";
-
-            DataTable dt_po = objPOSManagementService.veiwDetailPo(id, ven_id);
-            if (dt_po.Rows.Count > 0)
-            {
-                Dg_po_items.Rows.Add();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[0].Value = Dg_po_items.Rows.Count.ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[1].Value = dt_po.Rows[0]["ItemNum"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[2].Value = dt_po.Rows[0]["ItemName"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[3].Value = dt_po.Rows[0]["Store_ID"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[4].Value = dt_po.Rows[0]["Reorder_Quantity"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[5].Value = dt_po.Rows[0]["NumPerVenCase"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[6].Value = "0";
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[7].Value = dt_po.Rows[0]["Case_Cost"].ToString();
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[9].Value = "0";
-                Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[10].Value = "0";
-            }
-            else
-            {
-                vendor_no = spl_str[0];
-                vendor_name = spl_str[2];
-                item_no = id;
-                MsgForm obj = new MsgForm();
-                obj.ShowDialog();
-                EnterVendorForm v = new EnterVendorForm();
-                if (v.set_cancel == 1 || obj.set_cancl == 1)
-                {
-                    //string qry = "select ItemNum, ItemName,Store_ID, Cost from inventory where ItemNum = '" + id + "'";
-                    DataTable dt_item = objPOSManagementService.getKit(id);
-                    Dg_po_items.Rows.Add();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[0].Value = Dg_po_items.Rows.Count.ToString();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[1].Value = dt_item.Rows[0]["ItemNum"].ToString();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[2].Value = dt_item.Rows[0]["ItemName"].ToString();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[3].Value = dt_item.Rows[0]["Store_ID"].ToString();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[4].Value = "1";
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[5].Value = "0";
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[6].Value = "0";
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[7].Value = dt_item.Rows[0]["Cost"].ToString();
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[9].Value = "0";
-                    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[10].Value = "0";
-                }
-                else
-                {
-                    goto end;
-                }
-            }
+            //DataTable dt_po = glo.getdata(qruy);
+            //if (dt_po.Rows.Count > 0)
+            //{
+            //    Dg_po_items.Rows.Add();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[0].Value = Dg_po_items.Rows.Count.ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[1].Value = dt_po.Rows[0]["ItemNum"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[2].Value = dt_po.Rows[0]["ItemName"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[3].Value = dt_po.Rows[0]["Store_ID"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[4].Value = dt_po.Rows[0]["Reorder_Quantity"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[5].Value = dt_po.Rows[0]["NumPerVenCase"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[6].Value = "0";
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[7].Value = dt_po.Rows[0]["Case_Cost"].ToString();
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[9].Value = "0";
+            //    Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[10].Value = "0";
+            //}
+            //else
+            //{
+            //    vendor_no = spl_str[0];
+            //    vendor_name = spl_str[2];
+            //    item_no = id;
+            //    MsgForm obj = new MsgForm();
+            //    obj.ShowDialog();
+            //    EnterVendorFrm v = new EnterVendorFrm();
+            //    if (v.set_cancel == 1 || obj.set_cancl == 1)
+            //    {
+            //        string qry = "select ItemNum, ItemName,Store_ID, Cost from inventory where ItemNum = '" + id + "'";
+            //        DataTable dt_item = glo.getdata(qry);
+            //        Dg_po_items.Rows.Add();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[0].Value = Dg_po_items.Rows.Count.ToString();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[1].Value = dt_item.Rows[0]["ItemNum"].ToString();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[2].Value = dt_item.Rows[0]["ItemName"].ToString();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[3].Value = dt_item.Rows[0]["Store_ID"].ToString();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[4].Value = "1";
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[5].Value = "0";
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[6].Value = "0";
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[7].Value = dt_item.Rows[0]["Cost"].ToString();
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[9].Value = "0";
+            //        Dg_po_items.Rows[Dg_po_items.Rows.Count - 1].Cells[10].Value = "0";
+            //    }
+            //    else
+            //    {
+            //        goto end;
+            //    }
+            //}
             fun_cal_row_total();
         }
 

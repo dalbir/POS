@@ -12,7 +12,7 @@
         <Menu Height="28" Name="menu1" VerticalAlignment="Top" FontWeight="Bold" FontSize="13">
             <MenuItem Header="Options" />
         </Menu>
-        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Visible" Grid.RowSpan="2">
             <GroupBox Header="View Open or Close PO's" Height="78" HorizontalAlignment="Left" Margin="21,20,0,0" Name="groupBox1" VerticalAlignment="Top" Width="201" BorderBrush="#49FF7F50" FontWeight="Bold">
                 <Grid>
                     <RadioButton Content="Open" Height="16" HorizontalAlignment="Left" Margin="6,17,0,0" Name="rb_open" VerticalAlignment="Top" Width="73" Checked="rb_open_Checked" />
@@ -59,7 +59,7 @@
                 </my:DataGridView>
             </WindowsFormsHost>
         </Grid>
-        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Visible" Width="987" Grid.RowSpan="2">
+        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Hidden" Width="987" Grid.RowSpan="2">
             <TabControl Height="307" HorizontalAlignment="Left" Margin="13,9,0,0" Name="tabControl1" VerticalAlignment="Top" Width="820" FontWeight="Normal">
                 <TabItem Header="Genral Information" Name="tabItem1" FontWeight="Normal">
                     <Grid>
@@ -209,7 +209,7 @@
                 </my:DataGridView.Columns>
             </my:DataGridView>
         </WindowsFormsHost>
-        <Label Height="28" HorizontalAlignment="Left" Content="" Margin="780,5,0,0" Name="lbl_total_cost_order" VerticalAlignment="Top" Width="196" FontSize="13" FontWeight="Bold" Grid.Row="2" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="780,5,0,0" Name="lbl_total_cost_order" VerticalAlignment="Top" Width="196" FontSize="13" FontWeight="Bold" Grid.Row="2" />
         <Label FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="468,11.851,0,0" Name="lbl_amount_remaning" VerticalAlignment="Top" Width="196" Grid.Row="3" />
         <Label FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="162,5,0,0" Name="lbl_total_cost_received" VerticalAlignment="Top" Width="196" Grid.Row="2" />
         <Button Content="Receive Item" Focusable="False" FontSize="13" FontWeight="Bold" Height="52" HorizontalAlignment="Left" Margin="34,4.851,0,0" Name="btn_receive_item" VerticalAlignment="Top" Width="132" Click="btn_receive_item_Click" Grid.Row="3">
