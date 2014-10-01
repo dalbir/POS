@@ -275,12 +275,12 @@ namespace POS.Retail
                     objCustomerClass.OnlineUserName = "";
                     objCustomerClass.OnlinePassword = "";
                     POSManagementService objMgtServices = new POSManagementService();
-                    objMgtServices.InsertCustomerInfo(objCustomerClass);
+        //            objMgtServices.InsertCustomerInfo(objCustomerClass);
 
                     CustomerAccountingTransactionClass objCusAccTrans = new CustomerAccountingTransactionClass();
                     objCusAccTrans.CustNum = txt_custmer_id.Text.Trim();
                     objCusAccTrans.EditSequence = "";
-                    objMgtServices.insertCusAccTrans(objCusAccTrans);
+             //       objMgtServices.insertCusAccTrans(objCusAccTrans);
 
                     CustomerAuthorizedClass objCustAutorized = new CustomerAuthorizedClass();
                     objCustAutorized.CustNum = txt_custmer_id.Text.Trim();
@@ -289,28 +289,28 @@ namespace POS.Retail
                         objCustAutorized.Member = listBox_authorized.Items[i].ToString();
                     }
                     objCustAutorized.Dirty = 1;
-                    objMgtServices.insertCusAutho(objCustAutorized);
+            //        objMgtServices.insertCusAutho(objCustAutorized);
 
                     CustomerAutoClass objCusAuto = new CustomerAutoClass();
                     objCusAuto.CustNum = txt_custmer_id.Text.Trim();
                     objCusAuto.License = txt_driver_licns_id.Text.Trim();
                     objCusAuto.Make = "";
                     objCusAuto.Model = "";
-                    objMgtServices.insertCusauto(objCusAuto);
+              //      objMgtServices.insertCusauto(objCusAuto);
 
                     CustomerEventsClass objCusEvents = new CustomerEventsClass();
                     objCusEvents.CustNum = txt_custmer_id.Text.Trim();
                     objCusEvents.Event_Date = Convert.ToDateTime(txt_event_date.Text.Trim());
                     objCusEvents.Event_Desc = txt_event_desctiption.Text.Trim();
                     objCusEvents.Dirty = 1;
-                    objMgtServices.insertCusNotes(objCusEvents);
+             //       objMgtServices.insertCusNotes(objCusEvents);
                     // changes
                     ////CustomerGiftRegistryClass objCusGft = new CustomerGiftRegistryClass();
                     //objCusGft.CustNum = txt_custmer_id.Text.Trim();
                     CustomerNotesClass objCustNotes = new CustomerNotesClass();
                     objCustNotes.CustNum = txt_custmer_id.Text.Trim();
                     objCustNotes.Notes = txt_notes.Text.Trim();
-                    objMgtServices.insertCusNotes(objCustNotes);
+              //      objMgtServices.insertCusNotes(objCustNotes);
 
                     CustomerReferenceClass objCusRefrnc = new CustomerReferenceClass();
                     objCusRefrnc.CustNum = txt_custmer_id.Text.Trim();
