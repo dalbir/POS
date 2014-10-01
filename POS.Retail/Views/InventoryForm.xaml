@@ -517,13 +517,13 @@
                     </DataGrid>
                     <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="50" HorizontalAlignment="Left" Margin="676,36,0,0" Name="btn_add_ingredient" VerticalAlignment="Top" Width="143">
                         <StackPanel Height="42" Width="136">
-                            <Image Height="24" Source="Images/camera_test1.png" />
+                            <Image Height="24" Source="/Images/camera_test1.png" />
                             <TextBlock Height="17" Width="89">Add Ingredient</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Background="#AE32CD32" Focusable="False" FontWeight="Bold" Height="50" HorizontalAlignment="Left" Margin="676,90,0,0" Name="btn_ing_remove" VerticalAlignment="Top" Width="143">
                         <StackPanel Height="44" Width="80">
-                            <Image Height="27" Source="Images/delete.png" />
+                            <Image Height="27" Source="/Images/delete.png" />
                             <TextBlock Width="51">Remove</TextBlock>
                         </StackPanel>
                     </Button>

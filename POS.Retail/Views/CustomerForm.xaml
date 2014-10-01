@@ -180,7 +180,7 @@
                             <Button Content="O" Height="23" HorizontalAlignment="Left" Margin="321,42,0,0" Name="button1" VerticalAlignment="Top" Width="28" Click="button1_Click" />
                             <Button Content="C" Height="23" HorizontalAlignment="Left" Margin="321,103,0,0" Name="button2" VerticalAlignment="Top" Width="28" Click="button2_Click" />
                             <Label Content="Balance Due" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="408,24,0,0" Name="lbl_bal_due" VerticalAlignment="Top" Width="102" FontWeight="Normal" />
-                            <Label Content="$ 0.00" Height="28" HorizontalAlignment="Left" Margin="440,49,0,0" Name="lbl_bal_due_figures" VerticalAlignment="Top" Width="73" />
+                            <Label Content="$ 0.00" Height="28" HorizontalAlignment="Left" Margin="440,49,0,0" Name="lbl_bal_due_figures" VerticalAlignment="Top" Width="70" />
                             <Button Focusable="False" FontWeight="Bold" Height="50" HorizontalAlignment="Left" Margin="408,80,0,0" Name="btn_timeclock" VerticalAlignment="Top" Width="102">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">

@@ -34,6 +34,7 @@ namespace POS.Retail
         Int32 count_cust_num = 0;
         List<string> cust_numbers = null;
         Int32 indx2 = 0;
+        
         public CustomerForm()
         {
             InitializeComponent();
@@ -219,12 +220,15 @@ namespace POS.Retail
                     objCustomerClass.Discount_Level = txt_cus_discont.Text.Trim();
                     objCustomerClass.Acct_Open_Date =Convert.ToDateTime( txt_acc_open_date.Text.Trim());
                     objCustomerClass.Acct_Close_Date =Convert.ToDateTime( txt_acc_close_date.Text.Trim());
-                    objCustomerClass.Acct_Balance =Convert.ToDecimal( lbl_bal_due_figures.Content);
+                    //objCustomerClass.Acct_Balance =Convert.ToDecimal( lbl_bal_due_figures.Content);
                     objCustomerClass.Acct_Max_Balance =Convert.ToDecimal( txt_max_bal.Text.Trim());
                     objCustomerClass.Bonus_Plan_Member =Convert.ToInt32( txt_cus_bonaspoint.Text.Trim());
                     objCustomerClass.Bonus_Points =Convert.ToInt32( txt_cus_bonaspoint.Text.Trim());
                     objCustomerClass.Tax_Exempt = typeex;
-                    objCustomerClass.Member_Exp =Convert.ToDateTime( txt_membershp_exp.Text.Trim());
+                    if (txt_membershp_exp.Text.Length > 0)
+                    {
+                        objCustomerClass.Member_Exp = Convert.ToDateTime(txt_membershp_exp.Text.Trim());
+                    }
                     objCustomerClass.Dirty = 1;
                     objCustomerClass.Phone_3 = txt_mob_phone.Text.Trim();
                     objCustomerClass.Phone_4 = txt_fax.Text.Trim();
@@ -303,7 +307,7 @@ namespace POS.Retail
                     objCusEvents.Event_Date = Convert.ToDateTime(txt_event_date.Text.Trim());
                     objCusEvents.Event_Desc = txt_event_desctiption.Text.Trim();
                     objCusEvents.Dirty = 1;
-                    objMgtServices.insertCusNotes(objCusEvents);
+                    objMgtServices.insertCusEvents(objCusEvents);
                     // changes
                     ////CustomerGiftRegistryClass objCusGft = new CustomerGiftRegistryClass();
                     //objCusGft.CustNum = txt_custmer_id.Text.Trim();
@@ -313,9 +317,38 @@ namespace POS.Retail
                     objMgtServices.insertCusNotes(objCustNotes);
 
                     CustomerReferenceClass objCusRefrnc = new CustomerReferenceClass();
+                    string maxID = Convert.ToString(objMgtServices.loadMaxID(objCusRefrnc));
                     objCusRefrnc.CustNum = txt_custmer_id.Text.Trim();
-                    //objCusRefrnc.ID=
+                    objCusRefrnc.ID = Convert.ToInt32(maxID);
+                    objMgtServices.insertCustomerRefrenceInfor(objCusRefrnc);
 
+                    CustomerShipTosClass objCustomerShipTosClass = new CustomerShipTosClass();
+                    objCustomerShipTosClass.CustNum = txt_custmer_id.Text.Trim();
+                    objCustomerShipTosClass.First_Name = txt_shipping_first_name.Text.Trim();
+                    objCustomerShipTosClass.Last_Name = txt_shipping_last_name.Text.Trim();
+                    objCustomerShipTosClass.Company = txt_shiping_company_name.Text.Trim();
+                    objCustomerShipTosClass.Address_1 = txt_shiping_st_address.Text.Trim();
+                    objCustomerShipTosClass.Address_2 = txt_shiping_extnd_adres.Text.Trim();
+                    objCustomerShipTosClass.City = txt_shiping_city.Text.Trim();
+                    objCustomerShipTosClass.Zip_Code = txt_shiping_zip.Text.Trim();
+                    objCustomerShipTosClass.Phone = txt_shipng_phone_number.Text.Trim();
+                    objCustomerShipTosClass.Dirty = 1;
+                    objCustomerShipTosClass.County = txt_shiping_country.Text.Trim();
+                    objCustomerShipTosClass.DeliveryAddressSpecialInstructions = "";
+                    objMgtServices.InsertCustomerShipTos(objCustomerShipTosClass);
+
+                    CustomerStoresClass objCustomerStoresClass = new CustomerStoresClass();
+                    objCustomerStoresClass.CustNum = txt_custmer_id.Text.Trim();
+                    objCustomerStoresClass.Store_ID = "";
+                    objMgtServices.insertStoreInfo(objCustomerStoresClass);
+
+                    for (int i = 0; i < lstbx_card_swip_ids.Items.Count; i++)
+                    {
+                        CustomerSwipesClass objCustomerSwipesClass = new CustomerSwipesClass();
+                        objCustomerSwipesClass.CustNum = txt_custmer_id.Text.Trim();
+                        objCustomerSwipesClass.Swipe_ID = lstbx_card_swip_ids.Items[i].ToString();
+                    }
+                    MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
                     
