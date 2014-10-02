@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using POS.Repository.SQLServer;
 using POS.Domain.Common;
 using System.Data;
+using POS.Domain.Common;
 
 namespace POS.Services.Common
 {
@@ -450,7 +451,14 @@ namespace POS.Services.Common
 
 
 
- 
+
+        #region Customer specific Item prices services
+        public DataTable GetRequrdData(Inventory_CustPricesClass objInveCust)
+        {
+            CustomerSpecificServicesRepsitory objCustSpecificSercRep = new CustomerSpecificServicesRepsitory();
+            return objCustSpecificSercRep.getRequredDataRep(objInveCust);
+        }
+        #endregion
     }
 }
 

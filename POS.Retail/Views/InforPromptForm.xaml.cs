@@ -22,6 +22,7 @@ namespace POS.Retail
         private static string store_id = null;
         private static string email = null;
         private string p;
+        private Domain.Common.Inventory_CustPricesClass objInveCust;
         public InforPromptForm()
         {
             InitializeComponent();
@@ -32,6 +33,20 @@ namespace POS.Retail
             InitializeComponent();
             this.p = p;
             label1.Content = p;
+        }
+
+        public InforPromptForm(Domain.Common.Inventory_CustPricesClass objInveCust)
+        {
+            InitializeComponent();
+            this.objInveCust = objInveCust;
+            if (objInveCust.message == "item")
+            {
+                label1.Content = "Please Select Item Number";
+            }
+            else if(objInveCust.message == "customer")
+            {
+                label1.Content = "Please Select Customer Number";
+            }
         }
         public string set_store_id
         {
@@ -58,11 +73,20 @@ namespace POS.Retail
                     email = txt_enter_store_id.Text;
                     this.Close();
                 }
+                else if (label1.Content == "Please Select Item Number")
+                {
+                    objInveCust.ItemNum = txt_enter_store_id.Text;
+                }
+                else if (label1.Content == "Please Select Customer Number")
+                {
+                    objInveCust.CustNum = txt_enter_store_id.Text;
+                }
             }
             else
             {
                 this.Close();
             }
+            this.Close(); 
         }
 
         private void btn_cancel_Click(object sender, RoutedEventArgs e)
