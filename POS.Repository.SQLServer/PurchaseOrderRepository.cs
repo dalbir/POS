@@ -20,8 +20,8 @@ namespace POS.Repository.SQLServer
                 string value = objSQLServerRepository.ExecuteScalar("select isnull(max(PO_Number), 0) + 1 as po_no from PO_Summary");
                 if (value != "")
                     objPOSummaryClass.PO_Number = Convert.ToInt32(value);
-                int result = objSQLServerRepository.ExecuteNonQuery("insert into PO_Summary(PO_Number,Store_ID,DateTime,Reference,Vendor_Number,Total_Cost,Terms,Due_Date,Ship_Via,ShipTo_1,ShipTo_2,ShipTo_3,ShipTo_4,ShipTo_5,Instructions,Status,Last_Modified,ExpectedAmountToReceive,POType) values('" + objPOSummaryClass.PO_Number + "', '" + objPOSummaryClass.Store_ID + "', '" + objPOSummaryClass.DateTime + "','" + objPOSummaryClass.Reference + "','" + objPOSummaryClass.Vendor_Number + "','" + objPOSummaryClass.Total_Cost + "','" + objPOSummaryClass.Terms + "','" + objPOSummaryClass.Due_Date + "','" + objPOSummaryClass.Ship_Via + "','" + objPOSummaryClass.ShipTo_1 + "','" + objPOSummaryClass.ShipTo_2 + "','" + objPOSummaryClass.ShipTo_3 + "','" + objPOSummaryClass.ShipTo_4 + "','" + objPOSummaryClass.ShipTo_5 + "','" + objPOSummaryClass.Instructions + "','" + objPOSummaryClass.Status + "','" + objPOSummaryClass.Last_Modified + "','" + objPOSummaryClass.ExpectedAmountToReceive + "','" + objPOSummaryClass.POType + "')");
-                if (result == 0)
+                int result = objSQLServerRepository.ExecuteNonQuery("insert into PO_Summary(PO_Number,Store_ID,DateTime,Reference,Vendor_Number,Total_Cost,Terms,Due_Date,Ship_Via,ShipTo_1,ShipTo_2,ShipTo_3,ShipTo_4,ShipTo_5,Instructions,Status,Last_Modified,ExpectedAmountToReceive,POType,Dirty) values('" + objPOSummaryClass.PO_Number + "', '" + objPOSummaryClass.Store_ID + "', '" + objPOSummaryClass.DateTime + "','" + objPOSummaryClass.Reference + "','" + objPOSummaryClass.Vendor_Number + "','" + objPOSummaryClass.Total_Cost + "','" + objPOSummaryClass.Terms + "','" + objPOSummaryClass.Due_Date + "','" + objPOSummaryClass.Ship_Via + "','" + objPOSummaryClass.ShipTo_1 + "','" + objPOSummaryClass.ShipTo_2 + "','" + objPOSummaryClass.ShipTo_3 + "','" + objPOSummaryClass.ShipTo_4 + "','" + objPOSummaryClass.ShipTo_5 + "','" + objPOSummaryClass.Instructions + "','" + objPOSummaryClass.Status + "','" + objPOSummaryClass.Last_Modified + "','" + objPOSummaryClass.ExpectedAmountToReceive + "','" + objPOSummaryClass.POType + "','"+ objPOSummaryClass.Dirty +"')");
+                if (result == 1)
                 {
                     objPOSummaryClass.IsSuccessfull = true;
                 }
@@ -42,7 +42,7 @@ namespace POS.Repository.SQLServer
            try
            {
                int result = objSQLServerRepository.ExecuteNonQuery("insert into PO_Details(PO_Number,ItemNum,LineNum,Quan_Ordered,CostPer,Quan_Received,CasePack,Store_ID,NumberPerCase,Quan_Damaged,destStore_ID) values('" + objPODetailClass.PO_Number + "', '" + objPODetailClass.ItemNum + "','" + objPODetailClass.LineNum + "','" + objPODetailClass.Quan_Ordered + "','" + objPODetailClass.CostPer + "','" + objPODetailClass.Quan_Received + "','" + objPODetailClass.CasePack + "','"+ objPODetailClass.Store_ID +"','" + objPODetailClass.NumberPerCase + "','" + objPODetailClass.Quan_Damaged + "','" + objPODetailClass.destStore_ID + "')");
-               if (result == 0)
+               if (result == 1)
                {
                    objPODetailClass.IsSuccessfull = true;
                }
@@ -191,19 +191,19 @@ namespace POS.Repository.SQLServer
                }
                else if(flage == "ItemNum")
                {
-                   where = "where ItemNum = " + search;
+                   where = "where ItemNum = '" + search + "'";
                }
                else if(flage == "ItemName")
                {
-                   where = "where ItemName = " + search;
+                   where = "where ItemName = '" + search + "'";
                }
                else if(flage == "Vendor_Number")
                {
-                   where = "where Vendor_Number =" + search;
+                   where = "where Vendor_Number = '" + search + "'";
                }
                else if(flage == "Vendor_Part_Num")
                {
-                   where = "where Vendor_Part_Num =" + search;
+                   where = "where Vendor_Part_Num = '" + search + "'";
                }
                dtFileter = objSQLServerRepository.GetDataTable("select * from VIEW_INVEN_PURCH_ORDER " + where + "");
            }
@@ -212,6 +212,19 @@ namespace POS.Repository.SQLServer
 
            }
            return dtFileter;
+       }
+       DataTable dtVewDetailPo;
+       public DataTable viewDetailPo(string id, string ven_id)
+       {
+           try
+           {
+               dtVewDetailPo = objSQLServerRepository.GetDataTable("SELECT * FROM VIEW_DETAIL_PO WHERE ItemNum = '" + id + "' and Vendor_Number = '" + ven_id + "'");
+           }
+           catch (Exception ex)
+           {
+
+           }
+           return dtVewDetailPo;
        }
     }
 }

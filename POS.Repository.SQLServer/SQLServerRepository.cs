@@ -90,7 +90,7 @@ namespace POS.Repository.SQLServer
             {
                 if (cnn.State == ConnectionState.Open)
                     cnn.Close();
-               // CustomLogging.Log("[SQLiteRepository:(GetTableData)]", ex.Message);
+                CustomLogging.Log("[SQServerRepository:(GetTableData)]", ex.Message);
                 //throw new Exception(ex.Message);
 
             }

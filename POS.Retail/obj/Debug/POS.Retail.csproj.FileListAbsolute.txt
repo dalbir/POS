@@ -274,3 +274,5 @@ C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
 C:\Users\irshad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Common\CustomizeMessageBox.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Common\CustomizeMessageBox.g.cs
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\CustomerSpecificItemPrices.baml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\CustomerSpecificItemPrices.g.cs
