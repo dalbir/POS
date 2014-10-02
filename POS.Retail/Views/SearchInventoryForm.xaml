@@ -50,7 +50,7 @@
                 </LinearGradientBrush>
             </Button.Background>
             <StackPanel Height="40" Width="49">
-                <Image Height="35" Source="/Point%20of%20Sale;component/Images/find.png" Width="45" />
+                <Image Height="35" Source="/Images/find.png" Width="45" />
             </StackPanel>
         </Button>
         <Button Content="Select " Focusable="False" FontWeight="Bold" Height="43" HorizontalAlignment="Left" Margin="137,614,0,0" Name="btn_select_item" VerticalAlignment="Top" Width="117" FontSize="15" Click="btn_select_item_Click">
