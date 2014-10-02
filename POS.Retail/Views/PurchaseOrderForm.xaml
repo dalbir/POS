@@ -210,7 +210,7 @@
             </my:DataGridView>
         </WindowsFormsHost>
         <Label Height="28" HorizontalAlignment="Left" Margin="780,5,0,0" Name="lbl_total_cost_order" VerticalAlignment="Top" Width="196" FontSize="13" FontWeight="Bold" Grid.Row="2" />
-        <Label FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="468,11.851,0,0" Name="lbl_amount_remaning" VerticalAlignment="Top" Width="196" Grid.Row="3" />
+        <Label FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="468,5,0,0" Name="lbl_amount_remaning" VerticalAlignment="Top" Width="196" Grid.Row="2" />
         <Label FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="162,5,0,0" Name="lbl_total_cost_received" VerticalAlignment="Top" Width="196" Grid.Row="2" />
         <Button Content="Receive Item" Focusable="False" FontSize="13" FontWeight="Bold" Height="52" HorizontalAlignment="Left" Margin="34,4.851,0,0" Name="btn_receive_item" VerticalAlignment="Top" Width="132" Click="btn_receive_item_Click" Grid.Row="3">
             <Button.Background>
