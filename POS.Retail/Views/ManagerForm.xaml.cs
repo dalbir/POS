@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS.Retail.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -484,7 +485,9 @@ namespace POS.Retail
 
         private void btnCustomerItemPrice_Click(object sender, RoutedEventArgs e)
         {
-
+            CustomerSpecificItemPrices obj = new CustomerSpecificItemPrices();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
         }
     }
 }
