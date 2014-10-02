@@ -1277,7 +1277,12 @@ namespace POS.Retail
 
         private void btn_lookup_Click(object sender, RoutedEventArgs e)
         {
-            search_customer();
+            SelectCustomerForm objSelectCustomerForm = new SelectCustomerForm();
+            objSelectCustomerForm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            objSelectCustomerForm.WindowState = WindowState.Maximized;
+            objSelectCustomerForm.ShowDialog();
+            txt_custmer_id.Text = objSelectCustomerForm.set_cust_no;
+            //search_customer();
         }
 
         private void txt_acc_close_date_MouseDoubleClick(object sender, MouseButtonEventArgs e)

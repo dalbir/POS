@@ -31,7 +31,7 @@
                                     <VisualState x:Name="Disabled"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/find.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
+                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/search_user - Copy.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
