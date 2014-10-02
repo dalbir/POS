@@ -1,0 +1,14 @@
+﻿<Window x:Class="POS.Retail.Views.CustomerSpecificItemPrices"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Customer Specific Item Prices" Height="376.596" WindowStartupLocation="CenterScreen" Width="593.616">
+    <Grid>
+        <Viewbox Margin="33,10,93,275">
+            <RadioButton Content="Display Item Specific Prices For Specified Customer" Height="22" Width="290"></RadioButton>
+        </Viewbox>
+        <Viewbox Margin="33,51,93,234">
+            <RadioButton Content="Display Customer Specific For Specified Item" Height="22" Width="290"></RadioButton>
+        </Viewbox>
+
+    </Grid>
+</Window>

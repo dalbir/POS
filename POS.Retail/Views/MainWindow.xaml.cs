@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using POS.Repository.SQLServer;
+using POS.Domain.Common;
 
 
 namespace POS.Retail
@@ -25,6 +26,7 @@ namespace POS.Retail
         SQLServerRepository sqlreposetory = new SQLServerRepository();
         private static string flage_position = null;
         private static string cashier_id = null;
+        BackOrdersClass objBackOrder = new BackOrdersClass();
 
         string position;
         public MainWindow()
@@ -42,6 +44,7 @@ namespace POS.Retail
         }
         private void btn_main_manager_Click(object sender, RoutedEventArgs e)
         {
+            objBackOrder.backOrederPosition = "manager";
             position = "manager";
             if (grid_password.Visibility == System.Windows.Visibility.Hidden)
             {
@@ -108,7 +111,7 @@ namespace POS.Retail
                 {
                     psdbox_password.Password = "";
                     psd_login_id.Password = "";
-                    ManagerForm objman = new ManagerForm();
+                    ManagerForm objman = new ManagerForm(objBackOrder);
                     grid_password.Visibility = Visibility.Hidden;
                     objman.ShowDialog();
                     Grid_id.Visibility = Visibility.Visible;
@@ -426,6 +429,7 @@ namespace POS.Retail
 
         private void btn_cashier_Click(object sender, RoutedEventArgs e)
         {
+            objBackOrder.backOrederPosition = "cashier";
             position = "cashier";
             if (grid_password.Visibility == System.Windows.Visibility.Hidden)
             {
@@ -441,8 +445,8 @@ namespace POS.Retail
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            //StoreStation s_obj = new StoreStation();
-            //s_obj.ShowDialog();
+            StoreStationForm s_obj = new StoreStationForm();
+            s_obj.ShowDialog();
         }
 
         private void Window_StateChanged(object sender, EventArgs e)
@@ -529,14 +533,14 @@ namespace POS.Retail
         }
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-            //StoreStation s_obj = new StoreStation(1);
-            //s_obj.ShowDialog();
+            StoreStationForm s_obj = new StoreStationForm(1);
+            s_obj.ShowDialog();
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-            //CorporateSetup corp = new CorporateSetup();
-            //corp.ShowDialog();
+            CorporateSetupForm corp = new CorporateSetupForm();
+            corp.ShowDialog();
         }
     }
 }

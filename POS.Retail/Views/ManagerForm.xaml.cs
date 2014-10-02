@@ -27,9 +27,16 @@ namespace POS.Retail
         string discount = null;
         string g_total = null;
         MainWindow obj = new MainWindow();
+        private Domain.Common.BackOrdersClass objBackOrder;
         public ManagerForm()
         {
             InitializeComponent();
+        }
+
+        public ManagerForm(Domain.Common.BackOrdersClass objBackOrder)
+        {
+            InitializeComponent();
+            this.objBackOrder = objBackOrder;
         }
         //public ManagerForm(System.Windows.Forms.DataGridView dg_itemsale, string discountd, string grand_total, List<string> g_c_idsz, string cashier_idz)
         //{
@@ -318,16 +325,15 @@ namespace POS.Retail
 
         private void btn_back_order_Click(object sender, RoutedEventArgs e)
         {
-            //if (obj.set_flage_position.Equals("manager"))
-            //{
-            //    MessageBox.Show("You Must Logged into Process Backorders", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
-            //else if (obj.set_flage_position.Equals("cashier"))
-            //{
-            //    MessageBox.Show("welcome");
-            //}
-
+            if (objBackOrder.backOrederPosition == "manager")
+            {
+                MessageBox.Show("You Must Logged into Process Backorders", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else if (objBackOrder.backOrederPosition == "cashier")
+            {
+                MessageBox.Show("welcome");
+            }
         }
 
         private void btn_price_check_Click(object sender, RoutedEventArgs e)
@@ -474,6 +480,11 @@ namespace POS.Retail
             CreditCardTipsForm crdt_tips_frm = new CreditCardTipsForm();
             crdt_tips_frm.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             crdt_tips_frm.ShowDialog();
+        }
+
+        private void btnCustomerItemPrice_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

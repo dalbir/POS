@@ -19,5 +19,8 @@ namespace POS.Domain.Common
         public int Invoice_Number { get; set; }
         public DateTime FillDate { get; set; }
         public int Dirty { get; set; } 
+
+       //
+        public string backOrederPosition { get; set; }
     }
 }
