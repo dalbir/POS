@@ -326,25 +326,28 @@ namespace POS.Retail
 
         private void fun_fill_inventory_dg(string flage, string str)
         {
-            DG_itemlist.Rows.Clear();
+            //DG_itemlist.Rows.Clear();
+            
             //DataTable dtt = glo.getdata(str);
             DataTable dtt = objPOSManagementService.FilterData(flage, str);
-            for (int c = 0; c < dtt.Rows.Count; c++)
-            {
-                DG_itemlist.Rows.Add();
-                DG_itemlist.Rows[c].Cells[0].Value = dtt.Rows[c]["ItemNum"].ToString();
-                DG_itemlist.Rows[c].Cells[1].Value = dtt.Rows[c]["ItemName"].ToString();
-                DG_itemlist.Rows[c].Cells[2].Value = dtt.Rows[c]["Vendor_Part_Num"].ToString();
-                DG_itemlist.Rows[c].Cells[3].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["In_Stock"]), 2)).ToString();
-                DG_itemlist.Rows[c].Cells[4].Value = dtt.Rows[c]["Reorder_Level"].ToString();
-                DG_itemlist.Rows[c].Cells[5].Value = dtt.Rows[c]["Reorder_Quantity"].ToString();
-                DG_itemlist.Rows[c].Cells[6].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["Cost"]), 2)).ToString();
-                DG_itemlist.Rows[c].Cells[7].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["CostPer"]), 2)).ToString();
-                DG_itemlist.Rows[c].Cells[8].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["Case_Cost"]), 2)).ToString();
-                DG_itemlist.Rows[c].Cells[9].Value = dtt.Rows[c]["NumPerVenCase"].ToString();
-                DG_itemlist.Rows[c].Cells[10].Value = dtt.Rows[c]["Vendor_Number"].ToString();
+            DG_itemlist.ItemsSource = null;
+            DG_itemlist.ItemsSource = dtt.DefaultView;
+            //for (int c = 0; c < dtt.Rows.Count; c++)
+            //{
+            //    DG_itemlist.Rows.Add();
+            //    DG_itemlist.Rows[c].Cells[0].Value = dtt.Rows[c]["ItemNum"].ToString();
+            //    DG_itemlist.Rows[c].Cells[1].Value = dtt.Rows[c]["ItemName"].ToString();
+            //    DG_itemlist.Rows[c].Cells[2].Value = dtt.Rows[c]["Vendor_Part_Num"].ToString();
+            //    DG_itemlist.Rows[c].Cells[3].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["In_Stock"]), 2)).ToString();
+            //    DG_itemlist.Rows[c].Cells[4].Value = dtt.Rows[c]["Reorder_Level"].ToString();
+            //    DG_itemlist.Rows[c].Cells[5].Value = dtt.Rows[c]["Reorder_Quantity"].ToString();
+            //    DG_itemlist.Rows[c].Cells[6].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["Cost"]), 2)).ToString();
+            //    DG_itemlist.Rows[c].Cells[7].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["CostPer"]), 2)).ToString();
+            //    DG_itemlist.Rows[c].Cells[8].Value = (Math.Round(Convert.ToDouble(dtt.Rows[c]["Case_Cost"]), 2)).ToString();
+            //    DG_itemlist.Rows[c].Cells[9].Value = dtt.Rows[c]["NumPerVenCase"].ToString();
+            //    DG_itemlist.Rows[c].Cells[10].Value = dtt.Rows[c]["Vendor_Number"].ToString();
 
-            }
+            //}
         }
 
         private void fun_fill_vender_combo()
@@ -533,14 +536,15 @@ namespace POS.Retail
 
         private void DG_itemlist_DoubleClick(object sender, EventArgs e)
         {
-            if (lstb_ven_list.SelectedItem == null)
-            {
-                System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
-            fun_selct_item_po(id);
+           // if (lstb_ven_list.SelectedItem == null)
+           // {
+           //     System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+           //     return;
+           // }
+           // TextBlock b = DG_itemlist.Columns[0].GetCellContent(DG_itemlist.SelectedItem) as TextBlock;
+           // string id = b.Text;
+           //// string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
+           // fun_selct_item_po(id);
         }
 
         public string set_vendor_name
@@ -565,7 +569,7 @@ namespace POS.Retail
         {
             string[] str = cmb_select_vendor.Text.Split('-');
             string str1 = str[0];
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
             //fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER where Vendor_Number = '" + str1 + "'");
             fun_fill_inventory_dg("Vendor_Number", str1);
         }
@@ -578,7 +582,7 @@ namespace POS.Retail
                 return;
             }
 
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
             SearchInventoryForm search = new SearchInventoryForm();
             search.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             search.ShowDialog();
@@ -591,7 +595,7 @@ namespace POS.Retail
 
         private void btn_filter_itm_Click(object sender, RoutedEventArgs e)
         {
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
             Keyboard kb = new Keyboard("Enter The Item Number You Would Like To Search For");
             kb.ShowDialog();
             if (kb.set_decrep != null)
@@ -604,7 +608,7 @@ namespace POS.Retail
 
         private void btn_find_part_Click(object sender, RoutedEventArgs e)
         {
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
             Keyboard kb = new Keyboard("Enter The Part Number You Would Like To Search For");
             kb.ShowDialog();
             if (kb.set_decrep != null)
@@ -618,7 +622,7 @@ namespace POS.Retail
 
         private void btn_show_all_Click(object sender, RoutedEventArgs e)
         {
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
            // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
             fun_fill_inventory_dg("", "");
         }
@@ -769,12 +773,14 @@ namespace POS.Retail
                 System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
-            if (DG_itemlist.SelectedRows.Count > 0)
-            {
-                string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
-                fun_selct_item_po(id);
-            }
+            TextBlock b = DG_itemlist.Columns[0].GetCellContent(DG_itemlist.SelectedItem) as TextBlock;
+            string id = b.Text;
+            fun_selct_item_po(id);
+            //if (DG_itemlist.SelectedRows.Count > 0)
+            //{
+            //    string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
+            //    fun_selct_item_po(id);
+            //}
         }
 
         private void btn_receive_item_Click(object sender, RoutedEventArgs e)
@@ -1058,7 +1064,7 @@ namespace POS.Retail
         {
             InventoryForm ifrm = new InventoryForm("PO");
             ifrm.ShowDialog();
-            DG_itemlist.Rows.Clear();
+           // DG_itemlist.Rows.Clear();
            // fun_fill_inventory_dg("select * from VIEW_INVEN_PURCH_ORDER");
             fun_fill_inventory_dg("", "");
             if (lstb_ven_list.SelectedItems.Count == 0)
@@ -1119,6 +1125,19 @@ namespace POS.Retail
         {
             get { return ls_item_qty; }
             set { ls_item_qty = value; }
+        }
+
+        private void DG_itemlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstb_ven_list.SelectedItem == null)
+            {
+                System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            TextBlock b = DG_itemlist.Columns[0].GetCellContent(DG_itemlist.SelectedItem) as TextBlock;
+            string id = b.Text;
+            // string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
+            fun_selct_item_po(id);
         }
     }
 }

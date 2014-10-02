@@ -12,7 +12,7 @@
         <Menu Height="28" Name="menu1" VerticalAlignment="Top" FontWeight="Bold" FontSize="13">
             <MenuItem Header="Options" />
         </Menu>
-        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Visible" Grid.RowSpan="2">
+        <Grid Height="325" HorizontalAlignment="Left" Margin="1,34,0,0" Name="Grid_po1" VerticalAlignment="Top" Width="987" Visibility="Hidden" Grid.RowSpan="2">
             <GroupBox Header="View Open or Close PO's" Height="78" HorizontalAlignment="Left" Margin="21,20,0,0" Name="groupBox1" VerticalAlignment="Top" Width="201" BorderBrush="#49FF7F50" FontWeight="Bold">
                 <Grid>
                     <RadioButton Content="Open" Height="16" HorizontalAlignment="Left" Margin="6,17,0,0" Name="rb_open" VerticalAlignment="Top" Width="73" Checked="rb_open_Checked" />
@@ -59,7 +59,8 @@
                 </my:DataGridView>
             </WindowsFormsHost>
         </Grid>
-        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Hidden" Width="987" Grid.RowSpan="2">
+        
+        <Grid Height="376" HorizontalAlignment="Left" Margin="-1,36,0,0" Name="Grid_po2" VerticalAlignment="Top" Visibility="Visible" Width="987" Grid.RowSpan="2">
             <TabControl Height="307" HorizontalAlignment="Left" Margin="13,9,0,0" Name="tabControl1" VerticalAlignment="Top" Width="820" FontWeight="Normal">
                 <TabItem Header="Genral Information" Name="tabItem1" FontWeight="Normal">
                     <Grid>
@@ -87,7 +88,7 @@
                 </TabItem>
                 <TabItem Header="Add Items" FontWeight="Normal">
                     <Grid>
-                        <WindowsFormsHost Height="226" HorizontalAlignment="Left" Margin="7,43,0,0" OpacityMask="#B3000000" VerticalAlignment="Top" Width="794">
+                        <!--<WindowsFormsHost Height="226" HorizontalAlignment="Left" Margin="7,43,0,0" OpacityMask="#B3000000" VerticalAlignment="Top" Width="794">
                             <my:DataGridView x:Name="DG_itemlist" AllowUserToAddRows="False" AllowUserToDeleteRows="False" AutoGenerateColumns="False" ReadOnly="True" DoubleClick="DG_itemlist_DoubleClick" AutoSizeColumnsMode="AllCells">
                                 <my:DataGridView.Columns>
                                     <my:DataGridViewTextBoxColumn HeaderText="ItemNum" MinimumWidth="60" ReadOnly="True" />
@@ -103,7 +104,22 @@
                                     <my:DataGridViewTextBoxColumn HeaderText="Vendor_Number" MinimumWidth="60" />
                                 </my:DataGridView.Columns>
                             </my:DataGridView>
-                        </WindowsFormsHost>
+                        </WindowsFormsHost>-->
+                        <DataGrid AutoGenerateColumns="False" Height="226" Margin="8,45,8,0" Width="794" Name="DG_itemlist" VerticalAlignment="Top" FontWeight="Bold" MouseDoubleClick="DG_itemlist_MouseDoubleClick" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=ItemNum}" Header="ItemNum" MinWidth="100" />
+                                <DataGridTextColumn Binding="{Binding Path=ItemName}" Header="Item Name" MinWidth="150" />
+                                <DataGridTextColumn Binding="{Binding Path=Vendor_Part_Num}" Header="Part#" MinWidth="150" />
+                                <DataGridTextColumn Binding="{Binding Path=In_Stock}" Header="InStock" MinWidth="100" />
+                                <DataGridTextColumn Binding="{Binding Path=Reorder_Level}" Header="Reorder Level" MinWidth="100" />
+                                <DataGridTextColumn Binding="{Binding Path=Reorder_Quantity}" Header="Reorder QTY" MinWidth="100" />
+                                <DataGridTextColumn Binding="{Binding Path=Cost}" Header="Cost" MinWidth="130" />
+                                <DataGridTextColumn Binding="{Binding Path=CostPer}" Header="Cost Per" MinWidth="130" />
+                                <DataGridTextColumn Binding="{Binding Path=Case_Cost}" Header="Case Cost" MinWidth="130" />
+                                <DataGridTextColumn Binding="{Binding Path=NumPerVenCase}" Header="Number PerCase" MinWidth="130" />
+                                <DataGridTextColumn Binding="{Binding Path=Vendor_Number}" Header="Vendor_Number" MinWidth="130" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Label Content="Select Vendor:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="10,13,0,0" Name="label12" VerticalAlignment="Top" Width="95" />
                         <ComboBox Background="White" BorderBrush="#FF516FB1" Height="23" HorizontalAlignment="Left" Margin="103,15,0,0" Name="cmb_select_vendor" VerticalAlignment="Top" Width="123" DropDownClosed="cmb_select_vendor_DropDownClosed" />
                         <CheckBox Content="At Reorder Part" Height="16" HorizontalAlignment="Left" Margin="232,23,0,0" Name="chk_reder_part" VerticalAlignment="Top" Width="116" FontWeight="Bold" />
