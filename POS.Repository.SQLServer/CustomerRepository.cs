@@ -16,6 +16,22 @@ namespace POS.Repository.SQLServer
        SQLServerRepository sqlServerRepost = new SQLServerRepository();
        int result;
        #region Customer
+       public CustomerClass LoadCustomerInfo(CustomerClass objCustomerClass)
+       {
+           if (objCustomerClass.flage == "LoadCustomersToGrid")
+           {
+               objCustomerClass.loadCustDat = sqlServerRepost.GetDataTable("SELECT CustNum as Cutomer# , First_Name, Last_Name, Company, " +
+                   "Address_1 as Address, Zip_Code, Phone_1 as Phone FROM  dbo.Customer");
+           }
+           else if (objCustomerClass.flage == "SearchCustomerTxtbx")
+           {
+               objCustomerClass.loadCustDat = sqlServerRepost.GetDataTable("SELECT CustNum as Cutomer# , First_Name, Last_Name, Company, " +
+               "Address_1 as Address, Zip_Code, Phone_1 as Phone FROM  dbo.Customer " +
+               "where CustNum like '" + objCustomerClass.CustNum + "%' or First_Name like '" + objCustomerClass.First_Name + "%' or Last_Name  " +
+               "like '" + objCustomerClass.Last_Name + "%' or Company like '" + objCustomerClass.Company + "%' or Phone_1 like '" + objCustomerClass.Phone_1 + "%'");
+           }
+           return objCustomerClass;
+       }
        public CustomerClass CustomerInfo(CustomerClass objCusClass)
        {
            try

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Domain.Common;
+using POS.Services.Common;
 
 namespace POS.Retail
 {
@@ -19,6 +21,7 @@ namespace POS.Retail
     /// </summary>
     public partial class SelectCustomerForm : Window
     {
+        CustomerClass objCustomerClass = new CustomerClass();
        string order = "CustNum";
         public SelectCustomerForm() //Select_Customer_frm()
         {
@@ -26,7 +29,7 @@ namespace POS.Retail
         }
         //GlobalClass glo = new GlobalClass();
         private TextBox txt;
-        private static string name = null;
+       // private static string name = null;
         public static string cust_no = null;
         string no_change;
         public SelectCustomerForm(TextBox txt)
@@ -40,7 +43,7 @@ namespace POS.Retail
 
         private void btn_kb_cancel_Click(object sender, RoutedEventArgs e)
         {
-            name = no_change; 
+           // name = no_change; 
             this.Close();
         }
         #region shift content change
@@ -247,15 +250,15 @@ namespace POS.Retail
 
         private void btn_kb_enter_Click(object sender, RoutedEventArgs e)
         {
-            name = txt_keyboard.Text;
+            //name = txt_keyboard.Text;
             this.Close();
         }
 
-        public string set_name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        //public string set_name
+        //{
+        //    get { return name; }
+        //    set { name = value; }
+        //}
 
         private void btn_kb_backspace_Click(object sender, RoutedEventArgs e)
         {
@@ -274,15 +277,22 @@ namespace POS.Retail
             { }
             
         }
-
+        private void FillCustomerGrid()
+        {
+            objCustomerClass.flage = "LoadCustomersToGrid";
+            POSManagementService objMgtServices = new POSManagementService();
+            objMgtServices.GetCustomerInfor(objCustomerClass);
+            dg_customers.ItemsSource = objCustomerClass.loadCustDat.DefaultView;
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-          
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            customer_search("", "CustNum");
+            FillCustomerGrid();
+           // customer_search("", "CustNum");
 
         }
         private void customer_search(string customer,string order_by)
@@ -326,7 +336,16 @@ namespace POS.Retail
 
         private void txt_keyboard_TextChanged(object sender, TextChangedEventArgs e)
         {
-            customer_search(txt_keyboard.Text, "CustNum");
+            objCustomerClass.flage = "SearchCustomerTxtbx";
+            objCustomerClass.CustNum = txt_keyboard.Text.Trim();
+            objCustomerClass.First_Name = txt_keyboard.Text.Trim();
+            objCustomerClass.Last_Name = txt_keyboard.Text.Trim();
+            objCustomerClass.Phone_1 = txt_keyboard.Text.Trim();
+            objCustomerClass.Company = txt_keyboard.Text.Trim();
+            POSManagementService objPOSManagementService = new POSManagementService();
+            objPOSManagementService.GetCustomerInfor(objCustomerClass);
+            dg_customers.ItemsSource = objCustomerClass.loadCustDat.DefaultView;
+            //customer_search(txt_keyboard.Text, "CustNum");
         }
 
         private void btn_change_order_Click(object sender, RoutedEventArgs e)
@@ -360,15 +379,31 @@ namespace POS.Retail
 
         private void dg_customers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(dg_customers.SelectedValue.ToString());
-            cust_no = dg_customers.SelectedValue.ToString();
-            this.Close();
+            btn_select_Click(sender, e);
+            //MessageBox.Show(dg_customers.SelectedValue.ToString());
+            //cust_no = dg_customers.SelectedValue.ToString();
+            //this.Close();
         }
         public  string set_cust_no
         {
             get { return cust_no; }
             set { cust_no = value; }
                
+        }
+
+        private void btn_select_Click(object sender, RoutedEventArgs e)
+        {
+            if (dg_customers.SelectedValue == null)
+            {
+                MessageBox.Show("Please select Customer", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            DataGridRow rowss = (DataGridRow)dg_customers.ItemContainerGenerator.ContainerFromIndex(dg_customers.SelectedIndex);
+            string a = (dg_customers.Columns[0].GetCellContent(rowss) as TextBlock).Text;
+
+            cust_no = a;
+
+            this.Close();
         }
     }
 }

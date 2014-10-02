@@ -440,7 +440,11 @@ namespace POS.Services.Common
             CustomerRepository objCustomerRepository = new CustomerRepository();
             return objCustomerRepository.CustomerSwipInfo(objCustomerSwipesClass);
         }
-
+        public CustomerClass GetCustomerInfor(CustomerClass objCustomerClass)
+        {
+            CustomerRepository objCustomerRepository = new CustomerRepository();
+            return objCustomerClass = objCustomerRepository.LoadCustomerInfo(objCustomerClass);
+        }
         #endregion
 
 
