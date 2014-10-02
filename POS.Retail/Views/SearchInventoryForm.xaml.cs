@@ -60,7 +60,7 @@ namespace POS.Retail
         }
         private void fun_select_items()
         {
-            
+
             try
             {
                 if (cmb_category.SelectedIndex > -1 && cmb_dept.SelectedIndex > -1)
@@ -98,10 +98,10 @@ namespace POS.Retail
                     }
                     else
                     {
-                      vendor = cmb_vendor.SelectedValue.ToString();
+                        vendor = cmb_vendor.SelectedValue.ToString();
                     }
 
-                    if (chk_modifier.IsChecked==true)
+                    if (chk_modifier.IsChecked == true)
                     {
                         modifier = "1";
                     }
@@ -109,7 +109,7 @@ namespace POS.Retail
                     {
                         modifier = "%";
                     }
-                   
+
                     if (chk_kits.IsChecked == true)
                     {
                         kits = "1";
@@ -119,21 +119,25 @@ namespace POS.Retail
                         kits = "%";
                     }
                     objInventoryClass.Dept_ID = dept;
-                    objInventoryClass.IsModifier = Convert.ToInt32(modifier);
-                    objInventoryClass.IsKit = Convert.ToInt32(kits);
+                    if (modifier != "%")
+                        objInventoryClass.IsModifier = Convert.ToInt32(modifier);
+                    if (kits != "%")
+                        objInventoryClass.IsKit = Convert.ToInt32(kits);
                     objInventoryClass.Vendor_Number = vendor;
                     objInventoryClass.IsDeleted = 0;
                     objInventoryClass.Cat_id = category;
                     DataTable dt = objPOSManagementService.filterInventory(objInventoryClass);
                     //string quary = "select * from VIEW_ITEMS where c_id like '" + category + "' and d_id like '" + dept + "' and IsModifier like '" + modifier + "' and IsKit like '" + kits + "' and Vendor_Number like " + vendor + " and delte = 0";
-                   // DataTable dt = 
+                    // DataTable dt = 
                     DG_items.ItemsSource = dt.DefaultView;
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+              //  MessageBox.Show(ex.Message);
+            }
         }
-       
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -173,7 +177,7 @@ namespace POS.Retail
                 item_id = d;
 
                 this.Close();
-                
+
             }
 
         }
@@ -188,13 +192,13 @@ namespace POS.Retail
             }
             else if (rb_description.IsChecked == true)
             {
-               // string quary = "select * from Inventory where ItemName like '" + txt_search_text.Text + prec + "' order by ItemName DESC";
+                // string quary = "select * from Inventory where ItemName like '" + txt_search_text.Text + prec + "' order by ItemName DESC";
                 DataTable dt = objPOSManagementService.searchItem("sbItemName", txt_search_text.Text);
                 DG_items.ItemsSource = dt.DefaultView;
             }
             else if (rb_vendor.IsChecked == true)
             {
-               // string quary = "select * from Inventory where Vendor_Part_Num like '" + txt_search_text.Text + prec + "' order by Vendor_Part_Num DESC";
+                // string quary = "select * from Inventory where Vendor_Part_Num like '" + txt_search_text.Text + prec + "' order by Vendor_Part_Num DESC";
                 DataTable dt = objPOSManagementService.searchItem("sbVendorPartNo", txt_search_text.Text);
                 DG_items.ItemsSource = dt.DefaultView;
             }
