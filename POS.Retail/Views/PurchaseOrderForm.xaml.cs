@@ -536,15 +536,15 @@ namespace POS.Retail
 
         private void DG_itemlist_DoubleClick(object sender, EventArgs e)
         {
-           // if (lstb_ven_list.SelectedItem == null)
-           // {
-           //     System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-           //     return;
-           // }
-           // TextBlock b = DG_itemlist.Columns[0].GetCellContent(DG_itemlist.SelectedItem) as TextBlock;
-           // string id = b.Text;
-           //// string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
-           // fun_selct_item_po(id);
+            if (lstb_ven_list.SelectedItem == null)
+            {
+                System.Windows.MessageBox.Show("Please Select a Vendor Before Ordering the Item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            TextBlock b = DG_itemlist.Columns[0].GetCellContent(DG_itemlist.SelectedItem) as TextBlock;
+            string id = b.Text;
+            // string id = DG_itemlist.CurrentRow.Cells[0].Value.ToString();
+            fun_selct_item_po(id);
         }
 
         public string set_vendor_name

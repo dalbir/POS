@@ -43,6 +43,8 @@ namespace POS.Retail.Views
             DgCustomer.Visibility = Visibility.Visible;
             DgItem.Visibility = Visibility.Hidden;
             btnSelect.Content = "Select Item";
+            DgItem.ItemsSource = null;
+            DgCustomer.ItemsSource = null;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,10 +52,60 @@ namespace POS.Retail.Views
             rbItem.IsChecked = true;
             DgCustomer.Visibility = Visibility.Hidden;
             DgItem.Visibility = Visibility.Visible;
+            DgItem.ItemsSource = null;
+            DgCustomer.ItemsSource = null;
         }
 
         private void btnAddPrice_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (btnSelect.Content.Equals("Select Item"))
+                {
+                    Inventory_CustPricesClass objInvCustPricesClass = new Inventory_CustPricesClass();
+                    objInvCustPricesClass.message = "Enter Price";
+                    NumberKeypaid objNk = new NumberKeypaid(objInvCustPricesClass);
+                    objNk.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                    objNk.ShowDialog();
+                    objInvCustPricesClass.message = "customer";
+                    InforPromptForm obj = new InforPromptForm(objInvCustPricesClass);
+                    obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                    obj.ShowDialog();
+                    objInvCustPricesClass.Store_ID = "1001";
+                    string[] str = lblType.Content.ToString().Split('-');
+                    objInvCustPricesClass.ItemNum = str[0].ToString();
+                    objInvCustPricesClass.Allow_Discounts = 1;
+                    objPOSManagementService.insertCustomerWithSpecifedITem(objInvCustPricesClass);
+                    objInvCustPricesClass.message = "item";
+                    DataTable dt = objPOSManagementService.GetRequrdData(objInvCustPricesClass);
+                    DgCustomer.ItemsSource = dt.DefaultView;
+
+                }
+                else if (btnSelect.Content.Equals("Select Customer"))
+                {
+                    Inventory_CustPricesClass objInvCustPricesClass = new Inventory_CustPricesClass();
+                    objInvCustPricesClass.message = "Enter Price";
+                    NumberKeypaid objNk = new NumberKeypaid(objInvCustPricesClass);
+                    objNk.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                    objNk.ShowDialog();
+                    objInvCustPricesClass.message = "item";
+                    InforPromptForm obj = new InforPromptForm(objInvCustPricesClass);
+                    obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                    obj.ShowDialog();
+                    objInvCustPricesClass.Store_ID = "1001";
+                    string[] str = lblType.Content.ToString().Split('-');
+                    objInvCustPricesClass.CustNum = str[0].ToString();
+                    objInvCustPricesClass.Allow_Discounts = 1;
+                    objPOSManagementService.insertCustomerWithSpecifedITem(objInvCustPricesClass);
+                    objInvCustPricesClass.message = "customer";
+                     DataTable dt = objPOSManagementService.GetRequrdData(objInvCustPricesClass);
+                    DgItem.ItemsSource = dt.DefaultView;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btnRemovePrice_Click(object sender, RoutedEventArgs e)
@@ -63,7 +115,7 @@ namespace POS.Retail.Views
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -76,7 +128,7 @@ namespace POS.Retail.Views
                 }
                 else if (btnSelect.Content.Equals("Select Customer"))
                 {
-                    objInveCust.message.Equals("Please Select Customer Number");
+                    objInveCust.message = "customer";
                 }
                 InforPromptForm obj = new InforPromptForm(objInveCust);
                 obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -85,20 +137,191 @@ namespace POS.Retail.Views
                 DataTable dt = objPOSManagementService.GetRequrdData(objInveCust);
                 if (dt.Rows.Count > 0)
                 {
-                    if (objInveCust.message != "no")
+                    if (btnSelect.Content.Equals("Select Item"))
                     {
-                        lblType.Content = dt.Rows[0]["ItemNum"].ToString() + '-' + dt.Rows[0]["ItemName"].ToString();
-                        DgItem.ItemsSource = dt.DefaultView;
+                        if (objInveCust.message != "no")
+                        {
+                            lblType.Content = dt.Rows[0]["ItemNum"].ToString() + '-' + dt.Rows[0]["ItemName"].ToString();
+                            DgCustomer.ItemsSource = dt.DefaultView;
+                        }
+                        else
+                        {
+                            lblType.Content = dt.Rows[0]["ItemNum"].ToString() + '-' + dt.Rows[0]["ItemName"].ToString();
+                        }
                     }
-                    else
+                    if (btnSelect.Content.Equals("Select Customer"))
                     {
-                        lblType.Content = dt.Rows[0]["ItemNum"].ToString() + '-' + dt.Rows[0]["ItemName"].ToString();
+                        if (objInveCust.message != "no")
+                        {
+                            lblType.Content = dt.Rows[0]["CustNum"].ToString() + '-' + dt.Rows[0]["CustName"].ToString();
+                            DgItem.ItemsSource = dt.DefaultView;
+                        }
+                        else
+                        {
+                            lblType.Content = dt.Rows[0]["CustNum"].ToString() + '-' + dt.Rows[0]["CustName"].ToString();
+                        }
                     }
                 }
             }
             catch(Exception ex)
             {
 
+            }
+        }
+
+        public void funDgDoubleClick()
+        {
+            try
+            {
+                //if (DgCustomer.SelectedIndex != -1)
+                //{
+                    Inventory_CustPricesClass objCustPrice = new Inventory_CustPricesClass();
+                    if (btnSelect.Content.Equals("Select Customer"))
+                    {
+                        TextBlock a = DgItem.Columns[0].GetCellContent(DgItem.SelectedItem) as TextBlock;
+                        objCustPrice.CustNum = a.Text;
+                        TextBlock b = DgItem.Columns[2].GetCellContent(DgItem.SelectedItem) as TextBlock;
+                        objCustPrice.Price = Convert.ToDouble(b.Text);
+                        string[] str = lblType.Content.ToString().Split('-');
+                        objCustPrice.ItemNum = str[0].ToString();
+                        CheckBox mycheckbox = DgItem.Columns[3].GetCellContent(DgItem.SelectedItem) as CheckBox;
+                        if (mycheckbox.IsChecked == true)
+                        {
+                            objCustPrice.Allow_Discounts = 1;
+                        }
+                        else
+                        {
+                            objCustPrice.Allow_Discounts = 0;
+                        }
+                    }
+                    else if (btnSelect.Content.Equals("Select Item"))
+                    {
+                        TextBlock a = DgCustomer.Columns[0].GetCellContent(DgCustomer.SelectedItem) as TextBlock;
+                        objCustPrice.ItemNum = a.Text;
+                        string[] str = lblType.Content.ToString().Split('-');
+                        objCustPrice.CustNum = str[0].ToString();
+                        TextBlock b = DgCustomer.Columns[2].GetCellContent(DgCustomer.SelectedItem) as TextBlock;
+                        objCustPrice.Price = Convert.ToDouble(b.Text);
+                        CheckBox mycheckbox = DgCustomer.Columns[3].GetCellContent(DgCustomer.SelectedItem) as CheckBox;
+                        if (mycheckbox.IsChecked == true)
+                        {
+                            objCustPrice.Allow_Discounts = 1;
+                        }
+                        else
+                        {
+                            objCustPrice.Allow_Discounts = 0;
+                        }
+                    }
+                    
+                    objCustPrice.message = "Enter New Amount";
+                    objCustPrice.Store_ID = "1001";
+
+                    NumberKeypaid kb = new NumberKeypaid(objCustPrice);
+                    kb.ShowDialog();
+                    
+                    objPOSManagementService.updateCustPrice(objCustPrice);
+                    if (btnSelect.Content.Equals("Select Customer"))
+                    {
+                        objCustPrice.message = "item";
+                        DataTable dt = objPOSManagementService.GetRequrdData(objCustPrice);
+                        DgItem.ItemsSource = dt.DefaultView;
+                    }
+                    else if (btnSelect.Content.Equals("Select Item"))
+                    {
+                        objCustPrice.message = "customer";
+                        DataTable dt = objPOSManagementService.GetRequrdData(objCustPrice);
+                        DgCustomer.ItemsSource = dt.DefaultView;
+                    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void DgCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (DgCustomer.SelectedIndex != -1)
+                {
+                    Inventory_CustPricesClass objCustPrice = new Inventory_CustPricesClass();
+                
+                    string[] str = lblType.Content.ToString().Split('-');
+                    objCustPrice.ItemNum = str[0].ToString();
+                    TextBlock a = DgCustomer.Columns[0].GetCellContent(DgCustomer.SelectedItem) as TextBlock;
+                    objCustPrice.CustNum = a.Text;
+                    TextBlock b = DgCustomer.Columns[2].GetCellContent(DgCustomer.SelectedItem) as TextBlock;
+                    objCustPrice.Price = Convert.ToDouble(b.Text);
+                    objCustPrice.message = "Enter New Amount";
+                    objCustPrice.Store_ID = "1001";
+                    NumberKeypaid kb = new NumberKeypaid(objCustPrice);
+                    kb.ShowDialog();
+                    objPOSManagementService.updateCustPrice(objCustPrice);
+                    objCustPrice.message = "item";
+                    DataTable dt = objPOSManagementService.GetRequrdData(objCustPrice);
+                    DgCustomer.ItemsSource = dt.DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DgItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (DgItem.SelectedIndex != -1)
+                {
+                    Inventory_CustPricesClass objCustPrice = new Inventory_CustPricesClass();
+           
+                    string[] str = lblType.Content.ToString().Split('-');
+                    objCustPrice.CustNum = str[0].ToString();
+                    TextBlock a = DgItem.Columns[0].GetCellContent(DgItem.SelectedItem) as TextBlock;
+                    objCustPrice.ItemNum = a.Text;
+                    TextBlock b = DgItem.Columns[2].GetCellContent(DgItem.SelectedItem) as TextBlock;
+                    objCustPrice.Price = Convert.ToDouble(b.Text);
+                    objCustPrice.message = "Enter New Amount";
+                    objCustPrice.Store_ID = "1001";
+                    NumberKeypaid kb = new NumberKeypaid(objCustPrice);
+                    kb.ShowDialog();
+                    objPOSManagementService.updateCustPrice(objCustPrice);
+                    objCustPrice.message = "customer";
+                    DataTable dt = objPOSManagementService.GetRequrdData(objCustPrice);
+                    DgItem.ItemsSource = dt.DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            if (chk.IsChecked == true)
+            {
+                MessageBox.Show("checked");
+            }
+            else
+            {
+                MessageBox.Show("Unchecked");
+            }
+        }
+
+        private void CheckBox_Click_1(object sender, RoutedEventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            if (chk.IsChecked == true)
+            {
+                MessageBox.Show("checked");
+            }
+            else
+            {
+                MessageBox.Show("Unchecked");
             }
         }
     }

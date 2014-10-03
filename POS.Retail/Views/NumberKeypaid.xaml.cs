@@ -39,6 +39,7 @@ namespace POS.Retail
         private static string qty_rec_damg = null;
         private static string change_value = null;
         private static string pricce = null;
+        private Domain.Common.Inventory_CustPricesClass objInvCustPricesClass;
         //Regex_class regclass = new Regex_class();
         //GlobalClass glo = new GlobalClass();
         public NumberKeypaid()
@@ -269,6 +270,13 @@ namespace POS.Retail
             this.textbox_text = textbox_text;
             lbl_keypaid.Content = p;
             txt_numbers.Text = textbox_text.ToString();
+        }
+
+        public NumberKeypaid(Domain.Common.Inventory_CustPricesClass objInvCustPricesClass)
+        {
+            InitializeComponent();
+            this.objInvCustPricesClass = objInvCustPricesClass;
+            lbl_keypaid.Content = objInvCustPricesClass.message;
         }
 
 
@@ -864,11 +872,22 @@ namespace POS.Retail
                     pricce = txt_numbers.Text;
                     this.Close();
                 }
+                else if (lbl_keypaid.Content.Equals("Enter Price"))
+                {
+                    objInvCustPricesClass.Price = Convert.ToDouble(txt_numbers.Text);
+                    this.Close();
+                }
+                else if (lbl_keypaid.Content.Equals("Enter New Amount"))
+                {
+                    objInvCustPricesClass.Price = Convert.ToDouble(txt_numbers.Text);
+                    this.Close();
+                }
                 else
                 {
                     this.Close();
                 }
             }
+            
         }
 
         public string set_line_no

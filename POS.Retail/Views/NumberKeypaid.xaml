@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="NumberKeypaid" Height="516" Width="290" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid Height="482">
-        <Label Content="Enter numbers" Height="52" HorizontalAlignment="Left" Name="lbl_keypaid" VerticalAlignment="Top" Width="268" FontWeight="Bold" FontSize="14" FontFamily="Arial" />
+        <Label Content="Enter numbers" Height="52" HorizontalAlignment="Left" Name="lbl_keypaid" VerticalAlignment="Top" Width="280" FontWeight="Bold" FontSize="14" FontFamily="Arial" />
         <TextBox  Height="36" HorizontalAlignment="Left" Margin="8,49,0,0" Name="txt_numbers" VerticalAlignment="Top" Width="253" FontSize="18" FontWeight="Bold" Background="Moccasin" FlowDirection="RightToLeft" KeyDown="txt_numbers_KeyDown" PreviewTextInput="txt_numbers_PreviewTextInput" />
         <Button Content="1" FontSize="28" FontWeight="Bold" Height="72" HorizontalAlignment="Left" Margin="8,235,0,0" Name="btn_n1" VerticalAlignment="Top" Width="83" Click="btn_n7_Click">
             <Button.Background>

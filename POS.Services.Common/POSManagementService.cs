@@ -458,7 +458,21 @@ namespace POS.Services.Common
             CustomerSpecificServicesRepsitory objCustSpecificSercRep = new CustomerSpecificServicesRepsitory();
             return objCustSpecificSercRep.getRequredDataRep(objInveCust);
         }
+        public POS.Domain.Common.Inventory_CustPricesClass insertCustomerWithSpecifedITem(Inventory_CustPricesClass objInvCustPricesClass)
+        {
+            CustomerSpecificServicesRepsitory objCustSpecificSercRep = new CustomerSpecificServicesRepsitory();
+            return objCustSpecificSercRep.insertCustmerwithSpeItemRep(objInvCustPricesClass);
+        }
+        public POS.Domain.Common.Inventory_CustPricesClass updateCustPrice(Domain.Common.Inventory_CustPricesClass objCustPrice)
+        {
+            CustomerSpecificServicesRepsitory objCustSpecificSercRep = new CustomerSpecificServicesRepsitory();
+            return objCustSpecificSercRep.updateCustPrice(objCustPrice);
+        }
         #endregion
+
+
+
+ 
     }
 }
 
