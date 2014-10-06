@@ -542,7 +542,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="_Add Item" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="312,557,0,0" Name="btn_add_item" VerticalAlignment="Top" Width="117" Click="btn_add_item_Click">
+        <Button Content="Add Item" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="312,557,0,0" Name="btn_add_item" VerticalAlignment="Top" Width="117" Click="btn_add_item_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />

@@ -85,5 +85,67 @@ namespace POS.Repository.SQLServer
             }
             return objCustPrice;
         }
+
+        public Inventory_CustPricesClass updateAllowDiscounts(Inventory_CustPricesClass objCustPrices)
+        {
+            try
+            {
+                int result = objSqlServerRepostory.ExecuteNonQuery("UPDATE Inventory_CustPrices SET Allow_Discounts = '" + objCustPrices.Allow_Discounts + "' WHERE ItemNum = '" + objCustPrices.ItemNum + "' and CustNum = '" + objCustPrices.CustNum + "' and Store_ID = '" + objCustPrices.Store_ID + "'");
+                if(result == 1)
+                {
+                    objCustPrices.IsSuccessfull = true;
+                }
+                    else
+                {
+                    objCustPrices.IsSuccessfull = false;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return objCustPrices;
+        }
+
+        public Inventory_CustPricesClass removeCustPriceRep(Inventory_CustPricesClass objCustPrcies)
+        {
+            try
+            {
+                int result = objSqlServerRepostory.ExecuteNonQuery("delete from Inventory_CustPrices WHERE ItemNum = '" + objCustPrcies.ItemNum + "' and CustNum = '" + objCustPrcies.CustNum + "' and Store_ID = '" + objCustPrcies.Store_ID + "'");
+                if(result == 1)
+                {
+                    objCustPrcies.IsSuccessfull = true;
+                }
+                else
+                {
+                    objCustPrcies.IsSuccessfull = false;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return objCustPrcies;
+        }
+        DataTable dtForGrids;
+        public DataTable fillDataGrids(Inventory_CustPricesClass objCustPrcies)
+        {
+            try
+            {
+                if (objCustPrcies.message == "itemDg")
+                {
+                    dtForGrids = objSqlServerRepostory.GetDataTable("select * from CUSTOMER_SEPECIFIC_ITEM_PRICES where ItemNum = '" + objCustPrcies.ItemNum + "'");
+                }
+                else if(objCustPrcies.message == "customerDg")
+                {
+                    dtForGrids = objSqlServerRepostory.GetDataTable("select * from CUSTOMER_SEPECIFIC_ITEM_PRICES where CustNum = '" + objCustPrcies.CustNum + "'");
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return dtForGrids;
+        }
     }
 }

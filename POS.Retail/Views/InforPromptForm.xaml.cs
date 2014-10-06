@@ -73,11 +73,11 @@ namespace POS.Retail
                     email = txt_enter_store_id.Text;
                     this.Close();
                 }
-                else if (label1.Content == "Please Select Item Number")
+                else if (label1.Content.Equals("Please Select Item Number"))
                 {
                     objInveCust.ItemNum = txt_enter_store_id.Text;
                 }
-                else if (label1.Content == "Please Select Customer Number")
+                else if (label1.Content.Equals("Please Select Customer Number"))
                 {
                     objInveCust.CustNum = txt_enter_store_id.Text;
                 }
@@ -98,6 +98,7 @@ namespace POS.Retail
         {
             store_id = null;
             email = null;
+            txt_enter_store_id.Focus();
         }
     }
 }

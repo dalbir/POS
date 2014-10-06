@@ -1,11 +1,15 @@
 ﻿<Window x:Class="POS.Retail.Views.CustomerSpecificItemPrices"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Customer Specific Item Prices" Height="390.426" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Width="593.616" WindowStyle="ToolWindow">
+        Title="Customer Specific Item Prices" Height="438.426" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" Width="662.616" WindowStyle="ToolWindow">
     <Grid>
-        <GroupBox Margin="0,0,0,289" x:Name="rbGroup">
-            <Grid Margin="2,0,-2,-6">
-                <RadioButton x:Name="rbItem" Checked="rbItem_Checked" Margin="323,10,0,0" HorizontalAlignment="Left" Width="169" Height="34" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="356*"/>
+            <RowDefinition Height="57*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Margin="0,0,0,232" x:Name="rbGroup">
+            <Grid Margin="2,0,-2,-6" Height="75" VerticalAlignment="Top">
+                <RadioButton x:Name="rbItem" Checked="rbItem_Checked" Margin="365,10,0,0" HorizontalAlignment="Left" Width="169" Height="34" VerticalAlignment="Top">
                     <TextBlock TextWrapping="Wrap" Height="37" Width="151">Display Item Specific Prices For Specified Customer</TextBlock>
                     <RadioButton.LayoutTransform>
                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
@@ -20,42 +24,64 @@
             </Grid>
 
         </GroupBox>
-        <Label Content="" x:Name="lblType" HorizontalAlignment="Left" Margin="3,76,0,0" FontSize="16" VerticalAlignment="Top" Width="309" Height="37" Background="#FFF5EEEE"/>
-        <DataGrid AutoGenerateColumns="False" Height="199" x:Name="DgItem" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" Margin="0,0,0,52" VerticalAlignment="Bottom" FontWeight="Bold" MouseDoubleClick="DgItem_MouseDoubleClick" IsReadOnly="False">
+        <Label Content="" x:Name="lblType" HorizontalAlignment="Left" Margin="3,68,0,0" FontSize="16" VerticalAlignment="Top" Width="309" Height="37" Background="#FFF5EEEE"/>
+        <DataGrid AutoGenerateColumns="False" Height="241" x:Name="DgItem" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" Margin="0,107,0,0" VerticalAlignment="Top" FontWeight="Bold" MouseDoubleClick="DgItem_MouseDoubleClick" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=ItemNum}" Header="ItemNum" IsReadOnly="True" MinWidth="100" />
                 <DataGridTextColumn Binding="{Binding Path=ItemName}" Header="Description" IsReadOnly="True" MinWidth="150" />
-                <DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" MinWidth="150" IsReadOnly="True" />
+                <!--<DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" MinWidth="150" IsReadOnly="True" />-->
+                <DataGridTemplateColumn Header="Price" MinWidth="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Price}" IsReadOnly="True" GotFocus="TextBox_DgItem_GotFocus"></TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <!--<DataGridCheckBoxColumn Binding="{Binding Path=Allow_Discounts}" IsReadOnly="False" Header="Allow Discount" Width="*" />-->
                 <DataGridTemplateColumn Header="Allow Discount" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Click="CheckBox_Click_1" IsChecked="{Binding Path=Allow_Discounts}"></CheckBox>
+                            <CheckBox Click="CheckBox_Click_1" IsChecked="{Binding Path=Allow_Discounts}">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.4" ScaleY="1.4" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid AutoGenerateColumns="False" Height="199" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" x:Name="DgCustomer" Margin="0,0,0,52" VerticalAlignment="Bottom" FontWeight="Bold" IsReadOnly="False" MouseDoubleClick="DgCustomer_MouseDoubleClick">
+        <DataGrid AutoGenerateColumns="False" Height="243" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" x:Name="DgCustomer" Margin="0,105,0,0" VerticalAlignment="Top" FontWeight="Bold" IsReadOnly="True" Visibility="Hidden" MouseDoubleClick="DgCustomer_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=CustNum}" Header="CustNum" IsReadOnly="True" MinWidth="100" />
-                <DataGridTextColumn Binding="{Binding Path=CustName}" Header="Customer Name" IsReadOnly="True" MinWidth="150" />
-                <DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" IsReadOnly="True" MinWidth="150" />
-                <!--<DataGridCheckBoxColumn Binding="{Binding Path=Allow_Discounts}" IsReadOnly="False" Header="Allow Discount" Width="*" />-->
-                <DataGridTemplateColumn Header="Allow Discount" Width="*">
+                <DataGridTextColumn Binding="{Binding Path=CustName}" Header="Customer Name" IsReadOnly="True" MinWidth="200" />
+                <!--<DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" IsReadOnly="True" MinWidth="150" />-->
+                <DataGridTemplateColumn Header="Price" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            
-                            <CheckBox Click="CheckBox_Click" IsChecked="{Binding Path=Allow_Discounts}"></CheckBox>
+                            <TextBox Text="{Binding Path=Price}" IsReadOnly="True" GotFocus="TextBox_GotFocus"></TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridCheckBoxColumn Binding="{Binding Path=Allow_Discounts}" IsReadOnly="False" Header="Allow Discount" Width="*" />-->
+                <DataGridTemplateColumn Header="Allow Discount" Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <CheckBox Click="CheckBox_Click" VerticalContentAlignment="Center" IsEnabled="True" IsChecked="{Binding Path=Allow_Discounts}">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.4" ScaleY="1.4" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Height="34" Content="" HorizontalAlignment="Left" Margin="44,315,0,0" x:Name="btnSelect" VerticalAlignment="Top" Click="btnSelect_Click" Width="140" FontSize="11" Background="#467FFF00"  FontWeight="Bold" />
-        <Button Content="Add Price" Height="35"  HorizontalAlignment="Left" Margin="189,315,0,0" x:Name="btnAddPrice" VerticalAlignment="Top" Width="100" Background="#467FFF00" Click="btnAddPrice_Click" FontWeight="Bold" />
-        <Button Content="Remove Price" Height="35" HorizontalAlignment="Left" Margin="296,315,0,0" x:Name="btnRemovePrice" VerticalAlignment="Top" Width="100" Background="#467FFF00" Click="btnRemovePrice_Click"  FontWeight="Bold" />
-        <Button Content="Exit" Height="35" HorizontalAlignment="Left" Margin="403,315,0,0" x:Name="btnExit" VerticalAlignment="Top" Width="100" Background="#467FFF00" FontWeight="Bold" Click="btnExit_Click" />
+        <Button  Height="34" Content="" HorizontalAlignment="Left" Margin="44,0,0,13" x:Name="btnSelect" VerticalAlignment="Bottom" Click="btnSelect_Click" Width="140" FontSize="11" Background="#467FFF00"  FontWeight="Bold" Grid.Row="1" />
+        <Button Content="Add Price" Height="35"  HorizontalAlignment="Left" Margin="189,0,0,12" x:Name="btnAddPrice" VerticalAlignment="Bottom" Width="100" Background="#467FFF00" Click="btnAddPrice_Click" FontWeight="Bold" Grid.Row="1" />
+        <Button Content="Remove Price" Height="35" HorizontalAlignment="Left" Margin="296,0,0,12" x:Name="btnRemovePrice" VerticalAlignment="Bottom" Width="100" Background="#467FFF00" Click="btnRemovePrice_Click"  FontWeight="Bold" Grid.Row="1" />
+        <Button Content="Exit" Height="35" HorizontalAlignment="Left" Margin="403,0,0,12" x:Name="btnExit" VerticalAlignment="Bottom" Width="100" Background="#467FFF00" FontWeight="Bold" Click="btnExit_Click" Grid.Row="1" />
     </Grid>
 </Window>
