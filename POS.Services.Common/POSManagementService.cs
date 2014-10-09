@@ -382,7 +382,6 @@ namespace POS.Services.Common
         }
         #endregion
 
-
         #region [CUSTOMER SERVICES]
         //     insertCusNotes
 
@@ -448,10 +447,6 @@ namespace POS.Services.Common
         }
         #endregion
 
-
-
-
-
         #region Customer specific Item prices services
         public DataTable GetRequrdData(Inventory_CustPricesClass objInveCust)
         {
@@ -485,15 +480,44 @@ namespace POS.Services.Common
         }
         #endregion
 
+        #region Global Price change Services
+        public DataTable getDepartment(Domain.Common.DepartmentClass objDepartment)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.GetDepatment(objDepartment);
+        }
+        public DataTable getItems(string storeID)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.getItems(storeID);
+        }
+        public DataTable getItemsData(Domain.Common.InventoryClass objInventoryClass)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.getItemsData(objInventoryClass);
+        }
+        public Domain.Common.InventoryClass updatePrice(Domain.Common.InventoryClass objInventoryClass)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.updatePriceRep(objInventoryClass);
+        }
+        public Domain.Common.Inventory_OnSale_InfoClass updateSalePrice(Domain.Common.Inventory_OnSale_InfoClass objInvOnSaleInfo)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.updateSalePriceRep(objInvOnSaleInfo);
+        }
+        public Domain.Common.Inventory_OnSale_InfoClass deleteSelectedItems(Domain.Common.Inventory_OnSale_InfoClass objInvOnSaleInfo)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.deleteSelectItemsRep(objInvOnSaleInfo);
+        }
+        public Domain.Common.InventoryClass IncreasePrice(Domain.Common.InventoryClass objInventoryClass)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.increasPriceRep(objInventoryClass);
+        }
+        #endregion
 
-
-
-
-
-
-
-
- 
     }
 }
 

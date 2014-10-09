@@ -19,5 +19,7 @@ namespace POS.Domain.Common
 
        //
         public string qurryFlage { get; set; }
+        public string Dept_ID { get; set; }
+        public List<string> ListSelectItems = new List<string>();
     }
 }

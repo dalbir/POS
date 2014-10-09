@@ -34,7 +34,7 @@ namespace POS.Repository.SQLServer
                 }
                 else if (objDeptClass.flage == "fillList")
                 {
-                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("SELECT Dept_ID FROM Departments ");
+                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("SELECT Dept_ID FROM Departments");
                 }
                
             }

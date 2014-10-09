@@ -403,10 +403,5 @@ namespace POS.Retail.Views
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnRemovePrice_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

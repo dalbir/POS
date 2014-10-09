@@ -44,6 +44,7 @@
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="CustomerSpecificServicesRepsitory.cs" />
     <Compile Include="DepartmentRepository.cs" />
+    <Compile Include="GlobalPriceRepository.cs" />
     <Compile Include="InventoryRepository.cs" />
     <Compile Include="PurchaseOrderRepository.cs" />
     <Compile Include="SQLServerRepository.cs" />

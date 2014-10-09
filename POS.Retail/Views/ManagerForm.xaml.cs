@@ -489,5 +489,12 @@ namespace POS.Retail
             obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             obj.ShowDialog();
         }
+
+        private void btnGlobalPrice_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalPriceChangeForm obj = new GlobalPriceChangeForm();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }
