@@ -17,13 +17,12 @@ C:\Users\irshad\Source\Repos\POS2\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
 C:\Users\irshad\Source\Repos\POS2\POS.Domain.Base\obj\Debug\POS.Domain.Base.csprojResolveAssemblyReference.cache
 C:\Users\irshad\Source\Repos\POS2\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
 C:\Users\irshad\Source\Repos\POS2\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.dll
 C:\Users\Asad\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.csprojResolveAssemblyReference.cache
 C:\Users\Asad\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
 C:\Users\Asad\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.csprojResolveAssemblyReference.cache
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\bin\Debug\POS.Domain.Base.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Domain.Base\obj\Debug\POS.Domain.Base.pdb

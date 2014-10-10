@@ -516,7 +516,19 @@ namespace POS.Services.Common
             GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
             return objGlobalPriceRep.increasPriceRep(objInventoryClass);
         }
+        // service for apply discounts
+        public Domain.Common.Inventory_OnSale_InfoClass applyDiscounts(Domain.Common.Inventory_OnSale_InfoClass objInvOnSaleInfo)
+        {
+            GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+            return objGlobalPriceRep.applyDiscountsRep(objInvOnSaleInfo);
+        }
+        public Domain.Common.InventoryClass applyTax(Domain.Common.InventoryClass objInventoryClass)
+        {
+             GlobalPriceRepository objGlobalPriceRep = new GlobalPriceRepository();
+             return objGlobalPriceRep.applyTaxRep(objInventoryClass);
+        }
         #endregion
+
 
     }
 }

@@ -33,11 +33,11 @@ namespace POS.Retail
             this.p = p;
             if (p == 0 || p == 1)
             {
-                lbl_heading.Content = "This Will Apply for All of the Selected Items for\n the Store, Are You Sure You'd Like to Do This?";
+                lbl_heading.Text = "This Will Apply for All of the Selected Items for the Store, Are You Sure You'd Like to Do This?";
             }
             if (p == 2)
             {
-                lbl_heading.Content = "This Will Apply For All The Selected Items For The Sore, Are You Sure You'd Like to Do This?";
+                lbl_heading.Text = "This Will Apply For All The Selected Items For The Sore, Are You Sure You'd Like to Do This?";
             }
         }
 

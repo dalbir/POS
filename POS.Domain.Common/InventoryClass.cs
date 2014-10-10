@@ -106,6 +106,8 @@ namespace POS.Domain.Common
        //
         public string qryType { get; set; }
         public string Cat_id { get; set; }
+        public string Tax { get; set; }
+        public int taxValue { get; set; }
        
     }
 }

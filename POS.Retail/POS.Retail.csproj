@@ -210,11 +210,17 @@
     <Compile Include="Views\SelectRentalItemsForm.xaml.cs">
       <DependentUpon>SelectRentalItemsForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectTaxForGlobalChange.xaml.cs">
+      <DependentUpon>SelectTaxForGlobalChange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectVendorForm.xaml.cs">
       <DependentUpon>SelectVendorForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StoreStationForm.xaml.cs">
       <DependentUpon>StoreStationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaxAppliedChargePopup.xaml.cs">
+      <DependentUpon>TaxAppliedChargePopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TaxSetupForm.xaml.cs">
       <DependentUpon>TaxSetupForm.xaml</DependentUpon>
@@ -475,11 +481,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SelectTaxForGlobalChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SelectVendorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StoreStationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaxAppliedChargePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

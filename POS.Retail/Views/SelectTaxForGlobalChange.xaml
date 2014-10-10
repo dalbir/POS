@@ -1,0 +1,57 @@
+﻿<Window x:Class="POS.Retail.Views.SelectTaxForGlobalChange"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SelectTaxForGlobalChange" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" WindowState="Normal" WindowStyle="ToolWindow" Height="259.575" Width="395.745">
+    <Grid>
+        <Button  HorizontalAlignment="Left" Margin="30,59,0,0" Name="btnTax1" Click="btnTax1_Click" VerticalAlignment="Top" Width="157" Height="69">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#FF478AF2" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="49" Width="100">
+                <TextBlock FontSize="15" TextAlignment="Center" Margin="10,0"><Run Text="Tax 1"/></TextBlock>
+                <TextBlock Text="" x:Name="tax1price" TextAlignment="Center" FontSize="15" />
+            </StackPanel>
+        </Button>
+        <Label Content="Which tax rate would you like to charge" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Height="44" FontSize="20"/>
+        <Button  HorizontalAlignment="Left" Margin="192,59,0,0" Name="btnTax2" Click="btnTax1_Click" VerticalAlignment="Top" Width="157" Height="69">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#FF478AF2" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="49" Width="100">
+                <TextBlock FontSize="15" TextAlignment="Center" Margin="10,0"><Run Text="Tax 2"/></TextBlock>
+                <TextBlock Text="" x:Name="tax2price" TextAlignment="Center" FontSize="15" />
+            </StackPanel>
+        </Button>
+        <Button  HorizontalAlignment="Left" Margin="30,133,0,0" Name="btnTax3" Click="btnTax1_Click" VerticalAlignment="Top" Width="157" Height="69">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#FF478AF2" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="49" Width="105">
+                <TextBlock FontSize="15" TextAlignment="Center" Margin="10,0"><Run Text="Tax 3"/></TextBlock>
+                <TextBlock Text="" x:Name="tax3price" TextAlignment="Center" FontSize="15" />
+            </StackPanel>
+        </Button>
+        <Button  HorizontalAlignment="Left" Name="btnBarTax" Margin="192,133,0,0" Click="btnTax1_Click" VerticalAlignment="Top" Width="157" Height="69">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#2BD1D1F0" Offset="0" />
+                    <GradientStop Color="#FF478AF2" Offset="0.732" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Height="59" Width="100">
+                <TextBlock FontSize="15" TextAlignment="Center" Margin="10,0"><Run Text="Bar Tax"/></TextBlock>
+                <TextBlock Text="" x:Name="barTax" TextAlignment="Center" FontSize="15" />
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>

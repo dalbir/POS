@@ -105,7 +105,7 @@ namespace POS.Repository.SQLServer
                 }
                 else if(objInvOnSaleInfo.qurryFlage == "itemsInDept")
                 {
-                    objSqlServerRepostory.ExecuteNonQuery("DELETE FROM Inventory_OnSale_Info WHERE (Store_ID = '1001') AND  EXISTS (Select ItemNum FROM Inventory WHERE Inventory.ItemNum = Inventory_OnSale_Info.ItemNum AND Inventory.Store_ID = Inventory_OnSale_Info.Store_ID AND Inventory.ItemType IN (0,2) AND Inventory.Dept_ID = '" + objInvOnSaleInfo.Dept_ID + "')");
+                    objSqlServerRepostory.ExecuteNonQuery("DELETE FROM Inventory_OnSale_Info WHERE (Store_ID = '"+ objInvOnSaleInfo.Store_ID +"') AND  EXISTS (Select ItemNum FROM Inventory WHERE Inventory.ItemNum = Inventory_OnSale_Info.ItemNum AND Inventory.Store_ID = Inventory_OnSale_Info.Store_ID AND Inventory.ItemType IN (0,2) AND Inventory.Dept_ID = '" + objInvOnSaleInfo.Dept_ID + "')");
                     reslt = objSqlServerRepostory.ExecuteNonQuery("INSERT INTO Inventory_OnSale_Info (ItemNum, Store_ID, Sale_Start, Sale_End, [Percent], [Price], SalePriceType) SELECT Inventory.ItemNum, '1001' AS Store_ID, '" + objInvOnSaleInfo.Sale_Start + "' AS Sale_Start, '" + objInvOnSaleInfo.Sale_End + "' AS Sale_End, 0 As [Percent], '" + objInvOnSaleInfo.Price + "' AS [Price], 1 As SalePriceType FROM Inventory WHERE Inventory.ItemType IN (0,2) AND Inventory.Store_ID = '"+ objInvOnSaleInfo.Store_ID +"' AND Dept_ID = '" + objInvOnSaleInfo.Dept_ID + "'");
                 }
                 else if(objInvOnSaleInfo.qurryFlage == "selectedItems")
@@ -172,6 +172,72 @@ namespace POS.Repository.SQLServer
                 }
             }
             catch(Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objInventoryClass;
+        }
+       // repository for apply discounts
+        public Inventory_OnSale_InfoClass applyDiscountsRep(Inventory_OnSale_InfoClass objInvOnSaleInfo)
+        {
+            try
+            {
+                if (objInvOnSaleInfo.qurryFlage == "allItems")
+                {
+                    objSqlServerRepostory.ExecuteNonQuery("delete from Inventory_OnSale_Info where Store_ID = '" + objInvOnSaleInfo.Store_ID + "'");
+                    reslt = objSqlServerRepostory.ExecuteNonQuery("INSERT INTO Inventory_OnSale_Info (ItemNum, Store_ID, Sale_Start, Sale_End, [Percent], [Price], SalePriceType) SELECT Inventory.ItemNum, '" + objInvOnSaleInfo.Store_ID + "' AS Store_ID, '" + objInvOnSaleInfo.Sale_Start + "' AS Sale_Start, '" + objInvOnSaleInfo.Sale_End + "' AS Sale_End,  '" + objInvOnSaleInfo.Price + "' As [Percent], 0.00 AS [Price], 0 As SalePriceType FROM Inventory WHERE Inventory.ItemType IN (0,2) AND Inventory.Store_ID = '" + objInvOnSaleInfo.Store_ID + "'");
+                }
+                else if (objInvOnSaleInfo.qurryFlage == "itemsInDept")
+                {
+                    objSqlServerRepostory.ExecuteNonQuery("DELETE FROM Inventory_OnSale_Info WHERE (Store_ID = '"+ objInvOnSaleInfo.Store_ID +"') AND  EXISTS (Select ItemNum FROM Inventory WHERE Inventory.ItemNum = Inventory_OnSale_Info.ItemNum AND Inventory.Store_ID = Inventory_OnSale_Info.Store_ID AND Inventory.ItemType IN (0,2) AND Inventory.Dept_ID = '" + objInvOnSaleInfo.Dept_ID + "')");
+                    reslt = objSqlServerRepostory.ExecuteNonQuery("INSERT INTO Inventory_OnSale_Info (ItemNum, Store_ID, Sale_Start, Sale_End, [Percent], [Price], SalePriceType) SELECT Inventory.ItemNum, '" + objInvOnSaleInfo.Store_ID + "' AS Store_ID, '" + objInvOnSaleInfo.Sale_Start + "' AS Sale_Start, '" + objInvOnSaleInfo.Sale_End + "' AS Sale_End, '" + objInvOnSaleInfo.Price + "' As [Percent], 0.00 AS [Price], 0 As SalePriceType FROM Inventory WHERE Inventory.ItemType IN (0,2) AND Inventory.Store_ID = '" + objInvOnSaleInfo.Store_ID + "' AND Dept_ID = '" + objInvOnSaleInfo.Dept_ID + "'");
+                }
+                else if (objInvOnSaleInfo.qurryFlage == "selectedItems")
+                {
+                    reslt = objSqlServerRepostory.ExecuteNonQuery("INSERT INTO Inventory_OnSale_Info (ItemNum, Store_ID, Sale_Start, Sale_End, [Percent], [Price], SalePriceType) SELECT Inventory.ItemNum, '" + objInvOnSaleInfo.Store_ID + "' AS Store_ID, '" + objInvOnSaleInfo.Sale_Start + "' AS Sale_Start, '" + objInvOnSaleInfo.Sale_End + "' AS Sale_End, '" + objInvOnSaleInfo.Price + "' As [Percent], 0.00 AS [Price], 0 As SalePriceType FROM Inventory WHERE Inventory.ItemType IN (0,2) AND Inventory.Store_ID = '" + objInvOnSaleInfo.Store_ID + "' and Inventory.ItemNum ='" + objInvOnSaleInfo.ItemNum + "'");
+                }
+                if (reslt > 0)
+                {
+                    objInvOnSaleInfo.IsSuccessfull = true;
+                }
+                else
+                {
+                    objInvOnSaleInfo.IsSuccessfull = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objInvOnSaleInfo; 
+        }
+        int rslt;
+        public InventoryClass applyTaxRep(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                if (objInventoryClass.qryType == "allItems")
+                {
+                    rslt = objSqlServerRepostory.ExecuteNonQuery("update Inventory set "+ objInventoryClass.Tax +" = '" + objInventoryClass.taxValue + "', Dirty = '" + objInventoryClass.Dirty + "'  where Store_ID = '" + objInventoryClass.Store_ID + "'");
+                }
+                else if (objInventoryClass.qryType == "itemsInDept")
+                {
+                    rslt = objSqlServerRepostory.ExecuteNonQuery("update Inventory set " + objInventoryClass.Tax + " = '" + objInventoryClass.taxValue + "', Dirty = '" + objInventoryClass.Dirty + "'  where Store_ID = '" + objInventoryClass.Store_ID + "' and Dept_ID = '" + objInventoryClass.Dept_ID + "'");
+                }
+                else if (objInventoryClass.qryType == "selectedItems")
+                {
+                    rslt = objSqlServerRepostory.ExecuteNonQuery("update Inventory set " + objInventoryClass.Tax + " = '" + objInventoryClass.taxValue + "', Dirty = '" + objInventoryClass.Dirty + "'  where Store_ID = '" + objInventoryClass.Store_ID + "' and ItemNum = '" + objInventoryClass.ItemNum + "'");
+                }
+                if (rslt > 0)
+                {
+                    objInventoryClass.IsSuccessfull = true;
+                }
+                else
+                {
+                    objInventoryClass.IsSuccessfull = false;
+                }
+            }
+            catch (Exception ex)
             {
                 CustomLogging.Log("[SQLServerRepository:]", ex.Message);
             }
