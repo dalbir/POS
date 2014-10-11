@@ -10,10 +10,10 @@
             <RowDefinition Height="39*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="555,4,0,3" Width="151" Background="#6CD4442B" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="555,4,0,3" Width="151" Background="#6CD4442B" Click="btnExit_Click" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
         <Button x:Name="btnQuickHelp" Content="Quick Help" HorizontalAlignment="Left" Margin="163,10,0,2" Width="97" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Row="2"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Click="btnSave_Click" Margin="163,3,0,8" Width="97" Background="#FFFFF58C" FontSize="14" FontWeight="SemiBold" Foreground="#FF2B2A22" Grid.Row="3"/>
-        <Button x:Name="btnAdd" Content="Add Price Group" HorizontalAlignment="Left" Margin="10,10,0,2" Width="148" FontSize="14" FontWeight="SemiBold" Grid.Row="2">
+        <Button x:Name="btnAdd" Content="Add Price Group" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="10,10,0,2" Width="148" FontSize="14" FontWeight="SemiBold" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />
@@ -21,9 +21,9 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnDelete" Content="Delete Price Group" HorizontalAlignment="Left" Margin="10,3,0,8" Width="148" Background="#6CD4442B" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
+        <Button x:Name="btnDelete" Content="Delete Price Group" Click="btnDelete_Click" HorizontalAlignment="Left" Margin="10,3,0,8" Width="148" Background="#6CD4442B" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
         <Button x:Name="btnAddDiscountLevel" Content="    Add&#xa;Discount&#xa;   Level " HorizontalAlignment="Left" Margin="549,3,0,1" Width="81" RenderTransformOrigin="0.587,1.227" Click="btnAddDiscountLevel_Click" Background="#FF91E050" FontWeight="SemiBold" Foreground="#FF131212" Grid.RowSpan="2" Grid.Row="1"/>
-        <Button x:Name="btnDeleteDiscount" Content="  Delete&#xa;Discount&#xa;   Level" HorizontalAlignment="Left" Margin="635,3,0,1" Width="76" Background="#FFE88C8C" FontWeight="SemiBold" Foreground="#FF131313" Grid.RowSpan="2" Grid.Row="1"/>
+        <Button x:Name="btnDeleteDiscount" Content="  Delete&#xa;Discount&#xa;   Level" HorizontalAlignment="Left" Click="btnDeleteDiscount_Click" Margin="635,3,0,1" Width="76" Background="#FFE88C8C" FontWeight="SemiBold" Foreground="#FF131313" Grid.RowSpan="2" Grid.Row="1"/>
         <ComboBox x:Name="cmbSearchPriceGroup" HorizontalAlignment="Left" Margin="284,9,0,8" Width="258" Grid.Row="3"/>
         <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Name="dgItems" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" Margin="10,264,0,0" VerticalAlignment="Top" Height="243" Width="524" RenderTransformOrigin="0.5,0.5" Background="#FFACA8A8" Grid.RowSpan="2">
 
@@ -74,7 +74,7 @@
             <CheckBox x:Name="chkbFoodstampable" Content="Foodstampable" HorizontalAlignment="Right" Margin="0,4,20,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
         </Grid>
         <CheckBox x:Name="chkbLocalPrice" Content="Lock Price additional items once quantity is&#xa;reached" HorizontalAlignment="Left" Margin="316,222,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="369"/>
-        <Label Content="Search for an Existing Price Group" HorizontalAlignment="Left" Margin="284,0,0,0" Width="250" FontSize="14" FontWeight="SemiBold" Grid.Row="2"/>
+        <Label Content="Search for an Existing Price Group" x:Name="lblSearchPriceGroup" HorizontalAlignment="Left" Margin="284,0,0,0" Width="250" FontSize="14" FontWeight="SemiBold" Grid.Row="2"/>
 
     </Grid>
 </Window>

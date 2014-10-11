@@ -42,6 +42,7 @@ namespace POS.Retail.Views
                 cmbDepartment.DisplayMemberPath = "Description";
                 cmbDepartment.SelectedValuePath = "Dept_ID";
             }
+            txtPriceGroupID.IsEnabled = false;
         }
 
         private void cmbPriceGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,6 +179,61 @@ namespace POS.Retail.Views
         {
             public string Quantity { get; set; }
             public string amount { get; set; }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            btnExit.Content = "Cancel";
+            cmbPriceGroup.SelectedIndex = 0;
+            txtPriceGroupID.IsEnabled = true;
+            txtPriceGroupID.Clear();
+            txtDescription.Clear();
+            cmbSearchPriceGroup.Visibility = Visibility.Hidden;
+            lblSearchPriceGroup.Visibility = Visibility.Hidden;
+            txtPriceGroupID.Background = Brushes.Yellow;
+            this.btnAdd.IsEnabled = false;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            if(btnExit.Content.Equals("Exit"))
+            {
+                this.Close();
+            }
+            else
+            {
+                btnExit.Content = "Exit";
+               // cmbPriceGroup.SelectedIndex = 0;
+                txtPriceGroupID.IsEnabled = false;
+                //txtPriceGroupID.Clear();
+                //txtDescription.Clear();
+                cmbSearchPriceGroup.Visibility = Visibility.Visible;
+                lblSearchPriceGroup.Visibility = Visibility.Visible;
+                txtPriceGroupID.Background = Brushes.White;
+                this.btnAdd.IsEnabled = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgItems.SelectedIndex >= 0)
+            {
+                for (int i = 0; i < dgItems.SelectedItems.Count; i++)
+                {
+                    dgItems.Items.Remove(dgItems.SelectedItems[i]);
+                };
+            }
+        }
+
+        private void btnDeleteDiscount_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgDiscountLevel.SelectedIndex >= 0)
+            {
+                for (int i = 0; i < dgDiscountLevel.SelectedItems.Count; i++)
+                {
+                    dgDiscountLevel.Items.Remove(dgDiscountLevel.SelectedItems[i]);
+                };
+            }
         }
     }
 }
