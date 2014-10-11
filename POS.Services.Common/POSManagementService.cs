@@ -205,6 +205,11 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.filterInventoryRep(objInventoryClass);
         }
+        public DataTable getInventoryId(Domain.Common.InventoryClass objInventory)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.getInventoryRepository(objInventory);
+        }
         #endregion
 
         #region Vendor Service
@@ -529,7 +534,13 @@ namespace POS.Services.Common
         }
         #endregion
 
-
+        #region Mix'n Match Service
+        public POS.Domain.Common.Inventory_OnSale_InfoClass insertOnSaleInfo(POS.Domain.Common.Inventory_OnSale_InfoClass objIvnOnsaleInfo)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertOnsaleInfo(objIvnOnsaleInfo);
+        }
+        #endregion
     }
 }
 

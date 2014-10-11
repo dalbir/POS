@@ -46,6 +46,7 @@
     <Compile Include="DepartmentRepository.cs" />
     <Compile Include="GlobalPriceRepository.cs" />
     <Compile Include="InventoryRepository.cs" />
+    <Compile Include="MixNMatchRepository.cs" />
     <Compile Include="PurchaseOrderRepository.cs" />
     <Compile Include="SQLServerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

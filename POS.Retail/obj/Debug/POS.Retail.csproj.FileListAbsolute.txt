@@ -317,6 +317,7 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\LookUplayawayFo
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MainWindow.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ManagerForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MGQbChargeForm.baml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\Mix'NMatch.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ModiferGroups2Form.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ModiferGroupsForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MsgForm.baml
@@ -380,6 +381,7 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\LookUplayawayFo
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MainWindow.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ManagerForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MGQbChargeForm.g.cs
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\Mix'NMatch.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ModiferGroups2Form.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\ModiferGroupsForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\MsgForm.g.cs

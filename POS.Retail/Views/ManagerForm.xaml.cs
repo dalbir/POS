@@ -496,5 +496,12 @@ namespace POS.Retail
             obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             obj.ShowDialog();
         }
+
+        private void btnMaxnMatch_Click(object sender, RoutedEventArgs e)
+        {
+            Mix_NMatch objMixNMatch = new Mix_NMatch();
+            objMixNMatch.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            objMixNMatch.ShowDialog();
+        }
     }
 }

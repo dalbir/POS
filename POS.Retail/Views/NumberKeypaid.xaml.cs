@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Retail.Common;
 
 namespace POS.Retail
 {
@@ -259,6 +260,14 @@ namespace POS.Retail
             else if (flagge == 25)
             {
                 lbl_keypaid.Content = "Enter New Price";
+            }
+            else if(flagge == 101)
+            {
+                lbl_keypaid.Content = "Enter A Quantity";
+            }
+            else if(flagge == 102)
+            {
+                lbl_keypaid.Content = "Enter A Price";
             }
 
         }
@@ -514,12 +523,23 @@ namespace POS.Retail
 
         private void enter()
         {
-            //if (check_num() == false)
-            //{
-            //    MessageBox.Show("Invalid Entry, Please try again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    txt_numbers.Clear();
-            //}
-            //else
+            if (check_num() == false)
+            {
+                MessageBox.Show("Invalid Entry, Please try again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txt_numbers.Clear();
+            }
+            else
+            if(flagge == 101)
+            {
+                quanity = txt_numbers.Text;
+                this.Close();
+            }
+            else if(flagge == 102)
+            {
+                pricce = txt_numbers.Text;
+                this.Close();
+            }
+            else
             {
                 name = txt_numbers.Text;
                 if (flagge == 1)
@@ -924,7 +944,8 @@ namespace POS.Retail
         }
         private void txt_numbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            //regclass.checkForNumericWithDotDash(e);
+            RegexClass objRegix = new RegexClass();
+            objRegix.checkForNumericWithDotDash(e);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtdept = objSqlServerRepostory.GetDataTable("SELECT DISTINCT Dept_ID, Dept_ID + '-' + Description as DetpDes FROM Departments WHERE (Store_ID = '" + objDepartment.Store_ID + "')");
+                dtdept = objSqlServerRepostory.GetDataTable("SELECT DISTINCT Description, Dept_ID, Dept_ID + '-' + Description as DetpDes FROM Departments WHERE (Store_ID = '" + objDepartment.Store_ID + "')");
             }
             catch(Exception ex)
             {

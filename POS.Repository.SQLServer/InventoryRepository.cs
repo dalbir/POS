@@ -1131,6 +1131,19 @@ namespace POS.Repository.SQLServer
             }
             return objInventoryClass;
         }
+        DataTable dtInventory;
+        public DataTable getInventoryRepository(InventoryClass objInventory)
+        {
+            try
+            {
+                dtInventory = sqlServerRepost.GetDataTable("select ItemNum, ItemName, Price from Inventory where ItemNum = '" + objInventory.ItemNum + "'");
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return dtInventory;
+        }
     }
 }
 

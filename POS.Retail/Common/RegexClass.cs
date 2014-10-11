@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using POS.Retail.Common;
 
 namespace POS.Retail.Common
 {
@@ -66,7 +67,7 @@ namespace POS.Retail.Common
         public string getMonth(string date)
         {
             string month = null;
-            string x = date.Substring(5,2);
+            string x = date.Substring(5, 2);
             if (x == "01")
             {
                 month = "Janurary";
@@ -121,7 +122,7 @@ namespace POS.Retail.Common
 
         public string getYear(string date)
         {
-            string x = date.Substring(6,4);
+            string x = date.Substring(6, 4);
             return x;
         }
 
@@ -250,5 +251,6 @@ namespace POS.Retail.Common
 
 
     }
-    }
+}
+    
 
