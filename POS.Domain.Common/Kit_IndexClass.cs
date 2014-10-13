@@ -12,7 +12,7 @@ namespace POS.Domain.Common
         public string Kit_ID { get; set; }
         public string Store_ID { get; set; }
         public string ItemNum { get; set; }
-        public string Discount { get; set; }
+        public double Discount { get; set; }
         public double Quantity { get; set; }
         public int Index { get; set; }
         public double Price { get; set; }

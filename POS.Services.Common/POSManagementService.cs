@@ -540,7 +540,46 @@ namespace POS.Services.Common
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertOnsaleInfo(objIvnOnsaleInfo);
         }
+        public Domain.Common.Kit_IndexClass InsertItemsinKitindex(Domain.Common.Kit_IndexClass objKitIndex)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertItemsInKitIndex(objKitIndex);
+        }
+        public Domain.Common.Inventory_MixNMatch_LevelsClass insertDiscountLevels(Domain.Common.Inventory_MixNMatch_LevelsClass objMixNMatchLevel)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertDiscountLevel(objMixNMatchLevel);
+        }
+        public Domain.Common.Inventory_BumpBarSettingsClass insertBumpBarSetting(Domain.Common.Inventory_BumpBarSettingsClass objBumpBarSetting)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertBumpBarSetting(objBumpBarSetting);
+        }
+        public Domain.Common.Inventory_AdditionalInfoClass insertAdditionalInfo(Domain.Common.Inventory_AdditionalInfoClass objinvAdditionalInfo)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertAdditionalInfo(objinvAdditionalInfo);
+        }
+        public Domain.Common.Setup_TS_ButtonsClass insertSetupTsButtons(Domain.Common.Setup_TS_ButtonsClass objSetupTsButtons)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.insertSetupTsButtons(objSetupTsButtons);
+        }
+        public Domain.Common.InventoryClass checkItemExist(Domain.Common.InventoryClass objInventoryClass)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.checkItemExist(objInventoryClass);
+        }
+        public DataTable getMixnMatch(int objItemType)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.getMixnMatch(objItemType);
+        }
         #endregion
+
+
+
+ 
     }
 }
 

@@ -108,6 +108,7 @@ namespace POS.Domain.Common
         public string Cat_id { get; set; }
         public string Tax { get; set; }
         public int taxValue { get; set; }
+        public string checkItemExist { get; set; }
        
     }
 }

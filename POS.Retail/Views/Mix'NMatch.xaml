@@ -3,6 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mix_NMatch" Height="639.463" Width="727" WindowState="Normal" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.46,0.484" Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="304*"/>
+            <ColumnDefinition Width="417*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="490*"/>
             <RowDefinition Height="23*"/>
@@ -10,7 +14,7 @@
             <RowDefinition Height="39*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="555,4,0,3" Width="151" Background="#6CD4442B" Click="btnExit_Click" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="251,4,0,3" Width="151" Background="#6CD4442B" Click="btnExit_Click" FontSize="14" FontWeight="SemiBold" Grid.Row="3" Grid.Column="1"/>
         <Button x:Name="btnQuickHelp" Content="Quick Help" HorizontalAlignment="Left" Margin="163,10,0,2" Width="97" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Row="2"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Click="btnSave_Click" Margin="163,3,0,8" Width="97" Background="#FFFFF58C" FontSize="14" FontWeight="SemiBold" Foreground="#FF2B2A22" Grid.Row="3"/>
         <Button x:Name="btnAdd" Content="Add Price Group" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="10,10,0,2" Width="148" FontSize="14" FontWeight="SemiBold" Grid.Row="2">
@@ -22,10 +26,10 @@
             </Button.Background>
         </Button>
         <Button x:Name="btnDelete" Content="Delete Price Group" Click="btnDelete_Click" HorizontalAlignment="Left" Margin="10,3,0,8" Width="148" Background="#6CD4442B" FontSize="14" FontWeight="SemiBold" Grid.Row="3"/>
-        <Button x:Name="btnAddDiscountLevel" Content="    Add&#xa;Discount&#xa;   Level " HorizontalAlignment="Left" Margin="549,3,0,1" Width="81" RenderTransformOrigin="0.587,1.227" Click="btnAddDiscountLevel_Click" Background="#FF91E050" FontWeight="SemiBold" Foreground="#FF131212" Grid.RowSpan="2" Grid.Row="1"/>
-        <Button x:Name="btnDeleteDiscount" Content="  Delete&#xa;Discount&#xa;   Level" HorizontalAlignment="Left" Click="btnDeleteDiscount_Click" Margin="635,3,0,1" Width="76" Background="#FFE88C8C" FontWeight="SemiBold" Foreground="#FF131313" Grid.RowSpan="2" Grid.Row="1"/>
-        <ComboBox x:Name="cmbSearchPriceGroup" HorizontalAlignment="Left" Margin="284,9,0,8" Width="258" Grid.Row="3"/>
-        <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Name="dgItems" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" Margin="10,264,0,0" VerticalAlignment="Top" Height="243" Width="524" RenderTransformOrigin="0.5,0.5" Background="#FFACA8A8" Grid.RowSpan="2">
+        <Button x:Name="btnAddDiscountLevel" Content="    Add&#xa;Discount&#xa;   Level " HorizontalAlignment="Left" Margin="245,3,0,1" Width="81" RenderTransformOrigin="0.587,1.227" Click="btnAddDiscountLevel_Click" Background="#FF91E050" FontWeight="SemiBold" Foreground="#FF131212" Grid.RowSpan="2" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnDeleteDiscount" Content="  Delete&#xa;Discount&#xa;   Level" HorizontalAlignment="Left" Click="btnDeleteDiscount_Click" Margin="331,3,0,1" Width="76" Background="#FFE88C8C" FontWeight="SemiBold" Foreground="#FF131313" Grid.RowSpan="2" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox x:Name="cmbSearchPriceGroup" IsEditable="True" HorizontalAlignment="Left" Margin="284,5,0,8" Width="258" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Name="dgItems" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" Margin="10,264,0,0" VerticalAlignment="Top" Height="243" Width="524" RenderTransformOrigin="0.5,0.5" Background="#FFACA8A8" Grid.RowSpan="2" Grid.ColumnSpan="2">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Item Number" Binding="{Binding Path=ItemNum}" Width="120"/>
@@ -33,14 +37,14 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid HorizontalAlignment="Left" Name="dgDiscountLevel" Height="139" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AliceBlue" Margin="549,348,0,0" VerticalAlignment="Top" Width="160" Background="#FFAA9B9B">
+        <DataGrid HorizontalAlignment="Left" Name="dgDiscountLevel" Height="139" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AliceBlue" Margin="245,348,0,0" VerticalAlignment="Top" Width="160" Background="#FFAA9B9B" Grid.Column="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Quantiy" Binding="{Binding Path=Quantity}" Width="80"/>
                 <DataGridTextColumn Header="Amount" Binding="{Binding Path=amount}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnDeleteItems" Content="Delete Item" HorizontalAlignment="Left" Margin="549,295,0,0" VerticalAlignment="Top" Width="160" Background="#6CD4442B" FontSize="14" Foreground="#FF020202" FontWeight="SemiBold"/>
-        <Button x:Name="btnAddItems" Click="btnAddItems_Click" Content="Add Item" HorizontalAlignment="Left" Margin="549,263,0,0" VerticalAlignment="Top" Width="160" FontSize="14" Foreground="#FF110F0F" FontWeight="SemiBold">
+        <Button x:Name="btnDeleteItems" Content="Delete Item" HorizontalAlignment="Left" Margin="245,295,0,0" VerticalAlignment="Top" Width="160" Background="#6CD4442B" FontSize="14" Foreground="#FF020202" FontWeight="SemiBold" Grid.Column="1"/>
+        <Button x:Name="btnAddItems" Click="btnAddItems_Click" Content="Add Item" HorizontalAlignment="Left" Margin="245,263,0,0" VerticalAlignment="Top" Width="160" FontSize="14" Foreground="#FF110F0F" FontWeight="SemiBold" Grid.Column="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />
@@ -48,33 +52,33 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label Content="Discount Levels" HorizontalAlignment="Left" Name="lblDiscountLevel" Margin="549,321,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.115" Width="126" FontSize="14" FontWeight="SemiBold"/>
+        <Label Content="Discount Levels" HorizontalAlignment="Left" Name="lblDiscountLevel" Margin="245,321,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.115" Width="126" FontSize="14" FontWeight="SemiBold" Grid.Column="1"/>
         <Label Content="Price Group Type" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
         <Label Content="Department" HorizontalAlignment="Left" Margin="10,-4,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="30"/>
         <ComboBox x:Name="cmbDepartment" FontSize="14" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="262"/>
         <Label Content="Price Group ID" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="25"/>
         <TextBox x:Name="txtPriceGroupID" HorizontalAlignment="Left" Height="23" Margin="9,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
         <Label Content="Quantity Required" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="8,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <TextBox x:Name="txtQuantity" PreviewTextInput="txtQuantity_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="8,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
         <Label Content="Start Date" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtStartDate" HorizontalAlignment="Left" Height="23" Margin="10,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+        <DatePicker x:Name="txtStartDate" HorizontalAlignment="Left" Height="23" Margin="10,157,0,0"  VerticalAlignment="Top" Width="262"/>
         <Label Content="Items in Group" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="135" FontSize="14" FontWeight="SemiBold"/>
         <ComboBox x:Name="cmbPriceGroup" FontSize="14" SelectionChanged="cmbPriceGroup_SelectionChanged" HorizontalAlignment="Left" Margin="7,203,0,0" VerticalAlignment="Top" Width="265"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="319,41,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="28"/>
-        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="23"  Margin="319,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
-        <Label Content="Amount to Discount" Name="lblAmount"  HorizontalAlignment="Left" Margin="319,89,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="33"/>
-        <TextBox x:Name="txtAmount" HorizontalAlignment="Left" Height="23" Margin="319,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
-        <Label Content="Label" HorizontalAlignment="Left" Height="3" Margin="347,177,0,0" VerticalAlignment="Top" Width="4"/>
-        <Label Content="End Date" HorizontalAlignment="Left" Margin="321,133,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Height="23" Margin="319,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
-        <Grid Name="grdTax" Margin="297,191,4,265">
+        <Label Content="Description" HorizontalAlignment="Left" Margin="15,41,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="28" Grid.Column="1"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="23"  Margin="15,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" Grid.Column="1"/>
+        <Label Content="Amount to Discount" Name="lblAmount"  HorizontalAlignment="Left" Margin="15,89,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Height="33" Grid.Column="1"/>
+        <TextBox x:Name="txtAmount" HorizontalAlignment="Left" PreviewTextInput="txtAmount_PreviewTextInput" Height="23" Margin="15,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" Grid.Column="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Height="3" Margin="43,177,0,0" VerticalAlignment="Top" Width="4" Grid.Column="1"/>
+        <Label Content="End Date" HorizontalAlignment="Left" Margin="17,133,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Grid.Column="1"/>
+        <DatePicker x:Name="txtEndDate" HorizontalAlignment="Left" Height="23" Margin="15,157,0,0"  VerticalAlignment="Top" Width="271" Grid.Column="1"/>
+        <Grid Name="grdTax" Margin="297,191,4,265" Grid.ColumnSpan="2">
             <CheckBox x:Name="chkTax1" Content="Tax 1" HorizontalAlignment="Right" Margin="0,4,350,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
             <CheckBox x:Name="chkbTax2" Content="Tax 2" HorizontalAlignment="Right" Margin="0,3,267,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
             <CheckBox x:Name="chkbTax3" Content="Tax 3" HorizontalAlignment="Right" Margin="0,3,169,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
             <CheckBox x:Name="chkbFoodstampable" Content="Foodstampable" HorizontalAlignment="Right" Margin="0,4,20,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold"/>
         </Grid>
-        <CheckBox x:Name="chkbLocalPrice" Content="Lock Price additional items once quantity is&#xa;reached" HorizontalAlignment="Left" Margin="316,222,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="369"/>
-        <Label Content="Search for an Existing Price Group" x:Name="lblSearchPriceGroup" HorizontalAlignment="Left" Margin="284,0,0,0" Width="250" FontSize="14" FontWeight="SemiBold" Grid.Row="2"/>
+        <CheckBox x:Name="chkbLocalPrice" Content="Lock Price additional items once quantity is&#xa;reached" HorizontalAlignment="Right" Margin="0,222,36,0" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="369" Grid.Column="1"/>
+        <Label Content="Search for an Existing Price Group" x:Name="lblSearchPriceGroup" HorizontalAlignment="Left" Margin="284,0,0,0" Width="250" FontSize="14" FontWeight="SemiBold" Grid.Row="2" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

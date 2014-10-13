@@ -1144,6 +1144,19 @@ namespace POS.Repository.SQLServer
             }
             return dtInventory;
         }
+
+        public InventoryClass checkItemExist(InventoryClass objInventoryClass)
+        {
+            try
+            {
+                objInventoryClass.checkItemExist = sqlServerRepost.ExecuteScalar("select ItemNum from Inventory where ItemNum = '"+ objInventoryClass.ItemNum +"' and Store_ID = '"+ objInventoryClass.Store_ID +"'");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objInventoryClass;
+        }
     }
 }
 

@@ -15,6 +15,7 @@ using POS.Retail.Views;
 using POS.Domain.Common;
 using POS.Services.Common;
 using System.Data;
+using POS.Retail.Common;
 
 namespace POS.Retail.Views
 {
@@ -27,6 +28,7 @@ namespace POS.Retail.Views
         {
             InitializeComponent();
         }
+        RegexClass objRegix = new RegexClass();
         POSManagementService objPosManagementService = new POSManagementService();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,6 +45,7 @@ namespace POS.Retail.Views
                 cmbDepartment.SelectedValuePath = "Dept_ID";
             }
             txtPriceGroupID.IsEnabled = false;
+            FillSearchCombo();
         }
 
         private void cmbPriceGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -87,10 +90,35 @@ namespace POS.Retail.Views
             try
             {
             // insertion in inventory table
+                if(txtPriceGroupID.Text == "")
+                {
+                    MessageBox.Show("A Group ID is required in order to add a Group.", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    txtPriceGroupID.Background = Brushes.Yellow;
+                    txtPriceGroupID.Focus();
+                    return;
+                }
+                else
+                {
+                    txtPriceGroupID.Background = Brushes.White;
+                }
+                if(txtDescription.Text == "")
+                {
+                    MessageBox.Show("A description is required in order to add a Group.", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    txtDescription.Background = Brushes.Yellow;
+                    txtDescription.Focus();
+                    return;                   
+                }
+                else
+                {
+                    txtDescription.Background = Brushes.White;
+                }
                 InventoryClass objInventoryClass = new InventoryClass();
                 objInventoryClass.Store_ID = "1001";
                 objInventoryClass.ItemNum = txtPriceGroupID.Text;
                 objInventoryClass.ItemName = txtDescription.Text;
+                if (txtAmount.Text == "")
+                    objInventoryClass.Price = 0;
+                else
                 objInventoryClass.Price = Convert.ToDecimal(txtAmount.Text);
                 objInventoryClass.Tax_1 = Convert.ToByte(chkTax1.IsChecked);
                 objInventoryClass.Tax_2 = Convert.ToByte(chkbTax2.IsChecked);
@@ -101,20 +129,94 @@ namespace POS.Retail.Views
                 objInventoryClass.Dept_ID = Convert.ToString(cmbDepartment.SelectedValue);
                 objInventoryClass.ItemType = 5;
                 objInventoryClass.Dirty = 1;
+                if (txtQuantity.Text == "")
+                    objInventoryClass.QuantityRequired = 0;
+                else
                 objInventoryClass.QuantityRequired = Convert.ToDecimal(txtQuantity.Text);
                 objInventoryClass.AllowReturns = 1;
                 objInventoryClass.Print_On_Receipt = 1;
                 objInventoryClass.Count_This_Item = 1;
-                objPosManagementService.insertInventory(objInventoryClass);
+                objPosManagementService.checkItemExist(objInventoryClass);
+                if (objInventoryClass.checkItemExist == "")
+                {
+                    objPosManagementService.insertInventory(objInventoryClass);
+                }
+                else
+                {
+                    objPosManagementService.SaveChangesInventory(objInventoryClass);
+                }
                 if(objInventoryClass.IsSuccessfull == true)
                 {
+                    //insertion in onsale info and inventory_reference
                     Inventory_OnSale_InfoClass objIvnOnsaleInfo = new Inventory_OnSale_InfoClass();
                     objIvnOnsaleInfo.Store_ID = "1001";
                     objIvnOnsaleInfo.ItemNum = txtPriceGroupID.Text;
-                    objIvnOnsaleInfo.Sale_Start = Convert.ToDateTime(txtStartDate.Text);
-                    objIvnOnsaleInfo.Sale_End = Convert.ToDateTime(txtEndDate.Text);
+                    objIvnOnsaleInfo.Sale_Start = Convert.ToDateTime(txtStartDate.SelectedDate);
+                    objIvnOnsaleInfo.Sale_End = Convert.ToDateTime(txtEndDate.SelectedDate);
                     objPosManagementService.insertOnSaleInfo(objIvnOnsaleInfo);
+
+                    // insertion of items in kit index from dgItems
+                    Kit_IndexClass objKitIndex = new Kit_IndexClass();
+                    objKitIndex.Store_ID = "1001";
+                    objKitIndex.Kit_ID = txtPriceGroupID.Text;
+                    objKitIndex.Discount = 0;
+                    objKitIndex.Quantity = 0;
+                    objKitIndex.quryFlage = "delete";
+                    for(int i =0; i<dgItems.Items.Count; i++)
+                    {
+                        DataGridRow rowss = (DataGridRow)dgItems.ItemContainerGenerator.ContainerFromIndex(i);
+                        objKitIndex.ItemNum = (dgItems.Columns[0].GetCellContent(rowss) as TextBlock).Text;
+                        objPosManagementService.InsertItemsinKitindex(objKitIndex);
+                    }
+
+                    // insertion of discount level in table: inventory_mixnMatch_level
+                    if(dgDiscountLevel.Visibility == Visibility.Visible)
+                    {
+                        Inventory_MixNMatch_LevelsClass objMixNMatchLevel = new Inventory_MixNMatch_LevelsClass();
+                        objMixNMatchLevel.Store_ID = "1001";
+                        objMixNMatchLevel.ItemNum = txtPriceGroupID.Text;
+                        objMixNMatchLevel.qryFlage = "delete";
+                        for(int i=0; i< dgDiscountLevel.Items.Count; i++)
+                        {
+                            DataGridRow rowss = (DataGridRow)dgDiscountLevel.ItemContainerGenerator.ContainerFromIndex(i);
+                            objMixNMatchLevel.Quantity = Convert.ToDouble((dgDiscountLevel.Columns[0].GetCellContent(rowss) as TextBlock).Text);
+                            objMixNMatchLevel.Amount = Convert.ToDouble((dgDiscountLevel.Columns[1].GetCellContent(rowss) as TextBlock).Text);
+                            objPosManagementService.insertDiscountLevels(objMixNMatchLevel);
+                        } 
+                    }
+                    // insertion in inventory Bump bar setting Table: Inventory_BumpBarSettings
+                    Inventory_BumpBarSettingsClass objBumpBarSetting = new Inventory_BumpBarSettingsClass();
+                    objBumpBarSetting.Store_ID = "1001";
+                    objBumpBarSetting.ItemNum = txtPriceGroupID.Text;
+                    objBumpBarSetting.Backcolor = 0;
+                    objBumpBarSetting.Forecolor = 2;
+                    objPosManagementService.insertBumpBarSetting(objBumpBarSetting);
+
+                    // insertion of additional infor Table: Inventory_AdditionalInfo
+                    Inventory_AdditionalInfoClass objinvAdditionalInfo = new Inventory_AdditionalInfoClass();
+                    objinvAdditionalInfo.Store_ID = "1001";
+                    objinvAdditionalInfo.ItemNum = txtPriceGroupID.Text;              
+                    objinvAdditionalInfo.ReleaseDate = Convert.ToDateTime(DateTime.Today);
+                    objPosManagementService.insertAdditionalInfo(objinvAdditionalInfo);
+
+                    // insetion of Setup Ts Buttons Table: Setup_TS_Buttons
+                    Setup_TS_ButtonsClass objSetupTsButtons = new Setup_TS_ButtonsClass();
+                    objSetupTsButtons.Store_ID = "1001";
+                    objSetupTsButtons.Caption = txtDescription.Text;
+                    objSetupTsButtons.Ident = txtPriceGroupID.Text;
+                    objPosManagementService.insertSetupTsButtons(objSetupTsButtons);
+
+                    //
+                    btnExit.Content = "Exit";                 
+                    txtPriceGroupID.IsEnabled = false;
+                    cmbSearchPriceGroup.Visibility = Visibility.Visible;
+                    lblSearchPriceGroup.Visibility = Visibility.Visible;
+                    txtPriceGroupID.Background = Brushes.White;
+                    this.btnAdd.IsEnabled = true;
+                    FillSearchCombo();
                 }
+
+
             }
             catch(Exception ex)
             {
@@ -132,6 +234,16 @@ namespace POS.Retail.Views
                 objSearchInventory.ShowDialog();
                 if(objSearchInventory.set_item_id != null)
                 {
+                    for (int j = 0; j < dgItems.Items.Count; j++)
+                    {
+                        DataGridRow rowss = (DataGridRow)dgItems.ItemContainerGenerator.ContainerFromIndex(j);
+                        string id = (dgDiscountLevel.Columns[0].GetCellContent(rowss) as TextBlock).Text;
+                        if(objSearchInventory.set_item_id == id)
+                        {
+                            MessageBox.Show("This Item is already included in this Price Group","Run Time Support",MessageBoxButton.OK,MessageBoxImage.Stop);
+                            return;
+                        }
+                    }
                     objInventory.ItemNum = objSearchInventory.set_item_id;
                     DataTable dt = objPosManagementService.getInventoryId(objInventory);
                     var data = new item { ItemNum = dt.Rows[0]["ItemNum"].ToString(), ItemName = dt.Rows[0]["ItemName"].ToString(), Price = Math.Round(Convert.ToDouble(dt.Rows[0]["Price"]), 2).ToString() };
@@ -191,6 +303,9 @@ namespace POS.Retail.Views
             cmbSearchPriceGroup.Visibility = Visibility.Hidden;
             lblSearchPriceGroup.Visibility = Visibility.Hidden;
             txtPriceGroupID.Background = Brushes.Yellow;
+            cmbDepartment.SelectedIndex = 0;
+            txtStartDate.SelectedDate = DateTime.Today;
+            txtEndDate.SelectedDate = DateTime.Today;
             this.btnAdd.IsEnabled = false;
         }
 
@@ -211,6 +326,7 @@ namespace POS.Retail.Views
                 lblSearchPriceGroup.Visibility = Visibility.Visible;
                 txtPriceGroupID.Background = Brushes.White;
                 this.btnAdd.IsEnabled = true;
+                FillSearchCombo();
             }
         }
 
@@ -234,6 +350,39 @@ namespace POS.Retail.Views
                     dgDiscountLevel.Items.Remove(dgDiscountLevel.SelectedItems[i]);
                 };
             }
+        }
+        public void FillSearchCombo()
+        {
+            try
+            {
+                DataTable dt = objPosManagementService.getMixnMatch(5);
+                if(dt.Rows.Count > 0)
+                {
+                    cmbSearchPriceGroup.ItemsSource = dt.DefaultView;
+                    cmbSearchPriceGroup.SelectedValuePath = "ItemNum";
+                    cmbSearchPriceGroup.DisplayMemberPath = "ItemName";
+                }
+                cmbSearchPriceGroup.SelectedIndex = 0;
+            }
+            catch (Exception)
+            {
+ 
+            }
+        }
+
+        private void txtQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+          
+            objRegix.checkForNumericWithDotDash(e);
+        }
+
+        private void txtAmount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            objRegix.checkForNumericWithDotDash(e);
+        }
+        public void RetriveingRecords()
+        {
+           
         }
     }
 }
