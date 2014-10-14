@@ -576,10 +576,11 @@ namespace POS.Services.Common
             return objMixNMatchRepository.getMixnMatch(objItemType);
         }
         #endregion
-
-
-
- 
+        public DataTable RetriveData(string ItemNum)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.retriveDataRep(ItemNum);
+        }
     }
 }
 

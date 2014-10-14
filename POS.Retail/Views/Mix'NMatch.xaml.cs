@@ -119,7 +119,16 @@ namespace POS.Retail.Views
                 if (txtAmount.Text == "")
                     objInventoryClass.Price = 0;
                 else
-                objInventoryClass.Price = Convert.ToDecimal(txtAmount.Text);
+                {
+                    if (cmbPriceGroup.SelectedIndex == 2)
+                    {
+                        objInventoryClass.Price = Convert.ToDecimal(txtAmount.Text) / 100;
+                    }
+                    else
+                    {
+                        objInventoryClass.Price = Convert.ToDecimal(txtAmount.Text);
+                    }
+                }
                 objInventoryClass.Tax_1 = Convert.ToByte(chkTax1.IsChecked);
                 objInventoryClass.Tax_2 = Convert.ToByte(chkbTax2.IsChecked);
                 objInventoryClass.Tax_3 = Convert.ToByte(chkbTax3.IsChecked);
@@ -127,7 +136,18 @@ namespace POS.Retail.Views
                 objInventoryClass.Last_Sold = Convert.ToDateTime(DateTime.Today);
                 objInventoryClass.FoodStampable = Convert.ToByte(chkbFoodstampable.IsChecked);
                 objInventoryClass.Dept_ID = Convert.ToString(cmbDepartment.SelectedValue);
-                objInventoryClass.ItemType = 5;
+                if (cmbPriceGroup.SelectedIndex == 0)
+                {
+                    objInventoryClass.ItemType = 1;
+                }
+                else if (cmbPriceGroup.SelectedIndex == 1)
+                {
+                    objInventoryClass.ItemType = 5;
+                }
+                else if (cmbPriceGroup.SelectedIndex == 0)
+                {
+                    objInventoryClass.ItemType = 6;
+                }
                 objInventoryClass.Dirty = 1;
                 if (txtQuantity.Text == "")
                     objInventoryClass.QuantityRequired = 0;
@@ -382,7 +402,22 @@ namespace POS.Retail.Views
         }
         public void RetriveingRecords()
         {
-           
+            string ItemNum = cmbSearchPriceGroup.SelectedValue.ToString();
+            DataTable dt = objPosManagementService.RetriveData(ItemNum);
+            if(dt.Rows.Count > 0)
+            {
+                cmbDepartment.SelectedValue = dt.Rows[0]["Dept_ID"].ToString();
+                txtPriceGroupID.Text = dt.Rows[0]["ItemNum"].ToString();
+                txtQuantity.Text = dt.Rows[0]["QuantityRequired"].ToString();
+                txtStartDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_Start"]);
+                txtEndDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_End"]);
+                txtDescription.Text = dt.Rows[0]["ItemName"].ToString();
+                txtAmount.Text = dt.Rows[0]["Price"].ToString();
+                chkTax1.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_1"]);
+                chkbTax2.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_2"]);
+                chkbTax3.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_3"]);
+                chkbFoodstampable.IsChecked = Convert.ToBoolean(dt.Rows[0]["FoodStampable"]);
+            }
         }
     }
 }

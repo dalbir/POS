@@ -226,5 +226,17 @@ namespace POS.Repository.SQLServer
             }
             return dt;
         }
+        DataTable dtData;
+        public DataTable retriveDataRep(string ItemNum)
+        {
+            try
+            {
+                dtData = objSQLServerRepository.GetDataTable("select * from VIEW_MIXN_MATCH WHERE ItemNum = '"+ ItemNum +"'");
+            }
+            catch (Exception ex)
+            {
+            }
+            return dtData;
+        }
     }
 }
