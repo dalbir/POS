@@ -97,7 +97,7 @@ namespace POS.Repository.SQLServer
            }
            catch (Exception ex)
            {
-               CustomLogging.Log("[Error]", ex.Message);
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
            }
              return objInventory_SKUSClass;
        }
@@ -930,7 +930,7 @@ namespace POS.Repository.SQLServer
                                         "AllowOnFleetCard='" + objInventoryClass.AllowOnFleetCard + "', " +
                                         "DoughnutTax='" + objInventoryClass.DoughnutTax + "', " +
                                         "DisplayTaxInPrice='" + objInventoryClass.DisplayTaxInPrice + "', " +
-                                        "NeverPrintInKitchen='" + objInventoryClass.NeverPrintInKitchen + "')");
+                                        "NeverPrintInKitchen='" + objInventoryClass.NeverPrintInKitchen + "' where ItemNum = '"+ objInventoryClass.ItemNum +"'");
                 if (result == 1)
                 {
                     objInventoryClass.IsSuccessfull = true;
@@ -1156,6 +1156,27 @@ namespace POS.Repository.SQLServer
 
             }
             return objInventoryClass;
+        }
+
+        public InventoryClass deleteItemRep(InventoryClass objInvenoryClass)
+        {
+            try
+            {
+                int result = sqlServerRepost.ExecuteNonQuery("update Inventory set IsDeleted = 1 where Store_ID = '"+ objInvenoryClass.Store_ID +"' and ItemNum = '"+ objInvenoryClass.ItemNum +"'");
+                if(result > 0)
+                {
+                    objInvenoryClass.IsSuccessfull = true;
+                }
+                else
+                {
+                    objInvenoryClass.IsSuccessfull = false;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return objInvenoryClass;
         }
     }
 }

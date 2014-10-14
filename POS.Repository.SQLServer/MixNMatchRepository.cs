@@ -219,7 +219,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dt = objSQLServerRepository.GetDataTable("select itemNum, ItemNum + '-' + ItemName as ItemName from inventory where ItemType = " + objItemType + " order by Date_Created desc");
+                dt = objSQLServerRepository.GetDataTable("select itemNum, ItemNum + '-' + ItemName as ItemName from inventory where (ItemType = " + objItemType + " or ItemType = 1 or ItemType = 6) and IsDeleted = 0 order by Date_Created desc");
             }
             catch (Exception ex)
             {
@@ -237,6 +237,31 @@ namespace POS.Repository.SQLServer
             {
             }
             return dtData;
+        }
+        DataTable dtSubitems;
+        public DataTable retriveSubItems(string ItemNum, string storeID)
+        {
+            try
+            {
+                dtSubitems = objSQLServerRepository.GetDataTable("select K.Kit_ID, K.ItemNum, I.Price, I.ItemName from kit_Index as K inner join Inventory as I on K.ItemNum = I.ItemNum where k.Kit_ID = '"+ ItemNum +"' and I.Store_ID = '"+ storeID +"'");
+            }
+            catch (Exception)
+
+            { 
+            }
+            return dtSubitems;
+        }
+        DataTable dtDisLevel;
+        public DataTable retriveDiscountLevel(string ItemNum, string storeId)
+        {
+            try
+            {
+                dtDisLevel = objSQLServerRepository.GetDataTable("select * from Inventory_MixNMatch_Levels where ItemNum = '" + ItemNum + "' and Store_ID = '" + storeId + "'");
+            }
+            catch (Exception)
+            {
+            }
+            return dtDisLevel;
         }
     }
 }

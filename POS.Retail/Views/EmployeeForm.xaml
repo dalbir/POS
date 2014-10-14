@@ -17,10 +17,10 @@
             <Label Content="Employee ID:" Height="28" HorizontalAlignment="Left" Margin="15,51,0,0" Name="label2" VerticalAlignment="Top" Width="110" FontSize="13" />
             <Label Content="Display Name:" Height="28" HorizontalAlignment="Left" Margin="15,119,0,0" Name="label3" VerticalAlignment="Top" Width="110" FontSize="13" />
             <Label Content="Password:" Height="28" HorizontalAlignment="Left" Margin="15,85,0,0" Name="label4" VerticalAlignment="Top" Width="110" FontSize="13" />
-            <ComboBox Height="27" HorizontalAlignment="Left" Margin="131,19,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="155" Background="#12E2C8C8" />
-            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,54,0,0" Name="txt_emp_id" VerticalAlignment="Top" Width="155" />
-            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,122,0,0" Name="txt_emp_dispname" VerticalAlignment="Top" Width="155" />
-            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,88,0,0" Name="txt_emp_passd" VerticalAlignment="Top" Width="155" />
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="131,19,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="201" Background="#12E2C8C8" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,54,0,0" Name="txt_emp_id" VerticalAlignment="Top" Width="201" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,122,0,0" Name="txt_emp_dispname" VerticalAlignment="Top" Width="201" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="131,88,0,0" Name="txt_emp_passd" VerticalAlignment="Top" Width="201" />
             <Label Content="Card Swip ID:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,17,0,0" Name="label5" VerticalAlignment="Top" Width="98" />
             <Label Content="Customer:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,54,0,0" Name="label6" VerticalAlignment="Top" Width="108" />
             <Label Content="Hourly Wages:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,88,0,0" Name="label7" VerticalAlignment="Top" Width="98" />

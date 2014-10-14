@@ -32,56 +32,71 @@ namespace POS.Retail.Views
         POSManagementService objPosManagementService = new POSManagementService();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbPriceGroup.Items.Add("Discount Amount");
-            cmbPriceGroup.Items.Add("Bulk Price");
-            cmbPriceGroup.Items.Add("Discount %");
-            DepartmentClass objDept = new DepartmentClass();
-            objDept.Store_ID = "1001";
-            DataTable dt = objPosManagementService.getDepartment(objDept);
-            if(dt.Rows.Count > 0)
+            try
             {
-                cmbDepartment.ItemsSource = dt.DefaultView;
-                cmbDepartment.DisplayMemberPath = "Description";
-                cmbDepartment.SelectedValuePath = "Dept_ID";
+                cmbPriceGroup.Items.Add("Discount Amount");
+                cmbPriceGroup.Items.Add("Bulk Price");
+                cmbPriceGroup.Items.Add("Discount %");
+                DepartmentClass objDept = new DepartmentClass();
+                objDept.Store_ID = "1001";
+                DataTable dt = objPosManagementService.getDepartment(objDept);
+                if (dt.Rows.Count > 0)
+                {
+                    cmbDepartment.ItemsSource = dt.DefaultView;
+                    cmbDepartment.DisplayMemberPath = "Description";
+                    cmbDepartment.SelectedValuePath = "Dept_ID";
+                }
+                txtPriceGroupID.IsEnabled = false;
+                FillSearchCombo();
+                RetriveingRecords();
             }
-            txtPriceGroupID.IsEnabled = false;
-            FillSearchCombo();
+            catch (Exception ex)
+            {               
+               CustomLogging.Log("[Error:]", ex.Message);
+            }
         }
 
         private void cmbPriceGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(this.cmbPriceGroup.SelectedIndex == 0)
+            try
             {
-                lblAmount.Content = "Amount to Discount";
-                dgDiscountLevel.Visibility = Visibility.Hidden;
-                lblDiscountLevel.Visibility = Visibility.Hidden;
-                chkbLocalPrice.Visibility = Visibility.Hidden;
-                chkbTax2.Visibility = Visibility.Visible;
-                grdTax.Visibility = Visibility.Visible;
-                btnAddDiscountLevel.Visibility = Visibility.Hidden;
-                btnDeleteDiscount.Visibility = Visibility.Hidden;
+                if (this.cmbPriceGroup.SelectedIndex == 0)
+                {
+                    lblAmount.Content = "Amount to Discount";
+                    dgDiscountLevel.Visibility = Visibility.Hidden;
+                    lblDiscountLevel.Visibility = Visibility.Hidden;
+                    chkbLocalPrice.Visibility = Visibility.Hidden;
+                    chkbTax2.Visibility = Visibility.Visible;
+                    grdTax.Visibility = Visibility.Visible;
+                    btnAddDiscountLevel.Visibility = Visibility.Hidden;
+                    btnDeleteDiscount.Visibility = Visibility.Hidden;
+                }
+                else if (this.cmbPriceGroup.SelectedIndex == 1)
+                {
+                    lblAmount.Content = "Bulk Price";
+                    dgDiscountLevel.Visibility = Visibility.Visible;
+                    lblDiscountLevel.Visibility = Visibility.Visible;
+                    chkbLocalPrice.Visibility = Visibility.Visible;
+                    chkbTax2.Visibility = Visibility.Hidden;
+                    grdTax.Visibility = Visibility.Hidden;
+                    btnAddDiscountLevel.Visibility = Visibility.Visible;
+                    btnDeleteDiscount.Visibility = Visibility.Visible;
+                }
+                else if (this.cmbPriceGroup.SelectedIndex == 2)
+                {
+                    lblAmount.Content = "Discount Percentage";
+                    dgDiscountLevel.Visibility = Visibility.Visible;
+                    lblDiscountLevel.Visibility = Visibility.Visible;
+                    chkbLocalPrice.Visibility = Visibility.Visible;
+                    chkbTax2.Visibility = Visibility.Hidden;
+                    grdTax.Visibility = Visibility.Hidden;
+                    btnAddDiscountLevel.Visibility = Visibility.Visible;
+                    btnDeleteDiscount.Visibility = Visibility.Visible;
+                }
             }
-            else if (this.cmbPriceGroup.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                lblAmount.Content = "Bulk Price";
-                dgDiscountLevel.Visibility = Visibility.Visible;
-                lblDiscountLevel.Visibility = Visibility.Visible;
-                chkbLocalPrice.Visibility = Visibility.Visible;
-                chkbTax2.Visibility = Visibility.Hidden;
-                grdTax.Visibility = Visibility.Hidden;
-                btnAddDiscountLevel.Visibility = Visibility.Visible;
-                btnDeleteDiscount.Visibility = Visibility.Visible;
-            }
-            else if (this.cmbPriceGroup.SelectedIndex == 2)
-            {
-                lblAmount.Content = "Discount Percentage";
-                dgDiscountLevel.Visibility = Visibility.Visible;
-                lblDiscountLevel.Visibility = Visibility.Visible;
-                chkbLocalPrice.Visibility = Visibility.Visible;
-                chkbTax2.Visibility = Visibility.Hidden;
-                grdTax.Visibility = Visibility.Hidden;
-                btnAddDiscountLevel.Visibility = Visibility.Visible;
-                btnDeleteDiscount.Visibility = Visibility.Visible;
+                CustomLogging.Log("[Error:]", ex.Message);
             }
         }
 
@@ -234,6 +249,7 @@ namespace POS.Retail.Views
                     txtPriceGroupID.Background = Brushes.White;
                     this.btnAdd.IsEnabled = true;
                     FillSearchCombo();
+                    RetriveingRecords();
                 }
 
 
@@ -315,60 +331,103 @@ namespace POS.Retail.Views
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            btnExit.Content = "Cancel";
-            cmbPriceGroup.SelectedIndex = 0;
-            txtPriceGroupID.IsEnabled = true;
-            txtPriceGroupID.Clear();
-            txtDescription.Clear();
-            cmbSearchPriceGroup.Visibility = Visibility.Hidden;
-            lblSearchPriceGroup.Visibility = Visibility.Hidden;
-            txtPriceGroupID.Background = Brushes.Yellow;
-            cmbDepartment.SelectedIndex = 0;
-            txtStartDate.SelectedDate = DateTime.Today;
-            txtEndDate.SelectedDate = DateTime.Today;
-            this.btnAdd.IsEnabled = false;
+            try
+            {
+                btnExit.Content = "Cancel";
+                cmbPriceGroup.SelectedIndex = 0;
+                txtPriceGroupID.IsEnabled = true;
+                txtPriceGroupID.Clear();
+                txtDescription.Clear();
+                cmbSearchPriceGroup.Visibility = Visibility.Hidden;
+                lblSearchPriceGroup.Visibility = Visibility.Hidden;
+                txtPriceGroupID.Background = Brushes.Yellow;
+                cmbDepartment.SelectedIndex = 0;
+                txtStartDate.SelectedDate = DateTime.Today;
+                txtEndDate.SelectedDate = DateTime.Today;
+                this.btnAdd.IsEnabled = false;
+                dgItems.Items.Clear();
+                dgDiscountLevel.Items.Clear();
+                txtAmount.Text = "0";
+                txtQuantity.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                
+               CustomLogging.Log("[Error:]", ex.Message);
+            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            if(btnExit.Content.Equals("Exit"))
+            try
             {
-                this.Close();
+                if (btnExit.Content.Equals("Exit"))
+                {
+                    this.Close();
+                }
+                else
+                {
+                    btnExit.Content = "Exit";
+                    // cmbPriceGroup.SelectedIndex = 0;
+                    txtPriceGroupID.IsEnabled = false;
+                    //txtPriceGroupID.Clear();
+                    //txtDescription.Clear();
+                    cmbSearchPriceGroup.Visibility = Visibility.Visible;
+                    lblSearchPriceGroup.Visibility = Visibility.Visible;
+                    txtPriceGroupID.Background = Brushes.White;
+                    this.btnAdd.IsEnabled = true;
+                    FillSearchCombo();
+                    RetriveingRecords();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                btnExit.Content = "Exit";
-               // cmbPriceGroup.SelectedIndex = 0;
-                txtPriceGroupID.IsEnabled = false;
-                //txtPriceGroupID.Clear();
-                //txtDescription.Clear();
-                cmbSearchPriceGroup.Visibility = Visibility.Visible;
-                lblSearchPriceGroup.Visibility = Visibility.Visible;
-                txtPriceGroupID.Background = Brushes.White;
-                this.btnAdd.IsEnabled = true;
-                FillSearchCombo();
+                
+               CustomLogging.Log("[Error:]", ex.Message);
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (dgItems.SelectedIndex >= 0)
+            try
             {
-                for (int i = 0; i < dgItems.SelectedItems.Count; i++)
+                InventoryClass objInvenoryClass = new InventoryClass();
+                var result = MessageBox.Show("Are you sure would like to permanently delete this price group?", "Run Time Support", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes)
                 {
-                    dgItems.Items.Remove(dgItems.SelectedItems[i]);
-                };
+                    objInvenoryClass.IsDeleted = 1;
+                    objInvenoryClass.Store_ID = "1001";
+                    objInvenoryClass.ItemNum = txtPriceGroupID.Text;
+                    objPosManagementService.deleteItem(objInvenoryClass);
+                    if(objInvenoryClass.IsSuccessfull == true)
+                    {
+                        FillSearchCombo();
+                        RetriveingRecords();
+                    }
+                }
+
             }
+            catch (Exception ex)
+            {
+            CustomLogging.Log("[Error:]", ex.Message);    
+            }           
         }
 
         private void btnDeleteDiscount_Click(object sender, RoutedEventArgs e)
         {
-            if (dgDiscountLevel.SelectedIndex >= 0)
+            try
             {
-                for (int i = 0; i < dgDiscountLevel.SelectedItems.Count; i++)
+                if (dgDiscountLevel.SelectedIndex >= 0)
                 {
-                    dgDiscountLevel.Items.Remove(dgDiscountLevel.SelectedItems[i]);
-                };
+                    for (int i = 0; i < dgDiscountLevel.SelectedItems.Count; i++)
+                    {
+                        dgDiscountLevel.Items.Remove(dgDiscountLevel.SelectedItems[i]);
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Error:]", ex.Message);
             }
         }
         public void FillSearchCombo()
@@ -402,21 +461,85 @@ namespace POS.Retail.Views
         }
         public void RetriveingRecords()
         {
-            string ItemNum = cmbSearchPriceGroup.SelectedValue.ToString();
-            DataTable dt = objPosManagementService.RetriveData(ItemNum);
-            if(dt.Rows.Count > 0)
+            try
             {
-                cmbDepartment.SelectedValue = dt.Rows[0]["Dept_ID"].ToString();
-                txtPriceGroupID.Text = dt.Rows[0]["ItemNum"].ToString();
-                txtQuantity.Text = dt.Rows[0]["QuantityRequired"].ToString();
-                txtStartDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_Start"]);
-                txtEndDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_End"]);
-                txtDescription.Text = dt.Rows[0]["ItemName"].ToString();
-                txtAmount.Text = dt.Rows[0]["Price"].ToString();
-                chkTax1.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_1"]);
-                chkbTax2.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_2"]);
-                chkbTax3.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_3"]);
-                chkbFoodstampable.IsChecked = Convert.ToBoolean(dt.Rows[0]["FoodStampable"]);
+                dgDiscountLevel.Items.Clear();
+                dgItems.Items.Clear();
+                string[] str = cmbSearchPriceGroup.Text.ToString().Split('-');
+                string ItemNum = str[0];
+
+                DataTable dt = objPosManagementService.RetriveData(ItemNum);
+                if (dt.Rows.Count > 0)
+                {
+                    cmbDepartment.SelectedValue = dt.Rows[0]["Dept_ID"].ToString();
+                    txtPriceGroupID.Text = dt.Rows[0]["ItemNum"].ToString();
+                    txtQuantity.Text = dt.Rows[0]["QuantityRequired"].ToString();
+                    txtStartDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_Start"]);
+                    txtEndDate.SelectedDate = Convert.ToDateTime(dt.Rows[0]["Sale_End"]);
+                    txtDescription.Text = dt.Rows[0]["ItemName"].ToString();
+                    txtAmount.Text = dt.Rows[0]["Price"].ToString();
+                    chkTax1.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_1"]);
+                    chkbTax2.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_2"]);
+                    chkbTax3.IsChecked = Convert.ToBoolean(dt.Rows[0]["Tax_3"]);
+                    chkbFoodstampable.IsChecked = Convert.ToBoolean(dt.Rows[0]["FoodStampable"]);
+                    if (dt.Rows[0]["ItemType"].ToString() == "1")
+                    {
+                        cmbPriceGroup.SelectedIndex = 0;
+                    }
+                    else if (dt.Rows[0]["ItemType"].ToString() == "5")
+                    {
+                        cmbPriceGroup.SelectedIndex = 1;
+                    }
+                    else if (dt.Rows[0]["ItemType"].ToString() == "6")
+                    {
+                        cmbPriceGroup.SelectedIndex = 2;
+                    }
+                    DataTable dtSubItems = objPosManagementService.retriveSubItems(ItemNum, "1001");
+                    for (int i = 0; i < dtSubItems.Rows.Count; i++)
+                    {
+                        var data = new item { ItemNum = dtSubItems.Rows[i]["ItemNum"].ToString(), ItemName = dtSubItems.Rows[i]["ItemName"].ToString(), Price = Math.Round(Convert.ToDouble(dtSubItems.Rows[i]["Price"]), 2).ToString() };
+                        dgItems.Items.Add(data);
+                    }
+                    DataTable dtDiscountLevel = objPosManagementService.retriveDiscountLevel(ItemNum, "1001");
+                    for (int j = 0; j < dtDiscountLevel.Rows.Count; j++)
+                    {
+                        var data = new level { Quantity = dtDiscountLevel.Rows[j]["Quantity"].ToString(), amount = dtDiscountLevel.Rows[j]["Amount"].ToString() };
+                        dgDiscountLevel.Items.Add(data);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void cmbSearchPriceGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //e.Handled = true;
+            //RetriveingRecords();
+        }
+
+        private void cmbSearchPriceGroup_DropDownClosed(object sender, EventArgs e)
+        {
+            RetriveingRecords();
+        }
+
+        private void btnDeleteItems_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgItems.SelectedIndex >= 0)
+                {
+                    for (int i = 0; i < dgItems.SelectedItems.Count; i++)
+                    {
+                        dgItems.Items.Remove(dgItems.SelectedItems[i]);
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Error:]", ex.Message);
             }
         }
     }

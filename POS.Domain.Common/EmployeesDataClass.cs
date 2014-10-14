@@ -3,166 +3,167 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common.Employee
 {
-   public class EmployeesDataClass
+   public class EmployeesDataClass: BaseDomain
     {
-      public string CashierID {get; set;}
-	  public string CustNo {get; set;}
-	  public string DepartmentID {get; set;}
-	  public string Passwd {get; set;}
-      public string SwipeID {get; set;}
-	  public decimal HourlyWage {get; set;}
-	  public int FormColor {get; set;}
-	  public string varCDL {get; set;}
-	  public string varName {get; set;}
-	  public string CFASetupCompany {get; set;}
-	  public string CFASetupTax {get; set;}
-      public string CFASetupBonus {get; set;}
-	  public string CFASetupAccounting {get; set;}
-	  public string CFASetupDiscounts {get; set;}
-      public string CFASetupDisplay {get; set;}
-	  public string CFASetupDefPrinter {get; set;}
-	  public string CFAInvenAdd {get; set;}
-	  public string CFAInvenEdit {get; set;}
- 	  public string CFAVendorsAdd {get; set;}
-	  public string CFAVendorsEdit {get; set;}
-	  public string CFADeptsAdd {get; set;}
-	  public string CFADeptsEdit {get; set;}
-	  public string CFAInvenTickVouch {get; set;}
-	  public string CFACustadd {get; set;}
-	  public string CFACustEdit {get; set;}
-	  public string CFAReportsDisplay {get; set;}
-	  public string CFAReportsDDR {get; set;}
-	  public string CFAReportsPrint {get; set;}
-	  public string CFAInvoiceDiscount {get; set;}
-	  public string CFAInvoicePriceChange {get; set;}
-	  public string CFAInvoiceDeleteItems {get; set;}
-	  public string CFAInvoiceVoid {get; set;}
-	  public string CFACREAcct {get; set;}
-	  public string CFACREExit {get; set;}
-	  public int varDirty {get; set;}
-	  public DateTime LastDDR {get; set;}
-	  public string CFADisplayBalance {get; set;}
-	  public string CFARefundItem {get; set;}
-	  public int DispPayOption {get; set;}
-	  public int DispItemOption {get; set;}
-	  public string varEmpName {get; set;}
-	  public string CFAReceiveItems {get; set;}
-	  public string CFADOPOS {get; set;}
-	  public string CFAINSTANTPOS {get; set;}
-	  public string SectionID {get; set;}
-      public string CFAOtherTables {get; set;}
-	  public string CFAAcceptCash {get; set;}
-	  public string CFATRANSFERNOSWIPE {get; set;}
-	  public string CFAADDCCTIPS {get; set;}
-	  public int varDisabled {get; set;}
-	  public string CFAPRINTHOLD {get; set;}
-	  public string CFAOpenCashDrawer {get; set;}
-	  public int varCCTipsNow {get; set; }
-	  public int varReqClockIn {get; set;}
-	  public string CFASplitChecks {get; set;}
-	  public string CFATransferTables {get; set;}
-	  public string CFAExtraItem {get; set;}
-	  public string CFATaxExempt {get; set;}
-	  public string CFAGCSell {get; set;}
-	  public string CFAGCRedeem {get; set;}
-	  public string CFASELLSPECIALITEM {get; set;}
-	  public string CFAVENDORPAYOUT {get; set;}
-	  public string CFAAPPLYGRATUITY {get; set;}
-	  public string FirstName {get; set;}
-	  public string MiddleName {get; set;}
-	  public string LastName  {get; set;}
-	  public string varSSN {get; set;}
-	  public string Address1 {get; set;}
-	  public string Address2 {get; set;}
-	  public string varCity {get; set;}
-	  public string varState {get; set;}
-	  public string ZipCode {get; set;}
-	  public string Phone1 {get; set;}
-	  public string varEMail {get; set;}
-	  public DateTime varBirthday {get; set;}
-	  public string varPicture {get; set;}
-	  public string CFABUYBACKSTRADES {get; set;}
-	  public string CFACCForce {get; set;}
-	  public string CFACCBelowFloor {get; set;}
-	  public decimal CurrentCash {get; set;}
-	  public string CFACashAlerts {get; set;}
-	  public string CFACashPickup {get; set;}
-	  public string CDLStationsID {get; set;}
-	  public string CFAIssueCreditSlip {get; set;}
-	  public string CFARedeemCreditSlip {get; set;}
-	  public string CFAREFUNDOVERRIDE {get; set;}
-	  public string CFADRAWERTRANSFER {get; set;}
-	  public string CFALARGEPURCHASES {get; set;}
-	  public string CFAAUCTIONPHOTO {get;set;}
-	  public string CFAAUCTIONLISTREDEEM {get; set;}
-	  public string CFAAUCTIONSHIP {get; set;}
-	  public string CFAAPPROVECASHCOUNT {get; set;}
-	  public string OrigEmpID {get; set;}
-	  public string OrigStoreID {get; set;}
-	  public string CDName {get; set;}
-	  public string CFAAPPROVEOLDRETURNS {get; set;}
-	  public string CFAAPPROVEEMERGENCYCLOCKOUT {get; set;}
-	  public float varTimeWorkedThisPeriod {get; set;}
- 	  public int varOvertimeThreshold {get; set;}
-	  public string CFAPULLBACKINVOICE {get; set;}
-	  public string varCFAMANAGETIMECLOCK {get; set;}
-	  public string CFAPERFORMENDOFDAY {get; set;}
-	  public string CFAHOSTLOGIN {get; set;}
-	  public string CFARESTOPENTABS {get; set;}
-	  public string CFARESTTAKEOUT {get; set;}
-	  public string CFARESTDELIVERY {get; set;}
-	  public string CFAINVOICEDELETESENT {get; set;}
-	  public string CFAINVENVIEW {get; set;}
-	  public string CFAINVENVIEWCOST {get; set;}
-	  public string CFAINVENNEGATIVEINSTANTPOS {get; set;}
-	  public string CFAENDTRANSCASH {get; set;}
-	  public string CFAENDTRANSACCOUNT {get; set;}
-      public string CFARESTCOMP { get; set; }
-    public string CFA_CH_FORCE {get; set; }
-	public string CFA_TS_CONFIG {get; set; }
-	public string CFA_TRANSFER_SERVER {get; set; }
-	public string CFA_BACKUP_DATABASE {get; set; }
-	public string CFA_CREDIT_CARD_SETTLEMENT {get; set; }
-	public string CFA_KITCHEN_REPRINT {get; set; }
-	public string CFA_SETUP_RECEIPT_NOTES {get; set; }
-	public string CFA_MANAGE_TIMECLOCK_OWNTIME {get; set; }
-	public string CFA_SETUP_ADD_EMPLOYEES {get; set; }
-	public string CFA_SETUP_EDIT_EMPLOYEES {get; set; }
-	public string CFA_INVENTORY_PROMOTIONS {get; set; }
-	public string CFA_INVOICE_DISCOUNTS_BELOW_X {get; set; }
-	public string CFA_BUYBACKTRADE_ABOVE_SET_AMOUNT {get; set; }
-	public string CFA_REPORTS_VIEW_HISTORICAL_DATA {get; set; }
-	public string CFA_INVEN_MISC_FIELD_LOCKDOWN {get; set; }
-	public string CFA_HH_Create_PO {get; set; }
-	public string CFA_HH_DSD {get; set; }
-	public string CFA_HH_DSD_Credit {get; set; }
-	public string CFA_HH_PO_Receive {get; set; }
-	public string CFA_HH_Inv_Edit {get; set; }
-	public string CFA_HH_Inv_Adjust {get; set; }
-	public string CFA_HH_Inv_Count {get; set; }
-	public string CFA_HH_Setup {get; set; }
-	public string CFA_CASHIER_OVERRIDE_LICENSESCAN {get; set; }
-	public string CFA_INVEN_DELETE {get; set; }
-	public string CFA_CASHIER_MANUALY_ENTER_AGE {get; set; }
-	public DateTime CreateDate {get; set; }
-	public DateTime DateDisabled {get; set; }
-	public string CFA_INVEN_ADD_COUPON {get; set; }
-	public string CFA_INVEN_GLOBALPRICING {get; set; }
-	public string CFA_EMP_SCHEDULE_OVERRIDE {get; set; }
-	public string CFA_LABOR_SCHEDULER {get; set; }
-	public string GLNumber {get; set; }
-	public string CFA_NEGATIVE_PRICE_CHANGE {get; set; }
-	public string CFA_CUSTOMER_EDIT_CHARGEATCOST {get; set; }
-	public string CFA_GPI_FUEL_DRIVE_OFF {get; set; }
-	public string CFA_SETUP_VPDCONFIGURATION {get; set; }
-	public string CFA_CLOSE_SHIFT {get; set; }
-	public string CFA_REPRINT_RECEIPT {get; set; }
-	public DateTime Locked_Time {get; set; }
-	public int Retry_Count {get; set; }
-	public string Password_Hash {get; set; }
-	public string Salt_Key {get; set; }
+        public string Cashier_ID { get; set; }
+        public string CustNum { get; set; }
+        public string Dept_ID { get; set; }
+        public string Password { get; set; }
+        public string Swipe_ID { get; set; }
+        public string Hourly_Wage { get; set; }
+        public string Form_Color { get; set; }
+        public string CDL { get; set; }
+        public string Name { get; set; }
+        public string CFA_Setup_Company { get; set; }
+        public string CFA_Setup_Tax { get; set; }
+        public string CFA_Setup_Bonus { get; set; }
+        public string CFA_Setup_Accounting { get; set; }
+        public string CFA_Setup_Discounts { get; set; }
+        public string CFA_Setup_Display { get; set; }
+        public string CFA_Setup_DefPrinter { get; set; }
+        public string CFA_Inven_Add { get; set; }
+        public string CFA_Inven_Edit { get; set; }
+        public string CFA_Vendors_Add { get; set; }
+        public string CFA_Vendors_Edit { get; set; }
+        public string CFA_Depts_Add { get; set; }
+        public string CFA_Depts_Edit { get; set; }
+        public string CFA_Inven_TickVouch { get; set; }
+        public string CFA_Cust_add { get; set; }
+        public string CFA_Cust_Edit { get; set; }
+        public string CFA_Reports_Display { get; set; }
+        public string CFA_Reports_DDR { get; set; }
+        public string CFA_Reports_Print { get; set; }
+        public string CFA_Invoice_Discount { get; set; }
+        public string CFA_Invoice_PriceChange { get; set; }
+        public string CFA_Invoice_DeleteItems { get; set; }
+        public string CFA_Invoice_Void { get; set; }
+        public string CFA_CRE_Acct { get; set; }
+        public string CFA_CRE_Exit { get; set; }
+        public int Dirty { get; set; }
+        public DateTime Last_DDR { get; set; }
+        public string CFA_Display_Balance { get; set; }
+        public string CFA_Refund_Item { get; set; }
+        public int Disp_Pay_Option { get; set; }
+        public int Disp_Item_Option { get; set; }
+        public string EmpName { get; set; }
+        public string CFA_Receive_Items { get; set; }
+        public string CFA_DO_POS { get; set; }
+        public string CFA_INSTANT_POS { get; set; }
+        public string Section_ID { get; set; }
+        public string CFA_Other_Tables { get; set; }
+        public string CFA_Accept_Cash { get; set; }
+        public string CFA_TRANSFER_NOSWIPE { get; set; }
+        public string CFA_ADD_CCTIPS { get; set; }
+        public int Disabled { get; set; }
+        public string CFA_PRINT_HOLD { get; set; }
+        public string CFA_Open_Cash_Drawer { get; set; }
+        public int CCTipsNow { get; set; }
+        public int ReqClockIn { get; set; }
+        public string CFA_Split_Checks { get; set; }
+        public string CFA_Transfer_Tables { get; set; }
+        public string CFA_Extra_Item { get; set; }
+        public string CFA_Tax_Exempt { get; set; }
+        public string CFA_GC_Sell { get; set; }
+        public string CFA_GC_Redeem { get; set; }
+        public string CFA_SELL_SPECIAL_ITEM { get; set; }
+        public string CFA_VENDOR_PAYOUT { get; set; }
+        public string CFA_APPLY_GRATUITY { get; set; }
+        public string First_Name { get; set; }
+        public string Middle_Name { get; set; }
+        public string Last_Name { get; set; }
+        public string SSN { get; set; }
+        public string Address_1 { get; set; }
+        public string Address_2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip_Code { get; set; }
+        public string Phone_1 { get; set; }
+        public string EMail { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Picture { get; set; }
+        public string CFA_BUYBACKS_TRADES { get; set; }
+        public string CFA_CC_Force { get; set; }
+        public string CFA_CC_Below_Floor { get; set; }
+        public double Current_Cash { get; set; }
+        public string CFA_Cash_Alerts { get; set; }
+        public string CFA_Cash_Pickup { get; set; }
+        public string CDL_Stations_ID { get; set; }
+        public string CFA_Issue_Credit_Slip { get; set; }
+        public string CFA_Redeem_Credit_Slip { get; set; }
+        public string CFA_REFUND_OVERRIDE { get; set; }
+        public string CFA_DRAWER_TRANSFER { get; set; }
+        public string CFA_LARGE_PURCHASES { get; set; }
+        public string CFA_AUCTION_PHOTO { get; set; }
+        public string CFA_AUCTION_LISTREDEEM { get; set; }
+        public string CFA_AUCTION_SHIP { get; set; }
+        public string CFA_APPROVE_CASHCOUNT { get; set; }
+        public string Orig_Emp_ID { get; set; }
+        public string Orig_Store_ID { get; set; }
+        public string CD_Name { get; set; }
+        public string CFA_APPROVE_OLD_RETURNS { get; set; }
+        public string CFA_APPROVE_EMERGENCY_CLOCKOUT { get; set; }
+        public double TimeWorkedThisPeriod { get; set; }
+        public int OvertimeThreshold { get; set; }
+        public string CFA_PULLBACK_INVOICE { get; set; }
+        public string CFA_MANAGE_TIMECLOCK { get; set; }
+        public string CFA_PERFORM_ENDOFDAY { get; set; }
+        public string CFA_HOST_LOGIN { get; set; }
+        public string CFA_REST_OPENTABS { get; set; }
+        public string CFA_REST_TAKEOUT { get; set; }
+        public string CFA_REST_DELIVERY { get; set; }
+        public string CFA_INVOICE_DELETESENT { get; set; }
+        public string CFA_INVEN_VIEW { get; set; }
+        public string CFA_INVEN_VIEWCOST { get; set; }
+        public string CFA_INVEN_NEGATIVE_INSTANTPOS { get; set; }
+        public string CFA_ENDTRANS_CASH { get; set; }
+        public string CFA_ENDTRANS_ACCOUNT { get; set; }
+        public string CFA_REST_COMP { get; set; }
+        public string CFA_CH_FORCE { get; set; }
+        public string CFA_TS_CONFIG { get; set; }
+        public string CFA_TRANSFER_SERVER { get; set; }
+        public string CFA_BACKUP_DATABASE { get; set; }
+        public string CFA_CREDIT_CARD_SETTLEMENT { get; set; }
+        public string CFA_KITCHEN_REPRINT { get; set; }
+        public string CFA_SETUP_RECEIPT_NOTES { get; set; }
+        public string CFA_MANAGE_TIMECLOCK_OWNTIME { get; set; }
+        public string CFA_SETUP_ADD_EMPLOYEES { get; set; }
+        public string CFA_SETUP_EDIT_EMPLOYEES { get; set; }
+        public string CFA_INVENTORY_PROMOTIONS { get; set; }
+        public string CFA_INVOICE_DISCOUNTS_BELOW_X { get; set; }
+        public string CFA_BUYBACKTRADE_ABOVE_SET_AMOUNT { get; set; }
+        public string CFA_REPORTS_VIEW_HISTORICAL_DATA { get; set; }
+        public string CFA_INVEN_MISC_FIELD_LOCKDOWN { get; set; }
+        public string CFA_HH_Create_PO { get; set; }
+        public string CFA_HH_DSD { get; set; }
+        public string CFA_HH_DSD_Credit { get; set; }
+        public string CFA_HH_PO_Receive { get; set; }
+        public string CFA_HH_Inv_Edit { get; set; }
+        public string CFA_HH_Inv_Adjust { get; set; }
+        public string CFA_HH_Inv_Count { get; set; }
+        public string CFA_HH_Setup { get; set; }
+        public string CFA_CASHIER_OVERRIDE_LICENSESCAN { get; set; }
+        public string CFA_INVEN_DELETE { get; set; }
+        public string CFA_CASHIER_MANUALY_ENTER_AGE { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime DateDisabled { get; set; }
+        public string CFA_INVEN_ADD_COUPON { get; set; }
+        public string CFA_INVEN_GLOBALPRICING { get; set; }
+        public string CFA_EMP_SCHEDULE_OVERRIDE { get; set; }
+        public string CFA_LABOR_SCHEDULER { get; set; }
+        public string GLNumber { get; set; }
+        public string CFA_NEGATIVE_PRICE_CHANGE { get; set; }
+        public string CFA_CUSTOMER_EDIT_CHARGEATCOST { get; set; }
+        public string CFA_GPI_FUEL_DRIVE_OFF { get; set; }
+        public string CFA_SETUP_VPDCONFIGURATION { get; set; }
+        public string CFA_CLOSE_SHIFT { get; set; }
+        public string CFA_REPRINT_RECEIPT { get; set; }
+        public string Locked_Time { get; set; }
+        public int Retry_Count { get; set; }
+        public string Password_Hash { get; set; }
+        public string Salt_Key { get; set; }
     }
 }

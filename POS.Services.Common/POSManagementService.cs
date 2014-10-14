@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using POS.Repository.SQLServer;
 using POS.Domain.Common;
 using System.Data;
-using POS.Domain.Common;
+
+using POS.Domain.Common.Employee;
 
 namespace POS.Services.Common
 {
@@ -210,6 +211,11 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.getInventoryRepository(objInventory);
         }
+        public Domain.Common.InventoryClass deleteItem(Domain.Common.InventoryClass objInvenoryClass)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.deleteItemRep(objInvenoryClass);
+        }
         #endregion
 
         #region Vendor Service
@@ -387,7 +393,6 @@ namespace POS.Services.Common
         }
         #endregion
 
-
         #region Customer specific Item prices services
         public DataTable GetRequrdData(Inventory_CustPricesClass objInveCust)
         {
@@ -471,37 +476,37 @@ namespace POS.Services.Common
         #endregion
 
         #region Mix'n Match Service
-        public POS.Domain.Common.Inventory_OnSale_InfoClass insertOnSaleInfo(POS.Domain.Common.Inventory_OnSale_InfoClass objIvnOnsaleInfo)
+        public Inventory_OnSale_InfoClass insertOnSaleInfo(Inventory_OnSale_InfoClass objIvnOnsaleInfo)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertOnsaleInfo(objIvnOnsaleInfo);
         }
-        public Domain.Common.Kit_IndexClass InsertItemsinKitindex(Domain.Common.Kit_IndexClass objKitIndex)
+        public Kit_IndexClass InsertItemsinKitindex(Kit_IndexClass objKitIndex)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertItemsInKitIndex(objKitIndex);
         }
-        public Domain.Common.Inventory_MixNMatch_LevelsClass insertDiscountLevels(Domain.Common.Inventory_MixNMatch_LevelsClass objMixNMatchLevel)
+        public Inventory_MixNMatch_LevelsClass insertDiscountLevels(Inventory_MixNMatch_LevelsClass objMixNMatchLevel)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertDiscountLevel(objMixNMatchLevel);
         }
-        public Domain.Common.Inventory_BumpBarSettingsClass insertBumpBarSetting(Domain.Common.Inventory_BumpBarSettingsClass objBumpBarSetting)
+        public Inventory_BumpBarSettingsClass insertBumpBarSetting(Inventory_BumpBarSettingsClass objBumpBarSetting)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertBumpBarSetting(objBumpBarSetting);
         }
-        public Domain.Common.Inventory_AdditionalInfoClass insertAdditionalInfo(Domain.Common.Inventory_AdditionalInfoClass objinvAdditionalInfo)
+        public Inventory_AdditionalInfoClass insertAdditionalInfo(Inventory_AdditionalInfoClass objinvAdditionalInfo)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertAdditionalInfo(objinvAdditionalInfo);
         }
-        public Domain.Common.Setup_TS_ButtonsClass insertSetupTsButtons(Domain.Common.Setup_TS_ButtonsClass objSetupTsButtons)
+        public Setup_TS_ButtonsClass insertSetupTsButtons(Setup_TS_ButtonsClass objSetupTsButtons)
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.insertSetupTsButtons(objSetupTsButtons);
         }
-        public Domain.Common.InventoryClass checkItemExist(Domain.Common.InventoryClass objInventoryClass)
+        public InventoryClass checkItemExist(InventoryClass objInventoryClass)
         {
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.checkItemExist(objInventoryClass);
@@ -515,6 +520,16 @@ namespace POS.Services.Common
         {
             MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
             return objMixNMatchRepository.retriveDataRep(ItemNum);
+        }
+        public DataTable retriveSubItems(string ItemNum, string storeId)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.retriveSubItems(ItemNum, storeId);
+        }
+        public DataTable retriveDiscountLevel(string ItemNum, string storeId)
+        {
+            MixNMatchRepository objMixNMatchRepository = new MixNMatchRepository();
+            return objMixNMatchRepository.retriveDiscountLevel(ItemNum, storeId);
         }
         #endregion
  
@@ -582,6 +597,19 @@ namespace POS.Services.Common
             return objCustomerClass = objCustomerRepository.LoadCustomerInfo(objCustomerClass);
         }
         #endregion
+
+        #region [EMPLOYEE SERVICES]
+        public EmployeesDataClass insertEmpData(EmployeesDataClass objEmployeesData)
+        {
+            EmployeeRepository objEmployeeRepository = new EmployeeRepository();
+            return objEmployeeRepository.insertEmployeeData(objEmployeesData);
+        }
+        #endregion
+
+
+
+
+
     }
 }
 
