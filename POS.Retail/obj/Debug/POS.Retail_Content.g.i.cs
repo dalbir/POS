@@ -8,26 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bank.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bank_check.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/barcode.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bb.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/camera_test.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/camera_test1.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cash.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/credit_card.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/delete.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/delete.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/deletered.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/edit_remove.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/find.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/images%20(1).jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/images.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/keyboard.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/mouse.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/right.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/right1.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/search_user.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/subtract.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/search-2-icon.png")]
 
 

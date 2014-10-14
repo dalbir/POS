@@ -30,6 +30,14 @@ namespace POS.Repository.SQLServer
                "where CustNum like '" + objCustomerClass.CustNum + "%' or First_Name like '" + objCustomerClass.First_Name + "%' or Last_Name  " +
                "like '" + objCustomerClass.Last_Name + "%' or Company like '" + objCustomerClass.Company + "%' or Phone_1 like '" + objCustomerClass.Phone_1 + "%'");
            }
+           else if (objCustomerClass.flage == "fillList")
+           {
+               objCustomerClass.loadCustDat = sqlServerRepost.GetDataTable("SELECT CustNum FROM dbo.Customer  ");
+           }
+           else if (objCustomerClass.flage == "LoadCustomersToTextBoxes")
+           {
+               objCustomerClass.loadCustDat = sqlServerRepost.GetDataTable("SELECT * FROM View_CUSTOMER_DETAILS WHERE CustNum='" + objCustomerClass.CustNum + "'");
+           }
            return objCustomerClass;
        }
        public CustomerClass CustomerInfo(CustomerClass objCusClass)
@@ -91,6 +99,36 @@ namespace POS.Repository.SQLServer
                    "'" + objCusClass.ImagePath + "','" + objCusClass.License_ExpDate + "','" + objCusClass.TaxID + "','" + objCusClass.SecretCode + "', " +
                    "'" + objCusClass.OnlineUserName + "','" + objCusClass.OnlinePassword + "')");
                }
+               else if (objCusClass.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer SET First_Name='" + objCusClass.First_Name + "',Last_Name='" + objCusClass.Last_Name + "', " +
+                   "Company='" + objCusClass.Company + "',Address_1='" + objCusClass.Address_1 + "',Address_2='" + objCusClass.Address_2 + "',City='" + objCusClass.City + "', "+
+                   "State='" + objCusClass.State + "',Zip_Code='" + objCusClass.Zip_Code + "',Phone_1='" + objCusClass.Phone_1 + "',Phone_2='" + objCusClass.Phone_2 + "', "+
+                   "CC_Type='" + objCusClass.CC_Type + "',CC_Num='" + objCusClass.CC_Num + "',CC_Exp='" + objCusClass.CC_Exp + "',Discount_Level='" + objCusClass.Discount_Level + "', "+
+                   "Discount_Percent='" + objCusClass.Discount_Percent + "',Acct_Open_Date='" + objCusClass.Acct_Open_Date + "',Acct_Close_Date='" + objCusClass.Acct_Close_Date + "', "+
+                   "Acct_Balance='" + objCusClass.Acct_Balance + "',Acct_Max_Balance='" + objCusClass.Acct_Max_Balance + "', " +
+                   "Bonus_Plan_Member='" + objCusClass.Bonus_Plan_Member + "',Bonus_Points='" + objCusClass.Bonus_Points + "', "+
+                   "Tax_Exempt='" + objCusClass.Tax_Exempt + "',Member_Exp='" + objCusClass.Member_Exp + "', " +
+                   "Dirty='" + objCusClass.Dirty + "',Phone_3='" + objCusClass.Phone_3 + "',Phone_4='" + objCusClass.Phone_4 + "', "+
+                   "EMail='" + objCusClass.EMail + "',County='" + objCusClass.County + "',Def_SP='" + objCusClass.Def_SP + "', "+
+                   "CreateDate='" + objCusClass.CreateDate + "',Referral='" + objCusClass.Referral + "',Birthday='" + objCusClass.Birthday + "', "+
+                   "Last_Birthday_Bonus='" + objCusClass.Last_Birthday_Bonus + "',Last_Visit='" + objCusClass.Last_Visit + "', "+
+                   "Require_PONum='" + objCusClass.Require_PONum + "',Max_Charge_NumDays='" + objCusClass.Max_Charge_NumDays + "', "+
+                   "Max_Charge_Amount='" + objCusClass.Max_Charge_Amount + "',License_Num='" + objCusClass.License_Num + "', " +
+                   "ID_Last_Checked='" + objCusClass.ID_Last_Checked + "',Next_Start_Date='" + objCusClass.Next_Start_Date + "', "+
+                   "Checking_AcctNum='" + objCusClass.Checking_AcctNum + "',PrintNotes='" + objCusClass.PrintNotes + "', "+
+                   "Loyalty_Plan_ID='" + objCusClass.Loyalty_Plan_ID + "',Tax_Rate_ID='" + objCusClass.Tax_Rate_ID + "', "+
+                   "Bill_To_Name='" + objCusClass.Bill_To_Name + "',Contact_1='" + objCusClass.Contact_1 + "',Contact_2='" + objCusClass.Contact_2 + "', "+
+                   "Terms='" + objCusClass.Terms + "',Resale_Num='" + objCusClass.Resale_Num + "',Last_Coupon='" + objCusClass.Last_Coupon + "', "+
+                   "Account_Type='" + objCusClass.Account_Type + "',ChargeAtCost='" + objCusClass.ChargeAtCost + "',Disabled='" + objCusClass.Disabled + "', "+
+                   "ImagePath='" + objCusClass.ImagePath + "',License_ExpDate='" + objCusClass.License_ExpDate + "',TaxID='" + objCusClass.TaxID + "', "+
+                   "SecretCode='" + objCusClass.SecretCode + "',OnlineUserName='" + objCusClass.OnlineUserName + "',OnlinePassword='" + objCusClass.OnlinePassword + "' "+
+                   "WHERE CustNum='"+ objCusClass.CustNum +"'");
+               }
+               else if (objCusClass.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer WHERE CustNum='" + objCusClass.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCusClass.IsSuccessfull = true;
@@ -119,7 +157,15 @@ namespace POS.Repository.SQLServer
                        "values('" + objCusAccTrans.CustNum + "','" + objCusAccTrans.EditSequence + "')");
                }
 
-
+               else if (objCusAccTrans.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Accounting_Transaction SET " +
+                       "EditSequence='" + objCusAccTrans.EditSequence + "' WHERE CustNum='"+ objCusAccTrans.CustNum +"'");
+               }
+               else if (objCusAccTrans.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Accounting_Transaction WHERE CustNum='" + objCusAccTrans.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCusAccTrans.IsSuccessfull = true;
@@ -147,8 +193,17 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Authorized(CustNum,Member,Dirty) " +
                    "values('" + objCustAuthorized.CustNum + "','" + objCustAuthorized.Member + "','"+ objCustAuthorized.Dirty +"')");
                }
-
-
+               else if (objCustAuthorized.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Authorized SET " +
+                   "Member='" + objCustAuthorized.Member + "', "+
+                   "Dirty='" + objCustAuthorized.Dirty + "' "+
+                   "WHERE CustNum='"+ objCustAuthorized.CustNum +"'");
+               }
+               else if (objCustAuthorized.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Authorized WHERE CustNum='" + objCustAuthorized.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustAuthorized.IsSuccessfull = true;
@@ -176,8 +231,18 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Auto(CustNum,License,Make,Model) " +
                    "values('" + objCustAutoInfo.CustNum + "','" + objCustAutoInfo.License + "','" + objCustAutoInfo.Make + "','"+ objCustAutoInfo.Model +"')");
                }
-
-
+               else if (objCustAutoInfo.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Auto SET " +
+                   "License='" + objCustAutoInfo.License + "', "+
+                   "Make='" + objCustAutoInfo.Make + "', "+
+                   "Model='" + objCustAutoInfo.Model + "' "+
+                   "WHERE CustNum='"+ objCustAutoInfo.CustNum +"'");
+               }
+               else if (objCustAutoInfo.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Auto WHERE CustNum='" + objCustAutoInfo.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustAutoInfo.IsSuccessfull = true;
@@ -205,8 +270,18 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Events (CustNum,Event_Date,Event_Desc,Dirty) " +
                    "values('" + objCustEvents.CustNum + "','" + objCustEvents.Event_Date + "','" + objCustEvents.Event_Desc + "','" + objCustEvents.Dirty + "')");
                }
-
-
+               else if (objCustEvents.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Events SET " +
+                   "Event_Date='" + objCustEvents.Event_Date + "', "+
+                   "Event_Desc='" + objCustEvents.Event_Desc + "', "+
+                   "Dirty='" + objCustEvents.Dirty + "' "+
+                   "WHERE CustNum='"+ objCustEvents.CustNum +"'");
+               }
+               else if (objCustEvents.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Events WHERE CustNum='" + objCustEvents.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustEvents.IsSuccessfull = true;
@@ -296,8 +371,16 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Notes (CustNum,Notes) " +
                    "values('" + objCustomerNotes.CustNum + "','" + objCustomerNotes.Notes + "' )");
                }
-
-
+               else if (objCustomerNotes.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Notes SET " +
+                   "Notes='" + objCustomerNotes.Notes + "' "+
+                   "WHERE CustNum='"+ objCustomerNotes.CustNum +"'");
+               }
+               else if (objCustomerNotes.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Notes WHERE CustNum='" + objCustomerNotes.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustomerNotes.IsSuccessfull = true;
@@ -356,8 +439,16 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Reference (ID,CustNum) " +
                    "values('" + objCustRefrnce.ID + "','" + objCustRefrnce.CustNum + "' )");
                }
-
-
+               else if (objCustRefrnce.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Reference SET " +
+                   "ID='" + objCustRefrnce.ID + "' " +
+                   "WHERE CustNum='" + objCustRefrnce.CustNum + "'");
+               }
+               else if (objCustRefrnce.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Reference WHERE CustNum='" + objCustRefrnce.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustRefrnce.IsSuccessfull = true;
@@ -401,10 +492,29 @@ namespace POS.Repository.SQLServer
                    "values('" + objCustomerShp.CustNum + "','" + objCustomerShp.First_Name + "','"+ objCustomerShp.Last_Name +"', "+
                    "'"+ objCustomerShp.Company +"','"+ objCustomerShp.Address_1 +"','"+ objCustomerShp.Address_2 +"', "+
                    "'"+ objCustomerShp.City +"','"+ objCustomerShp.State +"','"+ objCustomerShp.Zip_Code +"','"+ objCustomerShp.Phone +"', "+
-                   "'"+ objCustomerShp.County +"','"+ objCustomerShp.DeliveryAddressSpecialInstructions +"')");
+                   "'"+ objCustomerShp.Dirty +"','"+ objCustomerShp.County +"','"+ objCustomerShp.DeliveryAddressSpecialInstructions +"')");
                }
-
-
+               if (objCustomerShp.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_ShipTos SET " +
+                   "First_Name='" + objCustomerShp.First_Name + "', "+
+                   "Last_Name='" + objCustomerShp.Last_Name + "', " +
+                   "Company='" + objCustomerShp.Company + "', "+
+                   "Address_1='" + objCustomerShp.Address_1 + "', "+
+                   "Address_2='" + objCustomerShp.Address_2 + "', " +
+                   "City='" + objCustomerShp.City + "', "+
+                   "State='" + objCustomerShp.State + "', "+
+                   "Zip_Code='" + objCustomerShp.Zip_Code + "', "+
+                   "Phone='" + objCustomerShp.Phone + "', " +
+                   "Dirty='" + objCustomerShp.Dirty + "', "+
+                   "County='" + objCustomerShp.County + "', "+
+                   "DeliveryAddressSpecialInstructions='" + objCustomerShp.DeliveryAddressSpecialInstructions + "' "+
+                   "WHERE CustNum='"+ objCustomerShp.CustNum +"'");
+               }
+               else if (objCustomerShp.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_ShipTos WHERE CustNum='" + objCustomerShp.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustomerShp.IsSuccessfull = true;
@@ -432,8 +542,16 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Stores (CustNum,Store_ID) " +
                    "values('" + objCustStore.CustNum + "','" + objCustStore.Store_ID + "' )");
                }
-
-
+               if (objCustStore.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Stores SET " +
+                   "Store_ID='" + objCustStore.Store_ID + "' "+
+                   "WHERE CustNum='"+ objCustStore.CustNum +"'");
+               }
+               else if (objCustStore.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Stores WHERE CustNum='" + objCustStore.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCustStore.IsSuccessfull = true;
@@ -462,8 +580,16 @@ namespace POS.Repository.SQLServer
                    result = sqlServerRepost.ExecuteNonQuery("insert into Customer_Swipes (CustNum,Swipe_ID) " +
                    "values('" + objCusSwip.CustNum + "','" + objCusSwip.Swipe_ID + "' )");
                }
-
-
+               if (objCusSwip.flage == "update")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("UPDATE Customer_Swipes SET " +
+                   "Swipe_ID='" + objCusSwip.Swipe_ID + "' "+
+                   "WHERE CustNum='" + objCusSwip.CustNum + "'");
+               }
+               else if (objCusSwip.flage == "delete")
+               {
+                   result = sqlServerRepost.ExecuteNonQuery("DELETE FROM Customer_Swipes WHERE CustNum='" + objCusSwip.CustNum + "' ");
+               }
                if (result > 0)
                {
                    objCusSwip.IsSuccessfull = true;

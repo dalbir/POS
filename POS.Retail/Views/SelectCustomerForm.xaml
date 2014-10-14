@@ -323,15 +323,15 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <TextBox Height="51" HorizontalAlignment="Left" Margin="179,347,0,0" Name="txt_keyboard" IsReadOnly="True" TextChanged="txt_keyboard_TextChanged" VerticalAlignment="Top" Width="230" Background="Moccasin" FontSize="16" FontWeight="Bold" AutoWordSelection="False" OverridesDefaultStyle="False" />
+        <TextBox Height="51" HorizontalAlignment="Left" Margin="179,347,0,0" Name="txt_keyboard" TextChanged="txt_keyboard_TextChanged" VerticalAlignment="Top" Width="230" Background="Moccasin" FontSize="16" FontWeight="Bold" AutoWordSelection="False" OverridesDefaultStyle="False" />
         <DataGrid VerticalScrollBarVisibility="Auto" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" Height="288" HorizontalAlignment="Left" Margin="72,12,0,0" Name="dg_customers" ItemsSource="{Binding MyBinding}"  VerticalAlignment="Top" Width="Auto" SelectionMode="Single" MouseDoubleClick="dg_customers_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Customer#" Binding="{Binding CustNum}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Customer#" Binding="{Binding Cutomer#}" Width="120"/>
                 <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="First Name" Binding="{Binding First_Name}" Width="120"/>
                 <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Last Name" Binding="{Binding Last_Name}" Width="120"/>
-                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Address" Binding="{Binding Address_1}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Address" Binding="{Binding Address}" Width="120"/>
                 <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Company" Binding="{Binding Company}" Width="120"/>
-                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Phone#" Binding="{Binding Phone_1}" Width="120"/>
+                <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Phone#" Binding="{Binding Phone}" Width="120"/>
                 <DataGridTextColumn FontSize="14" FontWeight="Bold" Header="Zip Code" Binding="{Binding Zip_Code}" Width="120" />
             </DataGrid.Columns>
         </DataGrid>

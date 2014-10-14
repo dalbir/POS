@@ -27,12 +27,22 @@ namespace POS.Retail
     public partial class CustomerForm : Window
     {
         public CustomerClass objCustomerClass = new CustomerClass();
+        CustomerAccountingTransactionClass objCusAccTrans = new CustomerAccountingTransactionClass();
+        CustomerAuthorizedClass objCustAutorized = new CustomerAuthorizedClass();
+        CustomerAutoClass objCusAuto = new CustomerAutoClass();
+        CustomerEventsClass objCusEvents = new CustomerEventsClass();
+        CustomerNotesClass objCustNotes = new CustomerNotesClass();
+        CustomerReferenceClass objCusRefrnc = new CustomerReferenceClass();
+        CustomerShipTosClass objCustomerShipTosClass = new CustomerShipTosClass();
+        CustomerStoresClass objCustomerStoresClass = new CustomerStoresClass();
+        CustomerSwipesClass objCustomerSwipesClass = new CustomerSwipesClass();
         RegexClass regclass = new RegexClass();
        // GlobalClass glo = new GlobalClass();
         string dt_format = "yyyy-MM-dd";
         string indx;
         Int32 count_cust_num = 0;
         List<string> cust_numbers = null;
+        
         Int32 indx2 = 0;
         
         public CustomerForm()
@@ -93,7 +103,21 @@ namespace POS.Retail
 
                     else
                     {
+                      
+                        objCustomerClass.flage = "insert";
+                        objCusAccTrans.flage = "insert";
+                        objCustAutorized.flage = "insert";
+                        objCusAuto.flage = "insert";
+                        objCusEvents.flage = "insert";
+                        objCustNotes.flage = "insert";
+                        objCusRefrnc.flage = "insert";
+                        objCustomerShipTosClass.flage = "insert";
+                        objCustomerStoresClass.flage = "insert";
+                        objCustomerSwipesClass.flage = "insert";
                         sql_sp("INSERT");
+
+                        MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                        
                         //load_list();
                     }
 
@@ -132,7 +156,6 @@ namespace POS.Retail
         {
             try
             {
-                objCustomerClass.flage = "insert";
                 
                 //if (txt_cus_bonaspoint.Text.Length > 0)
                 //{
@@ -218,12 +241,33 @@ namespace POS.Retail
                     objCustomerClass.CC_Num = txt_crdt_nmber.Text.Trim();
                     objCustomerClass.CC_Exp = txt_expiration.Text.Trim();
                     objCustomerClass.Discount_Level = txt_cus_discont.Text.Trim();
-                    objCustomerClass.Acct_Open_Date =Convert.ToDateTime( txt_acc_open_date.Text.Trim());
-                    objCustomerClass.Acct_Close_Date =Convert.ToDateTime( txt_acc_close_date.Text.Trim());
+                    if (txt_acc_open_date.Text.Length > 0)
+                    {
+                        objCustomerClass.Acct_Open_Date = Convert.ToDateTime(txt_acc_open_date.Text.Trim());    
+                    }
+                    if (txt_acc_close_date.Text.Length > 0)
+                    {
+                        objCustomerClass.Acct_Close_Date = Convert.ToDateTime(txt_acc_close_date.Text.Trim());
+                    }
+                    
                     //objCustomerClass.Acct_Balance =Convert.ToDecimal( lbl_bal_due_figures.Content);
                     objCustomerClass.Acct_Max_Balance =Convert.ToDecimal( txt_max_bal.Text.Trim());
-                    objCustomerClass.Bonus_Plan_Member =Convert.ToInt32( txt_cus_bonaspoint.Text.Trim());
-                    objCustomerClass.Bonus_Points =Convert.ToInt32( txt_cus_bonaspoint.Text.Trim());
+                    if (txt_cus_bonaspoint.Text.Length > 0)
+                    {
+                        objCustomerClass.Bonus_Plan_Member = Convert.ToInt32(txt_cus_bonaspoint.Text.Trim());
+                    }
+                    else
+                    {
+                        objCustomerClass.Bonus_Plan_Member = 0;
+                    }
+                    if (txt_cus_bonaspoint.Text.Length > 0)
+                    {
+                        objCustomerClass.Bonus_Points = Convert.ToInt32(txt_cus_bonaspoint.Text.Trim());
+                    }
+                    else
+                    {
+                        objCustomerClass.Bonus_Points = 0;
+                    }
                     objCustomerClass.Tax_Exempt = typeex;
                     if (txt_membershp_exp.Text.Length > 0)
                     {
@@ -237,15 +281,35 @@ namespace POS.Retail
                     objCustomerClass.Def_SP = "";
                     objCustomerClass.CreateDate =Convert.ToDateTime( System.DateTime.Today.ToString(dt_format));
                     objCustomerClass.Referral =Convert.ToString( cmb_referal_source.SelectedItem);
-                    objCustomerClass.Birthday =Convert.ToDateTime( txt_cust_birthday.Text.Trim());
+                    if (txt_cust_birthday.Text.Length > 0)
+                    {
+                        objCustomerClass.Birthday = Convert.ToDateTime(txt_cust_birthday.Text.Trim());
+                    }
                     objCustomerClass.Last_Birthday_Bonus = "";
                     objCustomerClass.Last_Visit = Convert.ToDateTime(System.DateTime.Today.ToString(dt_format));
                     objCustomerClass.Require_PONum = typePo;
-                    objCustomerClass.Max_Charge_NumDays=Convert.ToInt32(txt_over.Text);
-                    objCustomerClass.Max_Charge_Amount=Convert.ToDecimal (txt_restrict_spnd_to.Text);
+                    if (txt_over.Text.Length > 0)
+                    {
+                        objCustomerClass.Max_Charge_NumDays = Convert.ToInt32(txt_over.Text);
+                    }
+                    else
+                    {
+                        objCustomerClass.Max_Charge_NumDays = 0;
+                    }
+                    if (txt_restrict_spnd_to.Text.Length > 0)
+                    {
+                        objCustomerClass.Max_Charge_Amount = Convert.ToDecimal(txt_restrict_spnd_to.Text);
+                    }
+                    else
+                    {
+                        objCustomerClass.Max_Charge_Amount = 0;
+                    }
                     objCustomerClass.License_Num = txt_driver_licns_id.Text.Trim();
                     objCustomerClass.ID_Last_Checked = Convert.ToDateTime(System.DateTime.Today.ToString(dt_format));
-                    objCustomerClass.Next_Start_Date =Convert.ToDateTime( txt_days_started.Text.Trim());
+                    if (txt_days_started.Text.Length > 0)
+                    {
+                        objCustomerClass.Next_Start_Date = Convert.ToDateTime(txt_days_started.Text.Trim());
+                    }
                     objCustomerClass.PrintNotes = typeNots;
                     objCustomerClass.Loyalty_Plan_ID= 0;
                     objCustomerClass.Tax_Rate_ID= Convert.ToInt32(cmb_tax_rate.SelectedItem);
@@ -273,20 +337,26 @@ namespace POS.Retail
                     }
                     objCustomerClass.Disabled = 0;
                     objCustomerClass.ImagePath = null;
-                    objCustomerClass.License_ExpDate = Convert.ToDateTime(txt_license_exp_date.Text.Trim());
+                    if (txt_license_exp_date.Text.Length > 0)
+                    {
+                        objCustomerClass.License_ExpDate = Convert.ToDateTime(txt_license_exp_date.Text.Trim());      
+                    }
                     objCustomerClass.TaxID = txt_tax_id.Text.Trim();
                     objCustomerClass.SecretCode = "";
                     objCustomerClass.OnlineUserName = "";
                     objCustomerClass.OnlinePassword = "";
+                   
                     POSManagementService objMgtServices = new POSManagementService();
                     objMgtServices.InsertCustomerInfo(objCustomerClass);
 
-                    CustomerAccountingTransactionClass objCusAccTrans = new CustomerAccountingTransactionClass();
+                   // CustomerAccountingTransactionClass objCusAccTrans = new CustomerAccountingTransactionClass();
+                    
                     objCusAccTrans.CustNum = txt_custmer_id.Text.Trim();
                     objCusAccTrans.EditSequence = "";
                     objMgtServices.insertCusAccTrans(objCusAccTrans);
 
-                    CustomerAuthorizedClass objCustAutorized = new CustomerAuthorizedClass();
+                   // CustomerAuthorizedClass objCustAutorized = new CustomerAuthorizedClass();
+                    
                     objCustAutorized.CustNum = txt_custmer_id.Text.Trim();
                     for (int i = 0; i < listBox_authorized.Items.Count; i++)
                     {
@@ -295,34 +365,42 @@ namespace POS.Retail
                     objCustAutorized.Dirty = 1;
                     objMgtServices.insertCusAutho(objCustAutorized);
 
-                    CustomerAutoClass objCusAuto = new CustomerAutoClass();
+                   // CustomerAutoClass objCusAuto = new CustomerAutoClass();
+                   
                     objCusAuto.CustNum = txt_custmer_id.Text.Trim();
                     objCusAuto.License = txt_driver_licns_id.Text.Trim();
                     objCusAuto.Make = "";
                     objCusAuto.Model = "";
                     objMgtServices.insertCusauto(objCusAuto);
 
-                    CustomerEventsClass objCusEvents = new CustomerEventsClass();
+                    //CustomerEventsClass objCusEvents = new CustomerEventsClass();
+                   
                     objCusEvents.CustNum = txt_custmer_id.Text.Trim();
-                    objCusEvents.Event_Date = Convert.ToDateTime(txt_event_date.Text.Trim());
+                    if (txt_event_date.Text.Length > 0)
+                    {
+                        objCusEvents.Event_Date = Convert.ToDateTime(txt_event_date.Text.Trim());
+                    }
                     objCusEvents.Event_Desc = txt_event_desctiption.Text.Trim();
                     objCusEvents.Dirty = 1;
                     objMgtServices.insertCusEvents(objCusEvents);
                     // changes
                     ////CustomerGiftRegistryClass objCusGft = new CustomerGiftRegistryClass();
                     //objCusGft.CustNum = txt_custmer_id.Text.Trim();
-                    CustomerNotesClass objCustNotes = new CustomerNotesClass();
+                    //CustomerNotesClass objCustNotes = new CustomerNotesClass();
+                    
                     objCustNotes.CustNum = txt_custmer_id.Text.Trim();
                     objCustNotes.Notes = txt_notes.Text.Trim();
                     objMgtServices.insertCusNotes(objCustNotes);
 
-                    CustomerReferenceClass objCusRefrnc = new CustomerReferenceClass();
+                    //CustomerReferenceClass objCusRefrnc = new CustomerReferenceClass();
+                    
                     string maxID = Convert.ToString(objMgtServices.loadMaxID(objCusRefrnc));
                     objCusRefrnc.CustNum = txt_custmer_id.Text.Trim();
                     objCusRefrnc.ID = Convert.ToInt32(maxID);
                     objMgtServices.insertCustomerRefrenceInfor(objCusRefrnc);
 
-                    CustomerShipTosClass objCustomerShipTosClass = new CustomerShipTosClass();
+                    //CustomerShipTosClass objCustomerShipTosClass = new CustomerShipTosClass();
+                    
                     objCustomerShipTosClass.CustNum = txt_custmer_id.Text.Trim();
                     objCustomerShipTosClass.First_Name = txt_shipping_first_name.Text.Trim();
                     objCustomerShipTosClass.Last_Name = txt_shipping_last_name.Text.Trim();
@@ -330,6 +408,7 @@ namespace POS.Retail
                     objCustomerShipTosClass.Address_1 = txt_shiping_st_address.Text.Trim();
                     objCustomerShipTosClass.Address_2 = txt_shiping_extnd_adres.Text.Trim();
                     objCustomerShipTosClass.City = txt_shiping_city.Text.Trim();
+                    objCustomerShipTosClass.State = txt_shiping_state.Text.Trim();
                     objCustomerShipTosClass.Zip_Code = txt_shiping_zip.Text.Trim();
                     objCustomerShipTosClass.Phone = txt_shipng_phone_number.Text.Trim();
                     objCustomerShipTosClass.Dirty = 1;
@@ -337,25 +416,22 @@ namespace POS.Retail
                     objCustomerShipTosClass.DeliveryAddressSpecialInstructions = "";
                     objMgtServices.InsertCustomerShipTos(objCustomerShipTosClass);
 
-                    CustomerStoresClass objCustomerStoresClass = new CustomerStoresClass();
+                    //CustomerStoresClass objCustomerStoresClass = new CustomerStoresClass();
+                   
                     objCustomerStoresClass.CustNum = txt_custmer_id.Text.Trim();
                     objCustomerStoresClass.Store_ID = "";
                     objMgtServices.insertStoreInfo(objCustomerStoresClass);
 
                     for (int i = 0; i < lstbx_card_swip_ids.Items.Count; i++)
                     {
-                        CustomerSwipesClass objCustomerSwipesClass = new CustomerSwipesClass();
+                        //CustomerSwipesClass objCustomerSwipesClass = new CustomerSwipesClass();
+                        
                         objCustomerSwipesClass.CustNum = txt_custmer_id.Text.Trim();
                         objCustomerSwipesClass.Swipe_ID = lstbx_card_swip_ids.Items[i].ToString();
+                       
                     }
-                    MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-                    
-
-
-
-
+                    objMgtServices.insertCustomerSwips(objCustomerSwipesClass);
+                   
                 }
 
             }
@@ -740,15 +816,27 @@ namespace POS.Retail
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //txt_custmer_id.IsReadOnly = true;
-            txt_custmer_id.Background = Brushes.Yellow;
-            txt_custmer_id.IsReadOnly = true;
-            for (int i = 65; i <= 90; i++)
+            try
             {
-                cmb_cust_pricelevel.Items.Add(Convert.ToChar(i));
+                Clear_Fields();
+                load_list();
+                txt_custmer_id.Text = cust_numbers[0];
             }
-            cmb_cust_pricelevel.SelectedIndex = 0;
-            load_customers();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            SelectCustomerDataForTextBoxes();
+            //txt_custmer_id.IsReadOnly = true;
+            //txt_custmer_id.Background = Brushes.Yellow;
+            //txt_custmer_id.IsReadOnly = true;
+            //for (int i = 65; i <= 90; i++)
+            //{
+            //    cmb_cust_pricelevel.Items.Add(Convert.ToChar(i));
+            //}
+            //cmb_cust_pricelevel.SelectedIndex = 0;
+            //load_customers();
+
         }
         private void load_customers()
         {
@@ -787,8 +875,18 @@ namespace POS.Retail
         }
         private void load_list()
         {
-            //try
-            //{
+            try
+            {
+                
+                objCustomerClass.flage = "fillList";
+                cust_numbers = new List<string>();
+                POSManagementService objPOSManagementService = new POSManagementService();
+                objCustomerClass = objPOSManagementService.GetCustomerInfor(objCustomerClass);
+                for (int i = 0; i < objCustomerClass.loadCustDat.Rows.Count; i++)
+                {
+                    cust_numbers.Add(objCustomerClass.loadCustDat.Rows[i]["CustNum"].ToString());
+                    
+                }
             //    if (glo.con.State == ConnectionState.Closed)
             //    {
             //        glo.con.Open();
@@ -806,12 +904,12 @@ namespace POS.Retail
             //    if (glo.con.State == ConnectionState.Open)
             //    {
             //        glo.con.Close();
-            //    }
+                }
             //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void next_prev(string indx, string st_type)
         {
@@ -1108,7 +1206,21 @@ namespace POS.Retail
 
         private void btn_update_custmer_Click(object sender, RoutedEventArgs e)
         {
+            objCustomerClass.flage = "update";
+            objCustomerClass.flage = "update";
+            objCusAccTrans.flage = "update";
+            objCustAutorized.flage = "update";
+            objCusAuto.flage = "update";
+            objCusEvents.flage = "update";
+            objCustNotes.flage = "update";
+            objCusRefrnc.flage = "update";
+            objCustomerShipTosClass.flage = "update";
+            objCustomerStoresClass.flage = "update";
+            objCustomerSwipesClass.flage = "update";
             sql_sp("UPDATE");
+
+            MessageBox.Show("Record was updated succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
         private void btn_custmer_prev_Click(object sender, RoutedEventArgs e)
@@ -1116,39 +1228,158 @@ namespace POS.Retail
             try
             {
 
-                if (indx2 > 0)
+                int count = cust_numbers.Count;
+                int res = cust_numbers.FindIndex(label => label == txt_custmer_id.Text);
+
+                if (count - res != count)
                 {
-                    indx = cust_numbers[indx2 - 1];
-                    next_prev(indx, "NAVIGATE");
-                    indx2 = indx2 - 1;
+                    int x = res - 1;
+                    txt_custmer_id.Text = cust_numbers[x];
                 }
-                //else
-                //{
-                //    MessageBox.Show("You are viewing First Record", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        private void SelectCustomerDataForTextBoxes()
+        {
+            try
+            {
+                objCustomerClass.CustNum = txt_custmer_id.Text.Trim();
+                objCustomerClass.flage = "LoadCustomersToTextBoxes";
+                POSManagementService objPOSManagementService = new POSManagementService();
+                objPOSManagementService.GetCustomerInfor(objCustomerClass);
 
+                if (objCustomerClass.loadCustDat.Rows.Count > 0)
+                {
+                    for (int i = 0; i < objCustomerClass.loadCustDat.Rows.Count; i++)
+                    {
+
+                        txt_custmer_fname.Text = objCustomerClass.loadCustDat.Rows[i]["First_Name"].ToString();
+                        txt_custmer_lname.Text = objCustomerClass.loadCustDat.Rows[i]["Last_Name"].ToString();
+                        txt_cus_compname.Text = objCustomerClass.loadCustDat.Rows[i]["Company"].ToString();
+                        txt_cus_addres.Text = objCustomerClass.loadCustDat.Rows[i]["Address_1"].ToString();
+                        txt_cus_addres2.Text = objCustomerClass.loadCustDat.Rows[i]["Address_2"].ToString();
+                        txt_cus_city.Text = objCustomerClass.loadCustDat.Rows[i]["City"].ToString();
+                        txt_cus_state.Text = objCustomerClass.loadCustDat.Rows[i]["State"].ToString();
+                        txt_cus_zipcode.Text = objCustomerClass.loadCustDat.Rows[i]["Zip_Code"].ToString();
+                        txt_cus_phone.Text = objCustomerClass.loadCustDat.Rows[i]["Phone_1"].ToString();
+                        txt_cus_alphone.Text = objCustomerClass.loadCustDat.Rows[i]["Phone_2"].ToString();
+                        //lstbx_credt_card_type.SelectedIndex = -1;
+                        txt_crdt_nmber.Text = objCustomerClass.loadCustDat.Rows[i]["CC_Num"].ToString();
+                        txt_expiration.Text = objCustomerClass.loadCustDat.Rows[i]["CC_Exp"].ToString();
+                        //cmb_cust_pricelevel.SelectedIndex = 0;
+                        txt_cus_discont.Text = objCustomerClass.loadCustDat.Rows[i]["Discount_Percent"].ToString();
+                        txt_acc_close_date.Text = objCustomerClass.loadCustDat.Rows[i]["Acct_Close_Date"].ToString();
+                        txt_acc_open_date.Text = objCustomerClass.loadCustDat.Rows[i]["Acct_Open_Date"].ToString();
+                        //lbl_bal_due_figures.Content = "";
+                        txt_max_bal.Text = objCustomerClass.loadCustDat.Rows[i]["Acct_Max_Balance"].ToString();
+                        txt_cus_bonaspoint.Text = objCustomerClass.loadCustDat.Rows[i]["Bonus_Points"].ToString();
+                        if (objCustomerClass.loadCustDat.Rows[i]["Tax_Exempt"].ToString() == "True")
+                         {
+                             chk_tax_exempt.IsChecked = true;
+                        }
+                        else if (objCustomerClass.loadCustDat.Rows[i]["Tax_Exempt"].ToString() == "False")
+                        {
+                            chk_tax_exempt.IsChecked = false;
+                        }
+                        //chk_tax_exempt.IsChecked = false;
+                        txt_membershp_exp.Text = objCustomerClass.loadCustDat.Rows[i]["Member_Exp"].ToString();
+                        txt_mob_phone.Text = objCustomerClass.loadCustDat.Rows[i]["Phone_3"].ToString();
+                        txt_fax.Text = objCustomerClass.loadCustDat.Rows[i]["Phone_4"].ToString();
+                        txt_custmer_email.Text = objCustomerClass.loadCustDat.Rows[i]["EMail"].ToString();
+                        txt_cus_country.Text = objCustomerClass.loadCustDat.Rows[i]["County"].ToString();
+                        //cmb_referal_source.SelectedIndex = -1;
+                        txt_cust_birthday.Text = objCustomerClass.loadCustDat.Rows[i]["Birthday"].ToString();
+                        if (objCustomerClass.loadCustDat.Rows[i]["Require_PONum"].ToString() == "True")
+                        {
+                            chk_require_po_no.IsChecked = true;
+                        }
+                        else if (objCustomerClass.loadCustDat.Rows[i]["Require_PONum"].ToString() == "False")
+                        {
+                            chk_require_po_no.IsChecked = false;
+                        }
+                        //chk_require_po_no.IsChecked = false;
+                        //txt_over.Text=objCustomerClass.loadCustDat.Rows[i]["Company"].ToString();
+                        //txt_restrict_spnd_to.Text=objCustomerClass.loadCustDat.Rows[i]["Company"].ToString();
+                        txt_driver_licns_id.Text = objCustomerClass.loadCustDat.Rows[i]["License_Num"].ToString();
+                        txt_days_started.Text = objCustomerClass.loadCustDat.Rows[i]["Next_Start_Date"].ToString();
+                        if (objCustomerClass.loadCustDat.Rows[i]["PrintNotes"].ToString() == "True")
+                        {
+                            chk_print_notes_receipt.IsChecked = true;
+                        }
+                        else if (objCustomerClass.loadCustDat.Rows[i]["PrintNotes"].ToString() == "False")
+                        {
+                            chk_print_notes_receipt.IsChecked = false;
+                        }
+                        //chk_print_notes_receipt.IsChecked = false;
+                        //cmb_tax_rate.SelectedIndex = -1;
+                        txt_bill_to.Text = objCustomerClass.loadCustDat.Rows[i]["Bill_To_Name"].ToString();
+                        txt_bill_primery_contact.Text = objCustomerClass.loadCustDat.Rows[i]["Contact_1"].ToString();
+                        txt_bill_scndry_contact.Text = objCustomerClass.loadCustDat.Rows[i]["Contact_2"].ToString();
+                        txt_bill_terms.Text = objCustomerClass.loadCustDat.Rows[i]["Terms"].ToString();
+                        txt_bill_resale_number.Text = objCustomerClass.loadCustDat.Rows[i]["Resale_Num"].ToString();
+                        if (objCustomerClass.loadCustDat.Rows[i]["PrintNotes"].ToString() == "True")
+                        {
+                            chk_print_notes_receipt.IsChecked = true;
+                        }
+                        else if (objCustomerClass.loadCustDat.Rows[i]["PrintNotes"].ToString() == "False")
+                        {
+                            chk_print_notes_receipt.IsChecked = false;
+                        }
+                        //rb_standard.IsChecked = false;
+                        //rb_layaway.IsChecked = false;
+                        if (objCustomerClass.loadCustDat.Rows[i]["ChargeAtCost"].ToString() == "True")
+                        {
+                            chk_charge_at_cast.IsChecked = true;
+                        }
+                        else if (objCustomerClass.loadCustDat.Rows[i]["ChargeAtCost"].ToString() == "False")
+                        {
+                            chk_charge_at_cast.IsChecked = false;
+                        }
+                        //chk_charge_at_cast.IsChecked = false;
+                        txt_license_exp_date.Text = objCustomerClass.loadCustDat.Rows[i]["License_ExpDate"].ToString();
+                        txt_tax_id.Text = objCustomerClass.loadCustDat.Rows[i]["TaxID"].ToString();
+                        txt_shipping_first_name.Text = objCustomerClass.loadCustDat.Rows[i]["ShipngFName"].ToString();
+                        txt_shipping_last_name.Text = objCustomerClass.loadCustDat.Rows[i]["ShipngLName"].ToString();
+                        txt_shiping_company_name.Text = objCustomerClass.loadCustDat.Rows[i]["ShpCompany"].ToString();
+                        txt_shipng_phone_number.Text = objCustomerClass.loadCustDat.Rows[i]["Phone"].ToString();
+                        txt_shiping_st_address.Text = objCustomerClass.loadCustDat.Rows[i]["ShpAddress1"].ToString();
+                        txt_shiping_city.Text = objCustomerClass.loadCustDat.Rows[i]["ShpCity"].ToString();
+                        txt_shiping_extnd_adres.Text = objCustomerClass.loadCustDat.Rows[i]["ShpAddress2"].ToString();
+                        txt_shiping_state.Text = objCustomerClass.loadCustDat.Rows[i]["ShpState"].ToString();
+                        txt_shiping_zip.Text = objCustomerClass.loadCustDat.Rows[i]["ShpZipCode"].ToString();
+                        txt_shiping_country.Text = objCustomerClass.loadCustDat.Rows[i]["ShpCountry"].ToString();
+                        txt_notes.Text = objCustomerClass.loadCustDat.Rows[i]["Notes"].ToString();
+                        txt_event_date.Text = objCustomerClass.loadCustDat.Rows[i]["Event_Date"].ToString();
+                        txt_event_desctiption.Text = objCustomerClass.loadCustDat.Rows[i]["Event_Desc"].ToString();
+
+                    }
+                }
+                if (objCustomerClass.loadCustDat.Rows.Count < 0)
+                {
+                    MessageBox.Show("The customer you are searching for can not be found", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btn_customer_next_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //MessageBox.Show(cust_numbers.Count.ToString());
-                if (count_cust_num > 1 && indx2 != count_cust_num - 1)
-                {
-                    indx = cust_numbers[indx2 + 1];
-                    next_prev(indx, "NAVIGATE");
-                    indx2 = indx2 + 1;
-                }
+                int count = cust_numbers.Count;
+                int res = cust_numbers.FindIndex(label => label == txt_custmer_id.Text);
 
-                //else
-                //{
-                //    MessageBox.Show("You are viewing Last Record", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
+                if (count != res)
+                {
+                    int x = res + 1;
+                    txt_custmer_id.Text = cust_numbers[x];
+                }
             }
             catch (Exception ex)
             {
@@ -1161,8 +1392,9 @@ namespace POS.Retail
         {
             if (e.Key == Key.Enter)
             {
-                search_customer();
+                txt_custmer_id.Text = txt_search_custmer.Text.Trim();
             }
+            //SelectCustomerDataForTextBoxes();
         }
         private void search_customer()
         {
@@ -1433,6 +1665,68 @@ namespace POS.Retail
 
         private void btn_delete_customer_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (txt_custmer_id.Text.Length > 0)
+                {
+                    var result = MessageBox.Show("Are You Sure You Want to Permenant Delete the Customer No: " +txt_custmer_id.Text , "Run Time Support",MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        objCustomerClass.flage = "delete";
+                        objCustomerClass.flage = "delete";
+                        objCusAccTrans.flage = "delete";
+                        objCustAutorized.flage = "delete";
+                        objCusAuto.flage = "delete";
+                        objCusEvents.flage = "delete";
+                        objCustNotes.flage = "delete";
+                        objCusRefrnc.flage = "delete";
+                        objCustomerShipTosClass.flage = "delete";
+                        objCustomerStoresClass.flage = "delete";
+                        objCustomerSwipesClass.flage = "delete";
+                        POSManagementService objMgtServices = new POSManagementService();
+                        objCustomerSwipesClass.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCustomerSwips(objCustomerSwipesClass);
+
+                        objCustomerStoresClass.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertStoreInfo(objCustomerStoresClass);
+
+                        objCustomerShipTosClass.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.InsertCustomerShipTos(objCustomerShipTosClass);
+
+                        objCusRefrnc.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCustomerRefrenceInfor(objCusRefrnc);
+
+                        objCustNotes.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCusNotes(objCustNotes);
+
+                        objCusEvents.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCusEvents(objCusEvents);
+
+                        objCusAuto.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCusauto(objCusAuto);
+
+                        objCustAutorized.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCusAutho(objCustAutorized);
+
+                        objCusAccTrans.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.insertCusAccTrans(objCusAccTrans);
+
+                        objCustomerClass.CustNum = txt_custmer_id.Text.Trim();
+                        objMgtServices.InsertCustomerInfo(objCustomerClass);
+
+                    }
+                    else if (result == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                    System.Windows.Forms.MessageBox.Show("This customer has been deleted..!", "Information", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show("You may not delete "+txt_custmer_fname.Text+' '+txt_custmer_lname.Text,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
             //if (txt_custmer_id.Text.Length != 0)
             //{
             //    if (MessageBox.Show("Are you sure, you want to delete this customer", "Deleting", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -1559,6 +1853,16 @@ namespace POS.Retail
         private void txt_expiration_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //regclass.checkForNumeric();
+        }
+
+        private void txt_custmer_lname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void txt_custmer_id_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SelectCustomerDataForTextBoxes();
         }
     }
 }

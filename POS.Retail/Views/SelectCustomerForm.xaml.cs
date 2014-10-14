@@ -277,7 +277,7 @@ namespace POS.Retail
             { }
             
         }
-        private void FillCustomerGrid()
+         private void FillCustomerGrid()
         {
             objCustomerClass.flage = "LoadCustomersToGrid";
             POSManagementService objMgtServices = new POSManagementService();

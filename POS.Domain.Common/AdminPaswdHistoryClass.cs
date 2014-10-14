@@ -12,5 +12,7 @@ namespace POS.Domain.Common.AdminPswdHistory
         public string Password { get; set; }
         public string Salt_Key { get; set; }
         public DateTime CreationDatedatetime { get; set; }
+       
+       
     }
 }

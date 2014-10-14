@@ -31,7 +31,7 @@
                                     <VisualState x:Name="Disabled"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/search_user - Copy.png" Stretch="Fill" Margin="1.529,1.323,1.519,2.15">
+                            <Image x:Name="image" RenderTransformOrigin="1.094,0.638" Source="/Images/Search-2-icon.png" Stretch="Fill" Margin="2,0,-13,-11">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -55,6 +55,10 @@
         </Style>
     </Window.Resources>
     <Grid Background="DarkSeaGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="593*"/>
+            <RowDefinition Height="69*"/>
+        </Grid.RowDefinitions>
         <Label FontSize="15" FontWeight="Normal" Height="40" Name="lbl_heading_emp" VerticalAlignment="Top">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -67,7 +71,7 @@
             <Label Content="Customer ID:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label2" VerticalAlignment="Top" Width="110" />
             <Label Content="Last Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,78,0,0" Name="label3" VerticalAlignment="Top" Width="110" />
             <Label Content="First Name:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label4" VerticalAlignment="Top" Width="110" />
-            <TextBox Height="25" HorizontalAlignment="Left" Margin="126,10,0,0" Name="txt_custmer_id" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="126,10,0,0" Name="txt_custmer_id" VerticalAlignment="Top" Width="235" TextChanged="txt_custmer_id_TextChanged" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
             <TextBox Height="25" HorizontalAlignment="Left" Margin="126,81,0,0" Name="txt_custmer_lname" VerticalAlignment="Top" Width="235" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
             <Label Content="E-Mail:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="376,39,0,0" Name="label5" VerticalAlignment="Top" Width="61" />
             <TextBox Height="25" HorizontalAlignment="Left" Margin="443,42,0,0" Name="txt_custmer_email" VerticalAlignment="Top" Width="316" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
@@ -304,7 +308,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Update" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="376,594,0,0" Name="btn_update_custmer" VerticalAlignment="Top" Width="117" Click="btn_update_custmer_Click">
+        <Button Content="Update" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="376,8,0,0" Name="btn_update_custmer" VerticalAlignment="Top" Width="117" Click="btn_update_custmer_Click" Grid.Row="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />
@@ -328,7 +332,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Exit" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="499,594,0,0" Name="btn_exit_custmer" VerticalAlignment="Top" Width="117" Click="btn_exit_custmer_Click">
+        <Button Content="Exit" Focusable="False" FontWeight="Bold" Height="35" HorizontalAlignment="Left" Margin="499,8,0,0" Name="btn_exit_custmer" VerticalAlignment="Top" Width="117" Click="btn_exit_custmer_Click" Grid.Row="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#AD000000" Offset="0" />
@@ -336,7 +340,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="44" HorizontalAlignment="Left" Margin="214,592,0,0" Name="btn_customer_next" VerticalAlignment="Top" Width="94" Click="btn_customer_next_Click">
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="44" HorizontalAlignment="Left" Margin="214,6,0,0" Name="btn_customer_next" VerticalAlignment="Top" Width="94" Click="btn_customer_next_Click" Grid.Row="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C8000000" Offset="0" />
@@ -348,7 +352,7 @@
                 <TextBlock FontSize="12" Width="41">Next</TextBlock>
             </StackPanel>
         </Button>
-        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="43" HorizontalAlignment="Left" Margin="15,592,0,0" Name="btn_custmer_prev" VerticalAlignment="Top" Width="94" Click="btn_custmer_prev_Click">
+        <Button Focusable="False" FontSize="18" FontWeight="Bold" Height="43" HorizontalAlignment="Left" Margin="15,6,0,0" Name="btn_custmer_prev" VerticalAlignment="Top" Width="94" Click="btn_custmer_prev_Click" Grid.Row="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C8000000" Offset="0" />
@@ -361,7 +365,16 @@
             </StackPanel>
         </Button>
         <TextBox Height="27" HorizontalAlignment="Left" Margin="15,562,0,0" Name="txt_search_custmer" VerticalAlignment="Top" Width="292" KeyDown="txt_search_custmer_KeyDown" MouseDoubleClick="txt_cus_compname_MouseDoubleClick" />
-        <Label Content="Search By Customer #" Height="28" HorizontalAlignment="Left" Margin="20,541,0,0" Name="lbl_serch_emp" VerticalAlignment="Top" />
-        <Button x:Name="btn_lookup" Content="Button" HorizontalAlignment="Left" Height="47" Margin="127,0,0,4" Style="{DynamicResource btn_lookup}" VerticalAlignment="Bottom" Width="63.5" Click="btn_lookup_Click" />
+        <Label Content="Search By Customer #" Height="28" HorizontalAlignment="Left" Margin="20,541,0,0" Name="lbl_serch_emp" VerticalAlignment="Top" Width="126" />
+        <Button x:Name="btn_lookup" Content="Button" HorizontalAlignment="Left" Height="47" Margin="108,0,0,25" Style="{DynamicResource btn_lookup}" VerticalAlignment="Bottom" Width="80" Click="btn_lookup_Click" RenderTransformOrigin="0.641,0.043" Grid.RowSpan="2" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-11.786"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Window>
