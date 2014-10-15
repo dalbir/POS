@@ -20,7 +20,7 @@
         <CheckBox Content="Assignable by Admin only" Height="16" HorizontalAlignment="Left" Margin="244,285,0,0" Name="check_assignable_admin_only" VerticalAlignment="Top" />
         <Label Content="Shift Reports" FontSize="16" FontWeight="Bold"  Height="33" HorizontalAlignment="Left" Margin="244,146,0,0" Name="label4" VerticalAlignment="Top" Width="192" />
         <Border BorderBrush="Silver" BorderThickness="2" Height="5" Margin="2,375,2,0" Name="border1" VerticalAlignment="Top" />
-        <Button Content="Permissions" Height="34" Margin="360,323,21,0" Name="btn_permissions" VerticalAlignment="Top" IsCancel="False" />
+        <Button Content="Permissions" Height="34" Margin="360,323,21,0" Click="btn_permissions_Click" Name="btn_permissions" VerticalAlignment="Top" IsCancel="False" />
         <Label Content="No. of Copies" Height="28" HorizontalAlignment="Left" Margin="244,165,0,0" Name="label5" VerticalAlignment="Top" Width="126" />
         <ComboBox Height="23" Margin="244,187,42,0" Name="cmb_rpt_number" VerticalAlignment="Top">
             <ComboBoxItem Content="1" />

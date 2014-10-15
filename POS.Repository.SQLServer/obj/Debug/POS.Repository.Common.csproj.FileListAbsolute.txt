@@ -25,12 +25,3 @@ C:\Users\Asad\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Domain.Com
 C:\Users\Asad\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.Common.csprojResolveAssemblyReference.cache
 C:\Users\Asad\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.SQLServer.dll
 C:\Users\Asad\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.SQLServer.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Repository.SQLServer.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Repository.SQLServer.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Domain.Base.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Domain.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Domain.Base.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\bin\Debug\POS.Domain.Common.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.Common.csprojResolveAssemblyReference.cache
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.SQLServer.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Repository.SQLServer\obj\Debug\POS.Repository.SQLServer.pdb

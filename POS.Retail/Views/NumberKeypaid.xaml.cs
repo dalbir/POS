@@ -40,6 +40,7 @@ namespace POS.Retail
         private static string qty_rec_damg = null;
         private static string change_value = null;
         private static string pricce = null;
+        private static string Value = null;
         private Domain.Common.Inventory_CustPricesClass objInvCustPricesClass;
         //Regex_class regclass = new Regex_class();
         //GlobalClass glo = new GlobalClass();
@@ -269,6 +270,10 @@ namespace POS.Retail
             {
                 lbl_keypaid.Content = "Enter A Price";
             }
+            else if(flagge == 103)
+            {
+                lbl_keypaid.Content = "Enter Hourly Wage";
+            }
 
         }
 
@@ -492,6 +497,11 @@ namespace POS.Retail
             get { return pricce; }
             set { pricce = value; }
         }
+        public string set_value
+        {
+            get { return Value; }
+            set { Value = value; }
+        }
 
         private void btn_kb_enter_Click(object sender, RoutedEventArgs e)
         {
@@ -537,6 +547,11 @@ namespace POS.Retail
             else if(flagge == 102)
             {
                 pricce = txt_numbers.Text;
+                this.Close();
+            }
+            else if(flagge == 103)
+            {
+                Value = txt_numbers.Text;
                 this.Close();
             }
             else

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-   public class JobCodeClass
+   public class JobCodeClass: BaseDomain
     {
         public string JobCodeID { get; set; }
         public int AccessToPos { get; set; }

@@ -47,6 +47,7 @@
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="GlobalPriceRepository.cs" />
     <Compile Include="InventoryRepository.cs" />
+    <Compile Include="JobCodSetupRepository.cs" />
     <Compile Include="MixNMatchRepository.cs" />
     <Compile Include="PurchaseOrderRepository.cs" />
     <Compile Include="SQLServerRepository.cs" />

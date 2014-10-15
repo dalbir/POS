@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using POS.Domain.Common;
 using POS.Services.Common;
+using System.Data;
 
 namespace POS.Retail
 {
@@ -24,18 +25,24 @@ namespace POS.Retail
       
         private static string vid = null;
         private static string ven_id = null;
+        private int jobcode;
+        public static string jobCodeId = null;
         public SelectVendorForm() //frm_select_vendor()
         {
             InitializeComponent();
         }
-            private void fun_vendor_btn()
+
+        public SelectVendorForm(int jobcode)
+        {
+            InitializeComponent();
+            this.jobcode = jobcode;
+        }
+        private void fun_vendor_btn()
         {
             POSManagementService managmentService = new POSManagementService();
             VendorsClass objVendor = new VendorsClass();
             managmentService.RetriveVendor(objVendor);
             string btn_name_id;    
-            //string qury = "select Vendor_Number, First_Name + ' ' + Last_Name as Vendor_name from Vendors";
-            //glo.fun_search(qury);
                 for(int i = 0; i< objVendor.dtVendor.Rows.Count; i++)
                 {
                     Button btn = new Button();
@@ -48,37 +55,56 @@ namespace POS.Retail
                     wp_modifier_btn.Children.Add(btn);
                     btn.Click += new RoutedEventHandler(enter_item);
                 }
-            //while (glo.dr.Read())
-            //{
-            //    Button btn = new Button();
-            //    btn.Content = glo.dr["Vendor_name"].ToString();
-            //    btn_name_id = glo.dr["Vendor_Number"].ToString();
-            //    btn.Name = "a" + btn_name_id;
-            //    btn.Height = 70;
-            //    btn.Width = 90;
-             
-            //    wp_modifier_btn.Children.Add(btn);
-            //    btn.Click+=new RoutedEventHandler(enter_item);
-            //}
-            //glo.dr.Close();
+          
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            fun_vendor_btn();
+            if (jobcode == 1)
+            {
+                POSManagementService managmentService = new POSManagementService();
+                JobCodeClass objVendor = new JobCodeClass();
+                DataTable dt = managmentService.getJobCodes();
+                string btn_name_id;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Button btn = new Button();
+                    btn.Content = dt.Rows[i]["JobCodeName"].ToString();
+                    btn_name_id = dt.Rows[i]["JobCodeID"].ToString();
+                    btn.Name = "a" + btn_name_id;
+                    btn.Height = 70;
+                    btn.Width = 90;
+
+                    wp_modifier_btn.Children.Add(btn);
+                    btn.Click += new RoutedEventHandler(enter_item);
+                }
+            }
+            else
+            {
+                fun_vendor_btn();
+            }
             
         }
         private void enter_item(object sender, EventArgs e)
         {
-            Button button = sender as Button;
-            string lbl_str = "Enter The Vendor Part Number";
-            string sid = button.Name.Substring(1, button.Name.Length - 1);
-            vid = sid;
-            ven_id = button.Content.ToString();
-            Keyboard kkb = new Keyboard(lbl_str);
-            kkb.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            kkb.ShowDialog();
-            this.Close();
+            if (jobcode == 1)
+            {
+                Button button = sender as Button;
+                string sid = button.Name.Substring(1, button.Name.Length - 1);
+                jobCodeId = sid;
+            }
+            else
+            {
+                Button button = sender as Button;
+                string lbl_str = "Enter The Vendor Part Number";
+                string sid = button.Name.Substring(1, button.Name.Length - 1);
+                vid = sid;
+                ven_id = button.Content.ToString();
+                Keyboard kkb = new Keyboard(lbl_str);
+                kkb.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                kkb.ShowDialog();
+                this.Close();
+            }
         }
         public string set_vid
         {
@@ -89,6 +115,11 @@ namespace POS.Retail
         {
             get { return ven_id; }
             set { ven_id = value; }
+        }
+        public string set_jobCodeId
+        {
+            get { return jobCodeId; }
+            set { jobCodeId = value; }
         }
 
         private void btn_select_mitems_Click(object sender, RoutedEventArgs e)

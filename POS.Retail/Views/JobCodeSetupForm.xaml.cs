@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using POS.Domain.Common;
+using POS.Services.Common;
+using System.Data;
 
 namespace POS.Retail
 {
@@ -19,8 +22,10 @@ namespace POS.Retail
     /// </summary>
     public partial class JobCodeSetupForm : Window
     {
+        POSManagementService objPOSManagementService = new POSManagementService();
        public JobCodeSetupForm() //job_code_setup()
         {
+           
             InitializeComponent();
             fill_jobcode();
             if (cmb_jobcodes_all.Items.IsEmpty == true)
@@ -48,49 +53,28 @@ namespace POS.Retail
         //GlobalClass glo = new GlobalClass();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            fill_jobcode();
         }
         public void fill_jobcode()
         {
-            //glo.con.Open();
-
-            //SqlCommand com = new SqlCommand("SELECT JobCodeID FROM JobCode", glo.con);
-            //SqlDataReader rr = com.ExecuteReader();
-
-            //while (rr.Read())
-            //{
-            //    cmb_jobcodes_all.Items.Add(rr["JobCodeID"]);
-            //}
-            //rr.Close();
-            //glo.con.Close();
+            DataTable dt = objPOSManagementService.getJobCodes();
+           if(dt.Rows.Count > 0)
+           {
+               cmb_jobcodes_all.ItemsSource = dt.DefaultView;
+               cmb_jobcodes_all.DisplayMemberPath = "JobCodeName";
+               cmb_jobcodes_all.SelectedValuePath = "JobCodeID";
+           }
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            cmb_jobcodes_all.SelectedIndex = -1;
-
-            txt_jobcode.Text = "";
-            txt_wage_normal.Text = "";
-            txt_wage_overtime.Text = "";
-
-            check_assignable_admin_only.IsChecked = false;
-            check_cash_bank.IsChecked = false;
-            check_cash_tips.IsChecked = false;
-            check_CC_transactions.IsChecked = false;
-            check_delivery_tracking.IsChecked = false;
-            check_department_totals.IsChecked = false;
-            check_require_cash_count_screen.IsChecked = false;
-            check_require_cash_drawer.IsChecked = false;
-
-            cmb_rpt_number.SelectedIndex = -1;
-
+          
 
             if (cmb_jobcodes_all.Items.IsEmpty == true)
             {
                 txt_jobcode.IsEnabled = true;
                 txt_wage_normal.IsEnabled = true;
                 txt_wage_overtime.IsEnabled = true;
-
                 check_assignable_admin_only.IsEnabled = true;
                 check_cash_bank.IsEnabled = true;
                 check_cash_tips.IsEnabled = true;
@@ -105,78 +89,54 @@ namespace POS.Retail
             if (btn_add.Content.Equals("Add"))
             {
                 btn_add.Content = "Save";
+                cmb_jobcodes_all.SelectedIndex = -1;
+                txt_jobcode.Text = "";
+                txt_wage_normal.Text = "";
+                txt_wage_overtime.Text = "";
+                check_assignable_admin_only.IsChecked = false;
+                check_cash_bank.IsChecked = false;
+                check_cash_tips.IsChecked = false;
+                check_CC_transactions.IsChecked = false;
+                check_delivery_tracking.IsChecked = false;
+                check_department_totals.IsChecked = false;
+                check_require_cash_count_screen.IsChecked = false;
+                check_require_cash_drawer.IsChecked = false;
+                cmb_rpt_number.SelectedIndex = -1;
+
             }
             else if (btn_add.Content.Equals("Save"))
             {
                 if (txt_jobcode.Text == "" || txt_wage_normal.Text == "" || txt_wage_overtime.Text =="")
                 {
-                    MessageBox.Show("Please enter the the Job Code ID, Wage and Overtime");
+                    MessageBox.Show("Please enter the the Job Code ID, Wage and Overtime","Run Time Support",MessageBoxButton.OK,MessageBoxImage.Warning);
                 }
                 else
                 {
-                    //glo.con.Open();
-                    //using (SqlCommand cmd = new SqlCommand("SP_SAVE_JOBCODE", glo.con))
-                    //{
-                    //    cmd.CommandType = CommandType.StoredProcedure;
-
-                    //    SqlParameter param1 = null;
-                    //    SqlParameter param2 = null;
-                    //    SqlParameter param3 = null;
-                    //    SqlParameter param4 = null;
-                    //    SqlParameter param5 = null;
-                    //    SqlParameter param6 = null;
-                    //    SqlParameter param7 = null;
-                    //    SqlParameter param8 = null;
-                    //    SqlParameter param9 = null;
-                    //    SqlParameter param10 = null;
-                    //    SqlParameter param11 = null;
-                    //    SqlParameter param12 = null;
-                    //    SqlParameter param13 = null;
-                    //    SqlParameter param14 = null;
-                    //    SqlParameter param15 = null;
-                    //    SqlParameter param16 = null;
-                    //    SqlParameter param17 = null;
-
-
-                    //    param1 = new SqlParameter("@JobCodeID", txt_jobcode.Text);
-                    //    param2 = new SqlParameter("@AccessToPos", check_box_verification(box_POS));
-                    //    param3 = new SqlParameter("@Print_DDR", Convert.ToInt32(check_box_verification(check_CC_transactions)));//
-                    //    param4 = new SqlParameter("@DDR_Num_Copies", Convert.ToInt32(cmb_rpt_number.Text));
-                    //    //param5 = new SqlParameter("@Picture",		);
-                    //    param6 = new SqlParameter("@Prompt_Cash_Tips", check_box_verification(check_cash_tips));
-                    //    param7 = new SqlParameter("@Record_Cash_Bank", check_box_verification(check_cash_bank));
-                    //    param8 = new SqlParameter("@Default_Wage",  Convert.ToInt32(txt_wage_normal.Text));
-                    //    param9 = new SqlParameter("@DDR_CC_Itemize", check_box_verification(check_CC_transactions));
-                    //    param10 = new SqlParameter("@Require_CD_Select", check_box_verification(check_require_cash_drawer));
-                    //    param11 = new SqlParameter("@Require_Clockout_CashBreakdown", check_box_verification(check_require_cash_count_screen));
-                    //    param12 = new SqlParameter("@Default_OvertimeWage",  Convert.ToInt32(txt_wage_overtime.Text));
-                    //    param13 = new SqlParameter("@AccessToDonationCenter", Convert.ToBoolean(0));//
-                    //    param14 = new SqlParameter("@AccessToProductionSoftware", Convert.ToBoolean(0));//
-                    //    param15 = new SqlParameter("@DeliveryTracking", check_box_verification(check_delivery_tracking));
-                    //    param16 = new SqlParameter("@RoleVisibility", check_box_verification(check_CC_transactions));//
-                    //    param17 = new SqlParameter("@JobCodeName", txt_jobcode.Text);
-
-                    //    cmd.Parameters.Add(param1);
-                    //    cmd.Parameters.Add(param2);
-                    //    cmd.Parameters.Add(param3);
-                    //    cmd.Parameters.Add(param4);
-                    //    //cmd.Parameters.Add(param5);
-                    //    cmd.Parameters.Add(param6);
-                    //    cmd.Parameters.Add(param7);
-                    //    cmd.Parameters.Add(param8);
-                    //    cmd.Parameters.Add(param9);
-                    //    cmd.Parameters.Add(param10);
-                    //    cmd.Parameters.Add(param11);
-                    //    cmd.Parameters.Add(param12);
-                    //    cmd.Parameters.Add(param13);
-                    //    cmd.Parameters.Add(param14);
-                    //    cmd.Parameters.Add(param15);
-                    //    cmd.Parameters.Add(param16);
-                    //    cmd.Parameters.Add(param17);
-
-                    //    cmd.ExecuteNonQuery();
-                    //}
-                    //glo.con.Close();
+                    JobCodeClass objJobCodeClass = new JobCodeClass();
+                    objJobCodeClass.JobCodeID = "1001"+ txt_jobcode.Text;
+                    objJobCodeClass.AccessToPos = Convert.ToByte(box_POS.IsChecked);// check_box_verification(box_POS);
+                    objJobCodeClass.Print_DDR = Convert.ToByte(check_CC_transactions.IsChecked);
+                    objJobCodeClass.DDR_Num_Copies = Convert.ToInt32(cmb_rpt_number.Text);
+                    objJobCodeClass.Picture = null;
+                    objJobCodeClass.Prompt_Cash_Tips = Convert.ToByte(check_cash_tips.IsChecked); // check_box_verification(check_cash_tips);
+                    objJobCodeClass.Record_Cash_Bank = Convert.ToByte(check_cash_bank.IsChecked); // check_box_verification(check_cash_bank);
+                    objJobCodeClass.Default_Wage = Convert.ToInt32(txt_wage_normal.Text);
+                    objJobCodeClass.DDR_CC_Itemize = Convert.ToByte(check_CC_transactions.IsChecked); // check_box_verification(check_CC_transactions);
+                    objJobCodeClass.Require_CD_Select = Convert.ToByte(check_require_cash_drawer.IsChecked);
+                    objJobCodeClass.Require_Clockout_CashBreakdown = Convert.ToByte(check_require_cash_count_screen.IsChecked);
+                    objJobCodeClass.Default_OvertimeWage = Convert.ToInt32(txt_wage_overtime.Text);
+                    objJobCodeClass.AccessToDonationCenter = 0;
+                    objJobCodeClass.AccessToProductionSoftware = 0;
+                    objJobCodeClass.DeliveryTracking = Convert.ToByte(check_delivery_tracking.IsChecked);
+                    objJobCodeClass.RoleVisibility = Convert.ToByte(check_CC_transactions.IsChecked);
+                    objJobCodeClass.JobCodeName = txt_jobcode.Text;
+                    objPOSManagementService.insertJobCodes(objJobCodeClass);
+                    if(objJobCodeClass.IsSuccessfull == true)
+                    {
+                        btn_add.Content = "Save";
+                        txt_jobcode.IsEnabled = false;
+                        fill_jobcode();
+                    }
                 }
             }
         }
@@ -197,36 +157,35 @@ namespace POS.Retail
 
         private void cmb_jobcodes_all_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (cmb_jobcodes_all.SelectedIndex != -1)
-            //{
-            //    btn_add.Content = "Add";
-            //    glo.con.Open();
-            //    SqlCommand com = new SqlCommand("SELECT * FROM JobCode WHERE JobCodeID ='" + cmb_jobcodes_all.SelectedItem.ToString() + "'", glo.con);
+            try
+            {
+                JobCodeClass objJobCodeClass = new JobCodeClass();
+                objJobCodeClass.JobCodeID = cmb_jobcodes_all.SelectedValue.ToString();
+                DataTable dt = objPOSManagementService.RetriveJobCodeRecord(objJobCodeClass);
+                if (dt.Rows.Count > 0)
+                {
+                    box_POS.IsChecked = Convert.ToBoolean(dt.Rows[0]["AccessToPos"]);
+                    check_CC_transactions.IsChecked = Convert.ToBoolean(dt.Rows[0]["Print_DDR"]);
+                    cmb_rpt_number.Text = dt.Rows[0]["DDR_Num_Copies"].ToString();
+                    //  = Picture
+                    check_cash_tips.IsChecked = Convert.ToBoolean(dt.Rows[0]["Prompt_Cash_Tips"]);
+                    check_cash_bank.IsChecked = Convert.ToBoolean(dt.Rows[0]["Record_Cash_Bank"]);
+                    txt_wage_normal.Text = dt.Rows[0]["Default_Wage"].ToString();
+                    check_CC_transactions.IsChecked = Convert.ToBoolean(dt.Rows[0]["DDR_CC_Itemize"]);
+                    check_require_cash_drawer.IsChecked = Convert.ToBoolean(dt.Rows[0]["Require_CD_Select"]);
+                    check_require_cash_count_screen.IsChecked = Convert.ToBoolean(dt.Rows[0]["Require_Clockout_CashBreakdown"]);
+                    txt_wage_overtime.Text = dt.Rows[0]["Default_OvertimeWage"].ToString();
+                    //= AccessToDonationCenter
+                    // = AccessToProductionSoftware
+                    check_delivery_tracking.IsChecked = Convert.ToBoolean(dt.Rows[0]["DeliveryTracking"]);
+                    check_CC_transactions.IsChecked = Convert.ToBoolean(dt.Rows[0]["RoleVisibility"]);
+                    txt_jobcode.Text = dt.Rows[0]["JobCodeName"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
 
-            //    SqlDataReader rr = com.ExecuteReader();
-            //    while (rr.Read())
-            //    {
-            //        txt_jobcode.Text = rr["JobCodeID"].ToString();
-            //        txt_wage_normal.Text = (Convert.ToInt32(rr["Default_Wage"])).ToString();
-            //        txt_wage_overtime.Text = (Convert.ToInt32(rr["Default_OvertimeWage"])).ToString();
-
-            //        cmb_rpt_number.Text = (Convert.ToInt32(rr["DDR_Num_Copies"])).ToString();
-
-            //        checking_checkboxes(Convert.ToBoolean(rr["Prompt_Cash_Tips"]), check_cash_tips);
-            //        checking_checkboxes(Convert.ToBoolean(rr["Record_Cash_Bank"]), check_cash_bank);
-            //        checking_checkboxes(Convert.ToBoolean(rr["DDR_CC_Itemize"]), check_CC_transactions);
-            //        checking_checkboxes(Convert.ToBoolean(rr["Require_CD_Select"]), check_require_cash_drawer);
-
-            //        //checking_checkboxes(Convert.ToBoolean(rr["Require_Clockout_CashBreakdown"]), check_department_totals);
-            //        //checking_checkboxes(Convert.ToBoolean(rr["AccessToDonationCenter"]), check_);
-
-            //        checking_checkboxes(Convert.ToBoolean(rr["AccessToProductionSoftware"]), box_POS);
-            //        checking_checkboxes(Convert.ToBoolean(rr["DeliveryTracking"]), check_delivery_tracking);
-            //        checking_checkboxes(Convert.ToBoolean(rr["RoleVisibility"]), check_assignable_admin_only);
-            //    }
-            //    rr.Close();
-            //    glo.con.Close();
-            //}
+            }
         }
         public void checking_checkboxes(bool check, CheckBox box)
         {
@@ -247,132 +206,122 @@ namespace POS.Retail
 
         private void btn_next_Click(object sender, RoutedEventArgs e)
         {
-            if (cmb_jobcodes_all.SelectedIndex < cmb_jobcodes_all.MaxHeight)
+            try
             {
-                cmb_jobcodes_all.SelectedIndex = cmb_jobcodes_all.SelectedIndex + 1;
+                if (cmb_jobcodes_all.SelectedIndex < cmb_jobcodes_all.MaxHeight)
+                {
+                    cmb_jobcodes_all.SelectedIndex = cmb_jobcodes_all.SelectedIndex + 1;
+                }
+                else
+                {
+                    MessageBox.Show("No More Job Codes, thank you!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No More Job Codes, thank you!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void btn_previous_Click(object sender, RoutedEventArgs e)
         {
-            if (cmb_jobcodes_all.SelectedIndex > cmb_jobcodes_all.MinHeight)
+            try
             {
-                cmb_jobcodes_all.SelectedIndex = cmb_jobcodes_all.SelectedIndex - 1;
+                if (cmb_jobcodes_all.SelectedIndex > cmb_jobcodes_all.MinHeight)
+                {
+                    cmb_jobcodes_all.SelectedIndex = cmb_jobcodes_all.SelectedIndex - 1;
+                }
+                else
+                {
+                    MessageBox.Show("No More Job Codes, thank you!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No More Job Codes, thank you!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-            //if (cmb_jobcodes_all.SelectedIndex != -1)
-            //{
-            //    glo.con.Open();
-
-            //    using (SqlCommand cmd = new SqlCommand("SP_UPDATE_JOBCODE", glo.con))
-            //    {
-            //        #region UPDATING THE JOBCODE
-            //        cmd.CommandType = CommandType.StoredProcedure;
-
-            //        SqlParameter param1 = null;
-            //        SqlParameter param2 = null;
-            //        SqlParameter param3 = null;
-            //        SqlParameter param4 = null;
-            //        //SqlParameter param5 = null;
-            //        SqlParameter param6 = null;
-            //        SqlParameter param7 = null;
-            //        SqlParameter param8 = null;
-            //        SqlParameter param9 = null;
-            //        SqlParameter param10 = null;
-            //        SqlParameter param11 = null;
-            //        SqlParameter param12 = null;
-            //        SqlParameter param13 = null;
-            //        SqlParameter param14 = null;
-            //        SqlParameter param15 = null;
-            //        SqlParameter param16 = null;
-            //        SqlParameter param17 = null;
-
-
-            //        param1 = new SqlParameter("@JobCodeID", txt_jobcode.Text);
-            //        param2 = new SqlParameter("@AccessToPos", check_box_verification(box_POS));
-            //        param3 = new SqlParameter("@Print_DDR", Convert.ToInt32(check_box_verification(check_CC_transactions)));//
-            //        param4 = new SqlParameter("@DDR_Num_Copies", Convert.ToInt32(cmb_rpt_number.Text));
-            //        //param5 = new SqlParameter("@Picture",		);
-            //        param6 = new SqlParameter("@Prompt_Cash_Tips", check_box_verification(check_cash_tips));
-            //        param7 = new SqlParameter("@Record_Cash_Bank", check_box_verification(check_cash_bank));
-            //        param8 = new SqlParameter("@Default_Wage", Convert.ToInt32(txt_wage_normal.Text));
-            //        param9 = new SqlParameter("@DDR_CC_Itemize", check_box_verification(check_CC_transactions));
-            //        param10 = new SqlParameter("@Require_CD_Select", check_box_verification(check_require_cash_drawer));
-            //        param11 = new SqlParameter("@Require_Clockout_CashBreakdown", check_box_verification(check_require_cash_count_screen));
-            //        param12 = new SqlParameter("@Default_OvertimeWage", Convert.ToInt32(txt_wage_overtime.Text));
-            //        param13 = new SqlParameter("@AccessToDonationCenter", Convert.ToBoolean(0));//
-            //        param14 = new SqlParameter("@AccessToProductionSoftware", Convert.ToBoolean(0));//
-            //        param15 = new SqlParameter("@DeliveryTracking", check_box_verification(check_delivery_tracking));
-            //        param16 = new SqlParameter("@RoleVisibility", check_box_verification(check_CC_transactions));//
-            //        param17 = new SqlParameter("@JobCodeName", txt_jobcode.Text);
-
-            //        cmd.Parameters.Add(param1);
-            //        cmd.Parameters.Add(param2);
-            //        cmd.Parameters.Add(param3);
-            //        cmd.Parameters.Add(param4);
-            //        //cmd.Parameters.Add(param5);
-            //        cmd.Parameters.Add(param6);
-            //        cmd.Parameters.Add(param7);
-            //        cmd.Parameters.Add(param8);
-            //        cmd.Parameters.Add(param9);
-            //        cmd.Parameters.Add(param10);
-            //        cmd.Parameters.Add(param11);
-            //        cmd.Parameters.Add(param12);
-            //        cmd.Parameters.Add(param13);
-            //        cmd.Parameters.Add(param14);
-            //        cmd.Parameters.Add(param15);
-            //        cmd.Parameters.Add(param16);
-            //        cmd.Parameters.Add(param17);
-
-            //        cmd.ExecuteNonQuery();
-
-            //        glo.con.Close();
-            //        #endregion
-            //    }
-            //}
+            try
+            {
+                if (cmb_jobcodes_all.SelectedIndex != -1)
+                {
+                    if (txt_jobcode.Text == "" || txt_wage_normal.Text == "" || txt_wage_overtime.Text == "")
+                    {
+                        MessageBox.Show("Please enter the the Job Code ID, Wage and Overtime", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        JobCodeClass objJobCodeClass = new JobCodeClass();
+                        objJobCodeClass.JobCodeID = "1001" + txt_jobcode.Text;
+                        objJobCodeClass.AccessToPos = Convert.ToByte(box_POS);// check_box_verification(box_POS);
+                        objJobCodeClass.Print_DDR = Convert.ToInt32(check_box_verification(check_CC_transactions));
+                        objJobCodeClass.DDR_Num_Copies = Convert.ToInt32(cmb_rpt_number.Text);
+                        objJobCodeClass.Picture = null;
+                        objJobCodeClass.Prompt_Cash_Tips = Convert.ToByte(check_cash_tips); // check_box_verification(check_cash_tips);
+                        objJobCodeClass.Record_Cash_Bank = Convert.ToByte(check_cash_bank); // check_box_verification(check_cash_bank);
+                        objJobCodeClass.Default_Wage = Convert.ToInt32(txt_wage_normal.Text);
+                        objJobCodeClass.DDR_CC_Itemize = Convert.ToByte(check_CC_transactions); // check_box_verification(check_CC_transactions);
+                        objJobCodeClass.Require_CD_Select = Convert.ToByte(check_require_cash_drawer);
+                        objJobCodeClass.Require_Clockout_CashBreakdown = Convert.ToByte(check_require_cash_count_screen);
+                        objJobCodeClass.Default_OvertimeWage = Convert.ToInt32(txt_wage_overtime.Text);
+                        objJobCodeClass.AccessToDonationCenter = 0;
+                        objJobCodeClass.AccessToProductionSoftware = 0;
+                        objJobCodeClass.DeliveryTracking = Convert.ToByte(check_delivery_tracking);
+                        objJobCodeClass.RoleVisibility = Convert.ToByte(check_CC_transactions);
+                        objJobCodeClass.JobCodeName = txt_jobcode.Text;
+                        objPOSManagementService.updateJobCodes(objJobCodeClass);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
-            if (cmb_jobcodes_all.SelectedIndex != -1)
+            try
             {
-                //glo.con.Open();
-                //SqlCommand com = new SqlCommand("DELETE FROM JobCode WHERE JobCodeID = '" + cmb_jobcodes_all.SelectedItem.ToString() + "'", glo.con);
+                if (cmb_jobcodes_all.SelectedIndex != -1)
+                {
+                    JobCodeClass objjobcodeClass = new JobCodeClass();
+                    objjobcodeClass.JobCodeID = cmb_jobcodes_all.SelectedItem.ToString();
+                    objPOSManagementService.deleteJobCode(objjobcodeClass);
+                    if (objjobcodeClass.IsSuccessfull == true)
+                    {
+                        txt_jobcode.Text = "";
+                        txt_wage_normal.Text = "";
+                        txt_wage_overtime.Text = "";
 
-                //com.ExecuteNonQuery();
-                //cmb_jobcodes_all.Items.Clear();
+                        check_assignable_admin_only.IsChecked = false;
+                        check_cash_bank.IsChecked = false;
+                        check_cash_tips.IsChecked = false;
+                        check_CC_transactions.IsChecked = false;
+                        check_delivery_tracking.IsChecked = false;
+                        check_department_totals.IsChecked = false;
+                        check_require_cash_count_screen.IsChecked = false;
+                        check_require_cash_drawer.IsChecked = false;
 
-                //glo.con.Close();
+                        cmb_rpt_number.SelectedIndex = -1;
 
-
-                txt_jobcode.Text = "";
-                txt_wage_normal.Text = "";
-                txt_wage_overtime.Text = "";
-
-                check_assignable_admin_only.IsChecked = false;
-                check_cash_bank.IsChecked = false;
-                check_cash_tips.IsChecked = false;
-                check_CC_transactions.IsChecked = false;
-                check_delivery_tracking.IsChecked = false;
-                check_department_totals.IsChecked = false;
-                check_require_cash_count_screen.IsChecked = false;
-                check_require_cash_drawer.IsChecked = false;
-
-                cmb_rpt_number.SelectedIndex = -1;
-
-                fill_jobcode();
+                        fill_jobcode();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You Cannot Delete this Job Code because it is Currently assigned to one or more Employees", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+ 
+            }
+        }
+
+        private void btn_permissions_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

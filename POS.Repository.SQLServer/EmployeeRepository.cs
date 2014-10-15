@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using POS.Domain.Common;
 using POS.Repository.SQLServer;
 using POS.Domain.Common.Employee;
+using System.Data;
 
 namespace POS.Repository.SQLServer
 {
@@ -345,6 +346,19 @@ namespace POS.Repository.SQLServer
                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
            }
            return objEmployeesData;
+       }
+       DataTable dtdept;
+       public DataTable getDepforEmployee(DepartmentClass objDept)
+       {
+           try
+           {
+               dtdept = objSQLServerRepository.GetDataTable("select Dept_ID,Dept_ID + '-' + Description as Dept from Departments where Type = '" + objDept.Type + "' and Store_ID = '" + objDept.Store_ID + "'");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return dtdept;
        }
     }
 }

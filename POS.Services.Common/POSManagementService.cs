@@ -604,12 +604,49 @@ namespace POS.Services.Common
             EmployeeRepository objEmployeeRepository = new EmployeeRepository();
             return objEmployeeRepository.insertEmployeeData(objEmployeesData);
         }
+        public DataTable getDeptforEmployee(DepartmentClass objDept)
+        {
+            EmployeeRepository objEmployeeRepository = new EmployeeRepository();
+            return objEmployeeRepository.getDepforEmployee(objDept);
+        }
+      
+        #endregion
+
+        #region [Job Code Setup]
+        public JobCodeClass insertJobCodes(JobCodeClass objJobCodeClass)
+        {
+            JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
+            return objJobCodSetupRepository.insertJobCodes(objJobCodeClass);
+        }
+        public JobCodeClass updateJobCodes(JobCodeClass objJobCodeClass)
+        {
+            JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
+            return objJobCodSetupRepository.updateJobCodes(objJobCodeClass);
+        }
+        public JobCodeClass deleteJobCode(JobCodeClass objjobcodeClass)
+        {
+            JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
+            return objJobCodSetupRepository.deleteJobCode(objjobcodeClass);
+        }
+        public DataTable getJobCodes()
+        {
+            JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
+            return objJobCodSetupRepository.getJobCodes();
+        }
+        public DataTable RetriveJobCodeRecord(JobCodeClass objJobCodeClass)
+        {
+            JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
+            return objJobCodSetupRepository.retriveJobCodeRecord(objJobCodeClass);
+        }
         #endregion
 
 
 
 
 
+
+
+ 
     }
 }
 
