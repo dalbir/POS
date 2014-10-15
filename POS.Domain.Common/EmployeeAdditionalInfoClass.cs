@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-   public class EmployeeAdditionalInfoClass
+   public class EmployeeAdditionalInfoClass: BaseDomain
     {
         public string Cashier_ID { get; set; }
         public int FederalAllowances { get; set; }

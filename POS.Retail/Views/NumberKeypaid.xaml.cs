@@ -187,6 +187,11 @@ namespace POS.Retail
                 txt_numbers.SelectAll();
                 txt_numbers.Focus();
             }
+            else if(flagge == 103)
+            {
+                txt_numbers.Text = pricce;
+                lbl_keypaid.Content = "Enter New Overtime Vage";
+            }
 
         }
         public NumberKeypaid(int flagge)
@@ -273,6 +278,10 @@ namespace POS.Retail
             else if(flagge == 103)
             {
                 lbl_keypaid.Content = "Enter Hourly Wage";
+            }
+            else if (flagge == 104)
+            {
+                lbl_keypaid.Content = "Enter Hourly overtime Wage";
             }
 
         }
@@ -550,6 +559,11 @@ namespace POS.Retail
                 this.Close();
             }
             else if(flagge == 103)
+            {
+                Value = txt_numbers.Text;
+                this.Close();
+            }
+            else if (flagge == 104)
             {
                 Value = txt_numbers.Text;
                 this.Close();

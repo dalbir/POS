@@ -15,7 +15,7 @@ namespace POS.Domain.Common.Employee
         public string Password { get; set; }
         public string Swipe_ID { get; set; }
         public string Hourly_Wage { get; set; }
-        public string Form_Color { get; set; }
+        public int Form_Color { get; set; }
         public string CDL { get; set; }
         public string Name { get; set; }
         public string CFA_Setup_Company { get; set; }

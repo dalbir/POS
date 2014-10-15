@@ -92,6 +92,7 @@ namespace POS.Retail
                 Button button = sender as Button;
                 string sid = button.Name.Substring(1, button.Name.Length - 1);
                 jobCodeId = sid;
+                this.Close();
             }
             else
             {

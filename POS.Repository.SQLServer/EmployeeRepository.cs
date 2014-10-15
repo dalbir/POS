@@ -18,6 +18,11 @@ namespace POS.Repository.SQLServer
        {
            try
            {
+               string checkRecordExist = objSQLServerRepository.ExecuteScalar("select Cashier_ID from Employee where Cashier_ID = '" + objEmployeesData.Cashier_ID + "'");
+               if(checkRecordExist != null)
+               {
+                   objSQLServerRepository.ExecuteNonQuery("delete from Employee where Cashier_ID = '" + objEmployeesData.Cashier_ID + "'");
+               }
                int result = objSQLServerRepository.ExecuteNonQuery("INSERT INTO Employee" +
                                                                    "(Cashier_ID,"+
                                                                    "CustNum,"+

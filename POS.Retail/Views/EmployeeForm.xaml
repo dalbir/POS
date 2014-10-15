@@ -867,7 +867,7 @@
             <TabItem Header="Job Codes and Wages">
                 <Grid>
                     <WindowsFormsHost Height="263" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="542" OpacityMask="#B3000000">
-                        <WinForm:DataGridView Name="DG_jobs" ReadOnly="True" AllowUserToDeleteRows="False" AutoGenerateColumns="False"  >
+                        <WinForm:DataGridView x:Name="DG_jobs" ReadOnly="True" AllowUserToDeleteRows="False" AllowUserToAddRows="False" AutoGenerateColumns="False"  >
                             <WinForm:DataGridView.Columns>
                                 <WinForm:DataGridViewTextBoxColumn HeaderText="Job Code" MinimumWidth="200"/>
                                 <WinForm:DataGridViewTextBoxColumn HeaderText="Hourly Wage" MinimumWidth="150"/>
@@ -887,14 +887,14 @@
                             <TextBlock Width="51">Remove</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="687,15,0,0" Name="btn_chang_hr_wage" VerticalAlignment="Top" Width="88" OpacityMask="#FFC6DE44">
+                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Click="btnChangHrWwage_Click" Height="59" HorizontalAlignment="Left" Margin="687,15,0,0" Name="btnChangHrWwage"  VerticalAlignment="Top" Width="88" OpacityMask="#FFC6DE44">
                         <StackPanel Height="54" Width="83" OpacityMask="Black">
                             <TextBlock Width="47">Change</TextBlock>
                             <TextBlock Width="42">Hourly</TextBlock>
                             <TextBlock Width="34">Wage</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="687,104,0,0" Name="btn_chang_ovrtm_wage" VerticalAlignment="Top" Width="88" >
+                    <Button Background="Yellow" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="687,104,0,0" Name="btnChangOvrtmWage" Click="btnChangOvrtmWage_Click" VerticalAlignment="Top" Width="88" >
                         <StackPanel>
                             <TextBlock Width="47">Change</TextBlock>
                             <TextBlock Width="58">Overtime</TextBlock>
@@ -981,7 +981,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Save Changes" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,569,0,0" Name="btn_savechages_emp" VerticalAlignment="Top" Width="117" Click="btn_savechages_emp_Click">
+        <Button Content="Save Changes" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,569,0,0" Name="btn_savechages_emp" VerticalAlignment="Top" Width="117" Click="btn_add_emp_Click" >
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />

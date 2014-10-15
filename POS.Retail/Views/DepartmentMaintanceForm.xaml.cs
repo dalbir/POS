@@ -555,13 +555,13 @@ namespace POS.Retail
                     {
                         chk_sale_export.IsChecked = false;
                     }
-
-                    objdptclass.SubType = objdptclass.LoadDept.Rows[i]["SubType"].ToString();
-                    objdptclass.flage = "selectCateg";
-                    objmbtSer.LoadCatIdToDpt(objdptclass);
-                    cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
-                    cmb_cetegory.Text = "CatName";
-                    cmb_cetegory.SelectedValuePath = "Cat_ID";
+                    cmb_cetegory.SelectedValue = objdptclass.LoadDept.Rows[i]["SubType"].ToString();
+                    //objdptclass.SubType = objdptclass.LoadDept.Rows[i]["SubType"].ToString();
+                    //objdptclass.flage = "selectCateg";
+                    //objmbtSer.LoadCatIdToDpt(objdptclass);
+                    //cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
+                    //cmb_cetegory.Text = "CatName";
+                    //cmb_cetegory.SelectedValuePath = "Cat_ID";
                    
 
                 }
