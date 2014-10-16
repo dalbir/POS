@@ -609,6 +609,36 @@ namespace POS.Services.Common
             EmployeeRepository objEmployeeRepository = new EmployeeRepository();
             return objEmployeeRepository.getDepforEmployee(objDept);
         }
+        public EmployeeJobCodeClass insertEmployeejob(EmployeeJobCodeClass objEmployeeJobCodeClass)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.insertEmpJob(objEmployeeJobCodeClass);
+        }
+        public EmployeeAdditionalInfoClass insertPayrolInfo(EmployeeAdditionalInfoClass objAddtionalInfo)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.insertAddInfoPayrol(objAddtionalInfo);
+        }
+        public DataTable getEmplyeeIds(EmployeesDataClass objEmployeesDataClass)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.getEmployeeIds(objEmployeesDataClass);
+        }
+        public DataTable RetriveEmpRecord(EmployeesDataClass objEmployeesDataClass)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.retriveEmployeeRecored(objEmployeesDataClass);
+        }
+        public DataTable retriveAddionalInfo(EmployeeAdditionalInfoClass objAdditionalInfo)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.retriveAdditionalInfo(objAdditionalInfo);
+        }
+        public DataTable retriveEmployeJob(EmployeeJobCodeClass objEmployeeJobCodeClass)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.retriveEmpJobcode(objEmployeeJobCodeClass);
+        }
       
         #endregion
 
@@ -638,6 +668,7 @@ namespace POS.Services.Common
             JobCodSetupRepository objJobCodSetupRepository = new JobCodSetupRepository();
             return objJobCodSetupRepository.retriveJobCodeRecord(objJobCodeClass);
         }
+ 
         #endregion
 
 
@@ -646,7 +677,19 @@ namespace POS.Services.Common
 
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

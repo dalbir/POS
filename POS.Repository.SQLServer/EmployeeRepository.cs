@@ -365,5 +365,109 @@ namespace POS.Repository.SQLServer
            }
            return dtdept;
        }
+       public EmployeeAdditionalInfoClass insertAddInfoPayrol(EmployeeAdditionalInfoClass objAddtionalInfo)
+       {
+           try
+           {
+               int result = objSQLServerRepository.ExecuteNonQuery("INSERT INTO Employee_AdditionalInfo" +
+                  "(Cashier_ID," +
+                  "FederalAllowances," +
+                  "AdditionalFederalWithholdingAmount," +
+                  "StateAllowances," +
+                  "AdditionalStateWithholdingAmount," +
+                  "StateAdditionalCredits," +
+                  "Exempt," +
+                  "TaxFilingStatus," +
+                  "ExcludeInPayrollExp)" +
+            "VALUES" +
+                  "('" + objAddtionalInfo.Cashier_ID + "'," +
+                  "'" + objAddtionalInfo.FederalAllowances + "'," +
+                  "'" + objAddtionalInfo.AdditionalFederalWithholdingAmount + "'," +
+                  "'" + objAddtionalInfo.StateAllowances + "'," +
+                  "'" + objAddtionalInfo.AdditionalStateWithholdingAmount + "'," +
+                  "'" + objAddtionalInfo.StateAdditionalCredits + "'," +
+                  "'" + objAddtionalInfo.Exempt + "'," +
+                  "'" + objAddtionalInfo.TaxFilingStatus + "'," +
+                  "'" + objAddtionalInfo.ExcludeInPayrollExp + "')");
+               if (result > 0)
+               {
+                   objAddtionalInfo.IsSuccessfull = true;
+               }
+               else
+               {
+                   objAddtionalInfo.IsSuccessfull = false;
+               }
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return objAddtionalInfo;
+       }
+
+       public EmployeeJobCodeClass insertEmpJob(EmployeeJobCodeClass objEmployeeJobCodeClass)
+       {
+           try
+           {
+               int result = objSQLServerRepository.ExecuteNonQuery("insert into Employee_JobCode(Cashier_ID, JobCodeID, Hourly_Wage, OvertimeHourly_Wage) values('" + objEmployeeJobCodeClass.Cashier_ID + "','" + objEmployeeJobCodeClass.JobCodeID + "', '" + objEmployeeJobCodeClass.Hourly_Wage + "', '" + objEmployeeJobCodeClass.OvertimeHourly_Wage + "')");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return objEmployeeJobCodeClass;
+       }
+       DataTable dtEmployeeIds;
+       public DataTable getEmployeeIds(EmployeesDataClass objEmployeesDataClass)
+       {
+           try
+           {
+               dtEmployeeIds = objSQLServerRepository.GetDataTable("select Cashier_ID from Employee");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return dtEmployeeIds;
+       }
+       DataTable dtEmplRecored;
+       public DataTable retriveEmployeeRecored(EmployeesDataClass objEmployeesDataClass)
+       {
+           try
+           {
+               dtEmplRecored = objSQLServerRepository.GetDataTable("select * from Employee where Cashier_ID = '"+ objEmployeesDataClass.Cashier_ID +"'");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return dtEmplRecored;
+       }
+       DataTable dtAdInfo;
+       public DataTable retriveAdditionalInfo(EmployeeAdditionalInfoClass objAdditionalInfo)
+       {
+           try
+           {
+               dtAdInfo = objSQLServerRepository.GetDataTable("select * from Employee_AdditionalInfo where Cashier_ID = '"+ objAdditionalInfo.Cashier_ID +"'");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return dtAdInfo;
+       }
+       DataTable dtJobCode;
+       public DataTable retriveEmpJobcode(EmployeeJobCodeClass objEmployeeJobCodeClass)
+       {
+           try
+           {
+               dtJobCode = objSQLServerRepository.GetDataTable("select * from Employee_JobCode where Cashier_ID = '"+ objEmployeeJobCodeClass.Cashier_ID +"'");
+           }
+           catch (Exception ex)
+           {
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return dtJobCode;
+       }
     }
 }

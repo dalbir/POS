@@ -59,73 +59,87 @@ namespace POS.Retail
         }
         private void fun_btn_id_enter()
         {
-            if (position == "cashier")
+            try
             {
-                if (psd_login_id.Password != "")
+                if (position == "cashier")
                 {
-                    Grid_id.Visibility = Visibility.Hidden;
-                    grid_password.Visibility = Visibility.Visible;
-                    psdbox_password.Focus();
-                    btn_pas_delete.Content = "Cancel";
+                    if (psd_login_id.Password != "")
+                    {
+                        Grid_id.Visibility = Visibility.Hidden;
+                        grid_password.Visibility = Visibility.Visible;
+                        psdbox_password.Focus();
+                        btn_pas_delete.Content = "Cancel";
+                    }
+                }
+                else if (position == "manager")
+                {
+                    if (psd_login_id.Password != "")
+                    {
+                        Grid_id.Visibility = Visibility.Hidden;
+                        grid_password.Visibility = Visibility.Visible;
+                        psdbox_password.Focus();
+                        btn_pas_delete.Content = "Cancel";
+                    }
                 }
             }
-            else if (position == "manager")
+            catch (Exception ex)
             {
-                if (psd_login_id.Password != "")
-                {
-                    Grid_id.Visibility = Visibility.Hidden;
-                    grid_password.Visibility = Visibility.Visible;
-                    psdbox_password.Focus();
-                    btn_pas_delete.Content = "Cancel";
-                }
+
             }
         }
         private void fun_login_btn()
         {
-            if (position == "cashier")
+            try
             {
-                if (psd_login_id.Password == "02" && psdbox_password.Password == "john")
+                if (position == "cashier")
                 {
-                    cashier_id = psd_login_id.Password;
-                    psdbox_password.Password = "";
-                    psd_login_id.Password = "";
-                    //CashRegisterForm cashform = new CashRegisterForm();
-                    //cashform.ShowDialog();
-                    grid_password.Visibility = Visibility.Hidden;
-                    Grid_id.Visibility = Visibility.Visible;
-                    psd_login_id.Focus();
+                    if (psd_login_id.Password == "02" && psdbox_password.Password == "john")
+                    {
+                        cashier_id = psd_login_id.Password;
+                        psdbox_password.Password = "";
+                        psd_login_id.Password = "";
+                        //CashRegisterForm cashform = new CashRegisterForm();
+                        //cashform.ShowDialog();
+                        grid_password.Visibility = Visibility.Hidden;
+                        Grid_id.Visibility = Visibility.Visible;
+                        psd_login_id.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have Entered an invalid Cashier ID OR Password, Try Again", "ID OR Password Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        psd_login_id.Password = "";
+                        psdbox_password.Password = "";
+                        grid_password.Visibility = Visibility.Hidden;
+                        Grid_id.Visibility = Visibility.Visible;
+                        psd_login_id.Focus();
+                    }
                 }
-                else
+                else if (position == "manager")
                 {
-                    MessageBox.Show("You have Entered an invalid Cashier ID OR Password, Try Again", "ID OR Password Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    psd_login_id.Password = "";
-                    psdbox_password.Password = "";
-                    grid_password.Visibility = Visibility.Hidden;
-                    Grid_id.Visibility = Visibility.Visible;
-                    psd_login_id.Focus();
+                    if (psd_login_id.Password == "01" && psdbox_password.Password == "admin")
+                    {
+                        psdbox_password.Password = "";
+                        psd_login_id.Password = "";
+                        ManagerForm objman = new ManagerForm(objBackOrder);
+                        grid_password.Visibility = Visibility.Hidden;
+                        objman.ShowDialog();
+                        Grid_id.Visibility = Visibility.Visible;
+                        psd_login_id.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have Entered an invalid Cashier ID OR Password, Try Again", "ID OR Password Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        psd_login_id.Password = "";
+                        psdbox_password.Password = "";
+                        grid_password.Visibility = Visibility.Hidden;
+                        Grid_id.Visibility = Visibility.Visible;
+                        psd_login_id.Focus();
+                    }
                 }
             }
-            else if (position == "manager")
+            catch (Exception ex)
             {
-                if (psd_login_id.Password == "01" && psdbox_password.Password == "admin")
-                {
-                    psdbox_password.Password = "";
-                    psd_login_id.Password = "";
-                    ManagerForm objman = new ManagerForm(objBackOrder);
-                    grid_password.Visibility = Visibility.Hidden;
-                    objman.ShowDialog();
-                    Grid_id.Visibility = Visibility.Visible;
-                    psd_login_id.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("You have Entered an invalid Cashier ID OR Password, Try Again", "ID OR Password Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    psd_login_id.Password = "";
-                    psdbox_password.Password = "";
-                    grid_password.Visibility = Visibility.Hidden;
-                    Grid_id.Visibility = Visibility.Visible;
-                    psd_login_id.Focus();
-                }
+  
             }
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)

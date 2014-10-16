@@ -31,6 +31,8 @@
             <CheckBox Content="Take CC Tips in Cash at End of Shift" Height="16" HorizontalAlignment="Left" Margin="169,167,0,0" Name="checkBox3" VerticalAlignment="Top" Width="215" />
             <CheckBox Content="Required Clock-In Before Login" Height="16" HorizontalAlignment="Left" Margin="388,167,0,0" Name="checkBox4" VerticalAlignment="Top" Width="192" />
             <CheckBox Content="Administrative Card Access" Height="16" HorizontalAlignment="Left" Margin="590,167,0,0" Name="checkBox5" VerticalAlignment="Top" Width="179" />
+            <Image HorizontalAlignment="Left" Height="122" x:Name="imgEmpPhoto" Margin="684,13,0,0" VerticalAlignment="Top" Width="150"/>
+            <Label Content="Click Here to Select Picture" FontWeight="Bold" Height="27" HorizontalAlignment="Left" Margin="684,135,0,0" Name="lbl_imge" VerticalAlignment="Top" Width="167" FontStyle="Italic" MouseLeftButtonDown="lbl_imge_MouseLeftButtonDown" />
         </Grid>
         <TabControl Height="316" Margin="0,238,0,0" Name="tabControl1" VerticalAlignment="Top" FontWeight="Bold">
             <TabItem Header="Permissions   " Name="tabItem1">
@@ -881,7 +883,7 @@
                             <TextBlock Width="30" Height="17">Add</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="567,104,0,0" Name="btn_remove_job" VerticalAlignment="Top" Width="88">
+                    <Button Background="LimeGreen" Focusable="False" FontWeight="Bold" Height="59" HorizontalAlignment="Left" Margin="567,104,0,0" Click="btn_remove_job_Click" Name="btn_remove_job" VerticalAlignment="Top" Width="88">
                         <StackPanel Height="53" Width="80">
                             <Image Height="33" Source="/Images/delete.png"></Image>
                             <TextBlock Width="51">Remove</TextBlock>

@@ -153,5 +153,6 @@ namespace POS.Repository.SQLServer
             }
             return dtJobCodeRecord;
         }
+
     }
 }
