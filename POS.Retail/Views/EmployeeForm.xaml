@@ -983,7 +983,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Save Changes" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,569,0,0" Name="btn_savechages_emp" VerticalAlignment="Top" Width="117" Click="btn_add_emp_Click" >
+        <Button Content="Save Changes" Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="452,569,0,0" Name="btnSaveChagesEmp" VerticalAlignment="Top" Click="btnSaveChagesEmp_Click" Width="117"  >
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />

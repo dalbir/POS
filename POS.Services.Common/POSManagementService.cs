@@ -639,7 +639,22 @@ namespace POS.Services.Common
             EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
             return objJobCodSetupRepository.retriveEmpJobcode(objEmployeeJobCodeClass);
         }
-      
+        public EmployeesDataClass updateEmployeeRecord(EmployeesDataClass objEmployeesData)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.updateEmployeeRecord(objEmployeesData);
+        }
+        public EmployeeAdditionalInfoClass updateEmpAdditionalInfo(EmployeeAdditionalInfoClass objAddtionalInfo)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.updateEmpAdditionalInfo(objAddtionalInfo);
+        }
+        public EmployeeJobCodeClass updateEmpJobCose(EmployeeJobCodeClass objEmployeeJobCodeClass)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.updateEmpJobCode(objEmployeeJobCodeClass);
+        }
+     
         #endregion
 
         #region [Job Code Setup]
@@ -670,26 +685,7 @@ namespace POS.Services.Common
         }
  
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
     }
 }
 
