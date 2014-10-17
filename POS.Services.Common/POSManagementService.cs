@@ -690,7 +690,34 @@ namespace POS.Services.Common
  
         #endregion
 
+        #region Styles Matrix Services
 
+        public GroupsClass GetGroupLoadedData(GroupsClass objGroupsClass)
+        {
+            StylesMatrixRepository objStylesMatrixRepository = new StylesMatrixRepository();
+            return objStylesMatrixRepository.LoadvendorsInfo(objGroupsClass);
+        }
+        public GroupsClass GetGroupsInfo(GroupsClass objGroupsClass)
+        {
+            StylesMatrixRepository objStylesMatrixRepository = new StylesMatrixRepository();
+            return objStylesMatrixRepository.GroupsInfo(objGroupsClass);
+        }
+        public string loadMaxGroupRefrnceID(Groups_ReferenceClass objGroupsReferenceClass)
+        {
+            StylesMatrixRepository objStylesMatrixRepository = new StylesMatrixRepository();
+            return objStylesMatrixRepository.GetMaxGroupRefrnceID(objGroupsReferenceClass);
+        }
+        public Groups_ReferenceClass GetGroupRefereceInfo(Groups_ReferenceClass objGroups_ReferenceClass)
+        {
+            StylesMatrixRepository objStylesMatrixRepository = new StylesMatrixRepository();
+            return objStylesMatrixRepository.GroupsReferenceInfo(objGroups_ReferenceClass);
+        }
+        public string loadReadedGroupID(GroupsClass objGroupsClass)
+        {
+            StylesMatrixRepository objStylesMatrixRepository = new StylesMatrixRepository();
+            return objStylesMatrixRepository.ReadGroupID(objGroupsClass);
+        }
+        #endregion
 
     }
 }

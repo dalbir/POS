@@ -418,7 +418,7 @@ namespace POS.Repository.SQLServer
        {
            try
            {
-               dtEmployeeIds = objSQLServerRepository.GetDataTable("select Cashier_ID from Employee");
+               dtEmployeeIds = objSQLServerRepository.GetDataTable("select Cashier_ID, Cashier_ID + '-' + EmpName from Employee");
            }
            catch (Exception ex)
            {

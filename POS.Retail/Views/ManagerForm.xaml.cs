@@ -503,5 +503,20 @@ namespace POS.Retail
             objMixNMatch.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             objMixNMatch.ShowDialog();
         }
+
+        private void btnStyleMatrix_Click(object sender, RoutedEventArgs e)
+        {
+            frmStylesMatrix obj = new frmStylesMatrix();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
+        }
+
+
+        private void btnTimeClockManagment_Click(object sender, RoutedEventArgs e)
+        {
+            TimeClockManagement obj = new TimeClockManagement();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

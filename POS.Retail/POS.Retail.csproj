@@ -110,6 +110,9 @@
     <Compile Include="Views\EnterStartEndDate.xaml.cs">
       <DependentUpon>EnterStartEndDate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmStylesMatrix.xaml.cs">
+      <DependentUpon>frmStylesMatrix.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GlobalPriceChangeForm.xaml.cs">
       <DependentUpon>GlobalPriceChangeForm.xaml</DependentUpon>
     </Compile>
@@ -228,6 +231,9 @@
     <Compile Include="Views\TaxSetupForm.xaml.cs">
       <DependentUpon>TaxSetupForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TimeClockManagement.xaml.cs">
+      <DependentUpon>TimeClockManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TimeForm.xaml.cs">
       <DependentUpon>TimeForm.xaml</DependentUpon>
     </Compile>
@@ -308,6 +314,10 @@
     <Page Include="Views\EnterVendorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmStylesMatrix.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GlobalPriceChangeForm.xaml">
       <SubType>Designer</SubType>
@@ -507,6 +517,10 @@
     <Page Include="Views\TaxSetupForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeClockManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TimeForm.xaml">
       <SubType>Designer</SubType>

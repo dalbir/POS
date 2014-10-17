@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
+using System.Data;
 
 namespace POS.Domain.Common
 {
-   public class GroupsClass
+   public class GroupsClass: BaseDomain
     {
         public string Group_ID { get; set; }
         public string Store_ID { get; set; }
@@ -22,6 +24,10 @@ namespace POS.Domain.Common
         public string Dept_ID { get; set; }
         public string Vendor_Number { get; set; }
         public int AutoGenerate { get; set; }
-        public int isDeleted { get; set; } 
+        public int isDeleted { get; set; }
+
+        //Updated
+        public string flage { get; set; }
+        public DataTable LoadGroupData { get; set; }
     }
 }

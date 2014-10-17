@@ -52,6 +52,7 @@
     <Compile Include="PurchaseOrderRepository.cs" />
     <Compile Include="SQLServerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StylesMatrixRepository.cs" />
     <Compile Include="TaxRepository.cs" />
     <Compile Include="VendorRepository.cs" />
   </ItemGroup>
