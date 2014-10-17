@@ -25,12 +25,12 @@
             <Label Content="Customer:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,54,0,0" Name="label6" VerticalAlignment="Top" Width="108" />
             <Label Content="Hourly Wages:" FontSize="13" Height="28" HorizontalAlignment="Left" Margin="352,88,0,0" Name="label7" VerticalAlignment="Top" Width="98" />
             <TextBox Height="25" HorizontalAlignment="Left" Margin="465,20,0,0" Name="txt_cardswip" VerticalAlignment="Top" Width="155" />
-            <TextBox Height="25" HorizontalAlignment="Left" Margin="465,91,0,0" Name="txt_houlywages" VerticalAlignment="Top" Width="155" />
+            <TextBox Height="25" HorizontalAlignment="Left" Margin="465,91,0,0" Name="txt_houlywages" PreviewTextInput="txt_houlywages_PreviewTextInput" VerticalAlignment="Top" Width="155" />
             <TextBox Height="25" HorizontalAlignment="Left" Margin="465,55,0,0" Name="txt_customer" VerticalAlignment="Top" Width="155" />
-            <CheckBox Content="Disable this Employee" Height="16" HorizontalAlignment="Left" Margin="15,167,0,0" Name="checkBox2" VerticalAlignment="Top" Width="148" />
-            <CheckBox Content="Take CC Tips in Cash at End of Shift" Height="16" HorizontalAlignment="Left" Margin="169,167,0,0" Name="checkBox3" VerticalAlignment="Top" Width="215" />
-            <CheckBox Content="Required Clock-In Before Login" Height="16" HorizontalAlignment="Left" Margin="388,167,0,0" Name="checkBox4" VerticalAlignment="Top" Width="192" />
-            <CheckBox Content="Administrative Card Access" Height="16" HorizontalAlignment="Left" Margin="590,167,0,0" Name="checkBox5" VerticalAlignment="Top" Width="179" />
+            <CheckBox Content="Disable this Employee" Height="16" HorizontalAlignment="Left" Margin="15,167,0,0" Name="chkDisableEmployee" VerticalAlignment="Top" Width="148" />
+            <CheckBox Content="Take CC Tips in Cash at End of Shift" Height="16" HorizontalAlignment="Left" Margin="169,167,0,0" Name="chkTakeCcTips" VerticalAlignment="Top" Width="215" />
+            <CheckBox Content="Required Clock-In Before Login" Height="16" HorizontalAlignment="Left" Margin="388,167,0,0" Name="requireClockinBeforeLogin" VerticalAlignment="Top" Width="192" />
+            <CheckBox Content="Administrative Card Access" Height="16" HorizontalAlignment="Left" Margin="590,167,0,0" Name="chkAdminstCardAccess" VerticalAlignment="Top" Width="179" />
             <Image HorizontalAlignment="Left" Height="122" x:Name="imgEmpPhoto" Margin="684,13,0,0" VerticalAlignment="Top" Width="150"/>
             <Label Content="Click Here to Select Picture" FontWeight="Bold" Height="27" HorizontalAlignment="Left" Margin="684,135,0,0" Name="lbl_imge" VerticalAlignment="Top" Width="167" FontStyle="Italic" MouseLeftButtonDown="lbl_imge_MouseLeftButtonDown" />
         </Grid>
@@ -854,7 +854,7 @@
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="546,154,0,0" Name="txt_zipcode" VerticalAlignment="Top" Width="258" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="546,120,0,0" Name="txt_state" VerticalAlignment="Top" Width="258" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="546,86,0,0" Name="txt_city" VerticalAlignment="Top" Width="258" />
-                    <TextBox Height="26" HorizontalAlignment="Left" Margin="140,222,0,0" Name="txt_birthday" VerticalAlignment="Top" Width="258" />
+                    <DatePicker Height="26" HorizontalAlignment="Left" Margin="140,222,0,0" Name="txt_birthday" VerticalAlignment="Top" Width="258" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="140,188,0,0" Name="txt_email" VerticalAlignment="Top" Width="258" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="140,154,0,0" Name="txt_phone" VerticalAlignment="Top" Width="258" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="140,120,0,0" Name="txt_SSN" VerticalAlignment="Top" Width="258" />
@@ -933,9 +933,9 @@
                     <Label Content="State Allowances:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,112,0,0" Name="label41" VerticalAlignment="Top" Width="248" />
                     <Label Content="Exempt from Taxes:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,216,0,0" Name="label42" VerticalAlignment="Top" Width="248" />
                     <Label Content="Maritial Status:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,248,0,0" Name="label43" VerticalAlignment="Top" Width="248" />
-                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,45,0,0" Name="txt_fed_allwnce" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
-                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,113,0,0" Name="txt_state_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
-                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,79,0,0" Name="txt_additional_fed_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,45,0,0" PreviewTextInput="txt_houlywages_PreviewTextInput" Name="txt_fed_allwnce" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,113,0,0" PreviewTextInput="txt_houlywages_PreviewTextInput" Name="txt_state_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
+                    <TextBox Height="25" HorizontalAlignment="Left" Margin="296,79,0,0" PreviewTextInput="txt_houlywages_PreviewTextInput" Name="txt_additional_fed_allown" VerticalAlignment="Top" Width="148" FontWeight="Normal" />
                     <ComboBox Height="27" HorizontalAlignment="Left" Margin="296,216,0,0" Name="cmb_exempt" VerticalAlignment="Top" Width="148" Background="#00000000" SelectedIndex="1" FontWeight="Normal">
                         <ComboBoxItem Content="Yes" />
                         <ComboBoxItem Content="No" />
@@ -946,8 +946,8 @@
                     </ComboBox>
                     <Label Content="State Additional withholding amount:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,148,0,0" Name="label133" VerticalAlignment="Top" Width="248" />
                     <Label Content="Addictional Credits of State:" FontSize="13" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="42,181,0,0" Name="label134" VerticalAlignment="Top" Width="248" />
-                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" Margin="296,182,0,0" Name="state_additional_credits_txt" VerticalAlignment="Top" Width="148" />
-                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" Margin="296,148,0,0" Name="state_additional_with_amount_txt" VerticalAlignment="Top" Width="148" />
+                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" PreviewTextInput="txt_houlywages_PreviewTextInput" Margin="296,182,0,0" Name="state_additional_credits_txt" VerticalAlignment="Top" Width="148" />
+                    <TextBox FontWeight="Normal" Height="25" HorizontalAlignment="Left" PreviewTextInput="txt_houlywages_PreviewTextInput" Margin="296,148,0,0" Name="state_additional_with_amount_txt" VerticalAlignment="Top" Width="148" />
                 </Grid>
             </TabItem>
         </TabControl>

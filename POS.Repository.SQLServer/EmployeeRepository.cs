@@ -674,10 +674,10 @@ namespace POS.Repository.SQLServer
        {
            try
            {
-               string checkidExist = objSQLServerRepository.ExecuteScalar("select JobCodeID where Cashier_ID = '" + objEmployeeJobCodeClass.Cashier_ID + "' and JobCodeID = '" + objEmployeeJobCodeClass.JobCodeID + "'");
+               string checkidExist = objSQLServerRepository.ExecuteScalar("select JobCodeID from Employee_JobCode where Cashier_ID = '" + objEmployeeJobCodeClass.Cashier_ID + "' and JobCodeID = '" + objEmployeeJobCodeClass.JobCodeID + "'");
                if (checkidExist == "")
                {
-
+                   objSQLServerRepository.ExecuteNonQuery("insert into Employee_JobCode(Cashier_ID, JobCodeID, Hourly_Wage, OvertimeHourly_Wage) values('" + objEmployeeJobCodeClass.Cashier_ID + "','" + objEmployeeJobCodeClass.JobCodeID + "', '" + objEmployeeJobCodeClass.Hourly_Wage + "', '" + objEmployeeJobCodeClass.OvertimeHourly_Wage + "')");
                }
                else
                {
@@ -697,6 +697,19 @@ namespace POS.Repository.SQLServer
               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
            }
            return objEmployeeJobCodeClass;
+       }
+
+       public EmployeeJobCodeClass deleteSelectedJob(EmployeeJobCodeClass objEmployeeJobCode)
+       {
+           try
+           {
+               int result = objSQLServerRepository.ExecuteNonQuery("delete from Employee_JobCode where Cashier_ID = '" + objEmployeeJobCode.Cashier_ID + "' and JobCodeID = '"+ objEmployeeJobCode.JobCodeID +"'");
+           }
+           catch (Exception ex)
+           {  
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+           }
+           return objEmployeeJobCode;
        }
     }
 }

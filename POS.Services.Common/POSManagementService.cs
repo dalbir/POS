@@ -654,7 +654,11 @@ namespace POS.Services.Common
             EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
             return objJobCodSetupRepository.updateEmpJobCode(objEmployeeJobCodeClass);
         }
-     
+        public EmployeeJobCodeClass deleteSelectedJob(EmployeeJobCodeClass objEmployeeJobCode)
+        {
+            EmployeeRepository objJobCodSetupRepository = new EmployeeRepository();
+            return objJobCodSetupRepository.deleteSelectedJob(objEmployeeJobCode);
+        }
         #endregion
 
         #region [Job Code Setup]
@@ -685,7 +689,9 @@ namespace POS.Services.Common
         }
  
         #endregion
- 
+
+
+
     }
 }
 
