@@ -719,6 +719,27 @@ namespace POS.Services.Common
         }
         #endregion
 
+        #region
+        public DataTable filldagaGrid(Time_ClockClass objTimeClockClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.FillDgTimeClock(objTimeClockClass);
+        }
+        public Time_ClockClass deleteItemRecord(Time_ClockClass objTimeClockClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.delelteItem(objTimeClockClass);
+        }
+        public Time_ClockClass deleteTimeOut(Time_ClockClass objTimeClockClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.deleteTimeOut(objTimeClockClass);
+        }
+        #endregion
+
+
+
+
     }
 }
 
