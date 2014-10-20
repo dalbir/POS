@@ -62,7 +62,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="bntChangeJobCode" Content="Change Jobcode" HorizontalAlignment="Left" Margin="10,3,0,8" Width="158" FontSize="16" Grid.Row="2">
+        <Button x:Name="bntChangeJobCode" Content="Change Jobcode" HorizontalAlignment="Left" Click="bntChangeJobCode_Click" Margin="10,3,0,8" Width="158" FontSize="16" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -93,7 +93,9 @@
             </Button.Background>
         </Button>
         <DataGrid x:Name="dgEmployeeTimeClock" HorizontalAlignment="Left" AutoGenerateColumns="False" Margin="10,53,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" IsReadOnly="True" VerticalAlignment="Top" Width="774" Height="374" Background="#FFABABAC">
+            
             <DataGrid.Columns>
+                
                 <DataGridTextColumn Binding="{Binding Path=ID}" ClipboardContentBinding="{x:Null}" Header="ID" Width="70"/>
                 <DataGridTextColumn Binding="{Binding Path=Cashier_ID}" ClipboardContentBinding="{x:Null}" Header="Employee ID" Width="150"/>
                 <DataGridTextColumn Binding="{Binding Path=StartDateTime}" ClipboardContentBinding="{x:Null}" Header="Start" Width="120"/>
@@ -101,6 +103,7 @@
                 <DataGridTextColumn Binding="{Binding Path=NumMinutes}" ClipboardContentBinding="{x:Null}" Header="#Munutes" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Path=Wages}" ClipboardContentBinding="{x:Null}" Header="Wages" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Path=JobCodeID}" ClipboardContentBinding="{x:Null}" Header="Job Code" Width="*"/>
+               
             </DataGrid.Columns>
         </DataGrid>
 

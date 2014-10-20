@@ -27,6 +27,8 @@ namespace POS.Retail
         private static string ven_id = null;
         private int jobcode;
         public static string jobCodeId = null;
+        private DataTable dtJobCodes;
+        private int p;
         public SelectVendorForm() //frm_select_vendor()
         {
             InitializeComponent();
@@ -36,6 +38,19 @@ namespace POS.Retail
         {
             InitializeComponent();
             this.jobcode = jobcode;
+        }
+
+        public SelectVendorForm(DataTable dt)
+        {
+            InitializeComponent();
+            this.dtJobCodes = dt;
+        }
+
+        public SelectVendorForm(DataTable dtJobCodes, int p)
+        {
+            InitializeComponent();
+            this.dtJobCodes = dtJobCodes;
+            this.p = p;
         }
         private void fun_vendor_btn()
         {
@@ -79,6 +94,22 @@ namespace POS.Retail
                     btn.Click += new RoutedEventHandler(enter_item);
                 }
             }
+                else if(p == 2)
+            {
+                string btn_name_id;
+                for (int i = 0; i < dtJobCodes.Rows.Count; i++)
+                {
+                    Button btn = new Button();
+                    btn.Content = dtJobCodes.Rows[i]["JobCodeName"].ToString();
+                    btn_name_id = dtJobCodes.Rows[i]["JobCodeID"].ToString();
+                    btn.Name = "a" + btn_name_id;
+                    btn.Height = 70;
+                    btn.Width = 90;
+
+                    wp_modifier_btn.Children.Add(btn);
+                    btn.Click += new RoutedEventHandler(enter_item);
+                }
+            }
             else
             {
                 fun_vendor_btn();
@@ -87,7 +118,7 @@ namespace POS.Retail
         }
         private void enter_item(object sender, EventArgs e)
         {
-            if (jobcode == 1)
+            if (jobcode == 1 || p == 2)
             {
                 Button button = sender as Button;
                 string sid = button.Name.Substring(1, button.Name.Length - 1);
@@ -131,6 +162,8 @@ namespace POS.Retail
         private void btn_cancel_modifier_Click(object sender, RoutedEventArgs e)
         {
             vid = null;
+            jobCodeId = null;
+            ven_id = null;
             this.Close();
         }
     }

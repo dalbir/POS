@@ -67,5 +67,39 @@ namespace POS.Repository.SQLServer
             }
             return objTimeClockClass;
         }
+        DataTable dtEmpJobCodes;
+        public DataTable getEmpJobCodes(EmployeeJobCodeClass objEmployeeJobCodeClass)
+        {
+            try
+            {
+                dtEmpJobCodes = objSQLServerRepository.GetDataTable("select J.Cashier_ID, J.JobCodeID, J.Hourly_Wage, J.OvertimeHourly_Wage, C.JobCodeName from Employee_JobCode as J inner join JobCode as C on J.JobCodeID = C.JobCodeID where J.Cashier_ID = '" + objEmployeeJobCodeClass.Cashier_ID + "'");
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return dtEmpJobCodes;
+        }
+
+        public Time_ClockClass updateEmployeJobCodes(Time_ClockClass objTimeClockClass)
+        {
+            try
+            {
+                int result = objSQLServerRepository.ExecuteNonQuery("update Time_Clock set JobCodeID = '"+ objTimeClockClass.JobCodeID +"' where ID = '" + objTimeClockClass.ID + "' and Cashier_ID = '" + objTimeClockClass.Cashier_ID + "'");
+                if(result > 0)
+                {
+                    objTimeClockClass.IsSuccessfull = true;
+                }
+                else
+                {
+                    objTimeClockClass.IsSuccessfull = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objTimeClockClass;
+        }
     }
 }

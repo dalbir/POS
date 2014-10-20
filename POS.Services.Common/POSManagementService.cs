@@ -735,7 +735,21 @@ namespace POS.Services.Common
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
             return objTimeClockMangRepository.deleteTimeOut(objTimeClockClass);
         }
+        public DataTable getEmpjobCodes(EmployeeJobCodeClass objEmployeeJobCodeClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.getEmpJobCodes(objEmployeeJobCodeClass);
+        }
+        public Time_ClockClass updateEmployeJobCode(Time_ClockClass objTimeClockClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.updateEmployeJobCodes(objTimeClockClass);
+        }
         #endregion
+
+
+
+
 
 
 

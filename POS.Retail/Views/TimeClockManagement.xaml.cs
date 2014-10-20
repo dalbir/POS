@@ -173,5 +173,46 @@ namespace POS.Retail.Views
             }
         }
 
+        private void bntChangeJobCode_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                EmployeeJobCodeClass objEmployeeJobCodeClass = new EmployeeJobCodeClass();
+                Time_ClockClass objTimeClockClass = new Time_ClockClass();
+                TextBlock b = (dgEmployeeTimeClock.Columns[0].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);     
+                TextBlock c = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                objEmployeeJobCodeClass.Cashier_ID = c.Text;
+                DataTable dt = objPOSManagementService.getEmpjobCodes(objEmployeeJobCodeClass);
+                if(dt.Rows.Count > 0)
+                {
+                    TextBlock d = (dgEmployeeTimeClock.Columns[6].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                    if(d.Text != "" && dt.Rows.Count == 1)
+                    {
+                        MessageBox.Show("This Employee only has one possible job code to assign. Add more job codes to this Employee using Employee Maintenance.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    SelectVendorForm objSelectJobCodes = new SelectVendorForm(dt, 2);
+                    objSelectJobCodes.ShowDialog();
+                    if(objSelectJobCodes.set_jobCodeId != null)
+                    {
+                        objTimeClockClass.Cashier_ID = c.Text;
+                        objTimeClockClass.ID = Convert.ToInt32(b.Text);
+                        objTimeClockClass.JobCodeID = objSelectJobCodes.set_jobCodeId;
+                        objPOSManagementService.updateEmployeJobCode(objTimeClockClass);
+                        dgEmpTimeClock();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This employee does not have any job code assigned. Add more job codes to this employee using employee mantenance.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
     }
 }
