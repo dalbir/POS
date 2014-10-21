@@ -109,19 +109,19 @@
                 <DataGridTextColumn Binding="{Binding Path=Cashier_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="True" Header="Employee ID" Width="100"/>
                 <DataGridTextColumn Binding="{Binding Path=StartDateTime}" ClipboardContentBinding="{x:Null}" IsReadOnly="False" Header="Start" Width="150"/>
                 <DataGridTextColumn Binding="{Binding Path=EndDateTime}" ClipboardContentBinding="{x:Null}" Header="End" IsReadOnly="False" Width="150"/>
-                <DataGridTextColumn Binding="{Binding Path=NumMinutes}" ClipboardContentBinding="{x:Null}" Header="#Munutes" IsReadOnly="True" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Path=NumMinutes}" ClipboardContentBinding="{x:Null}" Header="#Minutes" IsReadOnly="True" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Path=Wages}" ClipboardContentBinding="{x:Null}" Header="Wages" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Path=JobCodeID}" ClipboardContentBinding="{x:Null}" Header="Job Code" IsReadOnly="True" Width="*"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="dgEmployeeTimeBreakClock" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False" Visibility="Hidden" Margin="10,26,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="True" VerticalAlignment="Top" Width="785" Height="352" Background="#FFABABAC" Grid.Row="1">
+        <DataGrid x:Name="dgEmployeeTimeBreakClock" HorizontalAlignment="Left" CellEditEnding="dgEmployeeTimeBreakClock_CellEditEnding" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False" Visibility="Hidden" Margin="10,26,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="False" VerticalAlignment="Top" Width="785" Height="352" Background="#FFABABAC" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=BreakStartDateTime}" ClipboardContentBinding="{x:Null}" Header="Break Start" Width="200"/>
-                <DataGridTextColumn Binding="{Binding Path=BreakEndDateTime}" ClipboardContentBinding="{x:Null}" Header="Break End" Width="200"/>
-                <DataGridTextColumn Binding="{Binding Path=NumMinutesBreak}" ClipboardContentBinding="{x:Null}" Header="#Minutes" Width="120"/>
-                <DataGridTextColumn Binding="{Binding Path=Description}" ClipboardContentBinding="{x:Null}" Header="Break Reason" Width="120"/>
-                <DataGridTextColumn Binding="{Binding Path=Paid}" ClipboardContentBinding="{x:Null}" Header="Paid" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=BreakStartDateTime}" IsReadOnly="False" ClipboardContentBinding="{x:Null}" Header="Break Start" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path=BreakEndDateTime}" IsReadOnly="False" ClipboardContentBinding="{x:Null}" Header="Break End" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path=NumMinutesBreak}" IsReadOnly="True" ClipboardContentBinding="{x:Null}" Header="#Minutes" Width="120"/>
+                <DataGridTextColumn Binding="{Binding Path=Description}" IsReadOnly="True" ClipboardContentBinding="{x:Null}" Header="Break Reason" Width="120"/>
+                <DataGridTextColumn Binding="{Binding Path=Paid}" IsReadOnly="True" ClipboardContentBinding="{x:Null}" Header="Paid" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Rectangle Fill="LightBlue" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Stroke="LightBlue" VerticalAlignment="Top" Width="785" Grid.Row="1"/>

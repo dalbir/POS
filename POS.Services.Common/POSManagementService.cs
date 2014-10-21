@@ -247,7 +247,7 @@ namespace POS.Services.Common
         }
         #endregion
 
-        #region Tax related Repositories
+        #region Tax Services
         // retriving tax rates for tax rates form
         public Tax_RateClass RetriveTaxRate(Tax_RateClass objTaxRate)
         {
@@ -719,7 +719,7 @@ namespace POS.Services.Common
         }
         #endregion
 
-        #region
+        #region [Time Clock Management]
         public DataTable filldagaGrid(Time_ClockClass objTimeClockClass)
         {
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
@@ -755,7 +755,14 @@ namespace POS.Services.Common
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
             return objTimeClockMangRepository.updateClockDateTime(objTimeClockClass);
         }
+        public Time_Clock_BreaksClass updateBreckClock(Time_Clock_BreaksClass objTimeClockClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.updateBreckClock(objTimeClockClass);
+        }
         #endregion
+
+
 
 
 

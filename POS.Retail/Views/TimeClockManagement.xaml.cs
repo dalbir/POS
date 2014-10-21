@@ -53,6 +53,11 @@ namespace POS.Retail.Views
                 txtStartDate.SelectedDate = DateTime.Today.AddDays(-10);
                 txtEndDate.SelectedDate = DateTime.Today;
                 btnBack.Visibility = Visibility.Hidden;
+                btnDeleteEntry.IsEnabled = true;
+                btnModifyCloseout.IsEnabled = true;
+                btnReprint.IsEnabled = true;
+                bntDeleteClockReport.IsEnabled = true;
+                bntChangeJobCode.IsEnabled = true;
                 dgEmpTimeClock();
             }
             catch (Exception)
@@ -69,6 +74,15 @@ namespace POS.Retail.Views
         {
             try
             {
+                dgEmployeeTimeClock.Visibility = Visibility.Visible;
+                dgEmployeeTimeBreakClock.Visibility = Visibility.Hidden;
+                this.btnBack.Visibility = Visibility.Hidden;
+                btnDeleteEntry.IsEnabled = true;
+                btnModifyCloseout.IsEnabled = true;
+                btnReprint.IsEnabled = true;
+                bntDeleteClockReport.IsEnabled = true;
+                bntChangeJobCode.IsEnabled = true;
+                //
                 Time_ClockClass objTimeClockClass = new Time_ClockClass();
                 objTimeClockClass.StartDateTime = Convert.ToDateTime(txtStartDate.SelectedDate);
                 objTimeClockClass.EndDateTime = Convert.ToDateTime(txtEndDate.SelectedDate);
@@ -95,6 +109,7 @@ namespace POS.Retail.Views
         private void cmbCashier_DropDownClosed(object sender, EventArgs e)
         {
             dgEmpTimeClock();
+
         }
 
         private void txtStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -113,6 +128,12 @@ namespace POS.Retail.Views
             dgEmployeeTimeClock.Visibility = Visibility.Visible;
             dgEmployeeTimeBreakClock.Visibility = Visibility.Hidden;
             this.btnBack.Visibility = Visibility.Hidden;
+
+            btnDeleteEntry.IsEnabled = true;
+            btnModifyCloseout.IsEnabled = true;
+            btnReprint.IsEnabled = true;
+            bntDeleteClockReport.IsEnabled = true;
+            bntChangeJobCode.IsEnabled = true;
         }
 
         private void btnDeleteEntry_Click(object sender, RoutedEventArgs e)
@@ -219,10 +240,10 @@ namespace POS.Retail.Views
 
             }
         }
-
+        public int TimeClockID;
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            fillBreakDg();
+            fillBreakDg();  
         }
         private void fillBreakDg()
         {
@@ -235,10 +256,17 @@ namespace POS.Retail.Views
                 DataTable dt = objPOSManagementService.getClockBreak(objTimeClockBreakClass);
                 if(dt.Rows.Count > 0)
                 {
+                    TextBlock id = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                    TimeClockID = Convert.ToInt32(id.Text);
                     dgEmployeeTimeClock.Visibility = Visibility.Hidden;
                     dgEmployeeTimeBreakClock.Visibility = Visibility.Visible;
                     dgEmployeeTimeBreakClock.ItemsSource = dt.DefaultView;
                     btnBack.Visibility = Visibility.Visible;
+                    btnDeleteEntry.IsEnabled = false;
+                    btnModifyCloseout.IsEnabled = false;
+                    btnReprint.IsEnabled = false;
+                    bntDeleteClockReport.IsEnabled = false;
+                    bntChangeJobCode.IsEnabled = false;
                 }
                 else
                 {
@@ -257,7 +285,11 @@ namespace POS.Retail.Views
             dgEmployeeTimeClock.Visibility = Visibility.Visible;
             dgEmployeeTimeBreakClock.Visibility = Visibility.Hidden;
             this.btnBack.Visibility = Visibility.Hidden;
-            
+            btnDeleteEntry.IsEnabled = true;
+            btnModifyCloseout.IsEnabled = true;
+            btnReprint.IsEnabled = true;
+            bntDeleteClockReport.IsEnabled = true;
+            bntChangeJobCode.IsEnabled = true;       
         }
 
         private void dgEmployeeTimeClock_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -279,11 +311,25 @@ namespace POS.Retail.Views
                     int col_index = col1.DisplayIndex;
                     if(col_index == 3)
                     {
+                        TextBlock startDate = (dgEmployeeTimeClock.Columns[4].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        string starDate = startDate.Text;
+                        if (Convert.ToDateTime(t.Text) > Convert.ToDateTime(starDate))
+                        {
+                            MessageBox.Show("Start date time must be before end date time", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
                         objTimeClockClass.updateColumn = "StartDateTime";
                         objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text);
                     }
                     else if(col_index == 4)
                     {
+                        TextBlock startDate = (dgEmployeeTimeClock.Columns[3].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        string starDate = startDate.Text;
+                        if(Convert.ToDateTime(t.Text) < Convert.ToDateTime(starDate))
+                        {
+                            MessageBox.Show("Start date time must be before end date time","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                            return;
+                        }
                         objTimeClockClass.updateColumn = "EndDateTime";
                         objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text);
                     }
@@ -296,8 +342,7 @@ namespace POS.Retail.Views
                 else
                 {
                     dgEmpTimeClock();
-                    MessageBox.Show("You have entered an invalid Date formate please ReEnter.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                   
+                    MessageBox.Show("You have entered an invalid Date please ReEnter. Formate: MM/dd/yyyy h:m:s tt.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);  
                 }
             }
             catch (Exception)
@@ -309,13 +354,74 @@ namespace POS.Retail.Views
         {
             try
             {
-                String dateFormat = "MM/dd/yyyy hh:mm:ss";
+                String dateFormat = "MM/dd/yyyy h:m:s tt";
                 DateTime.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
                 return true;
             }
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        private void dgEmployeeTimeBreakClock_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            try
+            {
+
+                Time_Clock_BreaksClass objTimeClockClass = new Time_Clock_BreaksClass();
+                objTimeClockClass.ID = TimeClockID;               
+                objTimeClockClass.Store_ID = "1001";
+                TextBox t = e.EditingElement as TextBox;  // Assumes columns are all TextBoxes
+                DataGridColumn dgc = e.Column;
+                if (IsValidDateFormat(t.Text) == true)
+                {
+                    DataGridColumn col1 = e.Column;
+                    int col_index = col1.DisplayIndex;
+                    if (col_index == 0)
+                    {
+                        TextBlock startDate = (dgEmployeeTimeBreakClock.Columns[1].GetCellContent(dgEmployeeTimeBreakClock.SelectedItem) as TextBlock);
+                        string starDate = startDate.Text;
+                        if (Convert.ToDateTime(t.Text) > Convert.ToDateTime(starDate))
+                        {
+                            MessageBox.Show("Start date time must be before end date time", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                        objTimeClockClass.updateColumn = "BreakStartDateTime";
+                        objTimeClockClass.whereColumn = "BreakEndDateTime";
+                        objTimeClockClass.whereColumnValue = Convert.ToDateTime(starDate);
+                        objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text);
+                    }
+                    else if (col_index == 1)
+                    {
+                        TextBlock endDate = (dgEmployeeTimeBreakClock.Columns[0].GetCellContent(dgEmployeeTimeBreakClock.SelectedItem) as TextBlock);
+                        string EndDat = endDate.Text;
+                        if (Convert.ToDateTime(t.Text) < Convert.ToDateTime(EndDat))
+                        {
+                            MessageBox.Show("Start date time must be before end date time", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                        objTimeClockClass.whereColumn = "BreakStartDateTime";
+                        objTimeClockClass.whereColumnValue = Convert.ToDateTime(EndDat);
+                        objTimeClockClass.updateColumn = "BreakEndDateTime";
+                        objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text); 
+                    }
+                    objPOSManagementService.updateBreckClock(objTimeClockClass);
+                    if (objTimeClockClass.IsSuccessfull == true)
+                    {
+                        fillBreakDg();
+                    }
+                }
+                else
+                {
+                    fillBreakDg();
+                    MessageBox.Show("You have entered an invalid Date please ReEnter. Formate: MM/dd/yyyy h:m:s tt", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 

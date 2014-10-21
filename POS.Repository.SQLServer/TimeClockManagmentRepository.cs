@@ -136,5 +136,18 @@ namespace POS.Repository.SQLServer
             }
             return objTimeClockClass;
         }
+
+        public Time_Clock_BreaksClass updateBreckClock(Time_Clock_BreaksClass objTimeClockClass)
+        {
+            try
+            {
+                int result = objSQLServerRepository.ExecuteNonQuery("update Time_Clock_Breaks set "+ objTimeClockClass.updateColumn +" = '"+ objTimeClockClass.updateValeDate +"' where ID = '"+ objTimeClockClass.ID +"'  and Store_ID = '"+ objTimeClockClass.Store_ID +"' and "+ objTimeClockClass.whereColumn +" = '"+ objTimeClockClass.whereColumnValue +"'");
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objTimeClockClass;
+        }
     }
 }
