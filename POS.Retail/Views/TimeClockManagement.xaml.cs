@@ -16,6 +16,7 @@ using POS.Domain.Common;
 using POS.Retail.Common;
 using System.Data;
 using POS.Domain.Common.Employee;
+using System.Globalization;
 
 namespace POS.Retail.Views
 {
@@ -51,6 +52,7 @@ namespace POS.Retail.Views
                 cmbCashier.SelectedIndex = 0;
                 txtStartDate.SelectedDate = DateTime.Today.AddDays(-10);
                 txtEndDate.SelectedDate = DateTime.Today;
+                btnBack.Visibility = Visibility.Hidden;
                 dgEmpTimeClock();
             }
             catch (Exception)
@@ -70,6 +72,7 @@ namespace POS.Retail.Views
                 Time_ClockClass objTimeClockClass = new Time_ClockClass();
                 objTimeClockClass.StartDateTime = Convert.ToDateTime(txtStartDate.SelectedDate);
                 objTimeClockClass.EndDateTime = Convert.ToDateTime(txtEndDate.SelectedDate);
+                objTimeClockClass.Store_ID = "1001";
                 if(cmbCashier.Text == "All")
                 {
                     objTimeClockClass.Cashier_ID = "%";
@@ -107,6 +110,9 @@ namespace POS.Retail.Views
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             dgEmpTimeClock();
+            dgEmployeeTimeClock.Visibility = Visibility.Visible;
+            dgEmployeeTimeBreakClock.Visibility = Visibility.Hidden;
+            this.btnBack.Visibility = Visibility.Hidden;
         }
 
         private void btnDeleteEntry_Click(object sender, RoutedEventArgs e)
@@ -119,9 +125,9 @@ namespace POS.Retail.Views
                     if (result == MessageBoxResult.Yes)
                     {
                         Time_ClockClass objTimeClockClass = new Time_ClockClass();
-                        TextBlock b = (dgEmployeeTimeClock.Columns[0].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        TextBlock b = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                         objTimeClockClass.ID = Convert.ToInt32(b.Text);
-                        TextBlock c = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        TextBlock c = (dgEmployeeTimeClock.Columns[2].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                         objTimeClockClass.Cashier_ID = c.Text;
                         objPOSManagementService.deleteItemRecord(objTimeClockClass);
                         if(objTimeClockClass.IsSuccessfull == true)
@@ -153,9 +159,9 @@ namespace POS.Retail.Views
                     if (result == MessageBoxResult.Yes)
                     {
                         Time_ClockClass objTimeClockClass = new Time_ClockClass();
-                        TextBlock b = (dgEmployeeTimeClock.Columns[0].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        TextBlock b = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                         objTimeClockClass.ID = Convert.ToInt32(b.Text);
-                        TextBlock c = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        TextBlock c = (dgEmployeeTimeClock.Columns[2].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                         objTimeClockClass.Cashier_ID = c.Text;
                         objPOSManagementService.deleteTimeOut(objTimeClockClass);
                         if (objTimeClockClass.IsSuccessfull == true)
@@ -179,13 +185,13 @@ namespace POS.Retail.Views
             {
                 EmployeeJobCodeClass objEmployeeJobCodeClass = new EmployeeJobCodeClass();
                 Time_ClockClass objTimeClockClass = new Time_ClockClass();
-                TextBlock b = (dgEmployeeTimeClock.Columns[0].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);     
-                TextBlock c = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                TextBlock b = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);     
+                TextBlock c = (dgEmployeeTimeClock.Columns[2].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                 objEmployeeJobCodeClass.Cashier_ID = c.Text;
                 DataTable dt = objPOSManagementService.getEmpjobCodes(objEmployeeJobCodeClass);
                 if(dt.Rows.Count > 0)
                 {
-                    TextBlock d = (dgEmployeeTimeClock.Columns[6].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                    TextBlock d = (dgEmployeeTimeClock.Columns[7].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                     if(d.Text != "" && dt.Rows.Count == 1)
                     {
                         MessageBox.Show("This Employee only has one possible job code to assign. Add more job codes to this Employee using Employee Maintenance.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -211,6 +217,105 @@ namespace POS.Retail.Views
             catch (Exception)
             {
 
+            }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            fillBreakDg();
+        }
+        private void fillBreakDg()
+        {
+            try
+            {
+                Time_Clock_BreaksClass objTimeClockBreakClass = new Time_Clock_BreaksClass();
+                TextBlock b = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock); 
+                objTimeClockBreakClass.Store_ID = "1001";
+                objTimeClockBreakClass.ID = Convert.ToInt32(b.Text);
+                DataTable dt = objPOSManagementService.getClockBreak(objTimeClockBreakClass);
+                if(dt.Rows.Count > 0)
+                {
+                    dgEmployeeTimeClock.Visibility = Visibility.Hidden;
+                    dgEmployeeTimeBreakClock.Visibility = Visibility.Visible;
+                    dgEmployeeTimeBreakClock.ItemsSource = dt.DefaultView;
+                    btnBack.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    MessageBox.Show("There are no breaks associated with this Shift.", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            dgEmployeeTimeClock.Visibility = Visibility.Visible;
+            dgEmployeeTimeBreakClock.Visibility = Visibility.Hidden;
+            this.btnBack.Visibility = Visibility.Hidden;
+            
+        }
+
+        private void dgEmployeeTimeClock_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            try
+            {
+               
+                Time_ClockClass objTimeClockClass = new Time_ClockClass();
+                TextBlock id = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                TextBlock empid = (dgEmployeeTimeClock.Columns[2].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                objTimeClockClass.ID = Convert.ToInt32(id.Text);
+                objTimeClockClass.Cashier_ID = empid.Text;
+                objTimeClockClass.Store_ID = "1001";
+                TextBox t = e.EditingElement as TextBox;  // Assumes columns are all TextBoxes
+                DataGridColumn dgc = e.Column;
+                if (IsValidDateFormat(t.Text) == true)
+                {
+                    DataGridColumn col1 = e.Column;
+                    int col_index = col1.DisplayIndex;
+                    if(col_index == 3)
+                    {
+                        objTimeClockClass.updateColumn = "StartDateTime";
+                        objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text);
+                    }
+                    else if(col_index == 4)
+                    {
+                        objTimeClockClass.updateColumn = "EndDateTime";
+                        objTimeClockClass.updateValeDate = Convert.ToDateTime(t.Text);
+                    }
+                    objPOSManagementService.updateClockDate(objTimeClockClass);
+                    if(objTimeClockClass.IsSuccessfull == true)
+                    {
+                        dgEmpTimeClock();
+                    }
+                }
+                else
+                {
+                    dgEmpTimeClock();
+                    MessageBox.Show("You have entered an invalid Date formate please ReEnter.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                   
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+        private bool IsValidDateFormat(string date)
+        {
+            try
+            {
+                String dateFormat = "MM/dd/yyyy hh:mm:ss";
+                DateTime.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 

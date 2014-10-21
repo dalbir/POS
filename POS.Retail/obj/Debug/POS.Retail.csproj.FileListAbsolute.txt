@@ -276,12 +276,12 @@ C:\Users\Asad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
 C:\Users\Asad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.dll
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.pdb
@@ -350,6 +350,7 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\SelectVendorFor
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\StoreStationForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TaxAppliedChargePopup.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TaxSetupForm.baml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeClockManagement.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TypeofRuleCoupon.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\VendorMaintForm.baml
@@ -415,6 +416,7 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\SelectVendorFor
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\StoreStationForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TaxAppliedChargePopup.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TaxSetupForm.g.cs
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeClockManagement.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TypeofRuleCoupon.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\VendorMaintForm.g.cs
@@ -425,5 +427,3 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.Properties
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.csproj.GenerateResource.Cache
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeClockManagement.baml
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\TimeClockManagement.g.cs

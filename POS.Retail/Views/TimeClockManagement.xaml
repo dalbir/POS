@@ -4,9 +4,10 @@
         Title="Time Clock Management" Height="545.075" WindowState="Normal" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow"  Width="811">
     <Grid Margin="0,0,0,-2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="433*"/>
-            <RowDefinition Height="40*"/>
             <RowDefinition Height="49*"/>
+            <RowDefinition Height="382*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="48*"/>
         </Grid.RowDefinitions>
         <Label Content="View time for cashier:" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top"/>
         <Label Content="Start Date" HorizontalAlignment="Left" Margin="250,2,0,0" VerticalAlignment="Top"/>
@@ -23,7 +24,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="bntExit" Content="E_xit" HorizontalAlignment="Left" Margin="653,34,0,8" Width="131" FontSize="16" Click="bntExit_Click" Grid.RowSpan="2" Grid.Row="1">
+        <Button x:Name="bntExit" Content="E_xit" HorizontalAlignment="Left" Margin="653,34,0,8" Width="131" FontSize="16" Click="bntExit_Click" Grid.RowSpan="2" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0.736"/>
@@ -33,7 +34,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnPayrollExport" Content="Payroll Export" HorizontalAlignment="Left" Margin="516,34,0,8" Width="132" FontSize="16" Grid.RowSpan="2" Grid.Row="1">
+        <Button x:Name="btnPayrollExport" Content="Payroll Export" HorizontalAlignment="Left" Margin="516,34,0,8" Width="132" FontSize="16" Grid.RowSpan="2" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFEBEBEB" Offset="0.745"/>
@@ -42,7 +43,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnModifyCloseout" Content="Modify Closeout" HorizontalAlignment="Left" Margin="328,3,0,8" Width="146" FontSize="16" Grid.Row="2">
+        <Button x:Name="btnModifyCloseout" Content="Modify Closeout" HorizontalAlignment="Left" Margin="328,3,0,8" Width="146" FontSize="16" Grid.Row="3">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -52,7 +53,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnDeleteEntry" Click="btnDeleteEntry_Click" Content="Delete Entry" HorizontalAlignment="Left" Margin="173,3,0,8" Width="150" FontSize="16" Grid.Row="2">
+        <Button x:Name="btnDeleteEntry" Click="btnDeleteEntry_Click" Content="Delete Entry" HorizontalAlignment="Left" Margin="173,3,0,8" Width="150" FontSize="16" Grid.Row="3">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -62,7 +63,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="bntChangeJobCode" Content="Change Jobcode" HorizontalAlignment="Left" Click="bntChangeJobCode_Click" Margin="10,3,0,8" Width="158" FontSize="16" Grid.Row="2">
+        <Button x:Name="bntChangeJobCode" Content="Change Jobcode" HorizontalAlignment="Left" Click="bntChangeJobCode_Click" Margin="10,3,0,8" Width="158" FontSize="16" Grid.Row="3">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -72,7 +73,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnReprint" Content="Reprint Shift Report" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="158" Height="35" AllowDrop="True" FontSize="16" Grid.Row="1">
+        <Button x:Name="btnReprint" Content="Reprint Shift Report" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="158" Height="35" AllowDrop="True" FontSize="16" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -82,7 +83,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="bntDeleteClockReport" Content="Delete Clock-Out" Click="bntDeleteClockReport_Click" HorizontalAlignment="Left" Margin="173,3,0,0" VerticalAlignment="Top" Width="150" Height="35" FontSize="16" Grid.Row="1">
+        <Button x:Name="bntDeleteClockReport" Content="Delete Clock-Out" Click="bntDeleteClockReport_Click" HorizontalAlignment="Left" Margin="173,3,0,0" VerticalAlignment="Top" Width="150" Height="35" FontSize="16" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -92,20 +93,42 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <DataGrid x:Name="dgEmployeeTimeClock" HorizontalAlignment="Left" AutoGenerateColumns="False" Margin="10,53,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" IsReadOnly="True" VerticalAlignment="Top" Width="774" Height="374" Background="#FFABABAC">
-            
+        <DataGrid x:Name="dgEmployeeTimeClock" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False" Margin="10,24,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="False" VerticalAlignment="Top" Width="785" Height="352" Background="#FFABABAC" Grid.Row="1" CellEditEnding="dgEmployeeTimeClock_CellEditEnding">
+
             <DataGrid.Columns>
-                
-                <DataGridTextColumn Binding="{Binding Path=ID}" ClipboardContentBinding="{x:Null}" Header="ID" Width="70"/>
-                <DataGridTextColumn Binding="{Binding Path=Cashier_ID}" ClipboardContentBinding="{x:Null}" Header="Employee ID" Width="150"/>
-                <DataGridTextColumn Binding="{Binding Path=StartDateTime}" ClipboardContentBinding="{x:Null}" Header="Start" Width="120"/>
-                <DataGridTextColumn Binding="{Binding Path=EndDateTime}" ClipboardContentBinding="{x:Null}" Header="End" Width="120"/>
-                <DataGridTextColumn Binding="{Binding Path=NumMinutes}" ClipboardContentBinding="{x:Null}" Header="#Munutes" Width="80"/>
+                <DataGridTemplateColumn Header="" MinWidth="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Expander Header="{Binding SomeText}">
+                                <Hyperlink Click="Hyperlink_Click">Time Clock Breaks</Hyperlink>
+                            </Expander>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=ID}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True" Width="60"/>
+                <DataGridTextColumn Binding="{Binding Path=Cashier_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="True" Header="Employee ID" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=StartDateTime}" ClipboardContentBinding="{x:Null}" IsReadOnly="False" Header="Start" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Path=EndDateTime}" ClipboardContentBinding="{x:Null}" Header="End" IsReadOnly="False" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Path=NumMinutes}" ClipboardContentBinding="{x:Null}" Header="#Munutes" IsReadOnly="True" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Path=Wages}" ClipboardContentBinding="{x:Null}" Header="Wages" Width="80"/>
-                <DataGridTextColumn Binding="{Binding Path=JobCodeID}" ClipboardContentBinding="{x:Null}" Header="Job Code" Width="*"/>
-               
+                <DataGridTextColumn Binding="{Binding Path=JobCodeID}" ClipboardContentBinding="{x:Null}" Header="Job Code" IsReadOnly="True" Width="*"/>
+
             </DataGrid.Columns>
         </DataGrid>
-
+        <DataGrid x:Name="dgEmployeeTimeBreakClock" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False" Visibility="Hidden" Margin="10,26,0,0" CanUserAddRows="False" AlternatingRowBackground="AliceBlue" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="True" VerticalAlignment="Top" Width="785" Height="352" Background="#FFABABAC" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=BreakStartDateTime}" ClipboardContentBinding="{x:Null}" Header="Break Start" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path=BreakEndDateTime}" ClipboardContentBinding="{x:Null}" Header="Break End" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path=NumMinutesBreak}" ClipboardContentBinding="{x:Null}" Header="#Minutes" Width="120"/>
+                <DataGridTextColumn Binding="{Binding Path=Description}" ClipboardContentBinding="{x:Null}" Header="Break Reason" Width="120"/>
+                <DataGridTextColumn Binding="{Binding Path=Paid}" ClipboardContentBinding="{x:Null}" Header="Paid" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Rectangle Fill="LightBlue" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Stroke="LightBlue" VerticalAlignment="Top" Width="785" Grid.Row="1"/>
+        <Button Content="" HorizontalAlignment="Left" x:Name="btnBack" Click="Button_Click" Margin="669,1,0,0" Grid.Row="1" VerticalAlignment="Top" Width="51">
+            <Button.Background>
+                <ImageBrush ImageSource="/POS.Retail;component/Images/right1.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

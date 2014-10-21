@@ -17,7 +17,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtempClock = objSQLServerRepository.GetDataTable("select ID, Cashier_ID, StartDateTime, EndDateTime, NumMinutes, Wages, JobCodeID from Time_Clock where Cashier_ID like '" + objTimeClockClass.Cashier_ID + "' and (StartDateTime >= '" + objTimeClockClass.StartDateTime + "') and ((EndDateTime <= '" + objTimeClockClass.EndDateTime + "') or (EndDateTime is null))");
+                dtempClock = objSQLServerRepository.GetDataTable("select ID, Cashier_ID, StartDateTime, EndDateTime, NumMinutes, Wages, JobCodeID from Time_Clock where Cashier_ID like '" + objTimeClockClass.Cashier_ID + "' and (StartDateTime >= '" + objTimeClockClass.StartDateTime + "') and ((EndDateTime <= '" + objTimeClockClass.EndDateTime + "') or (EndDateTime is null)) and Store_ID = '"+ objTimeClockClass.Store_ID +"'");
             }
             catch (Exception ex)
             {
@@ -98,6 +98,41 @@ namespace POS.Repository.SQLServer
             catch (Exception ex)
             {
                 CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objTimeClockClass;
+        }
+        DataTable dtTimeClockBreak;
+        public DataTable getTimeClockBreak(Time_Clock_BreaksClass objTimeClockBreakClass)
+        {
+            try
+            {
+                dtTimeClockBreak = objSQLServerRepository.GetDataTable("select * from Time_Clock_Breaks where ID = '"+ objTimeClockBreakClass.ID +"' and Store_ID = '"+ objTimeClockBreakClass.Store_ID +"'");
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return dtTimeClockBreak;
+        }
+
+        public Time_ClockClass updateClockDateTime(Time_ClockClass objTimeClockClass)
+        {
+            try
+            {
+                int result = objSQLServerRepository.ExecuteNonQuery("update Time_Clock set "+ objTimeClockClass.updateColumn +" = '"+ objTimeClockClass.updateValeDate +"' where ID = '"+ objTimeClockClass.ID +"' and Cashier_ID = '"+ objTimeClockClass.Cashier_ID +"' and Store_ID = '"+ objTimeClockClass.Store_ID +"'");
+                if(result > 0)
+                {
+                    objTimeClockClass.IsSuccessfull = true;
+                }
+                else
+                {
+                    objTimeClockClass.IsSuccessfull = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                
+               CustomLogging.Log("[SQLServerRepository:]", ex.Message);
             }
             return objTimeClockClass;
         }

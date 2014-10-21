@@ -69,8 +69,7 @@ namespace POS.Retail
 
                     wp_modifier_btn.Children.Add(btn);
                     btn.Click += new RoutedEventHandler(enter_item);
-                }
-          
+                }         
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -57,6 +57,10 @@ namespace POS.Domain.Common
         public decimal Total_SecCurr_Sales { get; set; }
         public decimal Credit_Tips_Withheld { get; set; }
         public decimal Total_MP_Sales { get; set; }
-        public decimal Total_MPDiscount_Sales { get; set; }  
+        public decimal Total_MPDiscount_Sales { get; set; } 
+ 
+      //
+        public string updateColumn { get; set; }
+        public DateTime updateValeDate { get; set; }
     }
 }
