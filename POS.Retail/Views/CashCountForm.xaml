@@ -1,0 +1,72 @@
+﻿<Window x:Class="POS.Retail.Views.CashCountForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CashCountForm" Height="579.255" Width="744.682" Background="LightYellow" WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="None">
+    <Grid Margin="0,1,0,-1" x:Name="mainGrid">
+        <Label Content="ENTER CASH COUNT" Background="LightBlue" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="20" Height="35"/>
+        <TextBox x:Name="txtPennies" GotFocus="txtPennies_GotFocus" TextChanged="txtPennies_TextChanged" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="108,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="1"/>
+        <TextBlock Text="Pennies $0.01" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="19,52,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtTwenties" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="592,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="9"/>
+        <TextBlock Text="Twenties $20" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="503,52,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtNicles" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="108,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="2"/>
+        <TextBlock Text="Nickels $0.05" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="19,103,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtDimes" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="108,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="3"/>
+        <TextBlock Text="Dimes $0.10" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="19,155,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="txtQuarters" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="108,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="4"/>
+        <TextBlock Text="Quarters $0.25" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="19,203,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtHalfQuarters" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="108,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="5"/>
+        <TextBlock Text="Half Dollers $0.50" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="19,252,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtFiftes" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="592,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="10"/>
+        <TextBlock Text="Fifties $50" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="503,103,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBox x:Name="txtHundres" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="592,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="11"/>
+        <TextBlock Text="Hundreds $100" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="503,155,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtDoller" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="353,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="6"/>
+        <TextBlock Text="Dollers $1" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="264,52,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBox x:Name="txtFives" GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="353,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="7"/>
+        <TextBlock Text="Fives $5" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="264,103,0,0" VerticalAlignment="Top" Width="51"/>
+        <TextBox x:Name="txtTens"  GotFocus="txtPennies_GotFocus" HorizontalAlignment="Left" Height="27" BorderBrush="LightBlue" HorizontalContentAlignment="Center" FontSize="16" Margin="353,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Text="0" TabIndex="8"/>
+        <TextBlock x:Name="lblTotal" Text="Tens $10" TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Left" Margin="264,155,0,0" VerticalAlignment="Top" Width="51"/>
+        <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="45" BorderBrush="Blue" Background="Black"  Foreground="LightGreen" HorizontalContentAlignment="Center" FontSize="24" Margin="65,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontWeight="Bold"/>
+        <TextBlock Text="Total" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" Foreground="Blue" HorizontalAlignment="Left" Margin="87,329,0,0" VerticalAlignment="Top" Width="137" Height="28"/>
+        <Button x:Name="btnClear" Content="Clear" Click="btnClear_Click" HorizontalAlignment="Left" Margin="67,405,0,0" VerticalAlignment="Top" Width="88" Height="46" AllowDrop="True" FontSize="16">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFF38706" Offset="0.854"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Click="btnCancel_Click" Margin="196,403,0,0" VerticalAlignment="Top" Width="88" Height="48" AllowDrop="True" FontSize="16">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFF38706" Offset="0.854"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="67,456,0,69" Width="217" FontSize="16">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
+                    <GradientStop Color="#FFEBEBEB" Offset="0.745"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.64"/>
+                    <GradientStop Color="#FF6798EE" Offset="0.929"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="364,278,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="456,278,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="544,278,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="364,350,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="456,350,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="544,350,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn1" Content="1" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="364,420,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn2" Content="2" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="456,420,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn3" Content="3" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="544,420,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+        <Button x:Name="btn0" Content="0" HorizontalAlignment="Left" BorderBrush="LightBlue" Margin="456,486,0,0" VerticalAlignment="Top" Width="64" Height="48" AllowDrop="True" FontSize="20" Background="#FFF7F3F3" Click="btn0_Click"/>
+
+    </Grid>
+</Window>

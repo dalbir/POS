@@ -311,9 +311,9 @@ namespace POS.Retail.Views
                     int col_index = col1.DisplayIndex;
                     if(col_index == 3)
                     {
-                        TextBlock startDate = (dgEmployeeTimeClock.Columns[4].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
-                        string starDate = startDate.Text;
-                        if (Convert.ToDateTime(t.Text) > Convert.ToDateTime(starDate))
+                        TextBlock ed = (dgEmployeeTimeClock.Columns[4].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                        string endDate = ed.Text;
+                        if (Convert.ToDateTime(t.Text) > Convert.ToDateTime(endDate))
                         {
                             MessageBox.Show("Start date time must be before end date time", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
@@ -417,6 +417,33 @@ namespace POS.Retail.Views
                     fillBreakDg();
                     MessageBox.Show("You have entered an invalid Date please ReEnter. Formate: MM/dd/yyyy h:m:s tt", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnModifyCloseout_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TextBlock ed = (dgEmployeeTimeClock.Columns[4].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                string endDate = ed.Text;
+                if(endDate != "")
+                {
+                    var result = MessageBox.Show("Are you sure you would like to modify this Cashier's Closeout?","Question",MessageBoxButton.YesNo,MessageBoxImage.Question);
+                    if(result == MessageBoxResult.Yes)
+                    {
+                        NumberKeypaid objNumPaid = new NumberKeypaid(501);
+                        objNumPaid.ShowDialog();
+                       if(objNumPaid.set_change_value != null)
+                       {
+                           CashCountForm obj = new CashCountForm();
+                           obj.ShowDialog();
+                       }
+                    }
                 }
             }
             catch (Exception)

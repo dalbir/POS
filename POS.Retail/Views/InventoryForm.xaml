@@ -47,7 +47,7 @@
                 <TextBox FontWeight="Bold" Height="26" HorizontalAlignment="Left" Margin="128,35,0,0" Name="txt_coupon_discounted_price" TabIndex="3" VerticalAlignment="Top" Width="127" Text="0" />
             </Grid>
         </Grid>
-        <TabControl Height="324" Margin="0,208,0,0" Name="tabcon_inventory" VerticalAlignment="Top" FontWeight="Bold" Visibility="Hidden">
+        <TabControl Height="324" Margin="0,208,0,0" Name="tabcon_inventory" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible">
             <TabItem Header="Optional Info       " Name="tabItem1">
                 <Grid>
                     <TabControl Height="261" Margin="6,6,6,0" Name="tabControl2" VerticalAlignment="Top" FontFamily="Segoe UI">
@@ -661,7 +661,7 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Grid Height="296" HorizontalAlignment="Left" Margin="10,208,0,0" Name="Grid_choice_item" VerticalAlignment="Top" Width="898" Visibility="Visible">
+        <Grid Height="296" HorizontalAlignment="Left" Margin="10,208,0,0" Name="Grid_choice_item" VerticalAlignment="Top" Width="898" Visibility="Hidden">
             <WindowsFormsHost Height="191" HorizontalAlignment="Left" Margin="51,38,0,0" OpacityMask="#B3000000" VerticalAlignment="Top" Width="785">
                 <my:DataGridView x:Name="DG_choice_items" AllowUserToAddRows="False" AllowUserToDeleteRows="False" AutoGenerateColumns="False" ReadOnly="True">
                     <my:DataGridView.Columns>

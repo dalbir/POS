@@ -80,6 +80,9 @@
     <Compile Include="Views\CalenderTimeForm.xaml.cs">
       <DependentUpon>CalenderTimeForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CashCountForm.xaml.cs">
+      <DependentUpon>CashCountForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CategorySelectForm.xaml.cs">
       <DependentUpon>CategorySelectForm.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CalenderTimeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CashCountForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

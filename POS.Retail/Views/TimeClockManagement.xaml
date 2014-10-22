@@ -43,7 +43,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnModifyCloseout" Content="Modify Closeout" HorizontalAlignment="Left" Margin="328,3,0,8" Width="146" FontSize="16" Grid.Row="3">
+        <Button x:Name="btnModifyCloseout" Content="Modify Closeout" Click="btnModifyCloseout_Click" HorizontalAlignment="Left" Margin="328,3,0,8" Width="146" FontSize="16" Grid.Row="3">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>

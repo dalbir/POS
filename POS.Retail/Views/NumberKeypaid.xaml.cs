@@ -283,6 +283,10 @@ namespace POS.Retail
             {
                 lbl_keypaid.Content = "Enter Hourly overtime Wage";
             }
+            else if(flagge == 501)
+            {
+                lbl_keypaid.Content = "Enter Cash tips";
+            }
 
         }
 
@@ -566,6 +570,11 @@ namespace POS.Retail
             else if (flagge == 104)
             {
                 Value = txt_numbers.Text;
+                this.Close();
+            }
+            else if(flagge == 501)
+            {
+                change_value = txt_numbers.Text;
                 this.Close();
             }
             else
