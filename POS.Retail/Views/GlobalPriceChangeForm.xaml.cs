@@ -132,7 +132,7 @@ namespace POS.Retail
                     if (rb_select_items.IsChecked == true)
                     {
                         objInventoryClass.IsDeleted = 0;
-                        objInventoryClass.Dept_ID = cmb_ids.SelectedValue.ToString();
+                        objInventoryClass.Dept_ID = cmb_ids.Text.ToString();
                         objInventoryClass.Store_ID = "1001";
                         objInventoryClass.qryType = "Item";
                         objInventoryClass.ItemNum = cmb_ids.Text.ToString();
