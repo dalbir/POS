@@ -768,6 +768,35 @@ namespace POS.Services.Common
         }
         #endregion
 
+        #region Back Orderes
+
+        public BackOrdersClass LoadBackOrderesInfo(BackOrdersClass objBackOrdersClass)
+        {
+            BackOrdersRepository objBackOrdersRepository = new BackOrdersRepository();
+            return objBackOrdersClass = objBackOrdersRepository.LoadBackOrdersData(objBackOrdersClass);
+        }
+        //public DataTable LoadBackOrderesInfo1(BackOrdersClass objBackOrdersClass)
+        //{
+        //    BackOrdersRepository objBackOrdersRepository = new BackOrdersRepository();
+        //    return objBackOrdersRepository.LoadBackOrdersData1(objBackOrdersClass);
+        //}
+        public BackOrdersClass GetBackOrders(BackOrdersClass objBackOrdersClass)
+        {
+            BackOrdersRepository objBackOrdersRepository = new BackOrdersRepository();
+            return objBackOrdersClass = objBackOrdersRepository.FillBackOrders(objBackOrdersClass);
+        }
+        public BackOrdersClass DeleteBackOrders(BackOrdersClass objBackOrdersClass)
+        {
+            BackOrdersRepository objBackOrdersRepository = new BackOrdersRepository();
+            return objBackOrdersClass = objBackOrdersRepository.DeleteBackOrderes(objBackOrdersClass);
+        }
+        public string GetStatusAndType(BackOrdersClass objBackOrdersClass)
+        {
+            BackOrdersRepository objBackOrdersRepository = new BackOrdersRepository();
+            return objBackOrdersRepository.SelectBackOrdersInfo(objBackOrdersClass);
+        }
+        #endregion
+
 
 
 

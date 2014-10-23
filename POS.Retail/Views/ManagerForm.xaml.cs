@@ -326,15 +326,17 @@ namespace POS.Retail
 
         private void btn_back_order_Click(object sender, RoutedEventArgs e)
         {
-            if (objBackOrder.backOrederPosition == "manager")
-            {
-                MessageBox.Show("You Must Logged into Process Backorders", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            else if (objBackOrder.backOrederPosition == "cashier")
-            {
-                MessageBox.Show("welcome");
-            }
+            //if (objBackOrder.backOrederPosition == "manager")
+            //{
+            //    MessageBox.Show("You Must Logged into Process Backorders", "Run Time Support", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    return;
+            //}
+            //else if (objBackOrder.backOrederPosition == "cashier")
+            //{
+            BackOrdersForm objBo = new BackOrdersForm();
+            objBo.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            objBo.ShowDialog();
+            //}
         }
 
         private void btn_price_check_Click(object sender, RoutedEventArgs e)

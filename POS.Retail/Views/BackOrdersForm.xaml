@@ -1,0 +1,35 @@
+﻿<Window x:Class="POS.Retail.BackOrdersForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BackOrdersForm" Height="463.969" Width="842" Background="WhiteSmoke" WindowStyle="ToolWindow" Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="View Backorders" FontSize="16" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="175" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="10,74,0,0" x:Name="txtCustNo"  VerticalAlignment="Top" Width="107"  FontSize="16" TextChanged="txtCustNo_TextChanged" />
+        <Label Content="for customer #" FontSize="14" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="7,48,0,0" x:Name="label17_Copy" VerticalAlignment="Top" Width="111" />
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="138,74,0,0" x:Name="txtItemNo" TextChanged="txtItemNo_TextChanged" VerticalAlignment="Top" Width="107" FontSize="16"  />
+        <Label Content="for item #" FontSize="14" FontWeight="Normal" Height="30" HorizontalAlignment="Left" Margin="135,46,0,0" x:Name="label17_Copy1" VerticalAlignment="Top" Width="111" />
+        <RadioButton Content="All open backorders" x:Name="RbAllOpen" IsChecked="True"  FontSize="14"   HorizontalAlignment="Left" Margin="302,19,0,0" VerticalAlignment="Top" Checked="RbAllOpen_Checked"/>
+        <RadioButton Content="backorders covered by Stock"  x:Name="RbCovrdByStock"  Checked="RbCovrdByStock_Checked" FontSize="14" HorizontalAlignment="Left" Margin="303,39,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="backorders not covered by Stock" x:Name="RbNotCoveredByStock" Checked="RbNotCoveredByStock_Checked" FontSize="14" HorizontalAlignment="Left" Margin="304,60,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DgBackOrderes" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="LightCyan"  IsReadOnly="True" AutoGenerateColumns="False" FrozenColumnCount="2" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="224" Width="814" >
+            <DataGrid.Columns>
+                <DataGridTextColumn FontSize="12"  Header="Line #" Binding="{Binding Path= lineNumber}" Width="70"/>
+                <DataGridTextColumn FontSize="12" Header="BO #" Binding="{Binding Path= BONum}" Width="70"/>
+                <DataGridTextColumn FontSize="12" Header="Date" Binding="{Binding Path=Date}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Cust #" Binding="{Binding Path=CustNum}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Item #" Binding="{Binding Path=ItemNum}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Item Name" Binding="{Binding Path=ItemName}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Quantity" Binding="{Binding Path=Quan}" Width="120"/>
+                <DataGridTextColumn FontSize="12" Header="In Stock" Binding="{Binding Path=Instock}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Prepaid" Binding="{Binding Path=Prepaid}" Width="120" />
+                <DataGridTextColumn FontSize="12" Header="Invoice #" Binding="{Binding Path=Invoice_Number}" Width="120"/>
+                <DataGridTextColumn FontSize="12" Header="Status" Binding="{Binding Path=status}" Width="120" Visibility="Hidden"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="    Delete &#xa; Backorderes" Focusable="False" FontSize="16"  Height="64" HorizontalAlignment="Left" Margin="479,356,0,0" x:Name="btnDltBO" VerticalAlignment="Top" Width="105" Click="btnDltBO_Click" />
+        <Button Content="       Fill &#xA; Backorderes" Focusable="False" FontSize="16"  Height="64" HorizontalAlignment="Left" Margin="600,356,0,0" x:Name="btnFillBO" VerticalAlignment="Top" Width="105" Click="btnFillBO_Click" />
+        <Button Content=" Exit" Focusable="False" FontSize="16"  Height="64" HorizontalAlignment="Left" Margin="719,356,0,0" x:Name="btnExit" VerticalAlignment="Top" Width="105" Click="btnExit_Click"/>
+        <Label Content="Double-Click Item to Fill Backorderes" FontSize="16" HorizontalAlignment="Left" Margin="8,338,0,0" VerticalAlignment="Top" Width="357" FontFamily="Verdana" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace POS.Domain.Common
 {
@@ -13,7 +14,7 @@ namespace POS.Domain.Common
         public DateTime DateTime { get; set; }
         public string CustNum { get; set; }
         public string ItemNum { get; set; }
-        public float Quan { get; set; }
+        public double Quan { get; set; } //updated from float to double
         public string Type { get; set; }
         public string Status { get; set; }
         public int Invoice_Number { get; set; }
@@ -22,5 +23,8 @@ namespace POS.Domain.Common
 
        //
         public string backOrederPosition { get; set; }
+       //update
+        public DataTable LoadOrderes { get; set; }
+        public string flage { get; set; }
     }
 }

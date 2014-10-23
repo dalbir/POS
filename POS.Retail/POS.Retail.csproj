@@ -74,6 +74,9 @@
     <Compile Include="Common\CustomizeMessageBox.xaml.cs">
       <DependentUpon>CustomizeMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BackOrdersForm.xaml.cs">
+      <DependentUpon>BackOrdersForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CalenderForm.xaml.cs">
       <DependentUpon>CalenderForm.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,9 @@
     <Compile Include="Views\SearchInventoryForm.xaml.cs">
       <DependentUpon>SearchInventoryForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectBackOrderForm.xaml.cs">
+      <DependentUpon>SelectBackOrderForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectCustomerForm.xaml.cs">
       <DependentUpon>SelectCustomerForm.xaml</DependentUpon>
     </Compile>
@@ -249,6 +255,10 @@
     <Page Include="Common\CustomizeMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BackOrdersForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CalenderForm.xaml">
       <SubType>Designer</SubType>
@@ -480,6 +490,10 @@
     <Page Include="Views\SearchInventoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectBackOrderForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SelectCustomerForm.xaml">
       <SubType>Designer</SubType>
