@@ -170,6 +170,12 @@
     <Compile Include="Views\PaymentHistoryForm.xaml.cs">
       <DependentUpon>PaymentHistoryForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PayRollExportForm.xaml.cs">
+      <DependentUpon>PayRollExportForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayrollexportSettingForm.xaml.cs">
+      <DependentUpon>PayrollexportSettingForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PayTypeForm.xaml.cs">
       <DependentUpon>PayTypeForm.xaml</DependentUpon>
     </Compile>
@@ -440,6 +446,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PaymentHistoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayRollExportForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayrollexportSettingForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

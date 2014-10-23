@@ -54,7 +54,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
 
@@ -138,11 +138,7 @@ namespace POS.Retail
                             txt_ven_commis.Focus();
                             return;
                         }
-                        //if (txt_ven_email.Text.Length == 0 || txt_ven_email.Text.Length == 0)
-                        //{
-                        //    MessageBox.Show("email is not a valid formate please reenter", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        //    txt_ven_email.Focus();
-                        //}
+                   
                         if (txt_ven_email.Text != "" && !Regex.IsMatch(txt_ven_email.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
                         {
                             MessageBox.Show("Email is not a valid formate please Reenter", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -207,7 +203,7 @@ namespace POS.Retail
                     }
                     catch (Exception ex)
                     {
-                        CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                        CustomLogging.Log("[Vendor:(Error)]", ex.Message);
                     }
                     
                 }
@@ -237,7 +233,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
         private void btn_savechange_Click(object sender, RoutedEventArgs e)
@@ -299,7 +295,7 @@ namespace POS.Retail
                     }
                     catch (Exception ex)
                     {
-                        CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                        CustomLogging.Log("[Vendor:(Error)]", ex.Message);
                     }
 
                 }
@@ -326,7 +322,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
 
@@ -367,7 +363,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
 
@@ -389,7 +385,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
 
@@ -411,7 +407,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[Vendor:(Error)]", ex.Message);
             }
         }
     }

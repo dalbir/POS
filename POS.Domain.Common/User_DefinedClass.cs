@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain.Base;
 
 namespace POS.Domain.Common
 {
-    class User_DefinedClass
+   public class User_DefinedClass: BaseDomain
     {
         public string Store_ID { get; set; }
         public string UD_ID { get; set; }

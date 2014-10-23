@@ -200,5 +200,33 @@ namespace POS.Repository.SQLServer
             }
             return objTimeClockCashCount;
         }
+
+
+
+        public User_DefinedClass insertEmailinUserDefined(User_DefinedClass objUserDefinedClass)
+        {
+            try
+            {
+                objSQLServerRepository.ExecuteNonQuery("delete from User_Defined where UD_ID = '" + objUserDefinedClass.UD_ID + "' and Store_ID = '" + objUserDefinedClass.Store_ID + "' and Description = '"+ objUserDefinedClass.Description +"'");
+                if (objUserDefinedClass.Description == "EMailID" || objUserDefinedClass.Type != "")
+                {
+                    int result = objSQLServerRepository.ExecuteNonQuery("insert into User_Defined(Store_ID, UD_ID, [Description], [Type]) values('" + objUserDefinedClass.Store_ID + "','" + objUserDefinedClass.UD_ID + "','" + objUserDefinedClass.Description + "','" + objUserDefinedClass.Type + "')");
+                    if (result > 0)
+                    {
+                        objUserDefinedClass.IsSuccessfull = true;
+                    }
+                    else
+                    {
+                        objUserDefinedClass.IsSuccessfull = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message);
+            }
+            return objUserDefinedClass;
+        }
     }
 }

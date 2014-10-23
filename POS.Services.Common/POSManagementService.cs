@@ -766,6 +766,12 @@ namespace POS.Services.Common
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
             return objTimeClockMangRepository.insertClockCashCount(objTimeClockCashCount);
         }
+        // insertion of email from payroll setting Table: user_defined
+        public User_DefinedClass insertEmialinUserDefined(User_DefinedClass objUserDefinedClass)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.insertEmailinUserDefined(objUserDefinedClass);
+        }
         #endregion
 
         #region Back Orderes
@@ -812,6 +818,8 @@ namespace POS.Services.Common
 
 
 
+
+ 
     }
 }
 

@@ -1,0 +1,32 @@
+﻿<Window x:Class="POS.Retail.Views.PayrollexportSettingForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Payroll Export Setting" Height="197.872" WindowState="Normal" WindowStyle="ToolWindow" ResizeMode="NoResize" Width="478.723">
+    <Grid>
+        <Label Content="Export Email:" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="103" FontSize="14"/>
+        <Label Content="Export Key:" HorizontalAlignment="Left" Margin="20,58,0,0" VerticalAlignment="Top" Width="103" FontSize="14"/>
+        <Label Content="Last Export Date:" HorizontalAlignment="Left" Margin="20,92,0,0" VerticalAlignment="Top" Width="126" FontSize="14"/>
+        <TextBox x:Name="txtExportEmail" HorizontalAlignment="Left" Height="23" Margin="146,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="297"/>
+        <TextBox x:Name="txtExportKey" HorizontalAlignment="Left" Height="23" Margin="146,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="297"/>
+        <Button x:Name="btnSaveExit" Content="Save and Exit" HorizontalAlignment="Left" Click="btnSaveExit_Click" Margin="182,119,0,10" Width="121" FontSize="16">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
+                    <GradientStop Color="#FFEBEBEB" Offset="0.745"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.64"/>
+                    <GradientStop Color="#FF6798EE" Offset="0.929"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="bntExit" Content="E_xit" HorizontalAlignment="Left" Margin="312,119,0,10" Width="111" FontSize="16" Click="bntExit_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.736"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.523"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.623"/>
+                    <GradientStop Color="#FFEC311E" Offset="0.879"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>

@@ -454,5 +454,12 @@ namespace POS.Retail.Views
             }
         }
 
+        private void btnPayrollExport_Click(object sender, RoutedEventArgs e)
+        {
+            PayRollExportForm obj = new PayRollExportForm();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
+        }
+
     }
 }
