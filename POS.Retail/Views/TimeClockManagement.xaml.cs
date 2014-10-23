@@ -431,6 +431,8 @@ namespace POS.Retail.Views
             {
                 TextBlock ed = (dgEmployeeTimeClock.Columns[4].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
                 string endDate = ed.Text;
+                TextBlock idText = (dgEmployeeTimeClock.Columns[1].GetCellContent(dgEmployeeTimeClock.SelectedItem) as TextBlock);
+                string ID = idText.Text;
                 if(endDate != "")
                 {
                     var result = MessageBox.Show("Are you sure you would like to modify this Cashier's Closeout?","Question",MessageBoxButton.YesNo,MessageBoxImage.Question);
@@ -440,7 +442,7 @@ namespace POS.Retail.Views
                         objNumPaid.ShowDialog();
                        if(objNumPaid.set_change_value != null)
                        {
-                           CashCountForm obj = new CashCountForm();
+                           CashCountForm obj = new CashCountForm(ID);
                            obj.ShowDialog();
                        }
                     }

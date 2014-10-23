@@ -149,5 +149,56 @@ namespace POS.Repository.SQLServer
             }
             return objTimeClockClass;
         }
+
+        public Time_Clock_Cash_CountClass insertClockCashCount(Time_Clock_Cash_CountClass objTimeClockCashCount)
+        {
+            try
+            {
+                objSQLServerRepository.ExecuteNonQuery("delete from Time_Clock_Cash_Count where ID = '"+ objTimeClockCashCount.ID +"'");
+                int result = objSQLServerRepository.ExecuteNonQuery("INSERT INTO Time_Clock_Cash_Count"+
+                                                                       "(Store_ID,"+
+                                                                       "ID,"+
+                                                                       "NumPennies,"+
+                                                                       "NumNickels,"+
+                                                                       "NumDimes,"+
+                                                                       "NumQuarters,"+
+                                                                       "NumHalfDollars,"+
+                                                                       "NumDollars,"+
+                                                                       "NumFives,"+
+                                                                       "NumTens,"+
+                                                                       "NumTwenties,"+
+                                                                       "NumFifties,"+
+                                                                       "NumHundreds)"+
+                                                                 "VALUES"+
+                                                                       "('"+objTimeClockCashCount.Store_ID+"',"+
+                                                                       "'"+objTimeClockCashCount.ID+"',"+
+                                                                       "'"+objTimeClockCashCount.NumPennies+"',"+
+                                                                       "'"+objTimeClockCashCount.NumNickels+"',"+
+                                                                       "'"+objTimeClockCashCount.NumDimes+"',"+
+                                                                       "'"+objTimeClockCashCount.NumQuarters+"',"+
+                                                                       "'"+objTimeClockCashCount.NumHalfDollars+"',"+
+                                                                       "'"+objTimeClockCashCount.NumDollars+"',"+
+                                                                       "'"+objTimeClockCashCount.NumFives+"',"+
+                                                                       "'"+objTimeClockCashCount.NumTens+"',"+
+                                                                       "'"+objTimeClockCashCount.NumTwenties+"',"+
+                                                                       "'"+objTimeClockCashCount.NumFifties+"',"+
+                                                                       "'"+objTimeClockCashCount.NumHundreds+"')");
+                if(result > 0)
+                {
+                    objTimeClockCashCount.IsSuccessfull = true;
+                }
+                else
+                {
+                    objTimeClockCashCount.IsSuccessfull = false;
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[SQLServerRepository:]", ex.Message); 
+            }
+            return objTimeClockCashCount;
+        }
     }
 }

@@ -760,7 +760,15 @@ namespace POS.Services.Common
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
             return objTimeClockMangRepository.updateBreckClock(objTimeClockClass);
         }
+        // insertion of clockCashcount
+        public Time_Clock_Cash_CountClass insertClockCashCount(Time_Clock_Cash_CountClass objTimeClockCashCount)
+        {
+            TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
+            return objTimeClockMangRepository.insertClockCashCount(objTimeClockCashCount);
+        }
         #endregion
+
+
 
 
 

@@ -48,7 +48,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="67,456,0,69" Width="217" FontSize="16">
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Click="btnOk_Click" Margin="67,456,0,69" Width="217" FontSize="16">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1.5,0" StartPoint="0,9">
                     <GradientStop Color="#FFEBEBEB" Offset="0.745"/>
