@@ -25,6 +25,7 @@ namespace POS.Retail
     {
 
         private static string item_id = null;
+        private static string itemName = null;
         POSManagementService objPOSManagementService = new POSManagementService();
         public SearchInventoryForm() //SearchInventory()
         {
@@ -174,8 +175,10 @@ namespace POS.Retail
             {
                 TextBlock b = DG_items.Columns[0].GetCellContent(DG_items.SelectedItem) as TextBlock;
                 string d = b.Text;
+                TextBlock c = DG_items.Columns[1].GetCellContent(DG_items.SelectedItem) as TextBlock;
+                string n = c.Text;
                 item_id = d;
-
+                itemName = n;
                 this.Close();
 
             }
@@ -253,6 +256,11 @@ namespace POS.Retail
         {
             get { return item_id; }
             set { item_id = value; }
+        }
+        public string setItemName
+        {
+            get { return itemName; }
+            set { itemName = value; }
         }
 
         private void btn_select_item_Click(object sender, RoutedEventArgs e)

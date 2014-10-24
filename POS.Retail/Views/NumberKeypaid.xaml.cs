@@ -42,11 +42,19 @@ namespace POS.Retail
         private static string pricce = null;
         private static string Value = null;
         private Domain.Common.Inventory_CustPricesClass objInvCustPricesClass;
+        private string lblheading;
+        private int flage;
+        private static string globalValue = null;
         //Regex_class regclass = new Regex_class();
         //GlobalClass glo = new GlobalClass();
         public NumberKeypaid()
         {
             InitializeComponent();
+        }
+        public string setglobalValue
+        {
+            get { return globalValue; }
+            set { globalValue = value; }
         }
 
         public NumberKeypaid(TextBox txt)
@@ -304,6 +312,14 @@ namespace POS.Retail
             InitializeComponent();
             this.objInvCustPricesClass = objInvCustPricesClass;
             lbl_keypaid.Content = objInvCustPricesClass.message;
+        }
+
+        public NumberKeypaid(string lblheading, int flage)
+        {
+            InitializeComponent();
+            this.lblheading = lblheading;
+            this.flage = flage;
+            lbl_keypaid.Content = lblheading;
         }
 
 
@@ -575,6 +591,11 @@ namespace POS.Retail
             else if(flagge == 501)
             {
                 change_value = txt_numbers.Text;
+                this.Close();
+            }
+            else if (flage == 500)
+            {
+                globalValue = txt_numbers.Text;
                 this.Close();
             }
             else

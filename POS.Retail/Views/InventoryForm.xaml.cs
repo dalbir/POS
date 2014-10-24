@@ -4250,5 +4250,72 @@ namespace POS.Retail
             {
             }
         }
+
+        private void btn_add_ingredient_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SearchInventoryForm obj = new SearchInventoryForm();
+                Inventory_IngredientsClass objInventoryIngredient = new Inventory_IngredientsClass();
+                obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                obj.ShowDialog();
+                string qty;
+                string yield;
+                if(obj.set_item_id != null)
+                {
+                    if(obj.set_item_id == txt_item_number.Text)
+                    {
+                        System.Windows.MessageBox.Show("You may not assign an item as an ingredient of itself. Please try again.","Run time Support.",MessageBoxButton.OK,MessageBoxImage.Information);
+                        return;
+                    }
+                    NumberKeypaid objkp = new NumberKeypaid("Enter Quantity", 500);
+                    objkp.ShowDialog();
+                    if(objkp.setglobalValue != null)
+                    {
+                        qty = objkp.setglobalValue.ToString();
+                        NumberKeypaid objp = new NumberKeypaid("Enter yield", 500);
+                        objp.ShowDialog();
+                        if(objp.setglobalValue != null)
+                        {
+                            yield = objp.setglobalValue;
+                            var data = new Items {ItemNum = obj.set_item_id, ItemName = obj.setItemName, Qty = qty, Yield = yield, cost = "" };
+                            dgIngredient.Items.Add(data);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+        public class Items
+        {
+            public string ItemNum { get; set; }
+            public string ItemName {get; set;}
+            public string Qty {get; set;}
+            public string Yield {get; set;}
+            public string cost {get; set;}
+
+        }
+
+        private void btn_ing_remove_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgIngredient.SelectedIndex >= 0)
+                {
+                    for (int i = 0; i < dgIngredient.SelectedItems.Count; i++)
+                    {
+                        dgIngredient.Items.Remove(dgIngredient.SelectedItems[i]);
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomLogging.Log("[Error:]", ex.Message);
+            }
+        }
     }
 }
