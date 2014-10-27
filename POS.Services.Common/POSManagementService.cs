@@ -216,6 +216,21 @@ namespace POS.Services.Common
             InventoryRepository objInventoryRepository = new InventoryRepository();
             return objInventoryRepository.deleteItemRep(objInvenoryClass);
         }
+        public DataTable getIngredient(Inventory_IngredientsClass objInventoryIngredient)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.inventoryGredient(objInventoryIngredient);
+        }
+        public Inventory_IngredientsClass insertIngredient(Inventory_IngredientsClass objInventoryIngredient)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.insertIngredient(objInventoryIngredient);
+        }
+        public InventoryClass updateStock(InventoryClass objInventory)
+        {
+            InventoryRepository objInventoryRepository = new InventoryRepository();
+            return objInventoryRepository.updateStock(objInventory);
+        }
         #endregion
 
         #region Vendor Service
@@ -772,6 +787,7 @@ namespace POS.Services.Common
             TimeClockManagmentRepository objTimeClockMangRepository = new TimeClockManagmentRepository();
             return objTimeClockMangRepository.insertEmailinUserDefined(objUserDefinedClass);
         }
+
         #endregion
 
         #region Back Orderes
@@ -805,21 +821,6 @@ namespace POS.Services.Common
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
     }
 }
 

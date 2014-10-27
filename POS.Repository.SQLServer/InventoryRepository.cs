@@ -1178,6 +1178,63 @@ namespace POS.Repository.SQLServer
             }
             return objInvenoryClass;
         }
+        DataTable dtIngredient;
+        public DataTable inventoryGredient(Inventory_IngredientsClass objInventoryIngredient)
+        {
+            try
+            {
+                dtIngredient = sqlServerRepost.GetDataTable("select n.Ingredient, n.Measurement, n.Yield, n.Quantity, i.Cost, i.ItemName From Inventory_Ingredients n inner join Inventory i on n.Store_ID = i.Store_ID and n.Ingredient = i.ItemNum where n.ItemNum = '"+ objInventoryIngredient.ItemNum +"' and n.Store_ID = '"+ objInventoryIngredient.Store_ID +"'");
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return dtIngredient;
+        }
+
+        public Inventory_IngredientsClass insertIngredient(Inventory_IngredientsClass objInventoryIngredient)
+        {
+            try
+            {
+                int result = sqlServerRepost.ExecuteNonQuery("insert into Inventory_Ingredients(ItemNum, Store_ID, Ingredient, Measurement,Yield) values ('" + objInventoryIngredient.ItemNum + "','" + objInventoryIngredient.Store_ID + "','" + objInventoryIngredient.Ingredient + "','" + objInventoryIngredient.Measurement + "','" + objInventoryIngredient.Yield + "')");
+                if(result > 0)
+                {
+                    objInventoryIngredient.IsSuccessfull = true;
+                }
+                else
+                {
+                    objInventoryIngredient.IsSuccessfull = false;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return objInventoryIngredient;
+        }
+
+        public InventoryClass updateStock(InventoryClass objInventory)
+        {
+            try
+            {
+                int result = sqlServerRepost.ExecuteNonQuery("update Inventory set In_Stock = In_Stock + "+ objInventory.In_Stock +" where Store_ID = '"+ objInventory.Store_ID +"' and ItemNum = '"+ objInventory.ItemNum +"'");
+                if(result > 0)
+                {
+                    objInventory.IsSuccessfull = true;
+                }
+                else
+                {
+                    objInventory.IsSuccessfull = false;
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            return objInventory;
+        }
     }
 }
 

@@ -1252,15 +1252,18 @@ namespace POS.Retail
                     //quray = "select * from Inventory where ItemNum = '" + ob.set_item_id.ToString() + "' and IsDeleted = 0";
                     index = 0;
                 }
-                else if (index == -1)
+                else if (index == -1 || index == -3)
                 {
                     objInventoryClass.qryType = "inventory";
+                    if (index == -3)
+                        objInventoryClass.ItemNum = txt_item_number.Text;
+                    else
                     objInventoryClass.ItemNum = txt_search_item_by_num.Text.ToString();
                     objInventoryClass.IsDeleted = 0;
                    // quray = "select * from Inventory where ItemNum = '" + txt_search_item_by_num.Text.ToString() + "' and IsDeleted = 0";
                     index = 0;
-                    DataTable flag = objPOSManagementService.RetrivingInformation(objInventoryClass);
-                    if (flag.Rows.Count == 0)
+                    dtInventory = objPOSManagementService.RetrivingInformation(objInventoryClass);
+                    if (dtInventory.Rows.Count == 0)
                     {
                         System.Windows.Forms.MessageBox.Show("No Record Found", "Stop", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
                         txt_search_item_by_num.Clear();
@@ -1803,6 +1806,7 @@ namespace POS.Retail
                               DG_sale_history.Rows[sale].Cells[7].Value = dt_sale_history.Rows[sale]["ItemNum"].ToString();
                         }
                     }
+                    retriveGradient();
                     fun_rental_index();
                     fun_pending_order(0);
                 }
@@ -1884,6 +1888,7 @@ namespace POS.Retail
             txt_days_valid.Text = "0";
             txt_coupon_discounted_price.Text = "0";
             txt_max_amount.Text = "0";
+            dgIngredient.Items.Clear();
 
             //day.set_days.Clear();
             //day.set_days_name.Clear();
@@ -2487,6 +2492,7 @@ namespace POS.Retail
                         fun_insert_sale_price();
                         fun_insert_bulk_price();
                         fun_insert_time_price();
+                        funInsertGredient();
                     }
                     if (((TabItem)tabcon_inventory.Items[8]).Header.Equals("Rental"))
                     {
@@ -2525,6 +2531,32 @@ namespace POS.Retail
                 {
                     item_id = txt_item_number.Text;
                     this.Close();
+                }
+            }
+        }
+        private void funInsertGredient()
+        {
+            if(dgIngredient.Items.Count > 0)
+            {
+                Inventory_IngredientsClass objInventoryIngredient = new Inventory_IngredientsClass();
+                for (int i = 0; i < dgIngredient.Items.Count; i++)
+                {
+                    TextBlock b = dgIngredient.Columns[0].GetCellContent(dgIngredient.Items[i]) as TextBlock;
+                    string itemnum = b.Text;
+                    TextBlock c = dgIngredient.Columns[2].GetCellContent(dgIngredient.Items[i]) as TextBlock;
+                    string quantiy = c.Text;
+                    TextBlock d = dgIngredient.Columns[3].GetCellContent(dgIngredient.Items[i]) as TextBlock;
+                    string yld = d.Text;
+                    objInventoryIngredient.Store_ID = "1001";
+                    objInventoryIngredient.ItemNum = txt_item_number.Text;
+                    objInventoryIngredient.Ingredient = itemnum;
+                    objInventoryIngredient.Quantity = Convert.ToDecimal(quantiy);
+                    objInventoryIngredient.Yield = yld;
+                    objPOSManagementService.insertIngredient(objInventoryIngredient);
+                    if(objInventoryIngredient.IsSuccessfull == true)
+                    {
+
+                    }
                 }
             }
         }
@@ -2831,6 +2863,7 @@ namespace POS.Retail
                     fun_insert_sale_price();
                     fun_insert_bulk_price();
                     fun_insert_time_price();
+                    funInsertGredient();
                 }
                 if (((TabItem)tabcon_inventory.Items[8]).Header.Equals("Rental"))
                 {
@@ -4285,8 +4318,7 @@ namespace POS.Retail
                 }
             }
             catch (Exception)
-            {
-                
+            {               
                 throw;
             }
         }
@@ -4315,6 +4347,58 @@ namespace POS.Retail
             catch (Exception ex)
             {
                 CustomLogging.Log("[Error:]", ex.Message);
+            }
+        }
+        private void retriveGradient()
+        {
+            try
+            {
+                Inventory_IngredientsClass objInventoryIngredient = new Inventory_IngredientsClass();
+                objInventoryIngredient.Store_ID = "1001";
+                objInventoryIngredient.ItemNum = txt_item_number.Text;
+                DataTable dt = objPOSManagementService.getIngredient(objInventoryIngredient);
+                if(dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        var data = new Items { ItemNum = dt.Rows[i]["Ingredient"].ToString(), ItemName = dt.Rows[i]["ItemName"].ToString(), Qty = dt.Rows[i]["Quantity"].ToString(), Yield = dt.Rows[i]["Yield"].ToString(), cost = "" };
+                        dgIngredient.Items.Add(data);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnInstantPo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                InventoryClass objInventory = new InventoryClass();
+                objInventory.Store_ID = "1001";
+                objInventory.ItemNum = txt_item_number.Text;
+                NumberKeypaid objkp = new NumberKeypaid("Quantity Received.", 500);
+                objkp.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                objkp.ShowDialog();
+                if(objkp.setglobalValue != null)
+                {
+                    objInventory.Store_ID = "1001";
+                    objInventory.ItemNum = txt_item_number.Text;
+                    objInventory.In_Stock = Convert.ToDecimal(objkp.setglobalValue);
+                    objPOSManagementService.updateStock(objInventory);
+                    if(objInventory.IsSuccessfull == true)
+                    {
+                        fun_retrive_inventory(-3);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }
