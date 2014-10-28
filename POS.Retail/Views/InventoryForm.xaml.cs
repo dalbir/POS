@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using POS.Domain.Common;
-
+using POS.Retail.Views;
 using POS.Services.Common;
 using System.Globalization;
 
@@ -4400,6 +4400,13 @@ namespace POS.Retail
                 
                 throw;
             }
+        }
+
+        private void btnTransferItem_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryTransferGridForm obj = new InventoryTransferGridForm();
+            obj.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            obj.ShowDialog();
         }
     }
 }

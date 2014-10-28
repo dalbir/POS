@@ -606,7 +606,7 @@
                 <TextBlock FontSize="12" Width="55">Previous</TextBlock>
             </StackPanel>
         </Button>
-        <Button Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="552,557,0,0" Name="btn_transfer_item" VerticalAlignment="Top" Width="117" Content="Transfer" Click="btn_transfer_item_Click">
+        <Button Focusable="False" FontWeight="Bold" Height="38" HorizontalAlignment="Left" Margin="552,557,0,0" Name="btnTransferItem" VerticalAlignment="Top" Width="117" Content="Transfer" Click="btnTransferItem_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />

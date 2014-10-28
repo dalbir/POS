@@ -821,6 +821,20 @@ namespace POS.Services.Common
 
 
 
+        #region
+        public DataTable getTransfers(InventoryOrdersClass objInventoryOrdersClass)
+        {
+            InventoryTransferRepository objInventoryTransferRepository = new InventoryTransferRepository();
+            return objInventoryTransferRepository.getTransfers(objInventoryOrdersClass);
+        }
+        public DataTable getStoreIds()
+        {
+            InventoryTransferRepository objInventoryTransferRepository = new InventoryTransferRepository();
+            return objInventoryTransferRepository.getStoreIds();
+        }
+        #endregion
+
+
     }
 }
 
