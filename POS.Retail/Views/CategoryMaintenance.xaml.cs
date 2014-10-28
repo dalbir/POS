@@ -121,12 +121,15 @@ namespace POS.Retail
                 btn_categ_add.Content = "Add";
                 btn_categ_exit.Content = "Exit";
                 btn_categ_delete.IsHitTestVisible = true;
-                btn_cate_next.IsHitTestVisible = true;
-                btn_cate_prev.IsHitTestVisible = true;
+                btn_cate_next.IsEnabled = true;
+                btn_cate_prev.IsEnabled = true;
                 cmb_select_category.Visibility = Visibility.Visible;
-                btn_categ_update.IsHitTestVisible = true;
+                btn_categ_update.IsEnabled = true;
                 txt_categ_id.Focus();
                 txt_categ_id.Background = Brushes.White;
+                FillCombo();
+                txt_categ_id.IsEnabled = false;
+                lblSearch.Visibility = Visibility.Visible;
             }
         }
 
@@ -138,15 +141,17 @@ namespace POS.Retail
                 {
                     btn_categ_add.Content = "Save";
                     btn_categ_exit.Content = "Cancel";
-                    btn_categ_delete.IsHitTestVisible = false;
-                    btn_cate_next.IsHitTestVisible = false;
-                    btn_cate_prev.IsHitTestVisible = false;
+                    btn_categ_delete.IsEnabled = false;
+                    btn_cate_next.IsEnabled = false;
+                    btn_cate_prev.IsEnabled = false;
                     cmb_select_category.Visibility = Visibility.Hidden;
-                    btn_categ_update.IsHitTestVisible = false;
-                    txt_categ_id.Focus();
-                    txt_categ_id.Background = Brushes.Yellow;
+                    btn_categ_update.IsEnabled = false;                  
                     txt_categ_id.Clear();
                     txt_categ_description.Clear();
+                    txt_categ_id.IsEnabled = true;
+                    txt_categ_id.Focus();
+                    txt_categ_id.Background = Brushes.Yellow;
+                    lblSearch.Visibility = Visibility.Hidden;
                     
                 }
                 else if (btn_categ_add.Content.Equals("Save"))
@@ -167,16 +172,16 @@ namespace POS.Retail
                     {
                         FillCombo();
                         //MessageBox.Show("Record Have Added Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
-                        var result = MessageBox.Show("You Category has been Added, Would you like to Add another", "Informaion", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        var result = MessageBox.Show("Your Category has been Added, Would you like to Add another?", "Info Prompt", MessageBoxButton.YesNo, MessageBoxImage.Information);
                         if (result == MessageBoxResult.Yes)
                         {
                             btn_categ_add.Content = "Save";
                             btn_categ_exit.Content = "Cancel";
-                            btn_categ_delete.IsHitTestVisible = false;
-                            btn_cate_next.IsHitTestVisible = false;
-                            btn_cate_prev.IsHitTestVisible = false;
+                            btn_categ_delete.IsEnabled = false;
+                            btn_cate_next.IsEnabled = false;
+                            btn_cate_prev.IsEnabled = false;
                             cmb_select_category.Visibility = Visibility.Hidden;
-                            btn_categ_update.IsHitTestVisible = false;
+                            btn_categ_update.IsEnabled = false;
                             txt_categ_id.Focus();
                             txt_categ_id.Background = Brushes.Yellow;
                             txt_categ_id.Clear();
@@ -186,13 +191,15 @@ namespace POS.Retail
                         {
                             btn_categ_add.Content = "Add";
                             btn_categ_exit.Content = "Exit";
-                            btn_categ_delete.IsHitTestVisible = true;
-                            btn_cate_next.IsHitTestVisible = true;
-                            btn_cate_prev.IsHitTestVisible = true;
+                            btn_categ_delete.IsEnabled = true;
+                            btn_cate_next.IsEnabled = true;
+                            btn_cate_prev.IsEnabled = true;
                             cmb_select_category.Visibility = Visibility.Visible;
-                            btn_categ_update.IsHitTestVisible = true;
+                            btn_categ_update.IsEnabled = true;
                             txt_categ_id.Focus();
                             txt_categ_id.Background = Brushes.White;
+                            txt_categ_id.IsEnabled = false;
+                            lblSearch.Visibility = Visibility.Visible;
                         }
                     }
 
@@ -238,7 +245,11 @@ namespace POS.Retail
                     if (obCategoriesClass.IsSuccessfull == true)
                     {
                         FillCombo();
-                        //MessageBox.Show("Record Have Deleted Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Record Have Deleted Succesfully", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else if(obCategoriesClass.IsSuccessfull == false)
+                    {
+                        MessageBox.Show("This Category cannot be Deleted, as it is used.", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
@@ -254,6 +265,7 @@ namespace POS.Retail
                 {
                     FillCombo();
                     cmb_select_category.SelectedIndex = 0;
+                    txt_categ_id.IsEnabled = false;
                 }
             }
             catch(Exception)
@@ -319,8 +331,19 @@ namespace POS.Retail
             catch(Exception)
             {
 
-            }
-           
+            }         
+        }
+
+        private void txt_categ_id_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            txt.Background = Brushes.Yellow;
+        }
+
+        private void txt_categ_id_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            txt.Background = Brushes.White;
         }
     }
 }

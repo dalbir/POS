@@ -12,13 +12,13 @@
             </Label.Background>
         </Label>
         <Grid Height="160" Margin="0,41,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
-            <Label Height="46" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" Width="125" FontStretch="Normal">
+            <Label Height="47" HorizontalAlignment="Left" Margin="6,8,0,0" Name="label1" VerticalAlignment="Top" Width="125" FontStretch="Normal">
                 <StackPanel Height="39" Width="112">
-                    <TextBlock Height="18" Width="107">Category for this</TextBlock>
-                    <TextBlock Height="22" Width="107">Department:</TextBlock>
+                    <TextBlock Height="18" Margin="2,0,-8,0">Department </TextBlock>
+                    <TextBlock Height="22" Width="107" Margin="2,0">Category:</TextBlock>
                 </StackPanel>
             </Label>
-            <ComboBox Height="27" HorizontalAlignment="Left" Margin="137,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened" />
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="112,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened" />
             <Label Content="Department ID:" Height="28" HorizontalAlignment="Left" Margin="8,58,0,0" Name="label2" VerticalAlignment="Top" Width="107" />
             <Label Height="42" HorizontalAlignment="Left" Margin="8,92,0,0" Name="label3" VerticalAlignment="Top" Width="115">
                 <StackPanel>
@@ -26,11 +26,11 @@
                     <TextBlock>Description:</TextBlock>
                 </StackPanel>
             </Label>
-            <TextBox Height="28" HorizontalAlignment="Left" Margin="137,58,0,0" Name="txt_dept_id" VerticalAlignment="Top" Width="194" FontSize="13" TextChanged="txt_dept_id_TextChanged" IsEnabled="False" />
-            <TextBox Height="28" HorizontalAlignment="Left" Margin="137,106,0,0" Name="txt_dept_descrption" VerticalAlignment="Top" Width="194" FontSize="13" />
-            <RadioButton Content="Regular" Height="16" HorizontalAlignment="Left" Margin="468,22,0,0" Name="rb_regular" VerticalAlignment="Top" Width="124" FontSize="13" />
-            <RadioButton Content="Employee" FontSize="13" Height="16" HorizontalAlignment="Left" Margin="468,92,0,0" Name="rb_emp" VerticalAlignment="Top" Width="124" />
-            <RadioButton Content="Rental" FontSize="13" Height="16" HorizontalAlignment="Left" Margin="468,58,0,0" Name="rb_rental" VerticalAlignment="Top" Width="124" />
+            <TextBox Height="28" HorizontalAlignment="Left" Margin="113,58,0,0" Name="txt_dept_id" VerticalAlignment="Top" Width="194" FontSize="13" TextChanged="txt_dept_id_TextChanged" IsEnabled="False" />
+            <TextBox Height="28" HorizontalAlignment="Left" Margin="115,106,0,0" Name="txt_dept_descrption" VerticalAlignment="Top" Width="194" FontSize="13" />
+            <RadioButton Content="Regular" Height="20" HorizontalAlignment="Left" Margin="468,22,0,0" Name="rb_regular" VerticalAlignment="Top" Width="124" FontSize="13" />
+            <RadioButton Content="Employee" FontSize="13" Height="20" HorizontalAlignment="Left" Margin="468,92,0,0" Name="rb_emp" VerticalAlignment="Top" Width="124" />
+            <RadioButton Content="Rental" FontSize="13" Height="20" HorizontalAlignment="Left" Margin="468,58,0,0" Name="rb_rental" VerticalAlignment="Top" Width="124" />
         </Grid>
         <TabControl Height="262" HorizontalAlignment="Left" Margin="8,207,0,0" Name="tabControl1" VerticalAlignment="Top" Width="804" Background="Gainsboro">
             <TabItem Header="Options        " Name="tabItem1">
@@ -46,7 +46,7 @@
                     <Label Content="Item Cost Percentage:" Height="28" HorizontalAlignment="Left" Margin="359,81,0,0" Name="label5" VerticalAlignment="Top" Width="134" FontWeight="Bold" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Reciept Notes     ">
+            <TabItem Header="Receipt Notes     ">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="49*" />
@@ -64,7 +64,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Add Department" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="313,482,0,0" Name="btn_add_dept" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_add_dept_Click">
+        <Button Content="  Add New &#xa;Department" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="313,482,0,0" Name="btn_add_dept" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_add_dept_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
@@ -104,7 +104,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Button" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="673,482,0,0" Name="button8" VerticalAlignment="Top" Width="117" FontWeight="Bold">
+        <Button Content="Export Items to &#xa;        Scale" Focusable="False" Height="38" HorizontalAlignment="Left" Margin="673,482,0,0" Name="button8" VerticalAlignment="Top" Width="117" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#C5000000" Offset="0" />
@@ -146,7 +146,7 @@
         </Button>
         <Button Focusable="False" Height="38" HorizontalAlignment="Left" Margin="553,482,0,0" Name="btn_category_mantance" VerticalAlignment="Top" Width="117" FontWeight="Bold" Click="btn_category_mantance_Click">
             <StackPanel Width="104">
-                <TextBlock Width="67">
+                <TextBlock Width="67" HorizontalAlignment="Right" Margin="0,0,18,0">
                     Category
                 </TextBlock>
                 <TextBlock Width="75">Maintenance</TextBlock>

@@ -54,6 +54,12 @@ namespace POS.Retail.Views
            {
                cmbCreationStoreID.Items.Add(dt.Rows[i][0].ToString());
            }
+           cmbStatusToView.Items.Add("All");
+           cmbStatusToView.Items.Add("Open");
+           cmbStatusToView.Items.Add("Sent");
+           cmbStatusToView.Items.Add("Partially Received");
+           cmbStatusToView.Items.Add("Closed");
+           cmbStatusToView.Items.Add("Voided");
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

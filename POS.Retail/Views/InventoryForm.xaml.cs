@@ -323,6 +323,7 @@ namespace POS.Retail
                 InventoryClass inventoryclass = new POS.Domain.Common.InventoryClass();
                 inventoryclass.dptFlage = "fillcombo";
                 mangmentserv.FillDeptCmb(inventoryclass);
+              
                 cmb_select_dept.ItemsSource = inventoryclass.dtDeptCmb.DefaultView;
                 cmb_select_dept.DisplayMemberPath = "dept";
                 cmb_select_dept.SelectedValuePath = "Dept_ID";
