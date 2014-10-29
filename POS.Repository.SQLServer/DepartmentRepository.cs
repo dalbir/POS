@@ -18,7 +18,9 @@ namespace POS.Repository.SQLServer
             {
                 if (objDeptClass.flage == "comboFill")
                 {
-                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("select Cat_ID,Cat_ID+'-'+Description as CatName from Categories");
+                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable(@"select top 1 Cat_ID = ('00') , CatName = 'Select Category' from Categories
+                                                                                union
+                                                                                select Cat_ID,Cat_ID+'-'+Description as CatName from Categories");
                 }
                 else if (objDeptClass.flage == "loadDpt")
                 {
@@ -34,7 +36,15 @@ namespace POS.Repository.SQLServer
                 }
                 else if (objDeptClass.flage == "fillList")
                 {
-                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("SELECT Dept_ID FROM Departments");
+                    objDeptClass.LoadDept = sqlServerRepository.GetDataTable("SELECT Dept_ID FROM Departments order by OrderId DESC");
+                }
+                if (objDeptClass.LoadDept.Rows.Count== 0)
+                {
+                    objDeptClass.IsSuccessfull = false;
+                }
+                else
+                {
+                    objDeptClass.IsSuccessfull = true;
                 }
                
             }
@@ -113,5 +123,18 @@ namespace POS.Repository.SQLServer
             }
             return dtGetRecords;
         }
+        //string maxID;
+        //public string GetMaxDeptID(DepartmentClass objDepartmentClass)
+        //{
+        //    try
+        //    {
+        //        maxID = sqlServerRepository.ExecuteScalar("select isnull(max(OrderId),0)+1 from Departments");
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+        //    return maxID;
+        //}
     }
 }

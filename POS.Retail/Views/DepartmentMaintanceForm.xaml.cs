@@ -63,14 +63,43 @@ namespace POS.Retail
                 }
                 else
                 {
+                    //DataTable dt = new DataTable();
+                    //dt.Columns.Add("Cat_ID", typeof(string));
+                    //dt.Columns.Add("CatName", typeof(string));
+                    
+                    
                     objdptclass.flage = "comboFill";
                     POSManagementService objMgtServices = new POSManagementService();
-                    objdptclass = objMgtServices.LoadCatIdToDpt(objdptclass);
+                    objdptclass = objMgtServices.LoadCatIdToDpt(objdptclass); 
+
+
                     cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
                     cmb_cetegory.DisplayMemberPath = "CatName";
-                    cmb_cetegory.SelectedValuePath = "Cat_ID";
+                    cmb_cetegory.SelectedValuePath = "Cat_ID"; 
+                    
+                    
+                    //cmb_cetegory.ItemsSource = objdptclass.LoadDept.DefaultView;
+                    //cmb_cetegory.DisplayMemberPath = "CatName";
+                    //cmb_cetegory.SelectedValuePath = "Cat_ID";
 
-                    objdptclass.flage = "fillList";
+                    //DataRow dr = objdptclass.LoadDept.NewRow();
+                    //dr["CatName"] = "Select Category";
+                    //dr["Cat_ID"] = "Select Category";
+                    //dt.Rows.Add(dr);
+                    //for (int i = 0; i < objdptclass.LoadDept.Rows.Count; i++)
+                    //{
+                    //    DataRow dr2 = dt.NewRow();
+                    //    dr["CatName"] = objdptclass.LoadDept.Rows[i]["CatName"].ToString();
+                    //    dr["Cat_ID"] = objdptclass.LoadDept.Rows[i]["Cat_ID"].ToString();
+                    //    dt.Rows.Add(dr2);
+                    //}
+                   
+                        //DataRow dr = objdptclass.LoadDept.NewRow();
+                        //dr["CatName"] = "Select";
+                        //dr["Cat_ID"] = 0;
+                        //dt.Rows.InsertAt(dr, 8);
+                        //cmb_cetegory.SelectedIndex = 0;
+                        objdptclass.flage = "fillList";
                     objdptclass = objMgtServices.LoadCatIdToDpt(objdptclass);
                     for (int i = 0; i <= objdptclass.LoadDept.Rows.Count; i++)
                     {
@@ -150,14 +179,14 @@ namespace POS.Retail
                 btn_add_dept.Content = "  Add New \nDepartment";
                 btn_exit.Content = "Exit";
 
-                btn_next.IsHitTestVisible = true;
-                btn_previous.IsHitTestVisible = true;
-                btnLookup.IsHitTestVisible = true;
-                btn_savechages.IsHitTestVisible = true;
-                btn_delete.IsHitTestVisible = true;
+                btn_next.IsEnabled = true;
+                btn_previous.IsEnabled = true;
+                btnLookup.IsEnabled = true;
+                btn_savechages.IsEnabled = true;
+                btn_delete.IsEnabled = true;
                 txt_dept_id.Background = Brushes.White;
-                btn_category_mantance.IsHitTestVisible = true;
-                btn_deuplicate.IsHitTestVisible = true;
+                btn_category_mantance.IsEnabled = true;
+                btn_deuplicate.IsEnabled = true;
                 txt_dept_descrption.IsEnabled = true;
                 rb_emp.IsEnabled = true;
                 rb_regular.IsEnabled = true;
@@ -170,7 +199,11 @@ namespace POS.Retail
                 txt_sqfootage.IsEnabled = true;
                 txt_costper.IsEnabled = true;
                 txt_dept_notes.IsEnabled = true;
+                txt_dept_id.IsEnabled = false;
                 txt_dept_id.Text = category_id_list[0];
+                selectData();
+                
+                
             }
         }
 
@@ -187,6 +220,7 @@ namespace POS.Retail
                         int x = res - 1;
                         txt_dept_id.Text = category_id_list[x];
                     }
+                    selectData();
                 
             }
             catch (Exception ex)
@@ -207,10 +241,31 @@ namespace POS.Retail
                     int x = res + 1;
                     txt_dept_id.Text = category_id_list[x];
                 }
+                selectData();
+                //if (objdptclass.flage == "0")
+                //{
+                //    // txt_dept_id.Clear();
+
+                //    return;
+                //}
+
+                //else if (objdptclass.IsSuccessfull == true)
+                //{
+
+                //}
+                ////if (txt_dept_descrption.Text=="")
+                ////{
+                ////   // cmb_cetegory.TabIndex = 0;
+                ////}
+                //else if (objdptclass.IsSuccessfull == false)
+                //{
+
+                //    cmb_cetegory.SelectedIndex = 0;
+                //}
             }
             catch (Exception ex)
             {
-               
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -221,19 +276,21 @@ namespace POS.Retail
                 btn_add_dept.Content = "Save";
                 btn_exit.Content = "Cancel";
 
-                btn_next.IsHitTestVisible = false;
-                btn_previous.IsHitTestVisible = false;
-                btnLookup.IsHitTestVisible = false;
-                btn_savechages.IsHitTestVisible = false;
-                btn_delete.IsHitTestVisible = false;
+                btn_next.IsEnabled = false;
+                btn_previous.IsEnabled = false;
+                btnLookup.IsEnabled = false;
+                btn_savechages.IsEnabled = false;
+                btn_delete.IsEnabled = false;
                 txt_dept_id.Focus();
                 txt_dept_id.Background = Brushes.Yellow;
-                btn_category_mantance.IsHitTestVisible = false;
-                btn_deuplicate.IsHitTestVisible = false;
+                btn_category_mantance.IsEnabled = false;
+                btn_deuplicate.IsEnabled = false;
                 fun_clear_allfields();
                 txt_dept_id.Clear();
                 txt_dept_id.IsEnabled = true;
                 cmb_cetegory.SelectedIndex = 0;
+                rb_regular.IsChecked = true;
+                
             }
             else if (btn_add_dept.Content.Equals("Save"))
             {
@@ -315,8 +372,16 @@ namespace POS.Retail
                         objdptclass.Square_Footage =Convert.ToInt32( txt_sqfootage.Text.Trim());
                         objdptclass.AvailableOnline =Convert.ToInt32( "0");
                         objdptclass.IncludeInScaleExport = Scale;
+                       
 
                         POSManagementService objMgtService = new POSManagementService();
+                        //string maxID = Convert.ToString(objMgtService.loadDptMaxID(objdptclass));
+                       // objdptclass.ID = Convert.ToInt32(maxID);
+                        if (cmb_cetegory.Text == "Select Category")
+                        {
+                            MessageBox.Show("Please select Category for this Department", "Precise POS", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         if (objdptclass.flage == "0")
                         {
                             objdptclass.flage = "ReadDept";
@@ -351,15 +416,15 @@ namespace POS.Retail
                         btn_add_dept.Content = "  Add New \nDepartment";
                         btn_exit.Content = "Exit";
 
-                        btn_next.IsHitTestVisible = true;
-                        btn_previous.IsHitTestVisible = true;
-                        btnLookup.IsHitTestVisible = true;
-                        btn_savechages.IsHitTestVisible = true;
-                        btn_delete.IsHitTestVisible = true;
+                        btn_next.IsEnabled = true;
+                        btn_previous.IsEnabled = true;
+                        btnLookup.IsEnabled = true;
+                        btn_savechages.IsEnabled = true;
+                        btn_delete.IsEnabled = true;
                         //txt_dept_id.Focus();
                         //txt_dept_id.Background = Brushes.Yellow;
-                        btn_category_mantance.IsHitTestVisible = true;
-                        btn_deuplicate.IsHitTestVisible = true;
+                        btn_category_mantance.IsEnabled = true;
+                        btn_deuplicate.IsEnabled = true;
                         fun_clear_allfields();
                         txt_dept_id.Clear();
                         txt_dept_id.IsEnabled = false;
@@ -376,7 +441,16 @@ namespace POS.Retail
                         txt_sqfootage.IsEnabled = true;
                         txt_costper.IsEnabled = true;
                         txt_dept_notes.IsEnabled = true;
+                        objdptclass.flage = "fillList";
+                        category_id_list.Clear();
+                        objdptclass = objMgtService.LoadCatIdToDpt(objdptclass);
+                        for (int i = 0; i < objdptclass.LoadDept.Rows.Count; i++)
+                        {
+                            category_id_list.Add(objdptclass.LoadDept.Rows[i]["Dept_ID"].ToString());
+                        }
                         txt_dept_id.Text = category_id_list[0];
+                        objdptclass.Dept_ID = txt_dept_id.Text.Trim();
+                        selectData();
                         tabControl1.SelectedIndex = 0;
                         //glo.con.Open();
                         //SqlCommand Query = new SqlCommand("INSERT INTO Departments (Dept_ID, Store_ID, Description, Type, TSDisplay, Cost_MarkUp, Dirty, SubType, Print_Dept_Notes, Dept_Notes, Require_Permission, Require_Serials, " +
@@ -410,11 +484,13 @@ namespace POS.Retail
             { 
                FillCombo();
                txt_dept_id.Text = category_id_list[0];
+               selectData();
+               //txt_dept_id.Text = Convert.ToString(category_id_list.Count - 1);
                txt_dept_id.IsEnabled = false;
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
         
@@ -619,16 +695,7 @@ namespace POS.Retail
         }
         private void txt_dept_id_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (objdptclass.flage == "0")
-            {
-               // txt_dept_id.Clear();
 
-                return;
-            }
-            else
-            {
-                selectData();
-            }
             
             
             //fun_clear_allfields();
@@ -836,6 +903,7 @@ namespace POS.Retail
                 txt_dept_id.Text = objSlctDpt.SetDptId;
                 txt_dept_descrption.Text = objSlctDpt.SetDptDescription;
             }
+            selectData();
         }
 
         private void cmb_cetegory_DropDownOpened(object sender, EventArgs e)
@@ -878,7 +946,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -890,15 +958,15 @@ namespace POS.Retail
                 btn_add_dept.Content = "Save";
                 btn_exit.Content = "Cancel";
 
-                btn_next.IsHitTestVisible = false;
-                btn_previous.IsHitTestVisible = false;
-                btnLookup.IsHitTestVisible = false;
-                btn_savechages.IsHitTestVisible = false;
-                btn_delete.IsHitTestVisible = false;
+                btn_next.IsEnabled = false;
+                btn_previous.IsEnabled = false;
+                btnLookup.IsEnabled = false;
+                btn_savechages.IsEnabled = false;
+                btn_delete.IsEnabled = false;
                 txt_dept_id.Focus();
                 txt_dept_id.Background = Brushes.Yellow;
-                btn_category_mantance.IsHitTestVisible = false;
-                btn_deuplicate.IsHitTestVisible = false;
+                btn_category_mantance.IsEnabled = false;
+                btn_deuplicate.IsEnabled = false;
                 
                 txt_dept_id.Clear();
                 txt_dept_id.IsEnabled = true;
@@ -943,8 +1011,13 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
-        } 
+        }
+
+       
+
+       
+        
     }
 }

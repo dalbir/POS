@@ -334,6 +334,11 @@ namespace POS.Services.Common
             DepartmentRepository objDptRep = new DepartmentRepository();
             return objDptRep.getDeptRep();
         }
+        //public string loadDptMaxID(DepartmentClass objDepartmentClass)
+        //{
+        //    DepartmentRepository objDptRep = new DepartmentRepository();
+        //    return objDptRep.GetMaxDeptID(objDepartmentClass);
+        //}
 
         #endregion
 

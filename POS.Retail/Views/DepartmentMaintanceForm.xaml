@@ -11,14 +11,16 @@
                 </LinearGradientBrush>
             </Label.Background>
         </Label>
-        <Grid Height="160" Margin="0,41,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
+        <Grid Height="160" Margin="0,45,0,0" Name="grid1" VerticalAlignment="Top" Background="Silver">
             <Label Height="47" HorizontalAlignment="Left" Margin="6,8,0,0" Name="label1" VerticalAlignment="Top" Width="125" FontStretch="Normal">
                 <StackPanel Height="39" Width="112">
                     <TextBlock Height="18" Margin="2,0,-8,0">Department </TextBlock>
                     <TextBlock Height="22" Width="107" Margin="2,0">Category:</TextBlock>
                 </StackPanel>
             </Label>
-            <ComboBox Height="27" HorizontalAlignment="Left" Margin="112,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened" />
+            <ComboBox Height="27" HorizontalAlignment="Left" Margin="112,11,0,0" Name="cmb_cetegory" VerticalAlignment="Top" Width="194" FontSize="13" SelectionChanged="cmb_cetegory_SelectionChanged" DropDownOpened="cmb_cetegory_DropDownOpened">
+                
+            </ComboBox>
             <Label Content="Department ID:" Height="28" HorizontalAlignment="Left" Margin="8,58,0,0" Name="label2" VerticalAlignment="Top" Width="107" />
             <Label Height="42" HorizontalAlignment="Left" Margin="8,92,0,0" Name="label3" VerticalAlignment="Top" Width="115">
                 <StackPanel>

@@ -276,12 +276,13 @@ C:\Users\Asad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.pdb
 C:\Users\Asad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
 C:\Users\Asad\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.dll
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Services.Common.dll
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.exe.config
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Base.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Domain.Common.pdb
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Repository.SQLServer.pdb
@@ -311,6 +312,8 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\frmStylesMatrix
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\GlobalPriceChangeForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InforPromptForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryForm.baml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferForm.baml
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferGridForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\JobCodeSetupForm.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\Keyboard.baml
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\LateReturnDialogForm.baml
@@ -382,6 +385,8 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\frmStylesMatrix
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\GlobalPriceChangeForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InforPromptForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryForm.g.cs
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferForm.g.cs
+C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferGridForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\JobCodeSetupForm.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\Keyboard.g.cs
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\LateReturnDialogForm.g.cs
@@ -436,8 +441,3 @@ C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.Properties
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.csproj.GenerateResource.Cache
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.exe
 C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\bin\Debug\POS.Retail.pdb
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferGridForm.baml
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferGridForm.g.cs
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferForm.baml
-C:\Users\asad.FALCON\Source\Repos\POS\POS.Retail\obj\Debug\Views\InventoryTransferForm.g.cs
