@@ -330,7 +330,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(FillCombo)]", ex.Message);
             }
         }
 
@@ -361,7 +361,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(FillRentalIndex)]", ex.Message);
             }
         }
 
@@ -381,7 +381,7 @@ namespace POS.Retail
             }
             catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(ImageID)]", ex.Message);
                 return img_id;
             }
             return img_id;
@@ -422,7 +422,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(InsertPriceLevel)]", ex.Message);
             }
         }
 
@@ -449,7 +449,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(InsertSkus)]", ex.Message);
             }
         }
 
@@ -474,7 +474,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(InsertTag)]", ex.Message);
             }
         }
 
@@ -512,7 +512,7 @@ namespace POS.Retail
             }
         catch(Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(InsertModifierGroups)]", ex.Message);
        }
 
         }
@@ -591,7 +591,7 @@ namespace POS.Retail
             }
             catch (Exception ex)
             {
-                CustomLogging.Log("[SQLiteRepository:(Initialization)]", ex.Message);
+                CustomLogging.Log("[InventoryForm:Error(InsertModifiersWithItems)]", ex.Message);
             }
         }
 
@@ -1834,7 +1834,7 @@ namespace POS.Retail
             txt_bonus.Text = "0";
             txt_barcodes.Text = "0";
             cmb_commission.SelectedIndex = 0;
-            txt_comission.Text = "0.00";
+            txt_comission.Text = "0.00%";
             txt_unit_size.Text = "0";
             txt_unit_type.Clear();
             txt_prmp_todescrp.Text = "0";

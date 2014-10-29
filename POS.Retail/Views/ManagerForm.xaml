@@ -118,7 +118,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                     <StackPanel Height="53" Width="156">
-                        <TextBlock Width="98">Empolyee</TextBlock>
+                        <TextBlock Width="98">Employee</TextBlock>
                         <TextBlock Width="125">Maintenance</TextBlock>
                     </StackPanel>
                 </Button>

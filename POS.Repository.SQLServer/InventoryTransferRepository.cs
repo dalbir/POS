@@ -18,7 +18,7 @@ namespace POS.Repository.SQLServer
         {
             try
             {
-                dtTransfers = objSQLServerRepository.GetDataTable("select * from InventoryOrders");
+                dtTransfers = objSQLServerRepository.GetDataTable("select * from InventoryOrders where OrderCounter like '" + objInventoryOrdersClass.OrderCounter + "' and Status like '"+ objInventoryOrdersClass.Status +"'");
             }
             catch (Exception ex)
             {

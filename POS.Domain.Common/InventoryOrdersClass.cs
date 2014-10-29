@@ -15,7 +15,7 @@ namespace POS.Domain.Common
         public string CreationLocation { get; set; }
         public int OrderType { get; set; }
         public string Reason { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public string OrderCounter { get; set; }
     }
 }

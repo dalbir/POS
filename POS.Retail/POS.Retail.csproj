@@ -125,6 +125,9 @@
     <Compile Include="Views\InforPromptForm.xaml.cs">
       <DependentUpon>InforPromptForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InventoryTransferForm.xaml.cs">
+      <DependentUpon>InventoryTransferForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InventoryTransferGridForm.xaml.cs">
       <DependentUpon>InventoryTransferGridForm.xaml</DependentUpon>
     </Compile>
@@ -354,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InventoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InventoryTransferForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

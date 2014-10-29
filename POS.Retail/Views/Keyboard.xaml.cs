@@ -41,6 +41,8 @@ namespace POS.Retail
         private static string descrp = null;
         private string p;
         private string p_2;
+        private string heading;
+        private int flage;
 
         public Keyboard(TextBox txt)
         {
@@ -78,6 +80,14 @@ namespace POS.Retail
                 kb_heder_labl.Content = p;
                 txt_keyboard.Text = lbl;
             }
+        }
+
+        public Keyboard(string heading, int flage)
+        {
+            InitializeComponent();
+            this.heading = heading;
+            this.flage = flage;
+            kb_heder_labl.Content = heading;
         }
 
         private void btn_kb_cancel_Click(object sender, RoutedEventArgs e)
@@ -428,7 +438,12 @@ namespace POS.Retail
         }
         private void btn_kb_enter_Click(object sender, RoutedEventArgs e)
         {
-            if (kb_heder_labl.Content == "Please Enter the new swipe ID you would like to use for this customer")
+            if(flage == 500)
+            {
+                descrp = txt_keyboard.Text;
+                this.Close();
+            }
+             else if (kb_heder_labl.Content == "Please Enter the new swipe ID you would like to use for this customer")
             {
                 swip_id = txt_keyboard.Text;
                 this.Close();

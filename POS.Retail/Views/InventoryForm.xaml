@@ -1,7 +1,7 @@
 ﻿<Window x:Class="POS.Retail.InventoryForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         Title="Inventory Mantenance" Height="683" Width="935" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" WindowState="Normal" Loaded="Window_Loaded" ResizeMode="NoResize" xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" Background="#D8A8DBA8" KeyDown="Window_KeyDown">
+         Title="Inventory Maintenance" Height="683" Width="935" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" WindowState="Normal" Loaded="Window_Loaded" ResizeMode="NoResize" xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" Background="#D8A8DBA8" KeyDown="Window_KeyDown">
     <Grid>
         <Label FontSize="15" FontWeight="Bold" Height="40" Name="lbl_heading_inventory" VerticalAlignment="Top" FontFamily="Lucida Bright" Foreground="#FF1B1B96">
             <Label.Background>
@@ -63,7 +63,7 @@
                                     <ComboBoxItem Content="% of Gross Sale" />
                                     <ComboBoxItem Content="Amount" />
                                 </ComboBox>
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="254,61,0,0" Name="txt_comission" VerticalAlignment="Top" Width="74" FontFamily="Segoe UI" Text="0.00" BorderBrush="#D8836D6D" Background="White" PreviewTextInput="txt_bonus_PreviewTextInput" MaxLength="8" MouseDoubleClick="txt_bonus_MouseDoubleClick"></TextBox>
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="254,61,0,0" Name="txt_comission" VerticalAlignment="Top" Width="74" FontFamily="Segoe UI" Text="0.00%" BorderBrush="#D8836D6D" Background="White" PreviewTextInput="txt_bonus_PreviewTextInput" MaxLength="8" MouseDoubleClick="txt_bonus_MouseDoubleClick"></TextBox>
                                 <Label Content="Location:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="14,136,0,0" Name="label12" VerticalAlignment="Top" Width="72" Foreground="Black" />
                                 <TextBox FontFamily="Segoe UI" Height="26" HorizontalAlignment="Left" Margin="96,136,0,0" Name="txt_location" Text="" VerticalAlignment="Top" Width="232" BorderBrush="#D8836D6D" Background="White" MaxLength="20" MouseDoubleClick="txt_item_number_MouseDoubleClick" GotFocus="txt_item_number_GotFocus"></TextBox>
                                 <Label Content="Unit Size:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="14,171,0,0" Name="label13" VerticalAlignment="Top" Width="67" Foreground="Black" />
@@ -71,12 +71,12 @@
                                 <TextBox FontFamily="Segoe UI" Height="26" HorizontalAlignment="Left" Margin="96,171,0,0" Name="txt_unit_size" Text="0" VerticalAlignment="Top" Width="67" BorderBrush="#D8836D6D" Background="White" MaxLength="10" MouseDoubleClick="txt_bonus_MouseDoubleClick"></TextBox>
                                 <TextBox FontFamily="Segoe UI" Height="26" HorizontalAlignment="Left" Margin="230,171,0,0" Name="txt_unit_type" Text="" VerticalAlignment="Top" Width="98" BorderBrush="#D8836D6D" Background="White" MaxLength="10" MouseDoubleClick="txt_item_number_MouseDoubleClick"></TextBox>
                                 <Label Content="Alternate SKUs" FontWeight="Bold" Height="23" HorizontalAlignment="Left" Margin="345,7,0,0" Name="label15" VerticalAlignment="Top" Width="136" Foreground="Black" />
-                                <Label Content="Tag Along Items:" FontWeight="Bold" Height="25" HorizontalAlignment="Left" Margin="345,113,0,0" Name="label16" VerticalAlignment="Top" Width="136" Foreground="Black" />
+                                <Label Content="Tag Along Items:" FontWeight="Bold" Height="27" HorizontalAlignment="Left" Margin="345,108,0,0" Name="label16" VerticalAlignment="Top" Width="149" Foreground="Black" />
                                 <CheckBox Content="Modifier Item" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="566,27,0,0" Name="chk_modfier_item" VerticalAlignment="Top" Width="104" />
                                 <CheckBox Content="Exclude From Account Limit" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="566,108,0,0" Name="chk_exclude" VerticalAlignment="Top" Width="182" />
                                 <CheckBox Content="Check ID Before Selling" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="566,53,0,0" Name="chk_chek_id" VerticalAlignment="Top" Width="148" />
                                 <CheckBox Content="Disable this Item" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="753,26,0,0" Name="chk_disable_itm" VerticalAlignment="Top" Width="120" />
-                                <CheckBox Content="Check #2 Before Selling" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="566,80,0,0" Name="chk_check2" VerticalAlignment="Top" Width="158" />
+                                <CheckBox Content="Check ID #2 Before Selling" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="566,80,0,0" Name="chk_check2" VerticalAlignment="Top" Width="182" />
                                 <CheckBox Content="Count this Item" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="753,52,0,0" Name="chk_count_item" VerticalAlignment="Top" Width="111" />
                                 <CheckBox Content="Use Serial/Batch#" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="753,78,0,0" Name="chk_use_serial" VerticalAlignment="Top" Width="119" />
                                 <CheckBox Content="Prompt Quantity" FontWeight="Bold" Height="21" HorizontalAlignment="Left" Margin="753,107,0,0" Name="chk_prmt_qty" VerticalAlignment="Top" Width="123" />
@@ -182,7 +182,7 @@
                     <WindowsFormsHost Height="195" HorizontalAlignment="Left" Margin="34,46,0,0" OpacityMask="#B3000000" VerticalAlignment="Top" Width="630">
                         <my:DataGridView x:Name="DG_pending_orders" AllowUserToAddRows="False" AllowUserToDeleteRows="False" AutoGenerateColumns="False">
                             <my:DataGridView.Columns>
-                                <my:DataGridViewTextBoxColumn HeaderText="INOVICE NO" MinimumWidth="80" ReadOnly="True" />
+                                <my:DataGridViewTextBoxColumn HeaderText="INVOICE NO" MinimumWidth="80" ReadOnly="True" />
                                 <my:DataGridViewTextBoxColumn HeaderText="LINE NO" MinimumWidth="120" />
                                 <my:DataGridViewTextBoxColumn HeaderText="DATE" MinimumWidth="120" />
                                 <my:DataGridViewTextBoxColumn HeaderText="PICKUP TYPE" MinimumWidth="120" />
@@ -218,7 +218,7 @@
             </TabItem>
             <TabItem Header="Modifiers">
                 <Grid>
-                    <GroupBox Header="Modefier List" Height="79" HorizontalAlignment="Left" Margin="679,14,0,0" Name="groupBox2" VerticalAlignment="Top" Width="190" BorderBrush="#6C3134CB">
+                    <GroupBox Header="Modifier List" Height="79" HorizontalAlignment="Left" Margin="679,14,0,0" Name="groupBox2" VerticalAlignment="Top" Width="190" BorderBrush="#6C3134CB">
                         <Grid>
                             <RadioButton Content="Groups" Height="16" HorizontalAlignment="Left" Margin="23,10,0,0" Name="rdb_groups" VerticalAlignment="Top" Width="103" IsChecked="False" Checked="rdb_groups_Checked" />
                             <RadioButton Content="Individual Items" Height="16" HorizontalAlignment="Left" Margin="23,36,0,0" Name="rdb_indivl_item" VerticalAlignment="Top" Width="122" IsEnabled="True" Checked="rdb_indivl_item_Checked" />
@@ -285,7 +285,7 @@
             </TabItem>
             <TabItem Header="Price Levels">
                 <Grid>
-                    <Label Content="Customers can automaticaly be Charged one of 26 Price Levels" Height="28" HorizontalAlignment="Left" Margin="31,5,0,0" Name="label45" VerticalAlignment="Top" Width="393" />
+                    <Label Content="Customers can automatically be Charged one of 26 Price Levels" Height="28" HorizontalAlignment="Left" Margin="31,5,0,0" Name="label45" VerticalAlignment="Top" Width="393" />
                     <WindowsFormsHost Height="236" HorizontalAlignment="Left" Margin="10,30,0,0" OpacityMask="#B3000000" VerticalAlignment="Top" Width="586">
                         <my:DataGridView AllowUserToDeleteRows="False" AutoGenerateColumns="False"  ReadOnly="False" x:Name="DG_price_level" CellEndEdit="DG_price_level_CellEndEdit" SelectionChanged="DG_price_level_SelectionChanged" AllowUserToAddRows="False">
                             <my:DataGridView.Columns>
@@ -430,7 +430,7 @@
             </TabItem>
             <TabItem Header="Matrix" TabIndex="8">
                 <Grid Name="matrax_gird" Visibility="Visible">
-                    <GroupBox Header="MATRAX" Height="226" HorizontalAlignment="Left" Margin="40,27,0,0" Name="matrix_gbox" VerticalAlignment="Top" Width="799" Visibility="Hidden">
+                    <GroupBox Header="MATRIX" Height="226" HorizontalAlignment="Left" Margin="40,27,0,0" Name="matrix_gbox" VerticalAlignment="Top" Width="799" Visibility="Hidden">
                         <Grid>
                             <TextBox Height="26" HorizontalAlignment="Left" Margin="575,46,0,0" Name="txt_style" VerticalAlignment="Top" Width="188" />
                             <TextBox Height="26" HorizontalAlignment="Left" Margin="575,132,0,0" Name="txt_color" VerticalAlignment="Top" Width="188" />
@@ -440,7 +440,7 @@
                             <Label Content="Color" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="520,132,0,0" Name="label44" VerticalAlignment="Top" Width="44" />
                             <DataGrid AutoGenerateColumns="False" Height="153" HorizontalAlignment="Left" Margin="39,35,0,0" Name="DG_matrix" VerticalAlignment="Top" Width="451">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Serial/Batich #" MinWidth="150" />
+                                    <DataGridTextColumn Header="Serial/Batch #" MinWidth="150" />
                                     <DataGridTextColumn Header="Quantity" MinWidth="150" />
                                     <DataGridTextColumn Header="PO #" MinWidth="150" />
                                 </DataGrid.Columns>
@@ -527,7 +527,7 @@
                             <TextBlock Width="51">Remove</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Label Content="An Items's Ingredients will be deducted from Stock when it's Sold." Height="28" HorizontalAlignment="Left" Margin="13,6,0,0" Name="label38" VerticalAlignment="Top" Width="401" />
+                    <Label Content="An Item's Ingredients will be deducted from Stock when it's Sold." Height="28" HorizontalAlignment="Left" Margin="13,6,0,0" Name="label38" VerticalAlignment="Top" Width="401" />
                 </Grid>
             </TabItem>
             <TabItem Header="Printers">
@@ -794,5 +794,6 @@
             </TabControl>
         </Grid>
         <Separator Height="10" HorizontalAlignment="Left" Margin="10,519,0,0" Name="separator1" VerticalAlignment="Top" Width="897" Background="White" />
+        <Button Content="Print Labels" Height="32" HorizontalAlignment="Left" Margin="702,3,0,0" x:Name="btn_keyboard_Copy" VerticalAlignment="Top" Width="100" Background="#FF708EDE" Focusable="False" FontWeight="Bold" />
     </Grid>
 </Window>

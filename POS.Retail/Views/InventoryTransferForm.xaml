@@ -1,0 +1,27 @@
+﻿<Window x:Class="POS.Retail.Views.InventoryTransferForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="" Height="582.978" WindowState="Normal" WindowStyle="ToolWindow"  Width="918.085">
+    <Grid>
+        <TabControl Margin="0,0,0,54">
+            <TabItem Header="   Items  ">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid VerticalAlignment="Top" AutoGenerateColumns="False" Name="dgTransfer" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" Height="237">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Order ID" Binding="{Binding Path=OrderID}" Width="100"/>
+                        <DataGridTextColumn Header="Order Date" Binding="{Binding Path=OrderDate}" Width="120"/>
+                        <DataGridTextColumn Header="Reason" Binding="{Binding Path=Reason}" Width="120"/>
+                        <DataGridTextColumn Header="Order By" Binding="{Binding Path=OrderedBy}" Width="120"/>
+                        <DataGridTextColumn Header="Creation Location" Binding="{Binding Path=CreationLocation}" Width="120"/>
+                        <DataGridTextColumn Header="Oreder Counter" Binding="{Binding Path=OrderCounter}" Width="*"/>
+                    </DataGrid.Columns>
+                        </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header=" Packages " Margin="0,0,-4,-3">
+                <Grid Background="#FFE5E5E5" Margin="0,0,1,0"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

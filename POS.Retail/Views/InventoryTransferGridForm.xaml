@@ -8,7 +8,7 @@
             <RowDefinition Height="43*"/>
             <RowDefinition Height="47*"/>
         </Grid.RowDefinitions>
-        <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Name="dgTransfer" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" VerticalAlignment="Top" Height="225" VerticalScrollBarVisibility="Auto" Width="550" RenderTransformOrigin="0.5,0.5" Background="#FFACA8A8">
+        <DataGrid HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" Name="dgTransfer" VerticalGridLinesBrush="LightBlue" HorizontalGridLinesBrush="LightBlue" AlternatingRowBackground="AntiqueWhite" VerticalAlignment="Top" Height="225" VerticalScrollBarVisibility="Auto" Width="550" RenderTransformOrigin="0.5,0.5" Background="#FFACA8A8">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order ID" Binding="{Binding Path=OrderID}" Width="100"/>
                 <DataGridTextColumn Header="Order Date" Binding="{Binding Path=OrderDate}" Width="120"/>
@@ -18,8 +18,8 @@
                 <DataGridTextColumn Header="Oreder Counter" Binding="{Binding Path=OrderCounter}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="cmbCreationStoreID" HorizontalAlignment="Left" Background="Transparent" Margin="126,14,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1"/>
-        <ComboBox HorizontalAlignment="Left" x:Name="cmbStatusToView" Background="Transparent" Margin="386,14,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1"/>
+        <ComboBox x:Name="cmbCreationStoreID" HorizontalAlignment="Left" DropDownClosed="cmbCreationStoreID_DropDownClosed" Background="Transparent" Margin="126,14,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="cmbStatusToView" DropDownClosed="cmbStatusToView_DropDownClosed" Background="Transparent" Margin="386,14,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1"/>
         <Label Content="Creation Store ID" HorizontalAlignment="Left" Margin="4,9,0,0" VerticalAlignment="Top" Width="119" FontSize="14" Grid.Row="1"/>
         <Label Content="Status to View:" HorizontalAlignment="Left" Margin="277,9,0,0" VerticalAlignment="Top" Width="105" FontSize="14" Grid.Row="1"/>
         <Button x:Name="btnSelect" Content="Select"  HorizontalAlignment="Left" Margin="43,8,0,10" Width="105" FontSize="14" FontWeight="SemiBold" Grid.Row="2">
@@ -30,7 +30,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnNew" Content="New"  HorizontalAlignment="Left" Margin="212,9,0,9" Width="105" FontSize="14" FontWeight="SemiBold" Grid.Row="2">
+        <Button x:Name="btnNew" Content="New"  HorizontalAlignment="Left" Margin="212,9,0,9" Width="105" FontSize="14" Click="btnNew_Click" FontWeight="SemiBold" Grid.Row="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                     <GradientStop Color="#D5000000" Offset="0" />
